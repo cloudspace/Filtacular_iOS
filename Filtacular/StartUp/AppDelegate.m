@@ -18,6 +18,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [self registerService:[RestkitService new]];
+
     return YES;
 }
 
