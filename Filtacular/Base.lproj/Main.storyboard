@@ -1,25 +1,171 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="KAM-HN-Jy5">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="ufC-wZ-h7g">
+        <!--Intro View Controller-->
+        <scene sceneID="L9P-eF-4EY">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModuleProvider="" sceneMemberID="viewController">
+                <viewController id="KAM-HN-Jy5" customClass="IntroViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
-                        <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
+                        <viewControllerLayoutGuide type="top" id="zuM-7B-4t1"/>
+                        <viewControllerLayoutGuide type="bottom" id="2ab-Bl-ChR"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
+                    <view key="view" contentMode="scaleToFill" id="lni-Zz-KWU">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Filtacular" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zSn-za-KFy">
+                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="320" id="d8O-6a-DRm"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="60"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="d8O-6a-DRm"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="d8O-6a-DRm"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="0.0" y="79" width="320" height="21"/>
+                                </variation>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zrE-rk-ejf">
+                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                <string key="text">Filter your Twitter timeline 
+in exciting new ways.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="0.0" y="79" width="320" height="21"/>
+                                </variation>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a9M-Qg-Wau">
+                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                <string key="text">By signing in with Twitter you agree to Filtacular's Privacy Policy and Terms of
+Service.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="0.0" y="79" width="320" height="21"/>
+                                </variation>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MWi-jB-mL4">
+                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                <string key="text">View other people's
+timeline</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="0.0" y="79" width="320" height="21"/>
+                                </variation>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XyB-41-QSk">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="XAw-nm-g7l"/>
+                                    <constraint firstAttribute="width" constant="256" id="gOL-iw-ra4"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" backgroundImage="twitter_login">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="XAw-nm-g7l"/>
+                                        <exclude reference="gOL-iw-ra4"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="XAw-nm-g7l"/>
+                                        <include reference="gOL-iw-ra4"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <action selector="loginToTwitter:" destination="KAM-HN-Jy5" eventType="touchUpInside" id="mZ4-F0-Ykx"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="a9M-Qg-Wau" secondAttribute="centerX" id="JUe-fg-DJa"/>
+                            <constraint firstAttribute="centerX" secondItem="XyB-41-QSk" secondAttribute="centerX" id="M9R-Dj-nw6"/>
+                            <constraint firstItem="zSn-za-KFy" firstAttribute="top" secondItem="zuM-7B-4t1" secondAttribute="bottom" constant="40" id="Rhb-cQ-Gid"/>
+                            <constraint firstAttribute="centerX" secondItem="zSn-za-KFy" secondAttribute="centerX" id="U6l-mY-ah7"/>
+                            <constraint firstItem="2ab-Bl-ChR" firstAttribute="top" secondItem="a9M-Qg-Wau" secondAttribute="bottom" constant="30" id="cEm-3H-bgs"/>
+                            <constraint firstItem="zrE-rk-ejf" firstAttribute="top" secondItem="zSn-za-KFy" secondAttribute="bottom" constant="50" id="dg9-n2-Ke1"/>
+                            <constraint firstItem="MWi-jB-mL4" firstAttribute="top" secondItem="zrE-rk-ejf" secondAttribute="bottom" constant="28" id="eFz-gj-J7a"/>
+                            <constraint firstItem="a9M-Qg-Wau" firstAttribute="top" secondItem="XyB-41-QSk" secondAttribute="bottom" constant="20" id="gQ4-Gq-5Xk">
+                                <variation key="widthClass=compact" constant="8"/>
+                            </constraint>
+                            <constraint firstAttribute="centerX" secondItem="MWi-jB-mL4" secondAttribute="centerX" id="nkS-1a-dhT"/>
+                            <constraint firstAttribute="centerX" secondItem="zrE-rk-ejf" secondAttribute="centerX" id="sC1-Z5-v6K"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="zSn-za-KFy"/>
+                                <exclude reference="zrE-rk-ejf"/>
+                                <exclude reference="a9M-Qg-Wau"/>
+                                <exclude reference="MWi-jB-mL4"/>
+                                <exclude reference="XyB-41-QSk"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="cEm-3H-bgs"/>
+                                <exclude reference="eFz-gj-J7a"/>
+                                <exclude reference="nkS-1a-dhT"/>
+                                <exclude reference="JUe-fg-DJa"/>
+                                <exclude reference="gQ4-Gq-5Xk"/>
+                                <exclude reference="Rhb-cQ-Gid"/>
+                                <exclude reference="U6l-mY-ah7"/>
+                                <exclude reference="dg9-n2-Ke1"/>
+                                <exclude reference="sC1-Z5-v6K"/>
+                                <exclude reference="M9R-Dj-nw6"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="zSn-za-KFy"/>
+                                <include reference="zrE-rk-ejf"/>
+                                <include reference="a9M-Qg-Wau"/>
+                                <include reference="MWi-jB-mL4"/>
+                                <include reference="XyB-41-QSk"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="cEm-3H-bgs"/>
+                                <include reference="eFz-gj-J7a"/>
+                                <include reference="nkS-1a-dhT"/>
+                                <include reference="JUe-fg-DJa"/>
+                                <include reference="gQ4-Gq-5Xk"/>
+                                <include reference="Rhb-cQ-Gid"/>
+                                <include reference="U6l-mY-ah7"/>
+                                <include reference="dg9-n2-Ke1"/>
+                                <include reference="sC1-Z5-v6K"/>
+                                <include reference="M9R-Dj-nw6"/>
+                            </mask>
+                        </variation>
                     </view>
+                    <connections>
+                        <outlet property="twitterLogin" destination="XyB-41-QSk" id="weZ-gg-Ju8"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="01R-B5-q1H" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="129" y="821"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="twitter_login" width="303" height="72"/>
+    </resources>
 </document>
