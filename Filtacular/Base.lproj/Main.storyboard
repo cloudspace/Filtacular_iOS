@@ -22,7 +22,7 @@
                                     <constraint firstAttribute="width" constant="320" id="d8O-6a-DRm"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="60"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="default">
                                     <mask key="constraints">
@@ -43,7 +43,7 @@
                                 <string key="text">Filter your Twitter timeline 
 in exciting new ways.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
                                     <rect key="frame" x="0.0" y="79" width="320" height="21"/>
@@ -54,7 +54,7 @@ in exciting new ways.</string>
                                 <string key="text">By signing in with Twitter you agree to Filtacular's Privacy Policy and Terms of
 Service.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="9"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
                                     <rect key="frame" x="0.0" y="79" width="320" height="21"/>
@@ -65,7 +65,7 @@ Service.</string>
                                 <string key="text">View other people's
 timeline</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
                                     <rect key="frame" x="0.0" y="79" width="320" height="21"/>

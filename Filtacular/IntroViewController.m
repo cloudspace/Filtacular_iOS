@@ -7,7 +7,6 @@
 //
 
 #import "IntroViewController.h"
-#import "UIView+SwapWithView.h"
 
 @interface IntroViewController ()
 
