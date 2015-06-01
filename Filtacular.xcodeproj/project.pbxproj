@@ -28,11 +28,11 @@
 		DFF176D01B1CD21A005095E9 /* APIInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF176CC1B1CD21A005095E9 /* APIInfo.m */; };
 		DFF176D11B1CD21A005095E9 /* RestkitService.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF176CE1B1CD21A005095E9 /* RestkitService.m */; };
 		DFF176D41B1CD242005095E9 /* Filtacular-API.plist in Resources */ = {isa = PBXBuildFile; fileRef = DFF176D31B1CD242005095E9 /* Filtacular-API.plist */; };
-		F2BB85F71B1CF3BB00FC3B6A /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2BB85F61B1CF3BB00FC3B6A /* Fabric.framework */; };
-		F2BB85FA1B1CF3D400FC3B6A /* TwitterCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2BB85F81B1CF3D400FC3B6A /* TwitterCore.framework */; };
-		F2BB85FB1B1CF3D400FC3B6A /* TwitterKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2BB85F91B1CF3D400FC3B6A /* TwitterKit.framework */; };
 		F2DDB2381B1CF50E004C0A8C /* IntroViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2DDB2371B1CF50E004C0A8C /* IntroViewController.m */; };
-		F2DDB23A1B1CF589004C0A8C /* TwitterKitResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F2DDB2391B1CF589004C0A8C /* TwitterKitResources.bundle */; };
+		F2DDB2411B1CF8F7004C0A8C /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2DDB23D1B1CF8F7004C0A8C /* Fabric.framework */; };
+		F2DDB2421B1CF8F7004C0A8C /* TwitterCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2DDB23E1B1CF8F7004C0A8C /* TwitterCore.framework */; };
+		F2DDB2431B1CF8F7004C0A8C /* TwitterKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2DDB23F1B1CF8F7004C0A8C /* TwitterKit.framework */; };
+		F2DDB2441B1CF8F7004C0A8C /* TwitterKitResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F2DDB2401B1CF8F7004C0A8C /* TwitterKitResources.bundle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,12 +81,12 @@
 		DFF176CD1B1CD21A005095E9 /* RestkitService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestkitService.h; sourceTree = "<group>"; };
 		DFF176CE1B1CD21A005095E9 /* RestkitService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestkitService.m; sourceTree = "<group>"; };
 		DFF176D31B1CD242005095E9 /* Filtacular-API.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Filtacular-API.plist"; sourceTree = "<group>"; };
-		F2BB85F61B1CF3BB00FC3B6A /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
-		F2BB85F81B1CF3D400FC3B6A /* TwitterCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TwitterCore.framework; sourceTree = "<group>"; };
-		F2BB85F91B1CF3D400FC3B6A /* TwitterKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TwitterKit.framework; sourceTree = "<group>"; };
 		F2DDB2361B1CF50E004C0A8C /* IntroViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroViewController.h; sourceTree = "<group>"; };
 		F2DDB2371B1CF50E004C0A8C /* IntroViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntroViewController.m; sourceTree = "<group>"; };
-		F2DDB2391B1CF589004C0A8C /* TwitterKitResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = TwitterKitResources.bundle; path = Filtacular/TwitterKitResources.bundle; sourceTree = "<group>"; };
+		F2DDB23D1B1CF8F7004C0A8C /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fabric.framework; path = Filtacular/ThirdParty/Fabric.framework; sourceTree = "<group>"; };
+		F2DDB23E1B1CF8F7004C0A8C /* TwitterCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TwitterCore.framework; path = Filtacular/ThirdParty/TwitterCore.framework; sourceTree = "<group>"; };
+		F2DDB23F1B1CF8F7004C0A8C /* TwitterKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TwitterKit.framework; path = Filtacular/ThirdParty/TwitterKit.framework; sourceTree = "<group>"; };
+		F2DDB2401B1CF8F7004C0A8C /* TwitterKitResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = TwitterKitResources.bundle; path = Filtacular/ThirdParty/TwitterKitResources.bundle; sourceTree = "<group>"; };
 		F87BD5DD489DB985D5711B7B /* libPods-FiltacularTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FiltacularTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -96,9 +96,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				DB1BE132AE4A22BF594B8604 /* libPods.a in Frameworks */,
-				F2BB85FA1B1CF3D400FC3B6A /* TwitterCore.framework in Frameworks */,
-				F2BB85F71B1CF3BB00FC3B6A /* Fabric.framework in Frameworks */,
-				F2BB85FB1B1CF3D400FC3B6A /* TwitterKit.framework in Frameworks */,
+				F2DDB2421B1CF8F7004C0A8C /* TwitterCore.framework in Frameworks */,
+				F2DDB2411B1CF8F7004C0A8C /* Fabric.framework in Frameworks */,
+				F2DDB2431B1CF8F7004C0A8C /* TwitterKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -279,10 +279,10 @@
 		F9FE532600B8A1C56C214958 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				F2DDB2391B1CF589004C0A8C /* TwitterKitResources.bundle */,
-				F2BB85F81B1CF3D400FC3B6A /* TwitterCore.framework */,
-				F2BB85F91B1CF3D400FC3B6A /* TwitterKit.framework */,
-				F2BB85F61B1CF3BB00FC3B6A /* Fabric.framework */,
+				F2DDB23D1B1CF8F7004C0A8C /* Fabric.framework */,
+				F2DDB23E1B1CF8F7004C0A8C /* TwitterCore.framework */,
+				F2DDB23F1B1CF8F7004C0A8C /* TwitterKit.framework */,
+				F2DDB2401B1CF8F7004C0A8C /* TwitterKitResources.bundle */,
 				F87BD5DD489DB985D5711B7B /* libPods-FiltacularTests.a */,
 				334450DE7229DC724EF42003 /* libPods.a */,
 			);
@@ -377,7 +377,7 @@
 				DF183BA51B1CAA2B0001DDA4 /* Main.storyboard in Resources */,
 				DF17730C1B1CC29B00AD4CA4 /* AppledocSettings.plist in Resources */,
 				DF183BAA1B1CAA2B0001DDA4 /* LaunchScreen.xib in Resources */,
-				F2DDB23A1B1CF589004C0A8C /* TwitterKitResources.bundle in Resources */,
+				F2DDB2441B1CF8F7004C0A8C /* TwitterKitResources.bundle in Resources */,
 				DF183BA71B1CAA2B0001DDA4 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -602,6 +602,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Filtacular/ThirdParty",
 				);
 				INFOPLIST_FILE = Filtacular/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -617,6 +618,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Filtacular/ThirdParty",
 				);
 				INFOPLIST_FILE = Filtacular/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
