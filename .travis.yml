@@ -2,24 +2,24 @@ language: objective-c
 env:
   global:
   - APP_NAME="Filtacular"
-  - 'CERT_NAME="iPhone Distribution: My Company, Inc (343VE5MT6Z)"'
-  - PROFILE_NAME="appstore_com.cloudspace.filtacular.mobileprovision"
+  - 'CERT_NAME="iPhone Distribution: Unity Marketing, Inc. (34V4E5MT6Z)"'
+  - PROFILE_FILE_NAME="appstore_com.cloudspace.filtacular.mobileprovision"
   - PROJECT_FILE_NAME="Filtacular.xcworkspace"
   - CERT_FILE_NAME="UnityDec2.cer"
-  - P12_NAME="UnityDec2.p12"
+  - P12_FILE_NAME="UnityDec2.p12"
   - secure: SuN3nHg3xO3jBPa3uIz9in+7TY3UNl57OLd44MAu1rf/a6cmiTbOGDJlqMj5a/i/23qqFX9gGMRD7uxYJrHjECCO2O2qiyeUMqGflWhz4Bms6YeYtgZIENePPjQz0h/pmtEuacm2535u2H63GxDJSGodjby2djVMcbQDJlUD8o/SCkwjCmpo2wVwkIyrMVZAxjGEczkZsN2KCw+dvtgdp3uVM8Cw6vnkFghk8twgQev1NY5LX+ftQbvYTUAqKWmAx3j6SVkWVM+AmnfZMaPzITIErLFBlyvsLFW1JEhF24ouKNkanFL7bLgRNWlFH3/QiofBvRICFBKeQOC6ZAp8Epe4z6lmvIB/NsKWtqmzV5SieQwQaEVXG/t52nsWR3X630V5Ra+5Y+ex2IwvReMU57mt2nM+jJ8jtHO3YPyVEwKNK2/V73NIvhdpqntXmbpFLm9ST3pQiw+GYXolqpkwRdrzsHlIfp3V6Awk5uIjLNj74pZcvE7j4MvpLaghPpEPIlaGsHRZg/9WNYJrqvhlgtscJDv28ORF+ekkUzF8GUVW17qFgWIyOiADivYjK1VXf/D0KZgI8w587QTajv2yQTupqNWVwC3JOAXROiEI8G3a0MXXEWPCACDX7XIoBbcwMo6BZ3pHkuTgmMil1SACdhl7bJ3Qi3OLiWL+f/2V0pI=
   - secure: qy+6ICIW2Ta6NBtrsBjthDYhKBBFRvC5L0xyhpTeellLP4KHyywNYKMiKIU6AW5zAu6Eky0HH2dByx/eZHWjRk0IEJDhSNDxqTxDc4yvNl1rxP3wHk1JL4C57CK5L9NsmbEk5wfwrhZzmWVM+y74HNd6Xmy1zrGfGFJ3+/Veww2tVDl9dcW5sXjo6E7Zd5zIKAALU3Yns04fbDsncNOlPycLD8HUeuBm2eMMvCD4v/3R/h4PJWpJJ0HNM3TxzWzbECczJGRLOht8ucHCqqrrnKfATMer4/8gjwNLuCt7zaAaN/pTffZ6nKHlbNpyvo4F+R2TCW77G3ws9pgDPYUACM2rVzAfWP6BD/CVFraoR2cwouO6imRD3gjosCm3M2+v9OBhTZYCrZPDk2dRq8PC1MeBhJW9lNpzFO97/d/g+hwRZcShlXZ7ofoWI4VT5NPvKlN1cZmoLSKVss0M90GAi/qjbXsdRTIWb8e7xZ+mRxWWklNmutJnFyvFBAiFi6T39UkyH7z6r+3Y7HLSn1C6R0k4Q+9zaBhfvQ7wtSeAGu+LESqfGzs/oQTr3sEb2kFEpLtMtSQdpchJFC2bCS4qx/Ip+HF3NaeysfBG1J7UXyFV9fhHUyMFu5oI+0pQs7Asfd3qXaSE4ayjmSvQKrgpajNEgSunEL4iPQkUHpCu0Pw=
   - secure: D5z/AvlPipM2DjIpod0no+1RentMzpV+ZdX+Gdl4UIyA/bgucheNv4rbsXfZ8AcdBIeUZdD4GZ5RqUVGl3FTHpRGY7JUA4osVDXAla6WHfpkY88bCSO8c6gaOwwGEW/z/mPtVb4JmFQOmtsm+CquEgSvHmSAjfklrVB5Xv5VMwNvlD6aDXE6nUUsXLVOiu9Nv14k2SWz7lC5YiwvRx3Ql8jKDueGeJWfGos0G5OzPzEAlb8meY4K5i9qtBPklU+q3PDQXt3psVQtPOqOW0uX2nfSXdJy6Ddd6rHHe/BEs53AzaPywOAr+JAbc63T8b6PCY71KghDcwOoqfKG3kIELPjfJt4BMpy3Z2q3VdoQ7io3daR0pViuMvROjsNiPNQDNKZFEPXdxP9X8qiggCfnWc9I0nUgOPAggmOW7q86X8oDxvQuwZ+LAYPbpR81eNZZbhXblA2gD4z9D0IjQxor0MfB6gVFS/+VYkGY1aFS7WGfTEemxDGwW8GP9S/nauwRdKhHZDiytX973oCX++u7LKfJoJ7LI+/tarUD4dAGO37RB9xiVz97gf92ek8SBqRXHEEmPu9/D1kEWyGoISVxwTx9Um48kVt8Bala1e4wQvgV0dy4f+9WCzqt5ASZjhVvNECnGdDZvTYdmben/czbha3WT1ynd+NI4l1v9OGiUkg=
   - secure: aEDS/ByZtqSWXMCnwfztxk8aSJh9gLq6R7gQWSyXca63WSJIGW4ivCqrqRgIXPd7/EQURFKSwiZg/Va7ftwriLMZB5JT750wmhJ6+njfgxl6oMzrJyVLxarjX8OrVVTOIyNdZnFS5/QhTVfPWgD+7WH0hTRqwlm5eQNwJAQh/qyqh7DGTf2/D/tKyF+BPlNy5E35w0gQi6sqoNHL3i9DWaSuzjPIq3JNPkA52i24yk1wTEqkg32FwWmHRVXMhTPs3UBKMObwMyt9xKqt+XXUiIU0eT9VGKlGihf4AhNrnSiFWYEzkN+JKKaynF9uynBJpfJBt/mQMM6LomkNMBwwaDX+eim2Op7H4428dYs9nm2G6ZhvIX0DjoC9bslAoCqvoWrSzgGAFCrIz1U6mbQvu7jOLXBU0gaSgbuj3UfaA7KgunD33BysYUeZm8a9oHQ5xBpDX1zaUH/QnnR6FcB3IEfNP2Va28GBz7F16YNRkCeHNMFMKrpgKjbzuKnNWu89xHhhWqgNf3hzAlwTZD2B51Ds2OPZWHARSnv/tvxiaRK2uGiHb/FJuxjnDLn+gvPyB/1vhwf8xyAZqfaB5sU5oeBiSjP4tOvI7C598Rk/Y/007Ox7n6YX9j9HW237loFuyXUtZ6NB8yflNMSG25/VeHeJGgo7tUFePJ57RO+LHAY=
 before_script:
-- openssl aes-256-cbc -k "$ENCRYPTION_SECRET" -in scripts/profile/$PROFILE_NAME.enc -d -a -out scripts/profile/$PROFILE_NAME
-- openssl aes-256-cbc -k "$ENCRYPTION_SECRET" -in scripts/cert/$CERT_NAME.enc -d -a -out scripts/cert/$CERT_NAME
-- openssl aes-256-cbc -k "$ENCRYPTION_SECRET" -in scripts/cert/$P12_NAME.enc -d -a -out scripts/cert/$P12_NAME
+- openssl aes-256-cbc -k "$ENCRYPTION_SECRET" -in scripts/profile/$PROFILE_FILE_NAME.enc -d -a -out scripts/profile/$PROFILE_FILE_NAME
+- openssl aes-256-cbc -k "$ENCRYPTION_SECRET" -in scripts/cert/$CERT_FILE_NAME.enc -d -a -out scripts/cert/$CERT_FILE_NAME
+- openssl aes-256-cbc -k "$ENCRYPTION_SECRET" -in scripts/cert/$P12_FILE_NAME.enc -d -a -out scripts/cert/$P12_FILE_NAME
 - "./scripts/add-key.sh"
 script:
-- xctool -workspace "$PROJECT_FILE_NAME" -scheme MyApplicationScheme -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
-- xctool test -parallelize -workspace "$PROJECT_FILE_NAME" -scheme MyApplicationScheme -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
-- xctool -workspace "$PROJECT_FILE_NAME" -scheme MyApplicationSchemeWithoutTests -sdk iphoneos -configuration Release OBJROOT=$PWD/build SYMROOT=$PWD/build 'CODE_SIGN_RESOURCE_RULES_PATH=$(SDKROOT)/ResourceRules.plist'
+- xctool -workspace "$PROJECT_FILE_NAME" -scheme Filtacular -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
+- xctool test -parallelize -workspace "$PROJECT_FILE_NAME" -scheme Filtacular -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
+- xctool -workspace "$PROJECT_FILE_NAME" -scheme FiltacularNoTests -sdk iphoneos -configuration Release OBJROOT=$PWD/build SYMROOT=$PWD/build 'CODE_SIGN_RESOURCE_RULES_PATH=$(SDKROOT)/ResourceRules.plist'
 after_success:
 - "./scripts/sign-and-upload.sh"
 after_script:
