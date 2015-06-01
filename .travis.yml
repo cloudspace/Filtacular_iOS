@@ -1,0 +1,22 @@
+language: objective-c
+env:
+  global:
+  - APP_NAME="Filtacular
+  - 'CERT_NAME="iPhone Distribution: My Company, Inc (343VE5MT6Z)"'
+  - PROFILE_NAME="appstore_com.cloudspace.filtacular.mobileprovision"
+  - PROJECT_FILE_NAME="Filtacular.xcworkspace"
+  - CERT_FILE_NAME="UnityDec2.cer"
+  - P12_NAME="UnityDec2.p12"
+before_script:
+- openssl aes-256-cbc -k "$ENCRYPTION_SECRET" -in scripts/profile/$PROFILE_NAME.enc -d -a -out scripts/profile/$PROFILE_NAME
+- openssl aes-256-cbc -k "$ENCRYPTION_SECRET" -in scripts/cert/$CERT_NAME.enc -d -a -out scripts/cert/$CERT_NAME
+- openssl aes-256-cbc -k "$ENCRYPTION_SECRET" -in scripts/cert/$P12_NAME.enc -d -a -out scripts/cert/$P12_NAME
+- "./scripts/add-key.sh"
+script:
+- xctool -workspace "$PROJECT_FILE_NAME" -scheme MyApplicationScheme -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
+- xctool test -parallelize -workspace "$PROJECT_FILE_NAME" -scheme MyApplicationScheme -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
+- xctool -workspace "$PROJECT_FILE_NAME" -scheme MyApplicationSchemeWithoutTests -sdk iphoneos -configuration Release OBJROOT=$PWD/build SYMROOT=$PWD/build 'CODE_SIGN_RESOURCE_RULES_PATH=$(SDKROOT)/ResourceRules.plist'
+after_success:
+- "./scripts/sign-and-upload.sh"
+after_script:
+- "./scripts/remove-key.sh"
