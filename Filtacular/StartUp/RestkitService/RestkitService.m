@@ -12,6 +12,8 @@
 #import <RestKit/RestKit.h>
 
 #import "APIInfo.h"
+#import "User.h"
+#import "Tweet.h"
 
 @implementation RestkitService
 
@@ -93,19 +95,18 @@
 
 //Specifies mapping for request -> data models
 - (void)addResponseDescriptorsTo:(RKObjectManager*)objectManager {
+    
+    RKResponseDescriptor * responseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:[User entityMapping] method:RKRequestMethodPOST pathPattern:@"users" keyPath:nil statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
+    [objectManager addResponseDescriptor:responseDescriptor];
 
-    //Standard Example of mappings:
+    responseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:[Tweet objectMapping] method:RKRequestMethodGET pathPattern:@"/users/:nickname/tweets" keyPath:nil statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
+    [objectManager addResponseDescriptor:responseDescriptor];
+    
+    responseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:[Tweet objectMapping] method:RKRequestMethodGET pathPattern:@"/users/:nickname/tweets/:filter" keyPath:nil statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
+    [objectManager addResponseDescriptor:responseDescriptor];
+    
+    //Standard Example of error mapping:
     /*
-     RKResponseDescriptor * responseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:[AccessToken objectMapping] method:RKRequestMethodPOST pathPattern:@"oauth/token" keyPath:nil statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
-    
-    [objectManager addResponseDescriptor:responseDescriptor];
-
-    
-    responseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:[InventoryEntry entityMapping] method:RKRequestMethodGET pathPattern:@"stations/:id/products" keyPath:nil statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
-    
-    [objectManager addResponseDescriptor:responseDescriptor];
-
-    
     RKObjectMapping *errorMapping = [RKObjectMapping mappingForClass:[RKErrorMessage class]];
     [errorMapping addPropertyMapping:[RKAttributeMapping attributeMappingFromKeyPath:nil toKeyPath:@"errorMessage"]];
     
@@ -117,6 +118,7 @@
     
     [objectManager addResponseDescriptor:errorDescriptor];
     */
+    
 }
 
 @end
