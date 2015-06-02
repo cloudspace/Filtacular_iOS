@@ -23,9 +23,9 @@
 - (void)viewDidLoad {
     
     [_table setTableViewCellClass:[TweetCell class]];
-    __weak VCTwitterFeed* weakSelf = self;
+    //__weak VCTwitterFeed* weakSelf = self;
     [_table setSelectObjectBlock:^(Tweet* tweet) {
-        VCTwitterFeed* strongSelf = weakSelf;
+        //VCTwitterFeed* strongSelf = weakSelf;
         UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"" message:@"WIP" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alert show];
     }];
@@ -34,13 +34,17 @@
 }
 
 - (void)updateTweets {
-    [self performSelector:@selector(fakeLoadTweets) withObject:nil afterDelay:3];
+    [self performSelector:@selector(fakeLoadTweets) withObject:nil afterDelay:0.5f];
 }
 
 - (void)fakeLoadTweets {
-    NSArray* tweets = @[[Tweet generateRandomTweet], [Tweet generateRandomTweet], [Tweet generateRandomTweet]];
+    NSMutableArray * tweetMut = [NSMutableArray new];
+    for (int i = arc4random_uniform(100); i >= 0; i -=1) {
+        [tweetMut addObject:[Tweet generateRandomTweet]];
+    }
+    NSArray* tweets = [NSArray arrayWithArray:tweetMut];
     self.tableData = [tweets sortedArrayUsingComparator:^NSComparisonResult(Tweet* obj1, Tweet* obj2) {
-        return [obj2.postDate compare:obj1.postDate];
+        return [obj2.tweetCreatedAt compare:obj1.tweetCreatedAt];
     }];
     [_table loadData:tweets];
 }
@@ -51,6 +55,10 @@
 
 - (IBAction)tapUser {
     
+}
+
+- (UIRectEdge)edgesForExtendedLayout {
+    return UIRectEdgeNone;
 }
 
 @end

@@ -36,12 +36,12 @@
 		DF48E7E81B1DF5A600154FC1 /* MCCSmartGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = DF48E7E41B1DF5A600154FC1 /* MCCSmartGroup.m */; };
 		DF48E7E91B1DF5A600154FC1 /* MCCSmartGroupManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DF48E7E61B1DF5A600154FC1 /* MCCSmartGroupManager.m */; };
 		DF48E7EA1B1DF5A600154FC1 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = DF48E7E71B1DF5A600154FC1 /* README.md */; };
+		DF48E7EE1B1E0E6D00154FC1 /* RootNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF48E7ED1B1E0E6D00154FC1 /* RootNavigationController.m */; };
 		DFF176CF1B1CD21A005095E9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF176C91B1CD21A005095E9 /* AppDelegate.m */; };
 		DFF176D01B1CD21A005095E9 /* APIInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF176CC1B1CD21A005095E9 /* APIInfo.m */; };
 		DFF176D11B1CD21A005095E9 /* RestkitService.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF176CE1B1CD21A005095E9 /* RestkitService.m */; };
 		DFF176D41B1CD242005095E9 /* Filtacular-API.plist in Resources */ = {isa = PBXBuildFile; fileRef = DFF176D31B1CD242005095E9 /* Filtacular-API.plist */; };
 		F24807BF1B1DF1CD009A6310 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = F24807BE1B1DF1CD009A6310 /* User.m */; };
-		F2DDB2381B1CF50E004C0A8C /* IntroViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2DDB2371B1CF50E004C0A8C /* IntroViewController.m */; };
 		F2DDB2411B1CF8F7004C0A8C /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2DDB23D1B1CF8F7004C0A8C /* Fabric.framework */; };
 		F2DDB2421B1CF8F7004C0A8C /* TwitterCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2DDB23E1B1CF8F7004C0A8C /* TwitterCore.framework */; };
 		F2DDB2431B1CF8F7004C0A8C /* TwitterKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2DDB23F1B1CF8F7004C0A8C /* TwitterKit.framework */; };
@@ -108,6 +108,8 @@
 		DF48E7E51B1DF5A600154FC1 /* MCCSmartGroupManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCCSmartGroupManager.h; sourceTree = "<group>"; };
 		DF48E7E61B1DF5A600154FC1 /* MCCSmartGroupManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCCSmartGroupManager.m; sourceTree = "<group>"; };
 		DF48E7E71B1DF5A600154FC1 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		DF48E7EC1B1E0E6D00154FC1 /* RootNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootNavigationController.h; sourceTree = "<group>"; };
+		DF48E7ED1B1E0E6D00154FC1 /* RootNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootNavigationController.m; sourceTree = "<group>"; };
 		DFF176C81B1CD21A005095E9 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		DFF176C91B1CD21A005095E9 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		DFF176CB1B1CD21A005095E9 /* APIInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIInfo.h; sourceTree = "<group>"; };
@@ -117,8 +119,6 @@
 		DFF176D31B1CD242005095E9 /* Filtacular-API.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Filtacular-API.plist"; sourceTree = "<group>"; };
 		F24807BD1B1DF1CD009A6310 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		F24807BE1B1DF1CD009A6310 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
-		F2DDB2361B1CF50E004C0A8C /* IntroViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroViewController.h; sourceTree = "<group>"; };
-		F2DDB2371B1CF50E004C0A8C /* IntroViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntroViewController.m; sourceTree = "<group>"; };
 		F2DDB23D1B1CF8F7004C0A8C /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fabric.framework; path = Filtacular/ThirdParty/Fabric.framework; sourceTree = "<group>"; };
 		F2DDB23E1B1CF8F7004C0A8C /* TwitterCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TwitterCore.framework; path = Filtacular/ThirdParty/TwitterCore.framework; sourceTree = "<group>"; };
 		F2DDB23F1B1CF8F7004C0A8C /* TwitterKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TwitterKit.framework; path = Filtacular/ThirdParty/TwitterKit.framework; sourceTree = "<group>"; };
@@ -239,6 +239,7 @@
 		DF48E7BE1B1CF29200154FC1 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				DF48E7EB1B1E0E4100154FC1 /* RootNavigationController */,
 				DF48E7D71B1DEDE700154FC1 /* IntroViewController */,
 				DF48E7BF1B1CF2B900154FC1 /* VCTwitterFeed */,
 			);
@@ -347,6 +348,15 @@
 			);
 			name = MCCSmartGroups;
 			path = Filtacular/ThirdParty/MCCSmartGroups;
+			sourceTree = "<group>";
+		};
+		DF48E7EB1B1E0E4100154FC1 /* RootNavigationController */ = {
+			isa = PBXGroup;
+			children = (
+				DF48E7EC1B1E0E6D00154FC1 /* RootNavigationController.h */,
+				DF48E7ED1B1E0E6D00154FC1 /* RootNavigationController.m */,
+			);
+			path = RootNavigationController;
 			sourceTree = "<group>";
 		};
 		DFF176C71B1CD21A005095E9 /* StartUp */ = {
@@ -624,6 +634,7 @@
 				DF183B9F1B1CAA2B0001DDA4 /* Filtacular.xcdatamodeld in Sources */,
 				DF48E7EA1B1DF5A600154FC1 /* README.md in Sources */,
 				DF48E7E91B1DF5A600154FC1 /* MCCSmartGroupManager.m in Sources */,
+				DF48E7EE1B1E0E6D00154FC1 /* RootNavigationController.m in Sources */,
 				DF48E7B31B1CE01F00154FC1 /* BaseManagedModel.m in Sources */,
 				DF183B991B1CAA2B0001DDA4 /* main.m in Sources */,
 				DF48E7D11B1DEC8700154FC1 /* Widget.m in Sources */,

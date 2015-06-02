@@ -68,7 +68,6 @@
     self.smartGroup.viewBlock = ^UIView *(NSInteger index, id data) {
         CustomTableView* strongSelf = weakSelf;
         
-        
         id cell = nil;
         cell = (id)[strongSelf.table dequeueReusableCellWithIdentifier:strongSelf.cellId];
         
@@ -135,6 +134,13 @@
     id object = _tableData[indexPath.row];
     if (_selectObjectBlock)
         _selectObjectBlock(object);
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    id object = _tableData[indexPath.row];
+    id <ConfigurableView> cell = [self.tableViewCellClass createFromNib];
+    [cell configureWithObject:object];
+    return [(UIView*)cell frame].size.height;
 }
 
 @end

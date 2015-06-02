@@ -166,15 +166,19 @@ timeline</string>
             </objects>
             <point key="canvasLocation" x="595" y="1017"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Root Navigation Controller-->
         <scene sceneID="d8v-a4-RqL">
             <objects>
-                <navigationController navigationBarHidden="YES" id="rU3-3z-DEJ" sceneMemberID="viewController">
+                <navigationController navigationBarHidden="YES" id="rU3-3z-DEJ" customClass="RootNavigationController" sceneMemberID="viewController">
                     <extendedEdge key="edgesForExtendedLayout"/>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackOpaque"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="E57-YC-lIg">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="lbS-cW-aLA">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="KAM-HN-Jy5" kind="relationship" relationship="rootViewController" id="MOh-0t-s4C"/>
                     </connections>

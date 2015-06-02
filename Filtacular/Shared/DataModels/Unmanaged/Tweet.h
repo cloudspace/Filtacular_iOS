@@ -13,11 +13,15 @@
 @property (nonatomic, strong) NSString* displayName;
 @property (nonatomic, strong) NSString* userName;
 @property (nonatomic, strong) NSString* profilePicUrl;
-@property (nonatomic, strong) NSDate* postDate;
-@property (nonatomic, strong) NSString* linkUrl;
+@property (nonatomic, strong) NSDate* tweetCreatedAt;
+@property (nonatomic, strong) NSString* urlLink;
+@property (nonatomic, strong) NSString* urlDescription;
+@property (nonatomic, strong) NSString* urlTitle;
+@property (nonatomic, strong) NSString* urlImage;
+@property (nonatomic, strong) NSString* text;
 @property (nonatomic, assign) int retweetCount;
 @property (nonatomic, assign) int favoriteCount;
-@property (nonatomic, assign) int identifier;
+@property (nonatomic, assign) int tweetId;
 
 + (Tweet*)generateRandomTweet;
 
