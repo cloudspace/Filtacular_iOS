@@ -8,6 +8,8 @@
 
 #import "AppDelegate.h"
 #import "RestkitService.h"
+#import <Fabric/Fabric.h>
+#import <TwitterKit/TwitterKit.h>
 
 @interface AppDelegate ()
 
@@ -18,6 +20,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [self registerService:[RestkitService new]];
+    [Fabric with:@[TwitterKit]];
 
     return YES;
 }

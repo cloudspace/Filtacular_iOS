@@ -10,6 +10,7 @@
 #import "MCCSmartGroup.h"
 #import "MCCSmartGroupManager.h"
 #import "ConfigurableViewProtocol.h"
+#import "UIView+Positioning.h"
 
 @interface CustomTableView () <UITableViewDelegate>
 

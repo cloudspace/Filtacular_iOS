@@ -12,7 +12,6 @@
 		DF17730C1B1CC29B00AD4CA4 /* AppledocSettings.plist in Resources */ = {isa = PBXBuildFile; fileRef = DF17730B1B1CC29A00AD4CA4 /* AppledocSettings.plist */; };
 		DF183B991B1CAA2B0001DDA4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DF183B981B1CAA2B0001DDA4 /* main.m */; };
 		DF183B9F1B1CAA2B0001DDA4 /* Filtacular.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DF183B9D1B1CAA2B0001DDA4 /* Filtacular.xcdatamodeld */; };
-		DF183BA21B1CAA2B0001DDA4 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF183BA11B1CAA2B0001DDA4 /* ViewController.m */; };
 		DF183BA51B1CAA2B0001DDA4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF183BA31B1CAA2B0001DDA4 /* Main.storyboard */; };
 		DF183BA71B1CAA2B0001DDA4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DF183BA61B1CAA2B0001DDA4 /* Images.xcassets */; };
 		DF183BAA1B1CAA2B0001DDA4 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF183BA81B1CAA2B0001DDA4 /* LaunchScreen.xib */; };
@@ -31,10 +30,20 @@
 		DF48E7CD1B1DEC0B00154FC1 /* CustomTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF48E7CB1B1DEC0B00154FC1 /* CustomTableView.xib */; };
 		DF48E7D11B1DEC8700154FC1 /* Widget.m in Sources */ = {isa = PBXBuildFile; fileRef = DF48E7D01B1DEC8700154FC1 /* Widget.m */; };
 		DF48E7D61B1DED0900154FC1 /* UIView+Positioning.m in Sources */ = {isa = PBXBuildFile; fileRef = DF48E7D51B1DED0900154FC1 /* UIView+Positioning.m */; };
+		DF48E7DA1B1DEE1500154FC1 /* IntroViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF48E7D91B1DEE1500154FC1 /* IntroViewController.m */; };
+		DF48E7E01B1DF06200154FC1 /* TweetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF48E7DE1B1DF06200154FC1 /* TweetCell.m */; };
+		DF48E7E11B1DF06200154FC1 /* TweetCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF48E7DF1B1DF06200154FC1 /* TweetCell.xib */; };
+		DF48E7E81B1DF5A600154FC1 /* MCCSmartGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = DF48E7E41B1DF5A600154FC1 /* MCCSmartGroup.m */; };
+		DF48E7E91B1DF5A600154FC1 /* MCCSmartGroupManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DF48E7E61B1DF5A600154FC1 /* MCCSmartGroupManager.m */; };
+		DF48E7EA1B1DF5A600154FC1 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = DF48E7E71B1DF5A600154FC1 /* README.md */; };
 		DFF176CF1B1CD21A005095E9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF176C91B1CD21A005095E9 /* AppDelegate.m */; };
 		DFF176D01B1CD21A005095E9 /* APIInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF176CC1B1CD21A005095E9 /* APIInfo.m */; };
 		DFF176D11B1CD21A005095E9 /* RestkitService.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF176CE1B1CD21A005095E9 /* RestkitService.m */; };
 		DFF176D41B1CD242005095E9 /* Filtacular-API.plist in Resources */ = {isa = PBXBuildFile; fileRef = DFF176D31B1CD242005095E9 /* Filtacular-API.plist */; };
+		F2DDB2411B1CF8F7004C0A8C /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2DDB23D1B1CF8F7004C0A8C /* Fabric.framework */; };
+		F2DDB2421B1CF8F7004C0A8C /* TwitterCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2DDB23E1B1CF8F7004C0A8C /* TwitterCore.framework */; };
+		F2DDB2431B1CF8F7004C0A8C /* TwitterKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2DDB23F1B1CF8F7004C0A8C /* TwitterKit.framework */; };
+		F2DDB2441B1CF8F7004C0A8C /* TwitterKitResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F2DDB2401B1CF8F7004C0A8C /* TwitterKitResources.bundle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,8 +67,6 @@
 		DF183B971B1CAA2B0001DDA4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DF183B981B1CAA2B0001DDA4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		DF183B9E1B1CAA2B0001DDA4 /* Filtacular.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Filtacular.xcdatamodel; sourceTree = "<group>"; };
-		DF183BA01B1CAA2B0001DDA4 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		DF183BA11B1CAA2B0001DDA4 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		DF183BA41B1CAA2B0001DDA4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DF183BA61B1CAA2B0001DDA4 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		DF183BA91B1CAA2B0001DDA4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -89,6 +96,16 @@
 		DF48E7D01B1DEC8700154FC1 /* Widget.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Widget.m; sourceTree = "<group>"; };
 		DF48E7D41B1DED0900154FC1 /* UIView+Positioning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Positioning.h"; sourceTree = "<group>"; };
 		DF48E7D51B1DED0900154FC1 /* UIView+Positioning.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Positioning.m"; sourceTree = "<group>"; };
+		DF48E7D81B1DEE1500154FC1 /* IntroViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroViewController.h; sourceTree = "<group>"; };
+		DF48E7D91B1DEE1500154FC1 /* IntroViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntroViewController.m; sourceTree = "<group>"; };
+		DF48E7DD1B1DF06200154FC1 /* TweetCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweetCell.h; sourceTree = "<group>"; };
+		DF48E7DE1B1DF06200154FC1 /* TweetCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweetCell.m; sourceTree = "<group>"; };
+		DF48E7DF1B1DF06200154FC1 /* TweetCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TweetCell.xib; sourceTree = "<group>"; };
+		DF48E7E31B1DF5A600154FC1 /* MCCSmartGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCCSmartGroup.h; sourceTree = "<group>"; };
+		DF48E7E41B1DF5A600154FC1 /* MCCSmartGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCCSmartGroup.m; sourceTree = "<group>"; };
+		DF48E7E51B1DF5A600154FC1 /* MCCSmartGroupManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCCSmartGroupManager.h; sourceTree = "<group>"; };
+		DF48E7E61B1DF5A600154FC1 /* MCCSmartGroupManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCCSmartGroupManager.m; sourceTree = "<group>"; };
+		DF48E7E71B1DF5A600154FC1 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		DFF176C81B1CD21A005095E9 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		DFF176C91B1CD21A005095E9 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		DFF176CB1B1CD21A005095E9 /* APIInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIInfo.h; sourceTree = "<group>"; };
@@ -96,6 +113,10 @@
 		DFF176CD1B1CD21A005095E9 /* RestkitService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestkitService.h; sourceTree = "<group>"; };
 		DFF176CE1B1CD21A005095E9 /* RestkitService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestkitService.m; sourceTree = "<group>"; };
 		DFF176D31B1CD242005095E9 /* Filtacular-API.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Filtacular-API.plist"; sourceTree = "<group>"; };
+		F2DDB23D1B1CF8F7004C0A8C /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fabric.framework; path = Filtacular/ThirdParty/Fabric.framework; sourceTree = "<group>"; };
+		F2DDB23E1B1CF8F7004C0A8C /* TwitterCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TwitterCore.framework; path = Filtacular/ThirdParty/TwitterCore.framework; sourceTree = "<group>"; };
+		F2DDB23F1B1CF8F7004C0A8C /* TwitterKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TwitterKit.framework; path = Filtacular/ThirdParty/TwitterKit.framework; sourceTree = "<group>"; };
+		F2DDB2401B1CF8F7004C0A8C /* TwitterKitResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = TwitterKitResources.bundle; path = Filtacular/ThirdParty/TwitterKitResources.bundle; sourceTree = "<group>"; };
 		F87BD5DD489DB985D5711B7B /* libPods-FiltacularTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FiltacularTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -105,6 +126,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				DB1BE132AE4A22BF594B8604 /* libPods.a in Frameworks */,
+				F2DDB2421B1CF8F7004C0A8C /* TwitterCore.framework in Frameworks */,
+				F2DDB2411B1CF8F7004C0A8C /* Fabric.framework in Frameworks */,
+				F2DDB2431B1CF8F7004C0A8C /* TwitterKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -156,8 +180,7 @@
 				DFF176C71B1CD21A005095E9 /* StartUp */,
 				DFF176D61B1CD555005095E9 /* Shared */,
 				DF48E7BE1B1CF29200154FC1 /* ViewControllers */,
-				DF183BA01B1CAA2B0001DDA4 /* ViewController.h */,
-				DF183BA11B1CAA2B0001DDA4 /* ViewController.m */,
+				DF48E7DB1B1DF01F00154FC1 /* TableViewCells */,
 				DF183BA31B1CAA2B0001DDA4 /* Main.storyboard */,
 				DF183BA61B1CAA2B0001DDA4 /* Images.xcassets */,
 				DF183BA81B1CAA2B0001DDA4 /* LaunchScreen.xib */,
@@ -210,6 +233,7 @@
 		DF48E7BE1B1CF29200154FC1 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				DF48E7D71B1DEDE700154FC1 /* IntroViewController */,
 				DF48E7BF1B1CF2B900154FC1 /* VCTwitterFeed */,
 			);
 			path = ViewControllers;
@@ -277,6 +301,46 @@
 				DF48E7D51B1DED0900154FC1 /* UIView+Positioning.m */,
 			);
 			path = UIView;
+			sourceTree = "<group>";
+		};
+		DF48E7D71B1DEDE700154FC1 /* IntroViewController */ = {
+			isa = PBXGroup;
+			children = (
+				DF48E7D81B1DEE1500154FC1 /* IntroViewController.h */,
+				DF48E7D91B1DEE1500154FC1 /* IntroViewController.m */,
+			);
+			path = IntroViewController;
+			sourceTree = "<group>";
+		};
+		DF48E7DB1B1DF01F00154FC1 /* TableViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				DF48E7DC1B1DF04600154FC1 /* TweetCell */,
+			);
+			path = TableViewCells;
+			sourceTree = "<group>";
+		};
+		DF48E7DC1B1DF04600154FC1 /* TweetCell */ = {
+			isa = PBXGroup;
+			children = (
+				DF48E7DD1B1DF06200154FC1 /* TweetCell.h */,
+				DF48E7DE1B1DF06200154FC1 /* TweetCell.m */,
+				DF48E7DF1B1DF06200154FC1 /* TweetCell.xib */,
+			);
+			path = TweetCell;
+			sourceTree = "<group>";
+		};
+		DF48E7E21B1DF5A600154FC1 /* MCCSmartGroups */ = {
+			isa = PBXGroup;
+			children = (
+				DF48E7E31B1DF5A600154FC1 /* MCCSmartGroup.h */,
+				DF48E7E41B1DF5A600154FC1 /* MCCSmartGroup.m */,
+				DF48E7E51B1DF5A600154FC1 /* MCCSmartGroupManager.h */,
+				DF48E7E61B1DF5A600154FC1 /* MCCSmartGroupManager.m */,
+				DF48E7E71B1DF5A600154FC1 /* README.md */,
+			);
+			name = MCCSmartGroups;
+			path = Filtacular/ThirdParty/MCCSmartGroups;
 			sourceTree = "<group>";
 		};
 		DFF176C71B1CD21A005095E9 /* StartUp */ = {
@@ -352,6 +416,11 @@
 		F9FE532600B8A1C56C214958 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DF48E7E21B1DF5A600154FC1 /* MCCSmartGroups */,
+				F2DDB23D1B1CF8F7004C0A8C /* Fabric.framework */,
+				F2DDB23E1B1CF8F7004C0A8C /* TwitterCore.framework */,
+				F2DDB23F1B1CF8F7004C0A8C /* TwitterKit.framework */,
+				F2DDB2401B1CF8F7004C0A8C /* TwitterKitResources.bundle */,
 				F87BD5DD489DB985D5711B7B /* libPods-FiltacularTests.a */,
 				334450DE7229DC724EF42003 /* libPods.a */,
 			);
@@ -444,10 +513,12 @@
 			files = (
 				DFF176D41B1CD242005095E9 /* Filtacular-API.plist in Resources */,
 				DF183BA51B1CAA2B0001DDA4 /* Main.storyboard in Resources */,
+				DF48E7E11B1DF06200154FC1 /* TweetCell.xib in Resources */,
 				DF48E7C41B1CF38900154FC1 /* VCTwitterFeed.xib in Resources */,
 				DF17730C1B1CC29B00AD4CA4 /* AppledocSettings.plist in Resources */,
 				DF183BAA1B1CAA2B0001DDA4 /* LaunchScreen.xib in Resources */,
 				DF48E7CD1B1DEC0B00154FC1 /* CustomTableView.xib in Resources */,
+				F2DDB2441B1CF8F7004C0A8C /* TwitterKitResources.bundle in Resources */,
 				DF183BA71B1CAA2B0001DDA4 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -531,6 +602,7 @@
 			files = (
 				DFF176CF1B1CD21A005095E9 /* AppDelegate.m in Sources */,
 				DF48E7B01B1CE01900154FC1 /* BaseUnmanagedModel.m in Sources */,
+				DF48E7E81B1DF5A600154FC1 /* MCCSmartGroup.m in Sources */,
 				DF48E7CC1B1DEC0B00154FC1 /* CustomTableView.m in Sources */,
 				DF48E7C21B1CF31800154FC1 /* VCTwitterFeed.m in Sources */,
 				DF48E7D61B1DED0900154FC1 /* UIView+Positioning.m in Sources */,
@@ -539,11 +611,14 @@
 				DFF176D01B1CD21A005095E9 /* APIInfo.m in Sources */,
 				DF48E7B61B1CE1D400154FC1 /* Tweet.m in Sources */,
 				DFF176D11B1CD21A005095E9 /* RestkitService.m in Sources */,
+				DF48E7DA1B1DEE1500154FC1 /* IntroViewController.m in Sources */,
 				DF183B9F1B1CAA2B0001DDA4 /* Filtacular.xcdatamodeld in Sources */,
-				DF183BA21B1CAA2B0001DDA4 /* ViewController.m in Sources */,
+				DF48E7EA1B1DF5A600154FC1 /* README.md in Sources */,
+				DF48E7E91B1DF5A600154FC1 /* MCCSmartGroupManager.m in Sources */,
 				DF48E7B31B1CE01F00154FC1 /* BaseManagedModel.m in Sources */,
 				DF183B991B1CAA2B0001DDA4 /* main.m in Sources */,
 				DF48E7D11B1DEC8700154FC1 /* Widget.m in Sources */,
+				DF48E7E01B1DF06200154FC1 /* TweetCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -673,6 +748,11 @@
 			baseConfigurationReference = B96F0681D71772C68BB0A0E2 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Filtacular/ThirdParty",
+				);
 				INFOPLIST_FILE = Filtacular/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -684,6 +764,11 @@
 			baseConfigurationReference = 68604422666334DB8E77C8CC /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Filtacular/ThirdParty",
+				);
 				INFOPLIST_FILE = Filtacular/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";

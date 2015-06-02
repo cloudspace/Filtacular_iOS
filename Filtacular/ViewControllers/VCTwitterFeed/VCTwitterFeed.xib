@@ -6,7 +6,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="VCTwitterFeed">
             <connections>
-                <outlet property="tableView" destination="KVi-jj-lRn" id="njq-Sr-MhI"/>
+                <outlet property="table" destination="eIb-3Y-3vV" id="3D5-Zm-KjU"/>
                 <outlet property="view" destination="iN0-l3-epB" id="krZ-Mu-79u"/>
             </connections>
         </placeholder>
@@ -46,11 +46,11 @@
                     </subviews>
                     <color key="backgroundColor" red="0.32941176470588235" green="0.6588235294117647" blue="0.89411764705882357" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 </view>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="KVi-jj-lRn">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="521"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <view contentMode="scaleToFill" id="eIb-3Y-3vV" customClass="CustomTableView">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="526"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                </tableView>
+                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <point key="canvasLocation" x="267" y="298"/>

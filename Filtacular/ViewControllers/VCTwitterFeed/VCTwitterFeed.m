@@ -7,14 +7,43 @@
 //
 
 #import "VCTwitterFeed.h"
+#import "CustomTableView.h"
+#import "Tweet.h"
+#import "TweetCell.h"
 
 @interface VCTwitterFeed ()
 
-@property (strong, nonatomic) IBOutlet UITableView* tableView;
+@property (strong, nonatomic) NSArray* tableData;
+@property (strong, nonatomic) IBOutlet CustomTableView* table;
 
 @end
 
 @implementation VCTwitterFeed
+
+- (void)viewDidLoad {
+    
+    [_table setTableViewCellClass:[TweetCell class]];
+    __weak VCTwitterFeed* weakSelf = self;
+    [_table setSelectObjectBlock:^(Tweet* tweet) {
+        VCTwitterFeed* strongSelf = weakSelf;
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"" message:@"WIP" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+    }];
+    
+    [self updateTweets];
+}
+
+- (void)updateTweets {
+    [self performSelector:@selector(fakeLoadTweets) withObject:nil afterDelay:3];
+}
+
+- (void)fakeLoadTweets {
+    NSArray* tweets = @[[Tweet generateRandomTweet], [Tweet generateRandomTweet], [Tweet generateRandomTweet]];
+    self.tableData = [tweets sortedArrayUsingComparator:^NSComparisonResult(Tweet* obj1, Tweet* obj2) {
+        return [obj2.postDate compare:obj1.postDate];
+    }];
+    [_table loadData:tweets];
+}
 
 - (IBAction)tapFilter {
     

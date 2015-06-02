@@ -27,4 +27,6 @@
 
 - (void)alignViewsToTheLeft:(CGFloat)padding;
 
++ (instancetype)createFromNib;
+
 @end
