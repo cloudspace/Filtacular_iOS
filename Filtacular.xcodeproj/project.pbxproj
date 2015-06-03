@@ -37,6 +37,8 @@
 		DF48E7E91B1DF5A600154FC1 /* MCCSmartGroupManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DF48E7E61B1DF5A600154FC1 /* MCCSmartGroupManager.m */; };
 		DF48E7EA1B1DF5A600154FC1 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = DF48E7E71B1DF5A600154FC1 /* README.md */; };
 		DF48E7EE1B1E0E6D00154FC1 /* RootNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF48E7ED1B1E0E6D00154FC1 /* RootNavigationController.m */; };
+		DF48E7F31B1F499C00154FC1 /* RestkitRequestReponse.m in Sources */ = {isa = PBXBuildFile; fileRef = DF48E7F21B1F499C00154FC1 /* RestkitRequestReponse.m */; };
+		DF48E7F61B1F51F400154FC1 /* Filter.m in Sources */ = {isa = PBXBuildFile; fileRef = DF48E7F51B1F51F400154FC1 /* Filter.m */; };
 		DFF176CF1B1CD21A005095E9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF176C91B1CD21A005095E9 /* AppDelegate.m */; };
 		DFF176D01B1CD21A005095E9 /* APIInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF176CC1B1CD21A005095E9 /* APIInfo.m */; };
 		DFF176D11B1CD21A005095E9 /* RestkitService.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF176CE1B1CD21A005095E9 /* RestkitService.m */; };
@@ -114,6 +116,10 @@
 		DF48E7E71B1DF5A600154FC1 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		DF48E7EC1B1E0E6D00154FC1 /* RootNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootNavigationController.h; sourceTree = "<group>"; };
 		DF48E7ED1B1E0E6D00154FC1 /* RootNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootNavigationController.m; sourceTree = "<group>"; };
+		DF48E7F11B1F499C00154FC1 /* RestkitRequestReponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestkitRequestReponse.h; sourceTree = "<group>"; };
+		DF48E7F21B1F499C00154FC1 /* RestkitRequestReponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestkitRequestReponse.m; sourceTree = "<group>"; };
+		DF48E7F41B1F51F400154FC1 /* Filter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Filter.h; sourceTree = "<group>"; };
+		DF48E7F51B1F51F400154FC1 /* Filter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Filter.m; sourceTree = "<group>"; };
 		DFF176C81B1CD21A005095E9 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		DFF176C91B1CD21A005095E9 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		DFF176CB1B1CD21A005095E9 /* APIInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIInfo.h; sourceTree = "<group>"; };
@@ -246,6 +252,8 @@
 				DF48E7A81B1CD70400154FC1 /* RestkitRequest.m */,
 				DF48E7A91B1CD70400154FC1 /* ServerWrapper.h */,
 				DF48E7AA1B1CD70400154FC1 /* ServerWrapper.m */,
+				DF48E7F11B1F499C00154FC1 /* RestkitRequestReponse.h */,
+				DF48E7F21B1F499C00154FC1 /* RestkitRequestReponse.m */,
 			);
 			path = ServerWrapper;
 			sourceTree = "<group>";
@@ -441,6 +449,8 @@
 				DF48E7AF1B1CE01900154FC1 /* BaseUnmanagedModel.m */,
 				DF48E7B41B1CE1D400154FC1 /* Tweet.h */,
 				DF48E7B51B1CE1D400154FC1 /* Tweet.m */,
+				DF48E7F41B1F51F400154FC1 /* Filter.h */,
+				DF48E7F51B1F51F400154FC1 /* Filter.m */,
 			);
 			path = Unmanaged;
 			sourceTree = "<group>";
@@ -665,9 +675,11 @@
 				DF48E7C21B1CF31800154FC1 /* VCTwitterFeed.m in Sources */,
 				DF48E7D61B1DED0900154FC1 /* UIView+Positioning.m in Sources */,
 				DF48E7AB1B1CD70400154FC1 /* RestkitRequest.m in Sources */,
+				DF48E7F61B1F51F400154FC1 /* Filter.m in Sources */,
 				DF48E7AC1B1CD70400154FC1 /* ServerWrapper.m in Sources */,
 				F295E55C1B1F8A8A00A7A03B /* UserPickerDataSource.m in Sources */,
 				DFF176D01B1CD21A005095E9 /* APIInfo.m in Sources */,
+				DF48E7F31B1F499C00154FC1 /* RestkitRequestReponse.m in Sources */,
 				DF48E7B61B1CE1D400154FC1 /* Tweet.m in Sources */,
 				DFF176D11B1CD21A005095E9 /* RestkitService.m in Sources */,
 				DF48E7DA1B1DEE1500154FC1 /* IntroViewController.m in Sources */,

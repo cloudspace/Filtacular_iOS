@@ -24,7 +24,7 @@
 
 + (RKObjectMapping*)objectMapping {
     RKObjectMapping *mapping = [super objectMapping];
-    [mapping addAttributeMappingsFromArray:@[@"displayName", @"userName", @"text", @"profilePicUrl", @"postDate", @"retweetCount", @"favoriteCount"]];
+    [mapping addAttributeMappingsFromArray:@[@"displayName", @"userName", @"text", @"profilePicUrl"]];
     [mapping addAttributeMappingsFromDictionary:@{@"tweet_id": @"tweetId", @"url_description": @"urlDescription", @"url_title": @"urlTitle", @"url_image":@"urlImage", @"url_link": @"urlLink", @"tweetCreatedAt": @"tweet_created_at", @"retweet_count":@"retweetCount", @"favorites_count":@"favoriteCount"}];
     
     return mapping;

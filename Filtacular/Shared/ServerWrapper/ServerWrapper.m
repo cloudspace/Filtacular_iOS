@@ -9,7 +9,8 @@
 #import "ServerWrapper.h"
 #import "APIInfo.h"
 #import <RestKit/RestKit.h>
-#import "RestkitRequest.h"
+
+static dispatch_queue_t sRequestQueue;
 
 @interface ServerWrapper ()
 
@@ -19,6 +20,14 @@
 @end
 
 @implementation ServerWrapper
+
++ (void)load {
+    sRequestQueue = dispatch_queue_create("sRequestQueue", 0);
+}
+
++ (dispatch_queue_t)requestQueue {
+    return sRequestQueue;
+}
 
 + (id)sharedInstance {
     static ServerWrapper* sharedInstance = nil;
@@ -36,147 +45,63 @@
     return serverWrapper;
 }
 
-
-- (void)getObjectsAtPath:(NSString *)path
-              parameters:(NSDictionary *)parameters
-                 success:(void (^)(RKObjectRequestOperation *operation, RKMappingResult *mappingResult))success
-                 failure:(void (^)(RKObjectRequestOperation *operation, NSError *error))failure {
-    
-    //failure = [self hookFailureBlock:failure];
-    NSAssert(false, @"Not implemented");
-    [_objectManager getObjectsAtPath:path parameters:parameters success:success failure:failure];
+- (void)performRequest:(RestkitRequest*)request {
+    [request performRequestWithObjectManager:_objectManager];
 }
 
-
-- (void)getObjectsAtPathForRelationship:(NSString *)relationshipName
-                               ofObject:(id)object
-                             parameters:(NSDictionary *)parameters
-                                success:(void (^)(RKObjectRequestOperation *operation, RKMappingResult *mappingResult))success
-                                failure:(void (^)(RKObjectRequestOperation *operation, NSError *error))failure {
+- (RestkitRequestReponse*)performSyncRequest:(RestkitRequest*)request {
+    RestkitRequestReponse* response = [RestkitRequestReponse new];
     
-    //failure = [self hookFailureBlock:failure];
-    NSAssert(false, @"Not implemented");
-    [_objectManager getObjectsAtPathForRelationship:relationshipName ofObject:object parameters:parameters success:success failure:failure];
+    dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+    
+    request.failure = [self hookFailureBlock:request.failure withBlock:^(RKObjectRequestOperation *operation, NSError *error) {
+        //RKErrorMessage *errorMessage = [[error.userInfo objectForKey:RKObjectMapperErrorObjectsKey] firstObject];
+        response.successful = false;
+        response.error = error;
+        dispatch_semaphore_signal(semaphore);
+    }];
+    request.success = [self hookSuccessBlock:request.success withBlock:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+        response.successful = true;
+        response.mappingResult = mappingResult;
+        dispatch_semaphore_signal(semaphore);
+    }];
+    [request performRequestWithObjectManager:_objectManager];
+    
+    dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+    
+    return response;
 }
 
-- (void)getObjectsAtPathForRouteNamed:(NSString *)routeName
-                               object:(id)object
-                           parameters:(NSDictionary *)parameters
-                              success:(void (^)(RKObjectRequestOperation *operation, RKMappingResult *mappingResult))success
-                              failure:(void (^)(RKObjectRequestOperation *operation, NSError *error))failure {
-    
-    //failure = [self hookFailureBlock:failure];
-    NSAssert(false, @"Not implemented");
-    [_objectManager getObjectsAtPathForRouteNamed:routeName object:object parameters:parameters success:success failure:failure];
-}
-
-- (void)getObject:(id)object
-             path:(NSString *)path
-       parameters:(NSDictionary *)parameters
-          success:(void (^)(RKObjectRequestOperation *operation, RKMappingResult *mappingResult))success
-          failure:(void (^)(RKObjectRequestOperation *operation, NSError *error))failure {
-    
+- (RestkitRequestReponse*)performSyncGet:(NSString*)path {
     RestkitRequest* request = [RestkitRequest new];
-    failure = [self hookFailureBlock:failure withRequest:request];
-    
     request.requestMethod = RKRequestMethodGET;
-    request.object = object;
     request.path = path;
-    request.parameters = parameters;
-    request.success = success;
-    request.failure = failure;
     
-    [request performRequestWithObjectManager:_objectManager];
-}
-
-- (void)postObject:(id)object
-              path:(NSString *)path
-        parameters:(NSDictionary *)parameters
-           success:(void (^)(RKObjectRequestOperation *operation, RKMappingResult *mappingResult))success
-           failure:(void (^)(RKObjectRequestOperation *operation, NSError *error))failure {
-    
-    RestkitRequest* request = [RestkitRequest new];
-    failure = [self hookFailureBlock:failure withRequest:request];
-    
-    request.requestMethod = RKRequestMethodPOST;
-    request.object = object;
-    request.path = path;
-    request.parameters = parameters;
-    request.success = success;
-    request.failure = failure;
-    
-    [request performRequestWithObjectManager:_objectManager];
-}
-
-
-- (void)putObject:(id)object
-             path:(NSString *)path
-       parameters:(NSDictionary *)parameters
-          success:(void (^)(RKObjectRequestOperation *operation, RKMappingResult *mappingResult))success
-          failure:(void (^)(RKObjectRequestOperation *operation, NSError *error))failure {
-    
-    RestkitRequest* request = [RestkitRequest new];
-    failure = [self hookFailureBlock:failure withRequest:request];
-    
-    request.requestMethod = RKRequestMethodPUT;
-    request.object = object;
-    request.path = path;
-    request.parameters = parameters;
-    request.success = success;
-    request.failure = failure;
-    
-    [request performRequestWithObjectManager:_objectManager];
-}
-
-- (void)patchObject:(id)object
-               path:(NSString *)path
-         parameters:(NSDictionary *)parameters
-            success:(void (^)(RKObjectRequestOperation *operation, RKMappingResult *mappingResult))success
-            failure:(void (^)(RKObjectRequestOperation *operation, NSError *error))failure {
-    
-    RestkitRequest* request = [RestkitRequest new];
-    failure = [self hookFailureBlock:failure withRequest:request];
-    
-    request.requestMethod = RKRequestMethodPATCH;
-    request.object = object;
-    request.path = path;
-    request.parameters = parameters;
-    request.success = success;
-    request.failure = failure;
-    
-    [request performRequestWithObjectManager:_objectManager];
-}
-
-- (void)deleteObject:(id)object
-                path:(NSString *)path
-          parameters:(NSDictionary *)parameters
-             success:(void (^)(RKObjectRequestOperation *operation, RKMappingResult *mappingResult))success
-             failure:(void (^)(RKObjectRequestOperation *operation, NSError *error))failure {
-    
-    RestkitRequest* request = [RestkitRequest new];
-    failure = [self hookFailureBlock:failure withRequest:request];
-    
-    request.requestMethod = RKRequestMethodDELETE;
-    request.object = object;
-    request.path = path;
-    request.parameters = parameters;
-    request.success = success;
-    request.failure = failure;
-    
-    [request performRequestWithObjectManager:_objectManager];
+    return [self performSyncRequest:request];
 }
 
 #pragma mark -
-- (RestkitFailureBlock)hookFailureBlock:(RestkitFailureBlock)failure withRequest:(RestkitRequest*)request {
+- (RestkitFailureBlock)hookFailureBlock:(RestkitFailureBlock)failure withBlock:(RestkitFailureBlock)hook {
     
-    RestkitFailureBlock attachedFailureBlock = ^void (RKObjectRequestOperation *operation, NSError *error)
-    {
+    RestkitFailureBlock attachedFailureBlock = ^void (RKObjectRequestOperation *operation, NSError *error) {
         //Add any default code here (example: kick user on 401)
-        failure(operation, error);
-        
+        if (failure)
+            failure(operation, error);
+        hook(operation, error);
     };
     
     return attachedFailureBlock;
+}
+
+- (RestkitSuccessBlock)hookSuccessBlock:(RestkitSuccessBlock)success withBlock:(RestkitSuccessBlock)hook{
+    
+    RestkitSuccessBlock attachedSuccessBlock = ^void (RKObjectRequestOperation *operation,  RKMappingResult *mappingResult) {
+        if (success)
+            success(operation, mappingResult);
+        hook(operation, mappingResult);
+    };
+    
+    return attachedSuccessBlock;
 }
 
 @end

@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+@class TWTRSession;
+
 @interface VCTwitterFeed : UIViewController
+
+@property (strong, nonatomic) NSArray* users;
+@property (strong, nonatomic) NSArray* filters;
+@property (strong, nonatomic) TWTRSession* twitterSession;
 
 @end
