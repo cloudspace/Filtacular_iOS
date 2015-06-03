@@ -42,10 +42,14 @@
 		DFF176D11B1CD21A005095E9 /* RestkitService.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF176CE1B1CD21A005095E9 /* RestkitService.m */; };
 		DFF176D41B1CD242005095E9 /* Filtacular-API.plist in Resources */ = {isa = PBXBuildFile; fileRef = DFF176D31B1CD242005095E9 /* Filtacular-API.plist */; };
 		F24807BF1B1DF1CD009A6310 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = F24807BE1B1DF1CD009A6310 /* User.m */; };
+		F295E5591B1F89A300A7A03B /* UserPickerViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F295E5581B1F89A300A7A03B /* UserPickerViewDelegate.m */; };
+		F295E55C1B1F8A8A00A7A03B /* UserPickerDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = F295E55B1B1F8A8A00A7A03B /* UserPickerDataSource.m */; };
+		F295E55F1B1F8DCC00A7A03B /* BasePickerViewAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = F295E55E1B1F8DCC00A7A03B /* BasePickerViewAdapter.m */; };
 		F2DDB2411B1CF8F7004C0A8C /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2DDB23D1B1CF8F7004C0A8C /* Fabric.framework */; };
 		F2DDB2421B1CF8F7004C0A8C /* TwitterCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2DDB23E1B1CF8F7004C0A8C /* TwitterCore.framework */; };
 		F2DDB2431B1CF8F7004C0A8C /* TwitterKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2DDB23F1B1CF8F7004C0A8C /* TwitterKit.framework */; };
 		F2DDB2441B1CF8F7004C0A8C /* TwitterKitResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F2DDB2401B1CF8F7004C0A8C /* TwitterKitResources.bundle */; };
+		F2FECAC51B1F4E43005253B0 /* UserPickerViewAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = F2FECAC41B1F4E43005253B0 /* UserPickerViewAdapter.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -119,10 +123,19 @@
 		DFF176D31B1CD242005095E9 /* Filtacular-API.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Filtacular-API.plist"; sourceTree = "<group>"; };
 		F24807BD1B1DF1CD009A6310 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		F24807BE1B1DF1CD009A6310 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		F295E5571B1F89A300A7A03B /* UserPickerViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserPickerViewDelegate.h; path = PickerView/UserPickerViewDelegate.h; sourceTree = "<group>"; };
+		F295E5581B1F89A300A7A03B /* UserPickerViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserPickerViewDelegate.m; path = PickerView/UserPickerViewDelegate.m; sourceTree = "<group>"; };
+		F295E55A1B1F8A8A00A7A03B /* UserPickerDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserPickerDataSource.h; path = PickerView/UserPickerDataSource.h; sourceTree = "<group>"; };
+		F295E55B1B1F8A8A00A7A03B /* UserPickerDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserPickerDataSource.m; path = PickerView/UserPickerDataSource.m; sourceTree = "<group>"; };
+		F295E55D1B1F8DCC00A7A03B /* BasePickerViewAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BasePickerViewAdapter.h; path = PickerView/BasePickerViewAdapter.h; sourceTree = "<group>"; };
+		F295E55E1B1F8DCC00A7A03B /* BasePickerViewAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BasePickerViewAdapter.m; path = PickerView/BasePickerViewAdapter.m; sourceTree = "<group>"; };
+		F295E5601B1F8F5500A7A03B /* Reloadable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reloadable.h; path = PickerView/Reloadable.h; sourceTree = "<group>"; };
 		F2DDB23D1B1CF8F7004C0A8C /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fabric.framework; path = Filtacular/ThirdParty/Fabric.framework; sourceTree = "<group>"; };
 		F2DDB23E1B1CF8F7004C0A8C /* TwitterCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TwitterCore.framework; path = Filtacular/ThirdParty/TwitterCore.framework; sourceTree = "<group>"; };
 		F2DDB23F1B1CF8F7004C0A8C /* TwitterKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TwitterKit.framework; path = Filtacular/ThirdParty/TwitterKit.framework; sourceTree = "<group>"; };
 		F2DDB2401B1CF8F7004C0A8C /* TwitterKitResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = TwitterKitResources.bundle; path = Filtacular/ThirdParty/TwitterKitResources.bundle; sourceTree = "<group>"; };
+		F2FECAC31B1F4E43005253B0 /* UserPickerViewAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserPickerViewAdapter.h; path = PickerView/UserPickerViewAdapter.h; sourceTree = "<group>"; };
+		F2FECAC41B1F4E43005253B0 /* UserPickerViewAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserPickerViewAdapter.m; path = PickerView/UserPickerViewAdapter.m; sourceTree = "<group>"; };
 		F87BD5DD489DB985D5711B7B /* libPods-FiltacularTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FiltacularTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -183,6 +196,7 @@
 		DF183B951B1CAA2B0001DDA4 /* Filtacular */ = {
 			isa = PBXGroup;
 			children = (
+				F2FECAC61B1F4E46005253B0 /* PickerView */,
 				DFF176C71B1CD21A005095E9 /* StartUp */,
 				DFF176D61B1CD555005095E9 /* Shared */,
 				DF48E7BE1B1CF29200154FC1 /* ViewControllers */,
@@ -431,6 +445,30 @@
 			path = Unmanaged;
 			sourceTree = "<group>";
 		};
+		F295E5611B1F922800A7A03B /* UserPickerView */ = {
+			isa = PBXGroup;
+			children = (
+				F2FECAC31B1F4E43005253B0 /* UserPickerViewAdapter.h */,
+				F2FECAC41B1F4E43005253B0 /* UserPickerViewAdapter.m */,
+				F295E5571B1F89A300A7A03B /* UserPickerViewDelegate.h */,
+				F295E5581B1F89A300A7A03B /* UserPickerViewDelegate.m */,
+				F295E55A1B1F8A8A00A7A03B /* UserPickerDataSource.h */,
+				F295E55B1B1F8A8A00A7A03B /* UserPickerDataSource.m */,
+			);
+			name = UserPickerView;
+			sourceTree = "<group>";
+		};
+		F2FECAC61B1F4E46005253B0 /* PickerView */ = {
+			isa = PBXGroup;
+			children = (
+				F295E5611B1F922800A7A03B /* UserPickerView */,
+				F295E55D1B1F8DCC00A7A03B /* BasePickerViewAdapter.h */,
+				F295E55E1B1F8DCC00A7A03B /* BasePickerViewAdapter.m */,
+				F295E5601B1F8F5500A7A03B /* Reloadable.h */,
+			);
+			name = PickerView;
+			sourceTree = "<group>";
+		};
 		F9FE532600B8A1C56C214958 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -619,13 +657,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				DFF176CF1B1CD21A005095E9 /* AppDelegate.m in Sources */,
+				F295E5591B1F89A300A7A03B /* UserPickerViewDelegate.m in Sources */,
 				DF48E7B01B1CE01900154FC1 /* BaseUnmanagedModel.m in Sources */,
 				DF48E7E81B1DF5A600154FC1 /* MCCSmartGroup.m in Sources */,
 				DF48E7CC1B1DEC0B00154FC1 /* CustomTableView.m in Sources */,
+				F295E55F1B1F8DCC00A7A03B /* BasePickerViewAdapter.m in Sources */,
 				DF48E7C21B1CF31800154FC1 /* VCTwitterFeed.m in Sources */,
 				DF48E7D61B1DED0900154FC1 /* UIView+Positioning.m in Sources */,
 				DF48E7AB1B1CD70400154FC1 /* RestkitRequest.m in Sources */,
 				DF48E7AC1B1CD70400154FC1 /* ServerWrapper.m in Sources */,
+				F295E55C1B1F8A8A00A7A03B /* UserPickerDataSource.m in Sources */,
 				DFF176D01B1CD21A005095E9 /* APIInfo.m in Sources */,
 				DF48E7B61B1CE1D400154FC1 /* Tweet.m in Sources */,
 				DFF176D11B1CD21A005095E9 /* RestkitService.m in Sources */,
@@ -633,6 +674,7 @@
 				F24807BF1B1DF1CD009A6310 /* User.m in Sources */,
 				DF183B9F1B1CAA2B0001DDA4 /* Filtacular.xcdatamodeld in Sources */,
 				DF48E7EA1B1DF5A600154FC1 /* README.md in Sources */,
+				F2FECAC51B1F4E43005253B0 /* UserPickerViewAdapter.m in Sources */,
 				DF48E7E91B1DF5A600154FC1 /* MCCSmartGroupManager.m in Sources */,
 				DF48E7EE1B1E0E6D00154FC1 /* RootNavigationController.m in Sources */,
 				DF48E7B31B1CE01F00154FC1 /* BaseManagedModel.m in Sources */,

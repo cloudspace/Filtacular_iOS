@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="VCTwitterFeed">
             <connections>
+                <outlet property="filterBarPositionFromBottomConstraint" destination="mFY-qT-IV0" id="7T7-cP-id9"/>
+                <outlet property="pickerView" destination="1Fr-Yi-MW7" id="5QP-ns-6FN"/>
                 <outlet property="table" destination="eIb-3Y-3vV" id="3D5-Zm-KjU"/>
                 <outlet property="view" destination="iN0-l3-epB" id="krZ-Mu-79u"/>
             </connections>
@@ -15,13 +17,15 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" id="aZd-gO-2Rg">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eIb-3Y-3vV" customClass="CustomTableView">
+                    <rect key="frame" x="0.0" y="20" width="320" height="504"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aZd-gO-2Rg" userLabel="View Bottom Bar">
                     <rect key="frame" x="0.0" y="524" width="320" height="44"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="NbX-0I-jTj">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NbX-0I-jTj">
                             <rect key="frame" x="160" y="0.0" width="160" height="44"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" heightSizable="YES"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
                             <state key="normal" title="Sassypants">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -31,9 +35,8 @@
                                 <action selector="tapFilter" destination="-1" eventType="touchUpInside" id="Lcs-dW-BVg"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="jIi-Ml-gVR">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jIi-Ml-gVR">
                             <rect key="frame" x="0.0" y="0.0" width="160" height="44"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" heightSizable="YES"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
                             <state key="normal" title="IsaacPaul13's">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -45,14 +48,40 @@
                         </button>
                     </subviews>
                     <color key="backgroundColor" red="0.32941176470588235" green="0.6588235294117647" blue="0.89411764705882357" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstItem="jIi-Ml-gVR" firstAttribute="leading" secondItem="aZd-gO-2Rg" secondAttribute="leading" id="4VC-dU-hcq"/>
+                        <constraint firstAttribute="height" constant="44" id="Acy-L2-66m"/>
+                        <constraint firstItem="NbX-0I-jTj" firstAttribute="leading" secondItem="jIi-Ml-gVR" secondAttribute="trailing" id="FST-v9-Cqb"/>
+                        <constraint firstItem="jIi-Ml-gVR" firstAttribute="width" secondItem="NbX-0I-jTj" secondAttribute="width" id="Fd4-qB-QmB"/>
+                        <constraint firstAttribute="trailing" secondItem="NbX-0I-jTj" secondAttribute="trailing" id="M5F-ld-GMC"/>
+                        <constraint firstItem="NbX-0I-jTj" firstAttribute="leading" secondItem="jIi-Ml-gVR" secondAttribute="trailing" id="dXo-eT-z2t"/>
+                        <constraint firstAttribute="bottom" secondItem="NbX-0I-jTj" secondAttribute="bottom" id="k71-xg-Z3r"/>
+                        <constraint firstItem="jIi-Ml-gVR" firstAttribute="top" secondItem="aZd-gO-2Rg" secondAttribute="top" id="ka8-Og-EUw"/>
+                        <constraint firstItem="NbX-0I-jTj" firstAttribute="top" secondItem="aZd-gO-2Rg" secondAttribute="top" id="mct-Mp-wYS"/>
+                        <constraint firstAttribute="bottom" secondItem="jIi-Ml-gVR" secondAttribute="bottom" id="wFA-5O-lfk"/>
+                    </constraints>
                 </view>
-                <view contentMode="scaleToFill" id="eIb-3Y-3vV" customClass="CustomTableView">
-                    <rect key="frame" x="0.0" y="20" width="320" height="506"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                </view>
+                <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Fr-Yi-MW7" userLabel="Picker View">
+                    <rect key="frame" x="0.0" y="568" width="320" height="162"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="162" id="Agi-BU-kjk"/>
+                    </constraints>
+                </pickerView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="eIb-3Y-3vV" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="0Sa-9c-mYr"/>
+                <constraint firstItem="aZd-gO-2Rg" firstAttribute="top" secondItem="eIb-3Y-3vV" secondAttribute="bottom" id="0nf-gs-xjO"/>
+                <constraint firstAttribute="trailing" secondItem="eIb-3Y-3vV" secondAttribute="trailing" id="4Xl-g5-rsk"/>
+                <constraint firstAttribute="trailing" secondItem="aZd-gO-2Rg" secondAttribute="trailing" id="8yE-Zb-aiO"/>
+                <constraint firstItem="eIb-3Y-3vV" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="C3f-jl-v1h"/>
+                <constraint firstItem="1Fr-Yi-MW7" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="F3l-Ge-ltC"/>
+                <constraint firstAttribute="trailing" secondItem="1Fr-Yi-MW7" secondAttribute="trailing" id="Fow-yc-6Yl"/>
+                <constraint firstItem="1Fr-Yi-MW7" firstAttribute="top" secondItem="aZd-gO-2Rg" secondAttribute="bottom" id="fDT-UY-fes"/>
+                <constraint firstItem="aZd-gO-2Rg" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="i0V-jI-6GB"/>
+                <constraint firstAttribute="bottom" secondItem="aZd-gO-2Rg" secondAttribute="bottom" id="mFY-qT-IV0"/>
+            </constraints>
             <point key="canvasLocation" x="267" y="298"/>
         </view>
     </objects>
