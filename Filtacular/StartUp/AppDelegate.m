@@ -21,6 +21,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [self registerService:[RestkitService new]];
     [Fabric with:@[TwitterKit]];
+    
+    [self invokeServiceMethodWithSelector:@selector(application:didFinishLaunchingWithOptions:) withArgument:&launchOptions];;
 
     return YES;
 }

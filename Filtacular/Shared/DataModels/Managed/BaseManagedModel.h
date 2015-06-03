@@ -18,4 +18,6 @@
 
 + (NSManagedObjectContext*)mainContext;
 
++ (NSArray*)findAll;
+
 @end

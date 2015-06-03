@@ -14,5 +14,6 @@
 @property (nonatomic, strong) NSString* nickname;
 
 + (RKEntityMapping*)entityMappingWithStore:(RKManagedObjectStore*)store;
++ (NSArray*)pseudoUsers;
 
 @end

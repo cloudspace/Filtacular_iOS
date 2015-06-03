@@ -71,7 +71,7 @@ timeline</string>
                                     <rect key="frame" x="0.0" y="79" width="320" height="21"/>
                                 </variation>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XyB-41-QSk">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XyB-41-QSk" userLabel="Button - Login Twitter">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="XAw-nm-g7l"/>
@@ -94,7 +94,7 @@ timeline</string>
                                     </mask>
                                 </variation>
                                 <connections>
-                                    <action selector="loginToTwitter:" destination="KAM-HN-Jy5" eventType="touchUpInside" id="mZ4-F0-Ykx"/>
+                                    <action selector="tapTwitterLogin" destination="KAM-HN-Jy5" eventType="touchUpInside" id="1sw-bl-xNh"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -159,7 +159,7 @@ timeline</string>
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" id="O3p-Aw-y3s"/>
                     <connections>
-                        <outlet property="twitterLogin" destination="XyB-41-QSk" id="weZ-gg-Ju8"/>
+                        <outlet property="btnTwitterLogin" destination="XyB-41-QSk" id="1Ks-QS-Emt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="01R-B5-q1H" userLabel="First Responder" sceneMemberID="firstResponder"/>
