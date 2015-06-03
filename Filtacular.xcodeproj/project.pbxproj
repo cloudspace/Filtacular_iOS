@@ -24,12 +24,24 @@
 		DF48E7BB1B1CE7C700154FC1 /* TweetTest.m in Sources */ = {isa = PBXBuildFile; fileRef = DF48E7BA1B1CE7C700154FC1 /* TweetTest.m */; };
 		DF48E7BC1B1CE7CC00154FC1 /* BaseUnmanagedModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DF48E7AF1B1CE01900154FC1 /* BaseUnmanagedModel.m */; };
 		DF48E7BD1B1CE7D000154FC1 /* Tweet.m in Sources */ = {isa = PBXBuildFile; fileRef = DF48E7B51B1CE1D400154FC1 /* Tweet.m */; };
+		DF48E7C21B1CF31800154FC1 /* VCTwitterFeed.m in Sources */ = {isa = PBXBuildFile; fileRef = DF48E7C11B1CF31800154FC1 /* VCTwitterFeed.m */; };
+		DF48E7C41B1CF38900154FC1 /* VCTwitterFeed.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF48E7C31B1CF38900154FC1 /* VCTwitterFeed.xib */; };
+		DF48E7CC1B1DEC0B00154FC1 /* CustomTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = DF48E7CA1B1DEC0B00154FC1 /* CustomTableView.m */; };
+		DF48E7CD1B1DEC0B00154FC1 /* CustomTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF48E7CB1B1DEC0B00154FC1 /* CustomTableView.xib */; };
+		DF48E7D11B1DEC8700154FC1 /* Widget.m in Sources */ = {isa = PBXBuildFile; fileRef = DF48E7D01B1DEC8700154FC1 /* Widget.m */; };
+		DF48E7D61B1DED0900154FC1 /* UIView+Positioning.m in Sources */ = {isa = PBXBuildFile; fileRef = DF48E7D51B1DED0900154FC1 /* UIView+Positioning.m */; };
+		DF48E7DA1B1DEE1500154FC1 /* IntroViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF48E7D91B1DEE1500154FC1 /* IntroViewController.m */; };
+		DF48E7E01B1DF06200154FC1 /* TweetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF48E7DE1B1DF06200154FC1 /* TweetCell.m */; };
+		DF48E7E11B1DF06200154FC1 /* TweetCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF48E7DF1B1DF06200154FC1 /* TweetCell.xib */; };
+		DF48E7E81B1DF5A600154FC1 /* MCCSmartGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = DF48E7E41B1DF5A600154FC1 /* MCCSmartGroup.m */; };
+		DF48E7E91B1DF5A600154FC1 /* MCCSmartGroupManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DF48E7E61B1DF5A600154FC1 /* MCCSmartGroupManager.m */; };
+		DF48E7EA1B1DF5A600154FC1 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = DF48E7E71B1DF5A600154FC1 /* README.md */; };
+		DF48E7EE1B1E0E6D00154FC1 /* RootNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF48E7ED1B1E0E6D00154FC1 /* RootNavigationController.m */; };
 		DFF176CF1B1CD21A005095E9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF176C91B1CD21A005095E9 /* AppDelegate.m */; };
 		DFF176D01B1CD21A005095E9 /* APIInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF176CC1B1CD21A005095E9 /* APIInfo.m */; };
 		DFF176D11B1CD21A005095E9 /* RestkitService.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF176CE1B1CD21A005095E9 /* RestkitService.m */; };
 		DFF176D41B1CD242005095E9 /* Filtacular-API.plist in Resources */ = {isa = PBXBuildFile; fileRef = DFF176D31B1CD242005095E9 /* Filtacular-API.plist */; };
 		F24807BF1B1DF1CD009A6310 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = F24807BE1B1DF1CD009A6310 /* User.m */; };
-		F2DDB2381B1CF50E004C0A8C /* IntroViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2DDB2371B1CF50E004C0A8C /* IntroViewController.m */; };
 		F2DDB2411B1CF8F7004C0A8C /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2DDB23D1B1CF8F7004C0A8C /* Fabric.framework */; };
 		F2DDB2421B1CF8F7004C0A8C /* TwitterCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2DDB23E1B1CF8F7004C0A8C /* TwitterCore.framework */; };
 		F2DDB2431B1CF8F7004C0A8C /* TwitterKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2DDB23F1B1CF8F7004C0A8C /* TwitterKit.framework */; };
@@ -75,6 +87,29 @@
 		DF48E7B51B1CE1D400154FC1 /* Tweet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tweet.m; sourceTree = "<group>"; };
 		DF48E7B91B1CE7C700154FC1 /* TweetTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweetTest.h; sourceTree = "<group>"; };
 		DF48E7BA1B1CE7C700154FC1 /* TweetTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweetTest.m; sourceTree = "<group>"; };
+		DF48E7C01B1CF31800154FC1 /* VCTwitterFeed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VCTwitterFeed.h; sourceTree = "<group>"; };
+		DF48E7C11B1CF31800154FC1 /* VCTwitterFeed.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VCTwitterFeed.m; sourceTree = "<group>"; };
+		DF48E7C31B1CF38900154FC1 /* VCTwitterFeed.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VCTwitterFeed.xib; sourceTree = "<group>"; };
+		DF48E7C71B1DEC0B00154FC1 /* ConfigurableViewProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigurableViewProtocol.h; sourceTree = "<group>"; };
+		DF48E7C91B1DEC0B00154FC1 /* CustomTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomTableView.h; sourceTree = "<group>"; };
+		DF48E7CA1B1DEC0B00154FC1 /* CustomTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomTableView.m; sourceTree = "<group>"; };
+		DF48E7CB1B1DEC0B00154FC1 /* CustomTableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomTableView.xib; sourceTree = "<group>"; };
+		DF48E7CF1B1DEC8700154FC1 /* Widget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Widget.h; sourceTree = "<group>"; };
+		DF48E7D01B1DEC8700154FC1 /* Widget.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Widget.m; sourceTree = "<group>"; };
+		DF48E7D41B1DED0900154FC1 /* UIView+Positioning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Positioning.h"; sourceTree = "<group>"; };
+		DF48E7D51B1DED0900154FC1 /* UIView+Positioning.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Positioning.m"; sourceTree = "<group>"; };
+		DF48E7D81B1DEE1500154FC1 /* IntroViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroViewController.h; sourceTree = "<group>"; };
+		DF48E7D91B1DEE1500154FC1 /* IntroViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntroViewController.m; sourceTree = "<group>"; };
+		DF48E7DD1B1DF06200154FC1 /* TweetCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweetCell.h; sourceTree = "<group>"; };
+		DF48E7DE1B1DF06200154FC1 /* TweetCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweetCell.m; sourceTree = "<group>"; };
+		DF48E7DF1B1DF06200154FC1 /* TweetCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TweetCell.xib; sourceTree = "<group>"; };
+		DF48E7E31B1DF5A600154FC1 /* MCCSmartGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCCSmartGroup.h; sourceTree = "<group>"; };
+		DF48E7E41B1DF5A600154FC1 /* MCCSmartGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCCSmartGroup.m; sourceTree = "<group>"; };
+		DF48E7E51B1DF5A600154FC1 /* MCCSmartGroupManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCCSmartGroupManager.h; sourceTree = "<group>"; };
+		DF48E7E61B1DF5A600154FC1 /* MCCSmartGroupManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCCSmartGroupManager.m; sourceTree = "<group>"; };
+		DF48E7E71B1DF5A600154FC1 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		DF48E7EC1B1E0E6D00154FC1 /* RootNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootNavigationController.h; sourceTree = "<group>"; };
+		DF48E7ED1B1E0E6D00154FC1 /* RootNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootNavigationController.m; sourceTree = "<group>"; };
 		DFF176C81B1CD21A005095E9 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		DFF176C91B1CD21A005095E9 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		DFF176CB1B1CD21A005095E9 /* APIInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIInfo.h; sourceTree = "<group>"; };
@@ -84,8 +119,6 @@
 		DFF176D31B1CD242005095E9 /* Filtacular-API.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Filtacular-API.plist"; sourceTree = "<group>"; };
 		F24807BD1B1DF1CD009A6310 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		F24807BE1B1DF1CD009A6310 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
-		F2DDB2361B1CF50E004C0A8C /* IntroViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroViewController.h; sourceTree = "<group>"; };
-		F2DDB2371B1CF50E004C0A8C /* IntroViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntroViewController.m; sourceTree = "<group>"; };
 		F2DDB23D1B1CF8F7004C0A8C /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fabric.framework; path = Filtacular/ThirdParty/Fabric.framework; sourceTree = "<group>"; };
 		F2DDB23E1B1CF8F7004C0A8C /* TwitterCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TwitterCore.framework; path = Filtacular/ThirdParty/TwitterCore.framework; sourceTree = "<group>"; };
 		F2DDB23F1B1CF8F7004C0A8C /* TwitterKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TwitterKit.framework; path = Filtacular/ThirdParty/TwitterKit.framework; sourceTree = "<group>"; };
@@ -150,9 +183,10 @@
 		DF183B951B1CAA2B0001DDA4 /* Filtacular */ = {
 			isa = PBXGroup;
 			children = (
-				F2DDB2351B1CF4FF004C0A8C /* ViewControllers */,
 				DFF176C71B1CD21A005095E9 /* StartUp */,
 				DFF176D61B1CD555005095E9 /* Shared */,
+				DF48E7BE1B1CF29200154FC1 /* ViewControllers */,
+				DF48E7DB1B1DF01F00154FC1 /* TableViewCells */,
 				DF183BA31B1CAA2B0001DDA4 /* Main.storyboard */,
 				DF183BA61B1CAA2B0001DDA4 /* Images.xcassets */,
 				DF183BA81B1CAA2B0001DDA4 /* LaunchScreen.xib */,
@@ -202,6 +236,129 @@
 			path = ServerWrapper;
 			sourceTree = "<group>";
 		};
+		DF48E7BE1B1CF29200154FC1 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				DF48E7EB1B1E0E4100154FC1 /* RootNavigationController */,
+				DF48E7D71B1DEDE700154FC1 /* IntroViewController */,
+				DF48E7BF1B1CF2B900154FC1 /* VCTwitterFeed */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		DF48E7BF1B1CF2B900154FC1 /* VCTwitterFeed */ = {
+			isa = PBXGroup;
+			children = (
+				DF48E7C01B1CF31800154FC1 /* VCTwitterFeed.h */,
+				DF48E7C11B1CF31800154FC1 /* VCTwitterFeed.m */,
+				DF48E7C31B1CF38900154FC1 /* VCTwitterFeed.xib */,
+			);
+			path = VCTwitterFeed;
+			sourceTree = "<group>";
+		};
+		DF48E7C51B1DEC0B00154FC1 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				DF48E7C61B1DEC0B00154FC1 /* ConfigurableViewProtocol */,
+				DF48E7C81B1DEC0B00154FC1 /* CustomTableView */,
+				DF48E7CE1B1DEC8700154FC1 /* Widget */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		DF48E7C61B1DEC0B00154FC1 /* ConfigurableViewProtocol */ = {
+			isa = PBXGroup;
+			children = (
+				DF48E7C71B1DEC0B00154FC1 /* ConfigurableViewProtocol.h */,
+			);
+			path = ConfigurableViewProtocol;
+			sourceTree = "<group>";
+		};
+		DF48E7C81B1DEC0B00154FC1 /* CustomTableView */ = {
+			isa = PBXGroup;
+			children = (
+				DF48E7C91B1DEC0B00154FC1 /* CustomTableView.h */,
+				DF48E7CA1B1DEC0B00154FC1 /* CustomTableView.m */,
+				DF48E7CB1B1DEC0B00154FC1 /* CustomTableView.xib */,
+			);
+			path = CustomTableView;
+			sourceTree = "<group>";
+		};
+		DF48E7CE1B1DEC8700154FC1 /* Widget */ = {
+			isa = PBXGroup;
+			children = (
+				DF48E7CF1B1DEC8700154FC1 /* Widget.h */,
+				DF48E7D01B1DEC8700154FC1 /* Widget.m */,
+			);
+			path = Widget;
+			sourceTree = "<group>";
+		};
+		DF48E7D21B1DECD200154FC1 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				DF48E7D31B1DED0900154FC1 /* UIView */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
+		DF48E7D31B1DED0900154FC1 /* UIView */ = {
+			isa = PBXGroup;
+			children = (
+				DF48E7D41B1DED0900154FC1 /* UIView+Positioning.h */,
+				DF48E7D51B1DED0900154FC1 /* UIView+Positioning.m */,
+			);
+			path = UIView;
+			sourceTree = "<group>";
+		};
+		DF48E7D71B1DEDE700154FC1 /* IntroViewController */ = {
+			isa = PBXGroup;
+			children = (
+				DF48E7D81B1DEE1500154FC1 /* IntroViewController.h */,
+				DF48E7D91B1DEE1500154FC1 /* IntroViewController.m */,
+			);
+			path = IntroViewController;
+			sourceTree = "<group>";
+		};
+		DF48E7DB1B1DF01F00154FC1 /* TableViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				DF48E7DC1B1DF04600154FC1 /* TweetCell */,
+			);
+			path = TableViewCells;
+			sourceTree = "<group>";
+		};
+		DF48E7DC1B1DF04600154FC1 /* TweetCell */ = {
+			isa = PBXGroup;
+			children = (
+				DF48E7DD1B1DF06200154FC1 /* TweetCell.h */,
+				DF48E7DE1B1DF06200154FC1 /* TweetCell.m */,
+				DF48E7DF1B1DF06200154FC1 /* TweetCell.xib */,
+			);
+			path = TweetCell;
+			sourceTree = "<group>";
+		};
+		DF48E7E21B1DF5A600154FC1 /* MCCSmartGroups */ = {
+			isa = PBXGroup;
+			children = (
+				DF48E7E31B1DF5A600154FC1 /* MCCSmartGroup.h */,
+				DF48E7E41B1DF5A600154FC1 /* MCCSmartGroup.m */,
+				DF48E7E51B1DF5A600154FC1 /* MCCSmartGroupManager.h */,
+				DF48E7E61B1DF5A600154FC1 /* MCCSmartGroupManager.m */,
+				DF48E7E71B1DF5A600154FC1 /* README.md */,
+			);
+			name = MCCSmartGroups;
+			path = Filtacular/ThirdParty/MCCSmartGroups;
+			sourceTree = "<group>";
+		};
+		DF48E7EB1B1E0E4100154FC1 /* RootNavigationController */ = {
+			isa = PBXGroup;
+			children = (
+				DF48E7EC1B1E0E6D00154FC1 /* RootNavigationController.h */,
+				DF48E7ED1B1E0E6D00154FC1 /* RootNavigationController.m */,
+			);
+			path = RootNavigationController;
+			sourceTree = "<group>";
+		};
 		DFF176C71B1CD21A005095E9 /* StartUp */ = {
 			isa = PBXGroup;
 			children = (
@@ -234,6 +391,8 @@
 		DFF176D61B1CD555005095E9 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				DF48E7D21B1DECD200154FC1 /* Categories */,
+				DF48E7C51B1DEC0B00154FC1 /* UI */,
 				DFF176D71B1CD555005095E9 /* DataModels */,
 				DF48E7A61B1CD70400154FC1 /* ServerWrapper */,
 			);
@@ -272,18 +431,10 @@
 			path = Unmanaged;
 			sourceTree = "<group>";
 		};
-		F2DDB2351B1CF4FF004C0A8C /* ViewControllers */ = {
-			isa = PBXGroup;
-			children = (
-				F2DDB2361B1CF50E004C0A8C /* IntroViewController.h */,
-				F2DDB2371B1CF50E004C0A8C /* IntroViewController.m */,
-			);
-			name = ViewControllers;
-			sourceTree = "<group>";
-		};
 		F9FE532600B8A1C56C214958 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DF48E7E21B1DF5A600154FC1 /* MCCSmartGroups */,
 				F2DDB23D1B1CF8F7004C0A8C /* Fabric.framework */,
 				F2DDB23E1B1CF8F7004C0A8C /* TwitterCore.framework */,
 				F2DDB23F1B1CF8F7004C0A8C /* TwitterKit.framework */,
@@ -380,8 +531,11 @@
 			files = (
 				DFF176D41B1CD242005095E9 /* Filtacular-API.plist in Resources */,
 				DF183BA51B1CAA2B0001DDA4 /* Main.storyboard in Resources */,
+				DF48E7E11B1DF06200154FC1 /* TweetCell.xib in Resources */,
+				DF48E7C41B1CF38900154FC1 /* VCTwitterFeed.xib in Resources */,
 				DF17730C1B1CC29B00AD4CA4 /* AppledocSettings.plist in Resources */,
 				DF183BAA1B1CAA2B0001DDA4 /* LaunchScreen.xib in Resources */,
+				DF48E7CD1B1DEC0B00154FC1 /* CustomTableView.xib in Resources */,
 				F2DDB2441B1CF8F7004C0A8C /* TwitterKitResources.bundle in Resources */,
 				DF183BA71B1CAA2B0001DDA4 /* Images.xcassets in Resources */,
 			);
@@ -466,16 +620,25 @@
 			files = (
 				DFF176CF1B1CD21A005095E9 /* AppDelegate.m in Sources */,
 				DF48E7B01B1CE01900154FC1 /* BaseUnmanagedModel.m in Sources */,
+				DF48E7E81B1DF5A600154FC1 /* MCCSmartGroup.m in Sources */,
+				DF48E7CC1B1DEC0B00154FC1 /* CustomTableView.m in Sources */,
+				DF48E7C21B1CF31800154FC1 /* VCTwitterFeed.m in Sources */,
+				DF48E7D61B1DED0900154FC1 /* UIView+Positioning.m in Sources */,
 				DF48E7AB1B1CD70400154FC1 /* RestkitRequest.m in Sources */,
 				DF48E7AC1B1CD70400154FC1 /* ServerWrapper.m in Sources */,
-				F2DDB2381B1CF50E004C0A8C /* IntroViewController.m in Sources */,
 				DFF176D01B1CD21A005095E9 /* APIInfo.m in Sources */,
 				DF48E7B61B1CE1D400154FC1 /* Tweet.m in Sources */,
 				DFF176D11B1CD21A005095E9 /* RestkitService.m in Sources */,
+				DF48E7DA1B1DEE1500154FC1 /* IntroViewController.m in Sources */,
 				F24807BF1B1DF1CD009A6310 /* User.m in Sources */,
 				DF183B9F1B1CAA2B0001DDA4 /* Filtacular.xcdatamodeld in Sources */,
+				DF48E7EA1B1DF5A600154FC1 /* README.md in Sources */,
+				DF48E7E91B1DF5A600154FC1 /* MCCSmartGroupManager.m in Sources */,
+				DF48E7EE1B1E0E6D00154FC1 /* RootNavigationController.m in Sources */,
 				DF48E7B31B1CE01F00154FC1 /* BaseManagedModel.m in Sources */,
 				DF183B991B1CAA2B0001DDA4 /* main.m in Sources */,
+				DF48E7D11B1DEC8700154FC1 /* Widget.m in Sources */,
+				DF48E7E01B1DF06200154FC1 /* TweetCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

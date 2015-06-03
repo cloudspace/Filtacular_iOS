@@ -7,6 +7,7 @@
 //
 
 #import "IntroViewController.h"
+#import "VCTwitterFeed.h"
 
 @interface IntroViewController ()
 
@@ -24,6 +25,9 @@
          if (session) {
              NSLog(@"signed in as %@", [session userName]);
              //TODO go to next view controller
+             
+             VCTwitterFeed* vcTwitterFeed = [VCTwitterFeed new];
+             [self.navigationController pushViewController:vcTwitterFeed animated:true];
          } else {
              NSLog(@"error: %@", [error localizedDescription]);
          }

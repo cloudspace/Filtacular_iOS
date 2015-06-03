@@ -13,15 +13,19 @@
 @synthesize displayName;
 @synthesize userName;
 @synthesize profilePicUrl;
-@synthesize postDate;
-@synthesize linkUrl;
+@synthesize tweetCreatedAt;
+@synthesize urlLink;
+@synthesize urlDescription;
+@synthesize urlTitle;
+@synthesize urlImage;
+@synthesize text;
 @synthesize retweetCount;
 @synthesize favoriteCount;
 
 + (RKObjectMapping*)objectMapping {
     RKObjectMapping *mapping = [super objectMapping];
-    [mapping addAttributeMappingsFromArray:@[@"displayName", @"userName", @"displayName", @"profilePicUrl", @"postDate", @"linkUrl", @"retweetCount", @"favoriteCount"]];
-    [mapping addAttributeMappingsFromDictionary:@{@"id": @"identifier"}];
+    [mapping addAttributeMappingsFromArray:@[@"displayName", @"userName", @"text", @"profilePicUrl", @"postDate", @"retweetCount", @"favoriteCount"]];
+    [mapping addAttributeMappingsFromDictionary:@{@"tweet_id": @"tweetId", @"url_description": @"urlDescription", @"url_title": @"urlTitle", @"url_image":@"urlImage", @"url_link": @"urlLink", @"tweetCreatedAt": @"tweet_created_at", @"retweet_count":@"retweetCount", @"favorites_count":@"favoriteCount"}];
     
     return mapping;
 }
@@ -32,17 +36,25 @@ static NSArray* sUserNames = nil;
 static NSArray* sProfilePicUrls = nil;
 static NSArray* sPostDates = nil;
 static NSArray* sLinkUrls = nil;
+static NSArray* sUrlTitles = nil;
+static NSArray* sUrlDescriptions = nil;
+static NSArray* sUrlImages = nil;
+static NSArray* sTexts = nil;
 
 static int cRetweetCounts[cNumRandoms] = { 0, 2, 500 };
 static int cFavoriteCounts[cNumRandoms] = { 0, 6, 200 };
 
 
 + (void)load {
-    sDisplayNames = @[@"Bill", @"Jane", @"Joe"];
+    sDisplayNames = @[@"Billaedjaskjldsjalakj", @"Jane", @"Joe"];
     sUserNames = @[@"YouJobEi", @"MilkyWookee", @"KicksAndGiggles"];
-    sProfilePicUrls = @[@"http://pbs.twimg.com/profile_images/458940244847374336/ITrc9uEy_normal.jpeg", @"http://pbs.twimg.com/profile_images/458940244847374336/ITrc9uEy_normal.jpeg", @"https://abs.twimg.com/sticky/default_profile_images/default_profile_3_400x400.png"];
+    sProfilePicUrls = @[@"http://pbs.twimg.com/profile_images/458940244847374336/ITrc9uEy_normal.jpeg", @"https://lh3.googleusercontent.com/-ZadaXoUTBfs/AAAAAAAAAAI/AAAAAAAAAAA/3rh5IMTHOzg/photo.jpg", @"https://abs.twimg.com/sticky/default_profile_images/default_profile_3_400x400.png"];
     sPostDates = @[[self randomDateInYearOfDate], [self randomDateInYearOfDate], [self randomDateInYearOfDate]];
-    sLinkUrls = @[@"http://google.com", @"http://bing.com", @"http://yahoo.com"];
+    sLinkUrls = @[@"http://google.com", @"http://bing.com", @"http://yahoo.com", @"", @""];
+    sUrlImages = @[@"http://pbs.twimg.com/media/CGbL81WWoAAHDuY.jpg:small", @"http://pbs.twimg.com/media/CGfZJSlUgAEtQt9.jpg:small", @"http://pbs.twimg.com/media/CGfYREFVAAAH21c.jpg:small", @"", @""];
+    sTexts = @[@"XCOM 2 has been announced. It's PC exclusive, and will feature official modding support. Fill Fill Yo Yo laka laka laka. I need twenty more.", @"I am a short tweet.", @"I am a bit longer of a tweet and may take 2 lines."];
+    sUrlTitles = @[@"XCOM 2 has been announced", @"I am Short Title", @"Url Title Yo"];
+    sUrlDescriptions = @[@"XCOM 2 has been announced.", @"Fill Fill Yo Yo laka laka laka.", @"I am a short description."];
 }
 
 + (NSDate *)randomDateInYearOfDate {
@@ -70,10 +82,14 @@ static int cFavoriteCounts[cNumRandoms] = { 0, 6, 200 };
     newTweet.displayName = sDisplayNames[arc4random_uniform(3)];
     newTweet.userName = sUserNames[arc4random_uniform(3)];
     newTweet.profilePicUrl = sProfilePicUrls[arc4random_uniform(3)];
-    newTweet.postDate = sPostDates[arc4random_uniform(3)];
-    newTweet.linkUrl = sLinkUrls[arc4random_uniform(3)];
+    newTweet.tweetCreatedAt = sPostDates[arc4random_uniform(3)];
+    newTweet.urlLink = sLinkUrls[arc4random_uniform(5)];
+    newTweet.urlTitle = sUrlTitles[arc4random_uniform(3)];
+    newTweet.urlDescription = sUrlDescriptions[arc4random_uniform(3)];
+    newTweet.urlImage = sUrlImages[arc4random_uniform(5)];
     newTweet.retweetCount = cRetweetCounts[arc4random_uniform(3)];
     newTweet.favoriteCount = cFavoriteCounts[arc4random_uniform(3)];
+    newTweet.text = sTexts[arc4random_uniform(3)];
     
     return newTweet;
 }
