@@ -22,6 +22,7 @@
 @property (nonatomic, assign) int retweetCount;
 @property (nonatomic, assign) int favoriteCount;
 @property (nonatomic, assign) int tweetId;
+@property (nonatomic, assign) bool pictureOnly;
 
 + (Tweet*)generateRandomTweet;
 

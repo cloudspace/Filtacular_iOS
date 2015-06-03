@@ -21,10 +21,11 @@
 @synthesize text;
 @synthesize retweetCount;
 @synthesize favoriteCount;
+@synthesize pictureOnly;
 
 + (RKObjectMapping*)objectMapping {
     RKObjectMapping *mapping = [super objectMapping];
-    [mapping addAttributeMappingsFromArray:@[@"displayName", @"userName", @"text", @"profilePicUrl", @"postDate", @"retweetCount", @"favoriteCount"]];
+    [mapping addAttributeMappingsFromArray:@[@"displayName", @"userName", @"text", @"profilePicUrl", @"postDate", @"retweetCount", @"favoriteCount", @"pictureOnly"]];
     [mapping addAttributeMappingsFromDictionary:@{@"tweet_id": @"tweetId", @"url_description": @"urlDescription", @"url_title": @"urlTitle", @"url_image":@"urlImage", @"url_link": @"urlLink", @"tweetCreatedAt": @"tweet_created_at", @"retweet_count":@"retweetCount", @"favorites_count":@"favoriteCount"}];
     
     return mapping;
@@ -47,7 +48,7 @@ static int cFavoriteCounts[cNumRandoms] = { 0, 6, 200 };
 
 + (void)load {
     sDisplayNames = @[@"Billaedjaskjldsjalakj", @"Jane", @"Joe"];
-    sUserNames = @[@"YouJobEi", @"MilkyWookee", @"KicksAndGiggles"];
+    sUserNames = @[@"@YouJobEi", @"@MilkyWookee", @"@KicksAndGiggles"];
     sProfilePicUrls = @[@"http://pbs.twimg.com/profile_images/458940244847374336/ITrc9uEy_normal.jpeg", @"https://lh3.googleusercontent.com/-ZadaXoUTBfs/AAAAAAAAAAI/AAAAAAAAAAA/3rh5IMTHOzg/photo.jpg", @"https://abs.twimg.com/sticky/default_profile_images/default_profile_3_400x400.png"];
     sPostDates = @[[self randomDateInYearOfDate], [self randomDateInYearOfDate], [self randomDateInYearOfDate]];
     sLinkUrls = @[@"http://google.com", @"http://bing.com", @"http://yahoo.com", @"", @""];
@@ -90,6 +91,7 @@ static int cFavoriteCounts[cNumRandoms] = { 0, 6, 200 };
     newTweet.retweetCount = cRetweetCounts[arc4random_uniform(3)];
     newTweet.favoriteCount = cFavoriteCounts[arc4random_uniform(3)];
     newTweet.text = sTexts[arc4random_uniform(3)];
+    newTweet.pictureOnly = (arc4random_uniform(3) == 3);
     
     return newTweet;
 }
