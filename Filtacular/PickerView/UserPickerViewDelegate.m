@@ -29,8 +29,7 @@
      didSelectRow:(NSInteger)row
       inComponent:(NSInteger)component
 {
-    User* user = self.users[row];
-    NSLog(@"Pressed on %@", user.nickname);
+    self.onItemSelected(self.users[row]);
 }
 
 -(NSString *)pickerView:(UIPickerView *)pickerView

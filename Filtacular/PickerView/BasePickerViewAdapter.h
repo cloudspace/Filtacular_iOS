@@ -9,13 +9,15 @@
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
 #import "Reloadable.h"
+#import "Selectable.h"
 
 @interface BasePickerViewAdapter : NSObject
 
-@property id<UIPickerViewDelegate, Reloadable> pickerViewDelegate;
+
+@property id<UIPickerViewDelegate, Reloadable, Selectable> pickerViewDelegate;
 @property id<UIPickerViewDataSource, Reloadable> pickerViewDataSource;
 
--(void) bind: (UIPickerView*) pickerView;
+-(void) bind: (UIPickerView*) pickerView : (itemSelectedBlock) onItemSelectBlock;
 
 -(void) setData : (NSArray*) data;
 

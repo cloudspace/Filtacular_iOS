@@ -135,7 +135,8 @@
 		F295E55B1B1F8A8A00A7A03B /* UserPickerDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserPickerDataSource.m; path = PickerView/UserPickerDataSource.m; sourceTree = "<group>"; };
 		F295E55D1B1F8DCC00A7A03B /* BasePickerViewAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BasePickerViewAdapter.h; path = PickerView/BasePickerViewAdapter.h; sourceTree = "<group>"; };
 		F295E55E1B1F8DCC00A7A03B /* BasePickerViewAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BasePickerViewAdapter.m; path = PickerView/BasePickerViewAdapter.m; sourceTree = "<group>"; };
-		F295E5601B1F8F5500A7A03B /* Reloadable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reloadable.h; path = PickerView/Reloadable.h; sourceTree = "<group>"; };
+		F295E5641B1FAA8500A7A03B /* Reloadable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reloadable.h; path = Protocols/Reloadable.h; sourceTree = "<group>"; };
+		F295E5651B1FAA8500A7A03B /* Selectable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Selectable.h; path = Protocols/Selectable.h; sourceTree = "<group>"; };
 		F2DDB23D1B1CF8F7004C0A8C /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fabric.framework; path = Filtacular/ThirdParty/Fabric.framework; sourceTree = "<group>"; };
 		F2DDB23E1B1CF8F7004C0A8C /* TwitterCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TwitterCore.framework; path = Filtacular/ThirdParty/TwitterCore.framework; sourceTree = "<group>"; };
 		F2DDB23F1B1CF8F7004C0A8C /* TwitterKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TwitterKit.framework; path = Filtacular/ThirdParty/TwitterKit.framework; sourceTree = "<group>"; };
@@ -202,6 +203,7 @@
 		DF183B951B1CAA2B0001DDA4 /* Filtacular */ = {
 			isa = PBXGroup;
 			children = (
+				F295E5631B1FAA5600A7A03B /* Protocols */,
 				F2FECAC61B1F4E46005253B0 /* PickerView */,
 				DFF176C71B1CD21A005095E9 /* StartUp */,
 				DFF176D61B1CD555005095E9 /* Shared */,
@@ -468,13 +470,21 @@
 			name = UserPickerView;
 			sourceTree = "<group>";
 		};
+		F295E5631B1FAA5600A7A03B /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				F295E5641B1FAA8500A7A03B /* Reloadable.h */,
+				F295E5651B1FAA8500A7A03B /* Selectable.h */,
+			);
+			name = Protocols;
+			sourceTree = "<group>";
+		};
 		F2FECAC61B1F4E46005253B0 /* PickerView */ = {
 			isa = PBXGroup;
 			children = (
 				F295E5611B1F922800A7A03B /* UserPickerView */,
 				F295E55D1B1F8DCC00A7A03B /* BasePickerViewAdapter.h */,
 				F295E55E1B1F8DCC00A7A03B /* BasePickerViewAdapter.m */,
-				F295E5601B1F8F5500A7A03B /* Reloadable.h */,
 			);
 			name = PickerView;
 			sourceTree = "<group>";

@@ -12,6 +12,7 @@
 #import "TweetCell.h"
 #import "UserPickerViewAdapter.h"
 #import "User.h"
+#import "Selectable.h"
 
 @interface VCTwitterFeed ()
 @property (strong, nonatomic) IBOutlet CustomTableView* table;
@@ -65,37 +66,31 @@
 }
 
 - (IBAction)tapUser {
-    [self updateCurrentPicker: self.userPickerAdapter];
+    [self updateCurrentPicker: self.userPickerAdapter :^(id item){
+        [self onUserSelected:item];
+    }];
     [self toggleViewPicker];
+}
+
+- (void)onUserSelected:(id) user
+{
+    NSLog(@"Selected: %@", [user nickname]);
 }
 
 - (UIRectEdge)edgesForExtendedLayout {
     return UIRectEdgeNone;
 }
 
--(NSArray*) getTestUsers
-{
-    User* testOne = [User createEntity];
-    testOne.nickname = @"The best";
-    
-    User* testTwo = [User createEntity];
-    testTwo.nickname = @"The Second best";
-    
-    User* testThree = [User createEntity];
-    testThree.nickname = @"The Third best";
-    return @[testOne, testTwo, testThree];
-}
-
--(void) updateCurrentPicker: (BasePickerViewAdapter*) newPickerAdapter
+- (void)updateCurrentPicker:(BasePickerViewAdapter*) newPickerAdapter : (itemSelectedBlock) block
 {
     self.currentPickerAdapter = newPickerAdapter;
-    [self.currentPickerAdapter bind: self.pickerView];
-    [self.currentPickerAdapter setData: [self getTestUsers]];
+    [self.currentPickerAdapter bind: self.pickerView :block];
+    [self.currentPickerAdapter setData: self.users];
 }
 
--(void) toggleViewPicker
+- (void)toggleViewPicker
 {
-    self.filterBarPositionFromBottomConstraint.constant = 162;
+    self.filterBarPositionFromBottomConstraint.constant = self.pickerView.frame.size.height;
     if(!self.isPickerVisible){
         [UIView animateWithDuration:.25f
                          animations:^{

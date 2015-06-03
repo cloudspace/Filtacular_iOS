@@ -9,8 +9,12 @@
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
 #import "Reloadable.h"
+#import "BasePickerViewAdapter.h"
+#import "Selectable.h"
 
-@interface UserPickerViewDelegate : NSObject <UIPickerViewDelegate, Reloadable>
+@interface UserPickerViewDelegate : NSObject <UIPickerViewDelegate, Reloadable, Selectable>
+
+@property (nonatomic, copy) itemSelectedBlock onItemSelected;
 
 -(void) reload : (NSArray*) data;
 
