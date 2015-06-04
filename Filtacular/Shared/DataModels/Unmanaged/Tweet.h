@@ -23,6 +23,8 @@
 @property (nonatomic, assign) int favoriteCount;
 @property (nonatomic, assign) int tweetId;
 @property (nonatomic, assign) bool pictureOnly;//big picture mode
+@property (nonatomic, assign) bool retweeted;
+@property (nonatomic, assign) bool favorited;
 
 @property (nonatomic, assign) bool bigPicOpenedCache;
 @property (nonatomic, copy) void (^tappedBigPic) ();

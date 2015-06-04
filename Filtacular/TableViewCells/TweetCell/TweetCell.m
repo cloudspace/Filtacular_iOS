@@ -22,11 +22,11 @@
 @property (strong, nonatomic) IBOutlet UIImageView *imgUrlPic;
 @property (strong, nonatomic) IBOutlet UILabel *lblUrlText;
 @property (strong, nonatomic) IBOutlet UILabel *lblUrlDomain;
-@property (strong, nonatomic) IBOutlet UILabel *lblRetweets;
-@property (strong, nonatomic) IBOutlet UILabel *lblFavorites;
 @property (strong, nonatomic) IBOutlet UIView *viewBottomBar;
 @property (strong, nonatomic) IBOutlet UIImageView *imgBigPic;
 @property (strong, nonatomic) IBOutlet UIButton *btnBigPic;
+@property (strong, nonatomic) IBOutlet UIButton *btnRetweet;
+@property (strong, nonatomic) IBOutlet UIButton *btnFavorite;
 
 @property (assign, nonatomic) bool bigPicOpen;
 @property (strong, nonatomic) Tweet* cachedTweet;
@@ -50,8 +50,13 @@
     
     [_imgUserPic setImageWithURL:tweet.profilePicUrl placeholderImage:nil options:SDWebImageRetryFailed];
     
-    _lblRetweets.text = [@(tweet.retweetCount) stringValue];
-    _lblFavorites.text = [@(tweet.favoriteCount) stringValue];
+    [_btnRetweet setTitle:[@(tweet.retweetCount) stringValue] forState:UIControlStateNormal];
+    [_btnFavorite setTitle:[@(tweet.favoriteCount) stringValue] forState:UIControlStateNormal];
+    
+    bool disableRetweet = (tweet.retweeted);
+    bool disableFavorite = (tweet.favorited);
+    [_btnRetweet setEnabled:!disableRetweet];
+    [_btnFavorite setEnabled:!disableFavorite];
     
     if (tweet.pictureOnly) {
         [self configureBigPic:tweet];
@@ -172,8 +177,25 @@ const float cPadding = 16.0f;
 }
 
 - (void)tapBigPic {
+    
     if (_cachedTweet.tappedBigPic)
         _cachedTweet.tappedBigPic();
+}
+
+- (IBAction)tapReply {
+
+}
+
+- (IBAction)tapRetweet {
+    
+    _cachedTweet.retweeted = true;
+    _btnRetweet.enabled = false;
+}
+
+- (IBAction)tapFavorite {
+    
+    _cachedTweet.favorited = true;
+    _btnFavorite.enabled = false;
 }
 
 - (void)layoutSubviews {
