@@ -7,8 +7,10 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="VCTwitterFeed">
             <connections>
                 <outlet property="filterBarPositionFromBottomConstraint" destination="mFY-qT-IV0" id="7T7-cP-id9"/>
+                <outlet property="filterButton" destination="NbX-0I-jTj" id="a9W-ht-IJt"/>
                 <outlet property="pickerView" destination="1Fr-Yi-MW7" id="5QP-ns-6FN"/>
-                <outlet property="table" destination="eIb-3Y-3vV" id="3D5-Zm-KjU"/>
+                <outlet property="table" destination="eIb-3Y-3vV" id="c3J-aU-eCt"/>
+                <outlet property="userButton" destination="jIi-Ml-gVR" id="Tig-BX-qgI"/>
                 <outlet property="view" destination="iN0-l3-epB" id="krZ-Mu-79u"/>
             </connections>
         </placeholder>

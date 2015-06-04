@@ -17,6 +17,9 @@
     pickerView.dataSource = self.pickerViewDataSource;
 }
 
--(void)setData:(NSArray *)data { }
+-(void)setData:(NSArray *)data {
+    [self.pickerViewDelegate reload: data];
+    [self.pickerViewDataSource reload: data];
+}
 
 @end
