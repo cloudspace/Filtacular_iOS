@@ -87,18 +87,24 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" id="vgc-GO-0X0" userLabel="View - Bottom Bar">
-                        <rect key="frame" x="0.0" y="386" width="320" height="52"/>
+                        <rect key="frame" x="0.0" y="385" width="320" height="52"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" id="Bz3-xA-AOM" userLabel="View - Reply">
                                 <rect key="frame" x="4" y="0.0" width="104" height="52"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" heightSizable="YES"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" id="G1M-GU-vwS" userLabel="View - IMG Placeholder">
-                                        <rect key="frame" x="42" y="16" width="20" height="20"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.23529411759999999" green="0.34901960780000002" blue="0.62352941179999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="f3F-rI-6O6">
+                                        <rect key="frame" x="0.0" y="0.0" width="104" height="52"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <state key="normal" image="reply_0">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted" image="reply_1"/>
+                                        <connections>
+                                            <action selector="tapReply" destination="KGk-i7-Jjw" eventType="touchUpInside" id="oVu-pe-QYS"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
@@ -106,18 +112,23 @@
                                 <rect key="frame" x="108" y="0.0" width="104" height="52"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" heightSizable="YES"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" id="udL-bp-SYC" userLabel="View - IMG Placeholder">
-                                        <rect key="frame" x="24" y="16" width="20" height="20"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.96470588239999999" green="0.69803921570000005" blue="0.26274509800000001" alpha="1" colorSpace="calibratedRGB"/>
-                                    </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="44" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="T3c-Qu-EMX">
-                                        <rect key="frame" x="52" y="16" width="29" height="20"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="zyG-ni-58H">
+                                        <rect key="frame" x="0.0" y="0.0" width="104" height="52"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                        <inset key="titleEdgeInsets" minX="4" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="4" maxY="0.0"/>
+                                        <state key="normal" title="44" image="retweet_0">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="disabled" image="retweet_2"/>
+                                        <state key="highlighted" image="retweet_1"/>
+                                        <connections>
+                                            <action selector="tapRetweet" destination="KGk-i7-Jjw" eventType="touchUpInside" id="tHV-74-dTf"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
@@ -125,18 +136,22 @@
                                 <rect key="frame" x="212" y="0.0" width="104" height="52"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" heightSizable="YES"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" id="dPL-hc-uc1" userLabel="View - IMG Placeholder">
-                                        <rect key="frame" x="24" y="16" width="20" height="20"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.16078431369999999" green="0.63137254899999995" blue="0.59607843140000005" alpha="1" colorSpace="calibratedRGB"/>
-                                    </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="44" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Wx0-mg-09G">
-                                        <rect key="frame" x="52" y="16" width="29" height="20"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="BjK-m0-08s">
+                                        <rect key="frame" x="0.0" y="0.0" width="104" height="52"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                        <inset key="titleEdgeInsets" minX="4" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="4" maxY="0.0"/>
+                                        <state key="normal" title="22" image="favorite_0">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="disabled" image="favorite_2"/>
+                                        <state key="highlighted" image="favorite_1"/>
+                                        <connections>
+                                            <action selector="tapFavorite" destination="KGk-i7-Jjw" eventType="touchUpInside" id="SCx-Vn-cvS"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
@@ -168,14 +183,14 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="btnBigPic" destination="6kq-mW-96u" id="htk-Jo-ofZ"/>
+                <outlet property="btnFavorite" destination="BjK-m0-08s" id="GVB-D2-MVO"/>
+                <outlet property="btnRetweet" destination="zyG-ni-58H" id="lcY-BN-Sae"/>
                 <outlet property="imgBigPic" destination="ZmC-le-ems" id="z8X-vF-zdt"/>
                 <outlet property="imgUrlPic" destination="104-do-1bR" id="NGX-Dy-ffP"/>
                 <outlet property="imgUserPic" destination="oLx-wz-xcp" id="ayQ-Wu-jl3"/>
                 <outlet property="lblDatePosted" destination="Gf0-Pq-x0c" id="FMU-Er-uz9"/>
                 <outlet property="lblDisplayName" destination="PAS-8a-uuQ" id="P0t-hn-BAY"/>
-                <outlet property="lblFavorites" destination="Wx0-mg-09G" id="dCe-p2-CXE"/>
                 <outlet property="lblPostText" destination="cJO-Ct-O6h" id="Ruw-r8-Bxz"/>
-                <outlet property="lblRetweets" destination="T3c-Qu-EMX" id="x8m-ao-9Ae"/>
                 <outlet property="lblUrlDomain" destination="6NW-eq-Tqc" id="Lnb-nf-LBb"/>
                 <outlet property="lblUrlText" destination="luV-Di-LK3" id="Uuj-KU-U65"/>
                 <outlet property="lblUserName" destination="96b-bM-vaN" id="SUV-Iu-Fji"/>
@@ -184,6 +199,16 @@
             <point key="canvasLocation" x="159" y="414.5"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="favorite_0" width="20" height="20"/>
+        <image name="favorite_1" width="20" height="20"/>
+        <image name="favorite_2" width="20" height="20"/>
+        <image name="reply_0" width="20" height="20"/>
+        <image name="reply_1" width="20" height="20"/>
+        <image name="retweet_0" width="24" height="20"/>
+        <image name="retweet_1" width="24" height="20"/>
+        <image name="retweet_2" width="24" height="20"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

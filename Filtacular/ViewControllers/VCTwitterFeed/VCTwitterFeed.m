@@ -64,9 +64,6 @@
     for (__weak Tweet* eachTweet in tweets) {
         
         [eachTweet setTappedBigPic:^{
-            Tweet* strongTweet = eachTweet;
-            strongTweet.bigPicOpenedCache = !strongTweet.bigPicOpenedCache;
-            
             VCTwitterFeed* strongSelf = weakSelf;
             [strongSelf.table cellHeightChanged];
         }];
