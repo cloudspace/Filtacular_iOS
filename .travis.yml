@@ -19,7 +19,7 @@ before_script:
 script:
 - xctool -workspace "$PROJECT_FILE_NAME" -scheme Filtacular -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
 - xctool test -parallelize -workspace "$PROJECT_FILE_NAME" -scheme Filtacular -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
-- xctool -workspace "$PROJECT_FILE_NAME" -scheme FiltacularNoTests -sdk iphoneos -configuration Release OBJROOT=$PWD/build SYMROOT=$PWD/build 'CODE_SIGN_RESOURCE_RULES_PATH=$(SDKROOT)/ResourceRules.plist'
+- xcodebuild -workspace "$PROJECT_FILE_NAME" -scheme FiltacularNoTests -sdk iphoneos -configuration Release OBJROOT=$PWD/build SYMROOT=$PWD/build 'CODE_SIGN_RESOURCE_RULES_PATH=$(SDKROOT)/ResourceRules.plist'
 after_success:
 - "./scripts/sign-and-upload.sh"
 after_script:
