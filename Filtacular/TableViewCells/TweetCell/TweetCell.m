@@ -10,8 +10,8 @@
 #import "Tweet.h"
 
 #import "UIView+Positioning.h"
+#import "UIImageView+SDWebCache.h"
 
-#import <SDWebImage/UIImageView+WebCache.h>
 
 @interface TweetCell ()
 @property (strong, nonatomic) IBOutlet UILabel *lblDisplayName;
@@ -25,69 +25,84 @@
 @property (strong, nonatomic) IBOutlet UILabel *lblRetweets;
 @property (strong, nonatomic) IBOutlet UILabel *lblFavorites;
 @property (strong, nonatomic) IBOutlet UIView *viewBottomBar;
+@property (strong, nonatomic) IBOutlet UIImageView *imgBigPic;
+@property (strong, nonatomic) IBOutlet UIButton *btnBigPic;
+
+@property (assign, nonatomic) bool bigPicOpen;
+@property (strong, nonatomic) Tweet* cachedTweet;
 
 @end
 
 @implementation TweetCell
 
 - (void)configureWithObject:(Tweet*)tweet {
-    bool hasUrl = (tweet.urlLink.length != 0);
-    bool hasImage = (tweet.urlImage.length != 0);
+    
+    _cachedTweet = tweet;
+    _bigPicOpen = tweet.bigPicOpenedCache;
+    _imgUrlPic.image = nil;
+    _lblUrlDomain.text = @"";
+    _lblUrlText.text = @"";
     
     _lblDisplayName.text = tweet.displayName;
     _lblUserName.text = tweet.userName;
     //_lblDatePosted = [tweet datePostedAsString];
     _lblPostText.text = tweet.text;
     
-    NSURL* urlPhoto = [NSURL URLWithString:tweet.profilePicUrl];
+    [_imgUserPic setImageWithURL:tweet.profilePicUrl placeholderImage:nil options:SDWebImageRetryFailed];
     
-    NSString *key = [[SDWebImageManager sharedManager] cacheKeyForURL:urlPhoto];
-    UIImage *cachedImage = [[SDImageCache sharedImageCache] imageFromDiskCacheForKey:key];
-    
-    if (cachedImage) {
-        [_imgUserPic sd_cancelCurrentImageLoad];
-        [_imgUserPic setImage:cachedImage];
-    }
-    else {
-        [_imgUserPic sd_setImageWithURL:urlPhoto placeholderImage:nil options:SDWebImageRetryFailed];
-    }
-    
-    if (hasUrl) {
-        if (hasImage) {
-            urlPhoto = [NSURL URLWithString:tweet.urlImage];
-            
-            key = [[SDWebImageManager sharedManager] cacheKeyForURL:urlPhoto];
-            cachedImage = [[SDImageCache sharedImageCache] imageFromDiskCacheForKey:key];
-            
-            if (cachedImage) {
-                [_imgUrlPic sd_cancelCurrentImageLoad];
-                [_imgUrlPic setImage:cachedImage];
-            }
-            else {
-                [_imgUrlPic sd_setImageWithURL:urlPhoto placeholderImage:nil options:SDWebImageRetryFailed];
-            }
-            
-            
-        }
-        else
-            _imgUrlPic.image = nil;
-        _lblUrlText.text = tweet.urlDescription;
-        _lblUrlDomain.text = tweet.urlTitle;
-    }
-    else {
-        _imgUrlPic.image = nil;
-        _lblUrlDomain.text = @"";
-        _lblUrlText.text = @"";
-    }
     _lblRetweets.text = [@(tweet.retweetCount) stringValue];
     _lblFavorites.text = [@(tweet.favoriteCount) stringValue];
     
-    [self repositionSubviewsHasUrl:hasUrl hasUrlImage:hasImage];
+    if (tweet.pictureOnly) {
+        [self configureBigPic:tweet];
+    }
+    else {
+        _btnBigPic.hidden = true;
+        _imgBigPic.hidden = true;
+        [self configureLinkDetails:tweet];
+    }
+    
+    [self repositionSubviewsWithTweet:tweet];
+}
+
+- (void)configureBigPic:(Tweet*)tweet {
+    _btnBigPic.hidden = false;
+    _imgBigPic.hidden = false;
+    [_imgBigPic setImageWithURL:tweet.urlImage placeholderImage:nil options:SDWebImageRetryFailed];
+}
+
+- (void)configureLinkDetails:(Tweet*)tweet {
+    bool hasUrl = (tweet.urlLink.length != 0);
+    bool hasImage = (tweet.urlImage.length != 0);
+    
+    if (hasUrl == false)
+        return;
+    
+    if (hasImage) {
+        [_imgUrlPic setImageWithURL:tweet.urlImage placeholderImage:nil options:SDWebImageRetryFailed];
+    }
+    
+    _lblUrlText.text = tweet.urlDescription;
+    _lblUrlDomain.text = tweet.urlTitle;
 }
 
 const float cPadding = 16.0f;
 
-- (void)repositionSubviewsHasUrl:(bool)hasUrl hasUrlImage:(bool)hasUrlImage {
+- (void)repositionSubviewsWithTweet:(Tweet*)tweet {
+    
+    bool hasUrl = (tweet.urlLink.length != 0 && tweet.pictureOnly == false);
+    bool hasImage = (tweet.urlImage.length != 0);
+    
+    //reposition username
+    [self fitToWidth:_lblDisplayName maxWidth:126.0f];
+    if (_lblDisplayName.width == 0.0f)
+        _lblDisplayName.width = 126.0f;
+    _lblUserName.x = _lblDisplayName.x + _lblDisplayName.width + 4.0f;
+    [self fitToWidth:_lblUserName maxWidth:269.0f - _lblUserName.x];
+    if (_lblUserName.width == 0.0f)
+        _lblUserName.width = 51.0f;
+    
+    //reposition everything else
     [self fitToHeight:_lblPostText];
     _lblPostText.height -= 16.0f;
     if (_lblPostText.height < 39.0f)
@@ -96,7 +111,7 @@ const float cPadding = 16.0f;
     float yOffset = _lblPostText.y + _lblPostText.height + cPadding;
     
     if (hasUrl) {
-        if (hasUrlImage) {
+        if (hasImage) {
             _imgUrlPic.y = yOffset;
             yOffset += _imgUrlPic.height + cPadding;
         }
@@ -110,16 +125,21 @@ const float cPadding = 16.0f;
         yOffset += _lblUrlDomain.height + cPadding;
     }
     
-    self.height = yOffset - cPadding + _viewBottomBar.height -2.0f;
-    
-    //reposition username
-    [self fitToWidth:_lblDisplayName maxWidth:126.0f];
-    if (_lblDisplayName.width == 0.0f)
-        _lblDisplayName.width = 126.0f;
-    _lblUserName.x = _lblDisplayName.x + _lblDisplayName.width + 4.0f;
-    [self fitToWidth:_lblUserName maxWidth:269.0f - _lblUserName.x];
-    if (_lblUserName.width == 0.0f)
-        _lblUserName.width = 51.0f;
+    if (tweet.pictureOnly) {
+        if (_bigPicOpen) {
+            self.height = yOffset + _imgBigPic.height + _viewBottomBar.height;
+            _imgBigPic.y = yOffset;
+            _btnBigPic.y = yOffset;
+        }
+        else {
+            self.height = _imgBigPic.height + cPadding * 2;
+            _imgBigPic.y = cPadding;
+            _btnBigPic.y = cPadding;
+        }
+    }
+    else {
+        self.height = yOffset - cPadding + _viewBottomBar.height;
+    }
 }
 
 - (void)fitToHeight:(UILabel*)label {
@@ -149,6 +169,19 @@ const float cPadding = 16.0f;
     label.origin = oldPosition;
     label.height = oldHeight;
     
+}
+
+- (void)tapBigPic {
+    if (_cachedTweet.tappedBigPic)
+        _cachedTweet.tappedBigPic();
+}
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    
+    //This is called when the cell height changes. So we need to reconfigure so we can reposition our elements.
+    if (_cachedTweet)
+        [self configureWithObject:_cachedTweet];
 }
 
 @end

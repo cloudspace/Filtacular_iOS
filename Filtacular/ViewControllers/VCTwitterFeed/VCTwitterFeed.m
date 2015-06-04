@@ -32,6 +32,7 @@
 
 - (void)viewDidLoad {
     
+    [_table setNoItemText:@"There are no tweets."];
     [_table setTableViewCellClass:[TweetCell class]];
     [_table setSelectObjectBlock:^(Tweet* tweet) {
         UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"" message:@"WIP" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
@@ -58,6 +59,30 @@
     self.tableData = [tweets sortedArrayUsingComparator:^NSComparisonResult(Tweet* obj1, Tweet* obj2) {
         return [obj2.tweetCreatedAt compare:obj1.tweetCreatedAt];
     }];
+    
+    __weak VCTwitterFeed* weakSelf = self;
+    for (__weak Tweet* eachTweet in tweets) {
+        
+        [eachTweet setTappedBigPic:^{
+            Tweet* strongTweet = eachTweet;
+            strongTweet.bigPicOpenedCache = !strongTweet.bigPicOpenedCache;
+            
+            VCTwitterFeed* strongSelf = weakSelf;
+            [strongSelf.table cellHeightChanged];
+        }];
+        
+        [eachTweet setTappedLink:^{
+            
+        }];
+        
+        [eachTweet setTappedTweet:^{
+            
+        }];
+        
+        [eachTweet setTappedUser:^{
+            
+        }];
+    }
     [_table loadData:tweets];
 }
 

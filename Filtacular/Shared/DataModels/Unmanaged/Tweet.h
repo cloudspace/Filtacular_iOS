@@ -22,6 +22,13 @@
 @property (nonatomic, assign) int retweetCount;
 @property (nonatomic, assign) int favoriteCount;
 @property (nonatomic, assign) int tweetId;
+@property (nonatomic, assign) bool pictureOnly;//big picture mode
+
+@property (nonatomic, assign) bool bigPicOpenedCache;
+@property (nonatomic, copy) void (^tappedBigPic) ();
+@property (nonatomic, copy) void (^tappedLink) ();
+@property (nonatomic, copy) void (^tappedUser) ();
+@property (nonatomic, copy) void (^tappedTweet) ();
 
 + (Tweet*)generateRandomTweet;
 
