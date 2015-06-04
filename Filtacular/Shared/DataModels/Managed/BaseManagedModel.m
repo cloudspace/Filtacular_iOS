@@ -7,6 +7,7 @@
 //
 
 #import "BaseManagedModel.h"
+#import <Coredata.h>
 
 @implementation BaseManagedModel
 
@@ -16,19 +17,40 @@
 }
 
 + (RKEntityMapping*)entityMappingWithStore:(RKManagedObjectStore*)store {
-    RKEntityMapping *mapping = [RKEntityMapping mappingForEntityForName:NSStringFromClass([self class]) inManagedObjectStore:store];
+    RKEntityMapping *mapping = [RKEntityMapping mappingForEntityForName:[self entityName] inManagedObjectStore:store];
     return mapping;
 }
 
 + (instancetype)createEntity {
-    RKManagedObjectStore *objectStore = [[RKObjectManager sharedManager] managedObjectStore];
-    id entity = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass([self class]) inManagedObjectContext:objectStore.mainQueueManagedObjectContext];
+    NSAssert([NSThread currentThread] == [NSThread mainThread], @"Not thread safe!");
+    id entity = [NSEntityDescription insertNewObjectForEntityForName:[self entityName] inManagedObjectContext:[self mainContext]];
     
     return entity;
 }
 
 + (NSManagedObjectContext*)mainContext {
     return [[[RKObjectManager sharedManager] managedObjectStore] mainQueueManagedObjectContext];
+}
+
++ (NSArray*)findAll {
+    NSAssert([NSThread currentThread] == [NSThread mainThread], @"Not thread safe!");
+    NSManagedObjectContext* context = [self mainContext];
+    
+    NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:[self entityName]];
+    
+    NSError *error = nil;
+    NSArray *results = [context executeFetchRequest:request error:&error];
+    
+    if (error != nil) {
+        NSLog(@"Error: fetching users");
+        return nil;
+    }
+    
+    return results;
+}
+
++ (NSString*)entityName {
+    return NSStringFromClass(self);
 }
 
 @end

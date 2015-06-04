@@ -11,6 +11,4 @@
 
 @interface IntroViewController : UIViewController
 
-@property (nonatomic,strong) IBOutlet UIButton *twitterLogin;
-
 @end
