@@ -20,6 +20,8 @@
 @property (strong, nonatomic) IBOutlet CustomTableView* table;
 @property (strong, nonatomic) IBOutlet UIPickerView* pickerView;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint* filterBarPositionFromBottomConstraint;
+@property (strong, nonatomic) IBOutlet UIButton* userButton;
+@property (strong, nonatomic) IBOutlet UIButton* filterButton;
 
 @property (strong, nonatomic) UITapGestureRecognizer* tableTapGesture;
 
@@ -108,13 +110,15 @@
 
 - (void)onFilterSelected:(id) filter
 {
-    //TODO
+    //TODO, filter tweets by selected filter
+    [self.filterButton setTitle:[filter displayName] forState:UIControlStateNormal];
     NSLog(@"Selected: %@", [filter displayName]);
 }
 
 - (void)onUserSelected:(id) user
 {
-    //TODO
+    //TODO, filter tweets by selected user
+    [self.userButton setTitle:[user nickname] forState:UIControlStateNormal];
     NSLog(@"Selected: %@", [user nickname]);
 }
 
