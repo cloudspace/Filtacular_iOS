@@ -41,10 +41,7 @@
     
     [_table setNoItemText:@"There are no tweets."];
     [_table setTableViewCellClass:[TweetCell class]];
-    [_table setSelectObjectBlock:^(Tweet* tweet) {
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"" message:@"WIP" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [alert show];
-    }];
+    [_table setSelectObjectBlock:nil];
     
     self.userPickerAdapter = [[UserPickerViewAdapter alloc] init];
     self.filterPickerAdapter = [[FilterPickerViewAdapter alloc] init];
