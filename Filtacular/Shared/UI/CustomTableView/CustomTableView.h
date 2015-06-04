@@ -25,4 +25,6 @@ typedef void(^DidSelectObjectBlock)(id object);
 
 - (void)setNoItemText:(NSString*)noItemText;
 
+- (void)cellHeightChanged;
+
 @end

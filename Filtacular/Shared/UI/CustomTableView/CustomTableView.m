@@ -47,6 +47,11 @@
     [_lblNoItems setText:noItemText];
 }
 
+- (void)cellHeightChanged {
+    [_table beginUpdates];
+    [_table endUpdates];
+}
+
 - (void)setUpTable {
     [_table setRowHeight:_tableViewCellHeight];
     self.refreshControl = [UIRefreshControl new];
@@ -138,7 +143,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     id object = _tableData[indexPath.row];
-    id <ConfigurableView> cell = [self.tableViewCellClass createFromNib];
+    id <ConfigurableView> cell = [_smartGroup viewForRowAtIndex:indexPath.row];
     [cell configureWithObject:object];
     return [(UIView*)cell frame].size.height;
 }

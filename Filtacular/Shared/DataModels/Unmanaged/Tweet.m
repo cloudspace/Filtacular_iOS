@@ -53,7 +53,7 @@ static int cFavoriteCounts[cNumRandoms] = { 0, 6, 200 };
     sPostDates = @[[self randomDateInYearOfDate], [self randomDateInYearOfDate], [self randomDateInYearOfDate]];
     sLinkUrls = @[@"http://google.com", @"http://bing.com", @"http://yahoo.com", @"", @""];
     sUrlImages = @[@"http://pbs.twimg.com/media/CGbL81WWoAAHDuY.jpg:small", @"http://pbs.twimg.com/media/CGfZJSlUgAEtQt9.jpg:small", @"http://pbs.twimg.com/media/CGfYREFVAAAH21c.jpg:small", @"", @""];
-    sTexts = @[@"XCOM 2 has been announced. It's PC exclusive, and will feature official modding support. Fill Fill Yo Yo laka laka laka. I need twenty more.", @"I am a short tweet.", @"I am a bit longer of a tweet and may take 2 lines."];
+    sTexts = @[@"XCOM 2 has been announced. It's PC exclusive, and will feature official modding support. Fill Fill Yo Yo laka laka laka. I need twenty more.", @"I am a short tweet🔥🔥.", @"I am a bit longer of a tweet and may take 2 lines."];
     sUrlTitles = @[@"XCOM 2 has been announced", @"I am Short Title", @"Url Title Yo"];
     sUrlDescriptions = @[@"XCOM 2 has been announced.", @"Fill Fill Yo Yo laka laka laka.", @"I am a short description."];
 }
@@ -91,7 +91,8 @@ static int cFavoriteCounts[cNumRandoms] = { 0, 6, 200 };
     newTweet.retweetCount = cRetweetCounts[arc4random_uniform(3)];
     newTweet.favoriteCount = cFavoriteCounts[arc4random_uniform(3)];
     newTweet.text = sTexts[arc4random_uniform(3)];
-    newTweet.pictureOnly = (arc4random_uniform(3) == 3);
+    if (newTweet.urlImage.length > 0)
+        newTweet.pictureOnly = (arc4random_uniform(2) == 1);
     
     return newTweet;
 }
