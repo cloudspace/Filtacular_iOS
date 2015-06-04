@@ -177,7 +177,6 @@ const float cPadding = 16.0f;
 }
 
 - (void)tapBigPic {
-    _cachedTweet.bigPicOpenedCache = !_cachedTweet.bigPicOpenedCache;
     
     if (_cachedTweet.tappedBigPic)
         _cachedTweet.tappedBigPic();
@@ -191,18 +190,12 @@ const float cPadding = 16.0f;
     
     _cachedTweet.retweeted = true;
     _btnRetweet.enabled = false;
-    
-    if (_cachedTweet.tappedBigPic)
-        _cachedTweet.tappedBigPic();
 }
 
 - (IBAction)tapFavorite {
     
     _cachedTweet.favorited = true;
     _btnFavorite.enabled = false;
-    
-    if (_cachedTweet.tappedBigPic)
-        _cachedTweet.tappedBigPic();
 }
 
 - (void)layoutSubviews {
