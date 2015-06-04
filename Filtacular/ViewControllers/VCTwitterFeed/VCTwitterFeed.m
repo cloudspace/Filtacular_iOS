@@ -11,7 +11,9 @@
 #import "Tweet.h"
 #import "TweetCell.h"
 #import "UserPickerViewAdapter.h"
+#import "FilterPickerViewAdapter.h"
 #import "User.h"
+#import "Filter.h"
 #import "Selectable.h"
 
 @interface VCTwitterFeed ()
@@ -19,10 +21,13 @@
 @property (strong, nonatomic) IBOutlet UIPickerView* pickerView;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint* filterBarPositionFromBottomConstraint;
 
+@property (strong, nonatomic) UITapGestureRecognizer* tableTapGesture;
+
 @property (strong, nonatomic) NSArray* tableData;
 
 @property (strong, nonatomic) BasePickerViewAdapter* currentPickerAdapter;
 @property (strong, nonatomic) UserPickerViewAdapter* userPickerAdapter;
+@property (strong, nonatomic) FilterPickerViewAdapter* filterPickerAdapter;
 
 @property (assign, nonatomic) BOOL isPickerVisible;
 
@@ -40,7 +45,7 @@
     }];
     
     self.userPickerAdapter = [[UserPickerViewAdapter alloc] init];
-
+    self.filterPickerAdapter = [[FilterPickerViewAdapter alloc] init];
     [self updateTweets];
     
     self.isPickerVisible = NO;
@@ -86,19 +91,30 @@
     [_table loadData:tweets];
 }
 
-- (IBAction)tapFilter {
 
+#pragma mark - Actions
+
+- (IBAction)tapFilter {
+    [self updateCurrentPicker:self.filterPickerAdapter :self.filters :^(id item){
+        [self onFilterSelected:item];
+    }];
 }
 
 - (IBAction)tapUser {
-    [self updateCurrentPicker: self.userPickerAdapter :^(id item){
+    [self updateCurrentPicker:self.userPickerAdapter :self.users :^(id item){
         [self onUserSelected:item];
     }];
-    [self toggleViewPicker];
+}
+
+- (void)onFilterSelected:(id) filter
+{
+    //TODO
+    NSLog(@"Selected: %@", [filter displayName]);
 }
 
 - (void)onUserSelected:(id) user
 {
+    //TODO
     NSLog(@"Selected: %@", [user nickname]);
 }
 
@@ -106,30 +122,76 @@
     return UIRectEdgeNone;
 }
 
-- (void)updateCurrentPicker:(BasePickerViewAdapter*) newPickerAdapter : (itemSelectedBlock) block
-{
-    self.currentPickerAdapter = newPickerAdapter;
-    [self.currentPickerAdapter bind: self.pickerView :block];
-    [self.currentPickerAdapter setData: self.users];
-}
 
-- (void)toggleViewPicker
+#pragma mark - View Picker
+
+- (void)updateCurrentPicker:(BasePickerViewAdapter*) to : (NSArray*) data :(itemSelectedBlock) block
 {
-    self.filterBarPositionFromBottomConstraint.constant = self.pickerView.frame.size.height;
-    if(!self.isPickerVisible){
-        [UIView animateWithDuration:.25f
-                         animations:^{
-                             [self.view layoutIfNeeded];
-                         }];
-        self.isPickerVisible = YES;
-    }else{
-        self.filterBarPositionFromBottomConstraint.constant = 0;
-        [UIView animateWithDuration:.25f
-                         animations:^{
-                             [self.view layoutIfNeeded];
-                         }];
-        self.isPickerVisible = NO;
+    // Check if we are toggling visibility or switching to the other view picker
+    BOOL isToggling = (!self.currentPickerAdapter || self.currentPickerAdapter == to) ? YES : NO;
+    self.currentPickerAdapter = to;
+    [self.currentPickerAdapter bind:self.pickerView :block];
+    
+    if(isToggling){
+        [self.currentPickerAdapter setData: data];
+        [self toggleViewPickerVisibility];
+    } else{
+        [self animateHideViewPicker:^(BOOL finished){
+            [self.currentPickerAdapter setData: data];
+            [self.pickerView reloadAllComponents];      //redraws entries in picker view
+            [self animateShowViewPicker];
+        }];
     }
 }
+
+- (void)toggleViewPickerVisibility
+{
+    if(!self.isPickerVisible){
+        [self animateShowViewPicker];
+    }else{
+        [self animateHideViewPicker: nil];
+    }
+}
+
+- (void) animateShowViewPicker
+{
+    self.filterBarPositionFromBottomConstraint.constant = self.pickerView.frame.size.height;
+    [UIView animateWithDuration:.25f
+                     animations:^{
+                         [self.view layoutIfNeeded];
+                     }];
+    self.isPickerVisible = YES;
+    [self attachTableTapListener];
+}
+
+- (void) animateHideViewPicker
+{
+    [self animateHideViewPicker:nil];
+}
+
+- (void) animateHideViewPicker: (void (^)(BOOL finished)) onHidden
+{
+    self.filterBarPositionFromBottomConstraint.constant = 0;
+    [UIView animateWithDuration:.25f
+                     animations:^{
+                         [self.view layoutIfNeeded];
+                     }
+                     completion:onHidden];
+
+    self.isPickerVisible = NO;
+    [self detachTableTapListener];
+}
+
+- (void)attachTableTapListener
+{
+    self.tableTapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(animateHideViewPicker)];
+    [self.table addGestureRecognizer:self.tableTapGesture];
+}
+
+- (void)detachTableTapListener
+{
+    [self.table removeGestureRecognizer:self.tableTapGesture];
+}
+
 
 @end

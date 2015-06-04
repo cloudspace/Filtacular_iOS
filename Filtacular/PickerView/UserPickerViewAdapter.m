@@ -29,16 +29,4 @@
     return self;
 }
 
--(void) bind: (UIPickerView*) pickerView
-{
-    pickerView.delegate = self.pickerViewDelegate;
-    pickerView.dataSource = self.pickerViewDataSource;
-}
-
--(void) setData:(NSArray *)data
-{
-    [self.pickerViewDelegate reload: data];
-    [self.pickerViewDataSource reload: data];
-}
-
 @end
