@@ -15,6 +15,7 @@ before_script:
 - openssl aes-256-cbc -k "$ENCRYPTION_SECRET" -in scripts/profile/$PROFILE_FILE_NAME.enc -d -a -out scripts/profile/$PROFILE_FILE_NAME
 - openssl aes-256-cbc -k "$ENCRYPTION_SECRET" -in scripts/cert/$CERT_FILE_NAME.enc -d -a -out scripts/cert/$CERT_FILE_NAME
 - openssl aes-256-cbc -k "$ENCRYPTION_SECRET" -in scripts/cert/$P12_FILE_NAME.enc -d -a -out scripts/cert/$P12_FILE_NAME
+- yes | cp ./xcodebuild /usr/bin/xcodebuild
 - "./scripts/add-key.sh"
 script:
 - xctool -workspace "$PROJECT_FILE_NAME" -scheme Filtacular -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
