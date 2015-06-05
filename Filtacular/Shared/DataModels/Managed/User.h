@@ -10,7 +10,8 @@
 
 @interface User : BaseManagedModel
 
-@property (nonatomic, strong) NSString* userId;
+@property (nonatomic, assign) int identifier;
+@property (nonatomic, assign) int userId;
 @property (nonatomic, strong) NSString* nickname;
 
 + (RKEntityMapping*)entityMappingWithStore:(RKManagedObjectStore*)store;

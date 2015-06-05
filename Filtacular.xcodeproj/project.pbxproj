@@ -38,8 +38,8 @@
 		DF48E7EA1B1DF5A600154FC1 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = DF48E7E71B1DF5A600154FC1 /* README.md */; };
 		DF48E7EE1B1E0E6D00154FC1 /* RootNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF48E7ED1B1E0E6D00154FC1 /* RootNavigationController.m */; };
 		DF48E7F31B1F499C00154FC1 /* RestkitRequestReponse.m in Sources */ = {isa = PBXBuildFile; fileRef = DF48E7F21B1F499C00154FC1 /* RestkitRequestReponse.m */; };
-		DF48E7F61B1F51F400154FC1 /* Filter.m in Sources */ = {isa = PBXBuildFile; fileRef = DF48E7F51B1F51F400154FC1 /* Filter.m */; };
 		DF48E7FA1B1F75B200154FC1 /* UIImageView+SDWebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = DF48E7F91B1F75B200154FC1 /* UIImageView+SDWebCache.m */; };
+		DF48E8021B220D7700154FC1 /* JSONRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = DF48E8011B220D7700154FC1 /* JSONRequestOperation.m */; };
 		DFF176CF1B1CD21A005095E9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF176C91B1CD21A005095E9 /* AppDelegate.m */; };
 		DFF176D01B1CD21A005095E9 /* APIInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF176CC1B1CD21A005095E9 /* APIInfo.m */; };
 		DFF176D11B1CD21A005095E9 /* RestkitService.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF176CE1B1CD21A005095E9 /* RestkitService.m */; };
@@ -122,10 +122,10 @@
 		DF48E7ED1B1E0E6D00154FC1 /* RootNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootNavigationController.m; sourceTree = "<group>"; };
 		DF48E7F11B1F499C00154FC1 /* RestkitRequestReponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestkitRequestReponse.h; sourceTree = "<group>"; };
 		DF48E7F21B1F499C00154FC1 /* RestkitRequestReponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestkitRequestReponse.m; sourceTree = "<group>"; };
-		DF48E7F41B1F51F400154FC1 /* Filter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Filter.h; sourceTree = "<group>"; };
-		DF48E7F51B1F51F400154FC1 /* Filter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Filter.m; sourceTree = "<group>"; };
 		DF48E7F81B1F75B200154FC1 /* UIImageView+SDWebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+SDWebCache.h"; sourceTree = "<group>"; };
 		DF48E7F91B1F75B200154FC1 /* UIImageView+SDWebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+SDWebCache.m"; sourceTree = "<group>"; };
+		DF48E8001B220D7700154FC1 /* JSONRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONRequestOperation.h; sourceTree = "<group>"; };
+		DF48E8011B220D7700154FC1 /* JSONRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONRequestOperation.m; sourceTree = "<group>"; };
 		DFF176C81B1CD21A005095E9 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		DFF176C91B1CD21A005095E9 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		DFF176CB1B1CD21A005095E9 /* APIInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIInfo.h; sourceTree = "<group>"; };
@@ -422,6 +422,8 @@
 				DFF176CC1B1CD21A005095E9 /* APIInfo.m */,
 				DFF176CD1B1CD21A005095E9 /* RestkitService.h */,
 				DFF176CE1B1CD21A005095E9 /* RestkitService.m */,
+				DF48E8001B220D7700154FC1 /* JSONRequestOperation.h */,
+				DF48E8011B220D7700154FC1 /* JSONRequestOperation.m */,
 			);
 			path = RestkitService;
 			sourceTree = "<group>";
@@ -473,8 +475,6 @@
 				DF48E7AF1B1CE01900154FC1 /* BaseUnmanagedModel.m */,
 				DF48E7B41B1CE1D400154FC1 /* Tweet.h */,
 				DF48E7B51B1CE1D400154FC1 /* Tweet.m */,
-				DF48E7F41B1F51F400154FC1 /* Filter.h */,
-				DF48E7F51B1F51F400154FC1 /* Filter.m */,
 			);
 			path = Unmanaged;
 			sourceTree = "<group>";
@@ -717,6 +717,7 @@
 				F295E5591B1F89A300A7A03B /* UserPickerViewDelegate.m in Sources */,
 				DF48E7B01B1CE01900154FC1 /* BaseUnmanagedModel.m in Sources */,
 				DF48E7E81B1DF5A600154FC1 /* MCCSmartGroup.m in Sources */,
+				DF48E8021B220D7700154FC1 /* JSONRequestOperation.m in Sources */,
 				DF48E7CC1B1DEC0B00154FC1 /* CustomTableView.m in Sources */,
 				F295E55F1B1F8DCC00A7A03B /* BasePickerViewAdapter.m in Sources */,
 				DF48E7C21B1CF31800154FC1 /* VCTwitterFeed.m in Sources */,
@@ -725,7 +726,6 @@
 				DF48E7AB1B1CD70400154FC1 /* RestkitRequest.m in Sources */,
 				F295E56D1B208E5100A7A03B /* UserPickerViewAdapter.m in Sources */,
 				F295E5701B208EFC00A7A03B /* FilterPickerDataSource.m in Sources */,
-				DF48E7F61B1F51F400154FC1 /* Filter.m in Sources */,
 				DF48E7AC1B1CD70400154FC1 /* ServerWrapper.m in Sources */,
 				F295E55C1B1F8A8A00A7A03B /* UserPickerDataSource.m in Sources */,
 				DFF176D01B1CD21A005095E9 /* APIInfo.m in Sources */,

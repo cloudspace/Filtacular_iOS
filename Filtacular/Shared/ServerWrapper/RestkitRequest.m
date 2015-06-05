@@ -14,7 +14,26 @@
     return true;
 }
 
+- (void)performSimpleRequestWithObjectManager:(RKObjectManager *)objectManager {
+    switch (_requestMethod) {
+        case RKRequestMethodGET:
+            [self performSimpleGETRequest:objectManager];
+            break;
+        case RKRequestMethodPOST:
+        case RKRequestMethodPUT:
+        case RKRequestMethodDELETE:
+        case RKRequestMethodPATCH:
+            @throw @"Not Implemented";
+        default:
+            break;
+    }
+}
+
 - (void)performRequestWithObjectManager:(RKObjectManager *)objectManager {
+    if (_noMappingRequired) {
+        [self performSimpleRequestWithObjectManager:objectManager];
+        return;
+    }
     switch (_requestMethod) {
         case RKRequestMethodGET:
             [self performGETRequest:objectManager];
@@ -38,6 +57,21 @@
 
 - (void)performGETRequest:(RKObjectManager*)objectManager {
     [objectManager getObject:_object path:_path parameters:_parameters success:_success failure:_failure];
+}
+
+- (void)performSimpleGETRequest:(RKObjectManager*)objectManager {
+    AFHTTPClient * client = objectManager.HTTPClient;
+    [client getPath:_path parameters:_parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        RKMappingResult* result = [[RKMappingResult alloc] initWithDictionary:@{@"simpleResponse":responseObject}];
+        if (_success)
+            _success(nil, result);
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+        if (_failure)
+            _failure(nil, error);
+    }];
 }
 
 - (void)performPOSTRequest:(RKObjectManager*)objectManager {

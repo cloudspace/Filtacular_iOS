@@ -11,7 +11,6 @@
 #import "ServerWrapper.h"
 
 #import "User.h"
-#import "Filter.h"
 
 @interface IntroViewController ()
 
@@ -33,42 +32,39 @@
 }
 
 - (void)loginToFiltacular:(TWTRSession*)twitterSession {
+
+    dispatch_async([ServerWrapper requestQueue], ^{
     
-    VCTwitterFeed* vcTwitterFeed = [VCTwitterFeed new];
-    vcTwitterFeed.users = [User pseudoUsers];
-    vcTwitterFeed.filters = [Filter pseudoFilters];
-    vcTwitterFeed.twitterSession = twitterSession;
-    [self.navigationController pushViewController:vcTwitterFeed animated:true];
-    
-    return;
-    
-    //Can't test until I have an api
-//    dispatch_async([ServerWrapper requestQueue], ^{
-//    
-//        RestkitRequestReponse* response = [[ServerWrapper sharedInstance] performSyncGet:@"users"];
-//        if (response.successful == false) {
-//            //TODO
-//            return;
-//        }
-//        
-//        NSArray* users = response.mappingResult.array;
-//        
-//        response = [[ServerWrapper sharedInstance] performSyncGet:@"filters"];
-//        if (response.successful == false) {
-//            //TODO
-//            return;
-//        }
-//        
-//        NSArray* filters = response.mappingResult.array;
-//        
-//        dispatch_sync(dispatch_get_main_queue(), ^{
-//            VCTwitterFeed* vcTwitterFeed = [VCTwitterFeed new];
-//            vcTwitterFeed.users = users;
-//            vcTwitterFeed.filters = filters;
-//            vcTwitterFeed.twitterSession = twitterSession;
-//            [self.navigationController pushViewController:vcTwitterFeed animated:true];
-//        });
-//    });
+        RestkitRequestReponse* response = [[ServerWrapper sharedInstance] performSyncGet:@"/twitter-users"];
+        if (response.successful == false) {
+            //TODO
+            return;
+        }
+        
+        NSArray* users = response.mappingResult.array;
+        
+        RestkitRequest* request = [RestkitRequest new];
+        request.requestMethod = RKRequestMethodGET;
+        request.path = @"/lenses";
+        request.noMappingRequired = true;
+        
+        response = [[ServerWrapper sharedInstance] performSyncRequest:request];
+        
+        if (response.successful == false) {
+            //TODO
+            return;
+        }
+        
+        NSArray* filters = response.mappingResult.array;
+        
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            VCTwitterFeed* vcTwitterFeed = [VCTwitterFeed new];
+            vcTwitterFeed.users = users;
+            vcTwitterFeed.filters = filters;
+            vcTwitterFeed.twitterSession = twitterSession;
+            [self.navigationController pushViewController:vcTwitterFeed animated:true];
+        });
+    });
 }
 
 @end

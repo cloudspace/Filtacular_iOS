@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>ApiBasePath</key>
-	<string>/v1/</string>
+	<string></string>
 	<key>ApiHost</key>
-	<string>http://api.filtacular.com</string>
+	<string>http://filtacular.com</string>
 	<key>ApiKey</key>
 	<string>876f33df0116c0159353f791ead7bfea</string>
 	<key>ApiSecret</key>

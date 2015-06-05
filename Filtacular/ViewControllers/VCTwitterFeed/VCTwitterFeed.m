@@ -13,7 +13,6 @@
 #import "UserPickerViewAdapter.h"
 #import "FilterPickerViewAdapter.h"
 #import "User.h"
-#import "Filter.h"
 #import "Selectable.h"
 
 
@@ -38,7 +37,7 @@ typedef void (^animationFinishBlock)(BOOL finished);
 @property (assign, nonatomic) BOOL isPickerVisible;
 
 @property (strong, nonatomic) User* selectedUser;
-@property (strong, nonatomic) Filter* selectedFilter;
+@property (strong, nonatomic) NSString* selectedFilter;
 
 @property (copy, nonatomic) animationFinishBlock onPickerVisible;
 @property (copy, nonatomic) animationFinishBlock onPickerHidden;
@@ -87,17 +86,6 @@ typedef void (^animationFinishBlock)(BOOL finished);
             [strongSelf.table cellHeightChanged];
         }];
         
-        [eachTweet setTappedLink:^{
-            
-        }];
-        
-        [eachTweet setTappedTweet:^{
-            
-        }];
-        
-        [eachTweet setTappedUser:^{
-            
-        }];
     }
     [_table loadData:tweets];
 }
@@ -134,7 +122,7 @@ typedef void (^animationFinishBlock)(BOOL finished);
 {
     //TODO, filter tweets by selected filter
     self.selectedFilter = filter;
-    [self.filterButton setTitle:[filter displayName] forState:UIControlStateNormal];
+    [self.filterButton setTitle:filter forState:UIControlStateNormal];
 }
 
 - (void)onUserSelected:(id) user
