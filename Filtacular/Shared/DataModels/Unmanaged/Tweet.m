@@ -8,6 +8,8 @@
 
 #import "Tweet.h"
 
+#import "NSDate+SimpleTimeAgo.h"
+
 @implementation Tweet
 
 @synthesize displayName;
@@ -96,5 +98,11 @@ static int cFavoriteCounts[cNumRandoms] = { 0, 6, 200 };
     
     return newTweet;
 }
+
+- (NSString *)simpleTimeAgo {
+    return [self.tweetCreatedAt timeAgoSimple];
+}
+
+
 
 @end
