@@ -34,4 +34,6 @@
 
 + (Tweet*)generateRandomTweet;
 
+- (NSString *)simpleTimeAgo;
+
 @end

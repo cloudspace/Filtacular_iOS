@@ -97,4 +97,54 @@ static int cFavoriteCounts[cNumRandoms] = { 0, 6, 200 };
     return newTweet;
 }
 
+- (NSString *)simpleTimeAgo {
+    return [Tweet timeAgoSimple:self.tweetCreatedAt];
+}
+
++ (NSString *)timeAgoSimple:(NSDate*)date
+{
+    NSDate *now = [NSDate date];
+    double deltaSeconds = fabs([date timeIntervalSinceDate:now]);
+    double deltaMinutes = deltaSeconds / 60.0f;
+    
+    int value = 0;
+    NSString* abbr = @"yr";
+    
+    if(deltaSeconds < 60)
+    {
+        abbr = @"s";
+        value = deltaSeconds;
+    }
+    else if (deltaMinutes < 60)
+    {
+        abbr = @"m";
+        value = deltaMinutes;
+    }
+    else if (deltaMinutes < (24 * 60))
+    {
+        value = (int)floor(deltaMinutes/60);
+        abbr = @"h";
+    }
+    else if (deltaMinutes < (24 * 60 * 7))
+    {
+        value = (int)floor(deltaMinutes/(60 * 24));
+        abbr = @"d";
+    }
+    else if (deltaMinutes < (24 * 60 * 31))
+    {
+        value = (int)floor(deltaMinutes/(60 * 24 * 7));
+        abbr = @"w";
+    }
+    else if (deltaMinutes < (24 * 60 * 365.25))
+    {
+        value = (int)floor(deltaMinutes/(60 * 24 * 30));
+        abbr = @"mo";
+    }
+    else {
+        value = (int)floor(deltaMinutes/(60 * 24 * 365));
+        abbr = @"mo";
+    }
+    return [NSString stringWithFormat:@"%d %@", value, abbr];
+}
+
 @end

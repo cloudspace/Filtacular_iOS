@@ -48,7 +48,7 @@
     
     _lblDisplayName.text = tweet.displayName;
     _lblUserName.text = tweet.userName;
-    //_lblDatePosted = [tweet datePostedAsString];
+    _lblDatePosted.text = [tweet simpleTimeAgo];
     _lblPostText.text = tweet.text;
     
     [_imgUserPic setImageWithURL:tweet.profilePicUrl placeholderImage:nil options:SDWebImageRetryFailed];
@@ -115,7 +115,7 @@ const float cPadding = 16.0f;
     if (_lblDisplayName.width == 0.0f)
         _lblDisplayName.width = 126.0f;
     _lblUserName.x = _lblDisplayName.x + _lblDisplayName.width + 4.0f;
-    [self fitToWidth:_lblUserName maxWidth:269.0f - _lblUserName.x];
+    [self fitToWidth:_lblUserName maxWidth:257.0f - _lblUserName.x];
     if (_lblUserName.width == 0.0f)
         _lblUserName.width = 51.0f;
     
