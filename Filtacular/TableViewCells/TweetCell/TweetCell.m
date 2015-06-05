@@ -27,6 +27,9 @@
 @property (strong, nonatomic) IBOutlet UIButton *btnBigPic;
 @property (strong, nonatomic) IBOutlet UIButton *btnRetweet;
 @property (strong, nonatomic) IBOutlet UIButton *btnFavorite;
+@property (strong, nonatomic) IBOutlet UIButton *btnToTweet;
+@property (strong, nonatomic) IBOutlet UIButton *btnToTweeter;
+@property (strong, nonatomic) IBOutlet UIButton *btnToLink;
 
 @property (assign, nonatomic) bool bigPicOpen;
 @property (strong, nonatomic) Tweet* cachedTweet;
@@ -74,11 +77,20 @@
     _btnBigPic.hidden = false;
     _imgBigPic.hidden = false;
     [_imgBigPic setImageWithURL:tweet.urlImage placeholderImage:nil options:SDWebImageRetryFailed];
+    
+    _btnToLink.enabled = false;
+    
+    bool enableTopBarLinks = (_bigPicOpen);
+    
+    _btnToTweet.enabled = enableTopBarLinks;
+    _btnToTweeter.enabled = enableTopBarLinks;
 }
 
 - (void)configureLinkDetails:(Tweet*)tweet {
     bool hasUrl = (tweet.urlLink.length != 0);
     bool hasImage = (tweet.urlImage.length != 0);
+    
+    _btnToLink.enabled = hasUrl;
     
     if (hasUrl == false)
         return;
@@ -114,6 +126,9 @@ const float cPadding = 16.0f;
         _lblPostText.height = 39.0f;
     
     float yOffset = _lblPostText.y + _lblPostText.height + cPadding;
+    
+    _btnToLink.y = yOffset;
+    _btnToLink.height = self.height - _btnToLink.y - _viewBottomBar.height;
     
     if (hasUrl) {
         if (hasImage) {
@@ -196,6 +211,20 @@ const float cPadding = 16.0f;
     
     _cachedTweet.favorited = true;
     _btnFavorite.enabled = false;
+}
+
+- (IBAction)tapToTweet {
+    NSString* link = [NSString stringWithFormat:@"https://twitter.com/%@/status/%i", _cachedTweet.userName, _cachedTweet.tweetId];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:link]];
+}
+
+- (IBAction)tapToTweeter {
+    NSString* link = [NSString stringWithFormat:@"https://twitter.com/%@", _cachedTweet.userName];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:link]];
+}
+
+- (IBAction)tapToLink {
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:_cachedTweet.urlLink]];
 }
 
 - (void)layoutSubviews {
