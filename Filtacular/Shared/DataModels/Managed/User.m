@@ -11,14 +11,15 @@
 
 @implementation User
 
+@dynamic identifier;
 @dynamic userId;
 @dynamic nickname;
 
 + (RKEntityMapping*)entityMappingWithStore:(RKManagedObjectStore*)store {
     RKEntityMapping *mapping = [super entityMappingWithStore:store];
-    mapping.identificationAttributes = @[@"userId"];
+    mapping.identificationAttributes = @[@"identifier"];
     [mapping addAttributeMappingsFromArray:@[@"nickname"]];
-    [mapping addAttributeMappingsFromDictionary:@{@"userid": @"userId"}];
+    [mapping addAttributeMappingsFromDictionary:@{@"user-id": @"userId", @"id": @"identifier"}];
     
     return mapping;
 }

@@ -35,8 +35,8 @@
             titleForRow:(NSInteger)row
            forComponent:(NSInteger)component
 {
-    Filter* filter =self.filters[row];
-    return filter.displayName;
+    NSString* filter =self.filters[row];
+    return filter;
 }
 
 @end

@@ -11,6 +11,8 @@
 #import <RestKit/CoreData.h> //Import Order matters
 #import <RestKit/RestKit.h>
 
+#import "JSONRequestOperation.h"
+
 #import "APIInfo.h"
 #import "User.h"
 #import "Tweet.h"
@@ -24,15 +26,19 @@
     NSURL *baseURL = [NSURL URLWithString:[apiInfo.hostPath stringByAppendingString:apiInfo.basePath]];
     RKObjectManager *objectManager = [RKObjectManager managerWithBaseURL:baseURL];
     
+    [objectManager.HTTPClient registerHTTPOperationClass:[JSONRequestOperation class]]; //We need a custom class to specify that "application/vnd.api+json" is an acceptable content type
+    [RKMIMETypeSerialization registerClass:[RKNSJSONSerialization class] forMIMEType:@"application/vnd.api+json"];
+    [objectManager setAcceptHeaderWithMIMEType:RKMIMETypeJSON];
+   objectManager.requestSerializationMIMEType = RKMIMETypeJSON;
+    
     //NOTE: Uncomment for better logs
     //RKLogConfigureByName("RestKit/Network", RKLogLevelTrace);
-    //RKLogConfigureByName("RestKit/ObjectMapping", RKLogLevelTrace);
+    RKLogConfigureByName("RestKit/ObjectMapping", RKLogLevelTrace);
     
     //Configure client
     //objectManager.HTTPClient.allowsInvalidSSLCertificate = true;
     //[objectManager.HTTPClient setDefaultHeader:@"X-applicationID" value:apiInfo.key];
     [RKObjectManager setSharedManager:objectManager];
-    [objectManager setRequestSerializationMIMEType:RKMIMETypeJSON];
     
     [AFNetworkActivityIndicatorManager sharedManager].enabled = YES;
     
@@ -96,14 +102,12 @@
 //Specifies mapping for request -> data models
 - (void)addResponseDescriptorsTo:(RKObjectManager*)objectManager {
     
-    RKResponseDescriptor * responseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:[User entityMapping] method:RKRequestMethodPOST pathPattern:@"users" keyPath:nil statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
+    RKResponseDescriptor * responseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:[User entityMapping] method:RKRequestMethodGET pathPattern:@"/twitter-users" keyPath:@"data" statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
     [objectManager addResponseDescriptor:responseDescriptor];
 
-    responseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:[Tweet objectMapping] method:RKRequestMethodGET pathPattern:@"/users/:nickname/tweets" keyPath:nil statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
+    responseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:[Tweet objectMapping] method:RKRequestMethodGET pathPattern:@"/twitter-users/:nickname" keyPath:nil statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
     [objectManager addResponseDescriptor:responseDescriptor];
     
-    responseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:[Tweet objectMapping] method:RKRequestMethodGET pathPattern:@"/users/:nickname/tweets/:filter" keyPath:nil statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
-    [objectManager addResponseDescriptor:responseDescriptor];
     
     //Standard Example of error mapping:
     /*

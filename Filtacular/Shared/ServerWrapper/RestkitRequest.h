@@ -16,6 +16,7 @@ typedef void (^RestkitSuccessBlock)(RKObjectRequestOperation *operation, RKMappi
 @interface RestkitRequest : NSObject
 
 @property (assign, nonatomic) RKRequestMethod requestMethod;
+@property (assign, nonatomic) bool noMappingRequired;
 @property (strong, nonatomic) NSObject* object;
 @property (strong, nonatomic) NSString* path;
 @property (strong, nonatomic) NSDictionary* parameters;

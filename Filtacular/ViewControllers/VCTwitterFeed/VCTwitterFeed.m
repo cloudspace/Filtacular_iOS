@@ -75,17 +75,6 @@
             [strongSelf.table cellHeightChanged];
         }];
         
-        [eachTweet setTappedLink:^{
-            
-        }];
-        
-        [eachTweet setTappedTweet:^{
-            
-        }];
-        
-        [eachTweet setTappedUser:^{
-            
-        }];
     }
     [_table loadData:tweets];
 }
@@ -108,15 +97,13 @@
 - (void)onFilterSelected:(id) filter
 {
     //TODO, filter tweets by selected filter
-    [self.filterButton setTitle:[filter displayName] forState:UIControlStateNormal];
-    NSLog(@"Selected: %@", [filter displayName]);
+    [self.filterButton setTitle:filter forState:UIControlStateNormal];
 }
 
 - (void)onUserSelected:(id) user
 {
     //TODO, filter tweets by selected user
     [self.userButton setTitle:[user nickname] forState:UIControlStateNormal];
-    NSLog(@"Selected: %@", [user nickname]);
 }
 
 - (UIRectEdge)edgesForExtendedLayout {
