@@ -11,7 +11,6 @@
 #import "ServerWrapper.h"
 
 #import "User.h"
-#import "Filter.h"
 
 @interface IntroViewController ()
 
@@ -33,16 +32,7 @@
 }
 
 - (void)loginToFiltacular:(TWTRSession*)twitterSession {
-    
-//    VCTwitterFeed* vcTwitterFeed = [VCTwitterFeed new];
-//    vcTwitterFeed.users = [User pseudoUsers];
-//    vcTwitterFeed.filters = [Filter pseudoFilters];
-//    vcTwitterFeed.twitterSession = twitterSession;
-//    [self.navigationController pushViewController:vcTwitterFeed animated:true];
-//    
-//    return;
-    
-    //Can't test until I have an api
+
     dispatch_async([ServerWrapper requestQueue], ^{
     
         RestkitRequestReponse* response = [[ServerWrapper sharedInstance] performSyncGet:@"/twitter-users"];

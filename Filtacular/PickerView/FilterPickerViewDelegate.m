@@ -7,7 +7,6 @@
 //
 
 #import "FilterPickerViewDelegate.h"
-#import "Filter.h"
 
 @interface FilterPickerViewDelegate()
 
