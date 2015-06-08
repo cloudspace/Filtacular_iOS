@@ -53,4 +53,8 @@
     return NSStringFromClass(self);
 }
 
+- (NSString*)stringForPicker {
+    return @"wth";
+}
+
 @end

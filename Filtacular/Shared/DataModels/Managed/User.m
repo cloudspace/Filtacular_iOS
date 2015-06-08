@@ -45,4 +45,8 @@
     return @[user1, user2, user3];
 }
 
+- (NSString*)stringForPicker {
+    return self.nickname;
+}
+
 @end

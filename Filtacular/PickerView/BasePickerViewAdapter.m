@@ -7,19 +7,42 @@
 //
 
 #import "BasePickerViewAdapter.h"
+#import "PickerObject.h"
+
+@interface BasePickerViewAdapter()
+
+@end
 
 @implementation BasePickerViewAdapter
 
--(void) bind: (UIPickerView*) pickerView : (itemSelectedBlock) onItemSelectBlock
+- (void)bind:(UIPickerView*)pickerView
 {
-    self.pickerViewDelegate.onItemSelected = onItemSelectBlock;
-    pickerView.delegate = self.pickerViewDelegate;
-    pickerView.dataSource = self.pickerViewDataSource;
+    pickerView.delegate = self;
+    pickerView.dataSource = self;
 }
 
--(void)setData:(NSArray *)data {
-    [self.pickerViewDelegate reload: data];
-    [self.pickerViewDataSource reload: data];
+#pragma mark - Delegate
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
+{
+    if (_onItemSelected)
+        _onItemSelected(_data[row]);
+}
+
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
+    id object = _data[row];
+    return [object stringForPicker];
+}
+
+#pragma mark - DataSource
+
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+{
+    return 1;
+}
+
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
+    return [self.data count];
 }
 
 @end

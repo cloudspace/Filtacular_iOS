@@ -8,17 +8,18 @@
 
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
-#import "Reloadable.h"
-#import "Selectable.h"
 
-@interface BasePickerViewAdapter : NSObject
+typedef void (^ItemSelectedBlock)(id item);
 
 
-@property id<UIPickerViewDelegate, Reloadable, Selectable> pickerViewDelegate;
-@property id<UIPickerViewDataSource, Reloadable> pickerViewDataSource;
+@interface BasePickerViewAdapter : NSObject <UIPickerViewDataSource, UIPickerViewDelegate>
 
--(void) bind: (UIPickerView*) pickerView : (itemSelectedBlock) onItemSelectBlock;
+@property (nonatomic, copy) ItemSelectedBlock onItemSelected;
+@property (nonatomic, strong) NSArray* data;
 
--(void) setData : (NSArray*) data;
+- (void)bind:(UIPickerView*)pickerView;
+
+///Items should response to [instance pickerString]
+- (void)setData:(NSArray*)data;
 
 @end

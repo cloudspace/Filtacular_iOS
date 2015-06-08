@@ -7,8 +7,9 @@
 //
 
 #import "BaseManagedModel.h"
+#import "PickerObject.h"
 
-@interface User : BaseManagedModel
+@interface User : BaseManagedModel <PickerObject>
 
 @property (nonatomic, assign) int identifier;
 @property (nonatomic, assign) NSString* userId;//twitterId
