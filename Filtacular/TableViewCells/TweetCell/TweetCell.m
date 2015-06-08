@@ -166,13 +166,26 @@ const float cPadding = 16.0f;
     CGSize spaceToSizeIn = label.size;
     spaceToSizeIn.height = MAXFLOAT;
     
+    if (label.text == nil)
+        label.text = @"";
+    
     NSMutableParagraphStyle * paragraphStyle = [[NSMutableParagraphStyle defaultParagraphStyle] mutableCopy];
     paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
     
     NSDictionary* attributes = @{NSFontAttributeName: label.font, NSParagraphStyleAttributeName:paragraphStyle};
+    label.text = [label.text stringByReplacingOccurrencesOfString:@"رً ॣ ॣ ॣ" withString:@"j ॣ ॣ ॣ"];
+
+    @try {
+        CGRect newLabelRect = [label.text boundingRectWithSize:spaceToSizeIn options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil];
+        label.height = newLabelRect.size.height + label.font.lineHeight;
+    }
+    @catch (NSException *exception) {
+        
+    }
+    @finally {
+        return;
+    }
     
-    CGRect newLabelRect = [label.text boundingRectWithSize:spaceToSizeIn options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil];
-    label.height = newLabelRect.size.height + label.font.lineHeight;
 }
 
 - (void)fitToWidth:(UILabel*)label maxWidth:(float)maxWidth {
@@ -186,10 +199,17 @@ const float cPadding = 16.0f;
     paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
     
     NSDictionary* attributes = @{NSFontAttributeName: label.font, NSParagraphStyleAttributeName:paragraphStyle};
-
-    CGRect newLabelRect = [label.text boundingRectWithSize:spaceToSizeIn options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil];
-    label.width = newLabelRect.size.width;
     
+    @try {
+        CGRect newLabelRect = [label.text boundingRectWithSize:spaceToSizeIn options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil];
+        label.width = newLabelRect.size.width;
+    }
+    @catch (NSException *exception) {
+        
+    }
+    @finally {
+        return;
+    }
 }
 
 - (void)tapBigPic {

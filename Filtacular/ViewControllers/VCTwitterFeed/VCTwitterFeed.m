@@ -43,11 +43,18 @@ typedef void (^animationFinishBlock)(BOOL finished);
 
 @property (copy, nonatomic) void(^onStartPickerShowAnimation)();
 
+@property (strong, nonatomic) NSOperationQueue* twitterUpdateQueue;
+
 @end
 
 @implementation VCTwitterFeed
 
 - (void)viewDidLoad {
+    
+    _twitterUpdateQueue = [[NSOperationQueue alloc] init];
+    _twitterUpdateQueue.name = @"Twitter Update Queue";
+    _twitterUpdateQueue.maxConcurrentOperationCount = 1;
+    
     
     [_table setNoItemText:@"There are no tweets."];
     [_table setTableViewCellClass:[TweetCell class]];
@@ -61,19 +68,29 @@ typedef void (^animationFinishBlock)(BOOL finished);
 }
 
 - (void)updateTweets {
-    //[self performSelector:@selector(fakeLoadTweets) withObject:nil afterDelay:0.5f];
+    [_twitterUpdateQueue cancelAllOperations];
+    [[ServerWrapper sharedInstance] cancelAllRequestOperationsWithMethod:RKRequestMethodGET matchingPathPattern:@"/twitter-users/:userId/tweets"];
     
-    dispatch_async([ServerWrapper requestQueue], ^{
+    [_table clearAndWaitForNewData];
+    NSBlockOperation* twitterUpdater = [[NSBlockOperation alloc] init];
+    __weak NSBlockOperation* twitterBlockOp = twitterUpdater;
+    [twitterUpdater addExecutionBlock:^{
+        if (twitterBlockOp.cancelled)
+            return;
+        
         RestkitRequest* request = [RestkitRequest new];
         request.requestMethod = RKRequestMethodGET;
         request.path = [NSString stringWithFormat:@"/twitter-users/%@/tweets", _selectedUser.userId];;
-        request.parameters = @{_selectedFilter: @(1)};
+        request.parameters = @{@"filter":@{_selectedFilter: @(1)}};
         
         RestkitRequestReponse* response = [[ServerWrapper sharedInstance] performSyncRequest:request];
         if (response.successful == false) {
             //TODO
             return;
         }
+        
+        if (twitterBlockOp.cancelled)
+            return;
         
         NSArray* filtacularTweets = response.mappingResult.array;
         NSMutableArray* tweetIds = [[NSMutableArray alloc] initWithCapacity:filtacularTweets.count];
@@ -82,8 +99,11 @@ typedef void (^animationFinishBlock)(BOOL finished);
         }
         
         dispatch_sync(dispatch_get_main_queue(), ^{
+            if (twitterBlockOp.cancelled)
+                return;
             [[[Twitter sharedInstance] APIClient] loadTweetsWithIDs:tweetIds completion:^(NSArray *tweets,  NSError *error) {
-                if (error)
+                
+                if (twitterBlockOp.cancelled)
                     return;
                 
                 for (Tweet* eachTweet in filtacularTweets) {
@@ -99,7 +119,9 @@ typedef void (^animationFinishBlock)(BOOL finished);
                 
             }];
         });
-    });
+    }];
+    
+    [_twitterUpdateQueue addOperation:twitterUpdater];
 }
 
 - (void)fakeLoadTweets {
@@ -107,6 +129,7 @@ typedef void (^animationFinishBlock)(BOOL finished);
     for (int i = arc4random_uniform(100); i >= 0; i -=1) {
         [tweetMut addObject:[Tweet generateRandomTweet]];
     }
+    
     NSArray* tweets = [NSArray arrayWithArray:tweetMut];
     self.tableData = [tweets sortedArrayUsingComparator:^NSComparisonResult(Tweet* obj1, Tweet* obj2) {
         return [obj2.tweetCreatedAt compare:obj1.tweetCreatedAt];
@@ -157,16 +180,22 @@ typedef void (^animationFinishBlock)(BOOL finished);
 
 - (void)onFilterSelected:(id) filter
 {
-    //TODO, filter tweets by selected filter
+    if (self.selectedFilter == filter)
+        return;
+    
     self.selectedFilter = filter;
     [self.filterButton setTitle:filter forState:UIControlStateNormal];
+    [self updateTweets];
 }
 
 - (void)onUserSelected:(id) user
 {
-    //TODO, filter tweets by selected user
+    if (self.selectedUser == user)
+        return;
+    
     self.selectedUser = user;
     [self.userButton setTitle:[user nickname] forState:UIControlStateNormal];
+    [self updateTweets];
 }
 
 - (UIRectEdge)edgesForExtendedLayout {
