@@ -7,11 +7,12 @@
 //
 
 #import "BaseManagedModel.h"
+#import "PickerObject.h"
 
-@interface User : BaseManagedModel
+@interface User : BaseManagedModel <PickerObject>
 
 @property (nonatomic, assign) int identifier;
-@property (nonatomic, assign) int userId;
+@property (nonatomic, assign) NSString* userId;//twitterId
 @property (nonatomic, strong) NSString* nickname;
 
 + (RKEntityMapping*)entityMappingWithStore:(RKManagedObjectStore*)store;

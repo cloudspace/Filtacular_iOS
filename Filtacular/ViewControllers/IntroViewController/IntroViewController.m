@@ -12,6 +12,8 @@
 
 #import "User.h"
 
+#import <TwitterKit/TwitterKit.h>
+
 @interface IntroViewController ()
 
 @property (nonatomic,strong) IBOutlet UIButton *btnTwitterLogin;
@@ -32,7 +34,7 @@
 }
 
 - (void)loginToFiltacular:(TWTRSession*)twitterSession {
-
+    _btnTwitterLogin.enabled = false;
     dispatch_async([ServerWrapper requestQueue], ^{
     
         RestkitRequestReponse* response = [[ServerWrapper sharedInstance] performSyncGet:@"/twitter-users"];
@@ -55,16 +57,35 @@
             return;
         }
         
+        User* selectedUser;
+        for (User* eachUser in users)
+        {
+            if ([eachUser.userId isEqualToString:[twitterSession userID]]) {
+                selectedUser = eachUser;
+                break;
+            }
+        }
+        
+        if (selectedUser == nil) {
+            
+            return;
+        }
+        
         NSArray* filters = response.mappingResult.array;
+        if (filters.count == 0)
+            return;
         
         dispatch_sync(dispatch_get_main_queue(), ^{
             VCTwitterFeed* vcTwitterFeed = [VCTwitterFeed new];
             vcTwitterFeed.users = users;
             vcTwitterFeed.filters = filters;
             vcTwitterFeed.twitterSession = twitterSession;
+            vcTwitterFeed.selectedUser = selectedUser;
+            vcTwitterFeed.selectedFilter = filters[0];
             [self.navigationController pushViewController:vcTwitterFeed animated:true];
         });
     });
+    _btnTwitterLogin.enabled = true;
 }
 
 @end

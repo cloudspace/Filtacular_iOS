@@ -45,6 +45,10 @@ static dispatch_queue_t sRequestQueue;
     return serverWrapper;
 }
 
+- (void)cancelAllRequestOperationsWithMethod:(RKRequestMethod)method matchingPathPattern:(NSString *)pathPattern {
+    [_objectManager cancelAllObjectRequestOperationsWithMethod:method matchingPathPattern:pathPattern];
+}
+
 - (void)performRequest:(RestkitRequest*)request {
     [request performRequestWithObjectManager:_objectManager];
 }

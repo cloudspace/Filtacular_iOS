@@ -41,18 +41,16 @@
 		DF48E7FA1B1F75B200154FC1 /* UIImageView+SDWebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = DF48E7F91B1F75B200154FC1 /* UIImageView+SDWebCache.m */; };
 		DF48E8021B220D7700154FC1 /* JSONRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = DF48E8011B220D7700154FC1 /* JSONRequestOperation.m */; };
 		DF48E8061B2218C900154FC1 /* NSDate+SimpleTimeAgo.m in Sources */ = {isa = PBXBuildFile; fileRef = DF48E8051B2218C900154FC1 /* NSDate+SimpleTimeAgo.m */; };
+		DF48E8071B2239A600154FC1 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2DDB23D1B1CF8F7004C0A8C /* Fabric.framework */; };
+		DF48E8081B2239A900154FC1 /* TwitterCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2DDB23E1B1CF8F7004C0A8C /* TwitterCore.framework */; };
+		DF48E8091B2239AD00154FC1 /* TwitterKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2DDB23F1B1CF8F7004C0A8C /* TwitterKit.framework */; };
 		DFF176CF1B1CD21A005095E9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF176C91B1CD21A005095E9 /* AppDelegate.m */; };
 		DFF176D01B1CD21A005095E9 /* APIInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF176CC1B1CD21A005095E9 /* APIInfo.m */; };
 		DFF176D11B1CD21A005095E9 /* RestkitService.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF176CE1B1CD21A005095E9 /* RestkitService.m */; };
 		DFF176D41B1CD242005095E9 /* Filtacular-API.plist in Resources */ = {isa = PBXBuildFile; fileRef = DFF176D31B1CD242005095E9 /* Filtacular-API.plist */; };
+		DFFF48481B262084000691B5 /* BasePickerViewAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = DFFF48451B262084000691B5 /* BasePickerViewAdapter.m */; };
+		DFFF48491B262084000691B5 /* PickerObject.m in Sources */ = {isa = PBXBuildFile; fileRef = DFFF48471B262084000691B5 /* PickerObject.m */; };
 		F24807BF1B1DF1CD009A6310 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = F24807BE1B1DF1CD009A6310 /* User.m */; };
-		F295E5591B1F89A300A7A03B /* UserPickerViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F295E5581B1F89A300A7A03B /* UserPickerViewDelegate.m */; };
-		F295E55C1B1F8A8A00A7A03B /* UserPickerDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = F295E55B1B1F8A8A00A7A03B /* UserPickerDataSource.m */; };
-		F295E55F1B1F8DCC00A7A03B /* BasePickerViewAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = F295E55E1B1F8DCC00A7A03B /* BasePickerViewAdapter.m */; };
-		F295E5691B208C6500A7A03B /* FilterPickerViewAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = F295E5681B208C6500A7A03B /* FilterPickerViewAdapter.m */; };
-		F295E56C1B208CE700A7A03B /* FilterPickerViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F295E56B1B208CE700A7A03B /* FilterPickerViewDelegate.m */; };
-		F295E56D1B208E5100A7A03B /* UserPickerViewAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = F2FECAC41B1F4E43005253B0 /* UserPickerViewAdapter.m */; };
-		F295E5701B208EFC00A7A03B /* FilterPickerDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = F295E56F1B208EFC00A7A03B /* FilterPickerDataSource.m */; };
 		F2DDB2411B1CF8F7004C0A8C /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2DDB23D1B1CF8F7004C0A8C /* Fabric.framework */; };
 		F2DDB2421B1CF8F7004C0A8C /* TwitterCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2DDB23E1B1CF8F7004C0A8C /* TwitterCore.framework */; };
 		F2DDB2431B1CF8F7004C0A8C /* TwitterKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2DDB23F1B1CF8F7004C0A8C /* TwitterKit.framework */; };
@@ -136,28 +134,16 @@
 		DFF176CD1B1CD21A005095E9 /* RestkitService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestkitService.h; sourceTree = "<group>"; };
 		DFF176CE1B1CD21A005095E9 /* RestkitService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestkitService.m; sourceTree = "<group>"; };
 		DFF176D31B1CD242005095E9 /* Filtacular-API.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Filtacular-API.plist"; sourceTree = "<group>"; };
+		DFFF48441B262084000691B5 /* BasePickerViewAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasePickerViewAdapter.h; sourceTree = "<group>"; };
+		DFFF48451B262084000691B5 /* BasePickerViewAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BasePickerViewAdapter.m; sourceTree = "<group>"; };
+		DFFF48461B262084000691B5 /* PickerObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickerObject.h; sourceTree = "<group>"; };
+		DFFF48471B262084000691B5 /* PickerObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickerObject.m; sourceTree = "<group>"; };
 		F24807BD1B1DF1CD009A6310 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		F24807BE1B1DF1CD009A6310 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
-		F295E5571B1F89A300A7A03B /* UserPickerViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserPickerViewDelegate.h; path = PickerView/UserPickerViewDelegate.h; sourceTree = "<group>"; };
-		F295E5581B1F89A300A7A03B /* UserPickerViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserPickerViewDelegate.m; path = PickerView/UserPickerViewDelegate.m; sourceTree = "<group>"; };
-		F295E55A1B1F8A8A00A7A03B /* UserPickerDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserPickerDataSource.h; path = PickerView/UserPickerDataSource.h; sourceTree = "<group>"; };
-		F295E55B1B1F8A8A00A7A03B /* UserPickerDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserPickerDataSource.m; path = PickerView/UserPickerDataSource.m; sourceTree = "<group>"; };
-		F295E55D1B1F8DCC00A7A03B /* BasePickerViewAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BasePickerViewAdapter.h; path = PickerView/BasePickerViewAdapter.h; sourceTree = "<group>"; };
-		F295E55E1B1F8DCC00A7A03B /* BasePickerViewAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BasePickerViewAdapter.m; path = PickerView/BasePickerViewAdapter.m; sourceTree = "<group>"; };
-		F295E5641B1FAA8500A7A03B /* Reloadable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reloadable.h; path = Protocols/Reloadable.h; sourceTree = "<group>"; };
-		F295E5651B1FAA8500A7A03B /* Selectable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Selectable.h; path = Protocols/Selectable.h; sourceTree = "<group>"; };
-		F295E5671B208C6500A7A03B /* FilterPickerViewAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FilterPickerViewAdapter.h; path = PickerView/FilterPickerViewAdapter.h; sourceTree = "<group>"; };
-		F295E5681B208C6500A7A03B /* FilterPickerViewAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FilterPickerViewAdapter.m; path = PickerView/FilterPickerViewAdapter.m; sourceTree = "<group>"; };
-		F295E56A1B208CE700A7A03B /* FilterPickerViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FilterPickerViewDelegate.h; path = PickerView/FilterPickerViewDelegate.h; sourceTree = "<group>"; };
-		F295E56B1B208CE700A7A03B /* FilterPickerViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FilterPickerViewDelegate.m; path = PickerView/FilterPickerViewDelegate.m; sourceTree = "<group>"; };
-		F295E56E1B208EFC00A7A03B /* FilterPickerDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FilterPickerDataSource.h; path = PickerView/FilterPickerDataSource.h; sourceTree = "<group>"; };
-		F295E56F1B208EFC00A7A03B /* FilterPickerDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FilterPickerDataSource.m; path = PickerView/FilterPickerDataSource.m; sourceTree = "<group>"; };
 		F2DDB23D1B1CF8F7004C0A8C /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fabric.framework; path = Filtacular/ThirdParty/Fabric.framework; sourceTree = "<group>"; };
 		F2DDB23E1B1CF8F7004C0A8C /* TwitterCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TwitterCore.framework; path = Filtacular/ThirdParty/TwitterCore.framework; sourceTree = "<group>"; };
 		F2DDB23F1B1CF8F7004C0A8C /* TwitterKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TwitterKit.framework; path = Filtacular/ThirdParty/TwitterKit.framework; sourceTree = "<group>"; };
 		F2DDB2401B1CF8F7004C0A8C /* TwitterKitResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = TwitterKitResources.bundle; path = Filtacular/ThirdParty/TwitterKitResources.bundle; sourceTree = "<group>"; };
-		F2FECAC31B1F4E43005253B0 /* UserPickerViewAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserPickerViewAdapter.h; path = PickerView/UserPickerViewAdapter.h; sourceTree = "<group>"; };
-		F2FECAC41B1F4E43005253B0 /* UserPickerViewAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserPickerViewAdapter.m; path = PickerView/UserPickerViewAdapter.m; sourceTree = "<group>"; };
 		F87BD5DD489DB985D5711B7B /* libPods-FiltacularTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FiltacularTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -178,6 +164,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				85026EE1519951E127FB997B /* libPods-FiltacularTests.a in Frameworks */,
+				DF48E8081B2239A900154FC1 /* TwitterCore.framework in Frameworks */,
+				DF48E8071B2239A600154FC1 /* Fabric.framework in Frameworks */,
+				DF48E8091B2239AD00154FC1 /* TwitterKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -218,8 +207,6 @@
 		DF183B951B1CAA2B0001DDA4 /* Filtacular */ = {
 			isa = PBXGroup;
 			children = (
-				F295E5631B1FAA5600A7A03B /* Protocols */,
-				F2FECAC61B1F4E46005253B0 /* PickerView */,
 				DFF176C71B1CD21A005095E9 /* StartUp */,
 				DFF176D61B1CD555005095E9 /* Shared */,
 				DF48E7BE1B1CF29200154FC1 /* ViewControllers */,
@@ -298,6 +285,7 @@
 		DF48E7C51B1DEC0B00154FC1 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				DFFF48431B262084000691B5 /* PickerView */,
 				DF48E7C61B1DEC0B00154FC1 /* ConfigurableViewProtocol */,
 				DF48E7C81B1DEC0B00154FC1 /* CustomTableView */,
 				DF48E7CE1B1DEC8700154FC1 /* Widget */,
@@ -492,50 +480,15 @@
 			path = Unmanaged;
 			sourceTree = "<group>";
 		};
-		F295E5611B1F922800A7A03B /* UserPickerView */ = {
+		DFFF48431B262084000691B5 /* PickerView */ = {
 			isa = PBXGroup;
 			children = (
-				F2FECAC31B1F4E43005253B0 /* UserPickerViewAdapter.h */,
-				F2FECAC41B1F4E43005253B0 /* UserPickerViewAdapter.m */,
-				F295E5571B1F89A300A7A03B /* UserPickerViewDelegate.h */,
-				F295E5581B1F89A300A7A03B /* UserPickerViewDelegate.m */,
-				F295E55A1B1F8A8A00A7A03B /* UserPickerDataSource.h */,
-				F295E55B1B1F8A8A00A7A03B /* UserPickerDataSource.m */,
+				DFFF48441B262084000691B5 /* BasePickerViewAdapter.h */,
+				DFFF48451B262084000691B5 /* BasePickerViewAdapter.m */,
+				DFFF48461B262084000691B5 /* PickerObject.h */,
+				DFFF48471B262084000691B5 /* PickerObject.m */,
 			);
-			name = UserPickerView;
-			sourceTree = "<group>";
-		};
-		F295E5631B1FAA5600A7A03B /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-				F295E5641B1FAA8500A7A03B /* Reloadable.h */,
-				F295E5651B1FAA8500A7A03B /* Selectable.h */,
-			);
-			name = Protocols;
-			sourceTree = "<group>";
-		};
-		F295E5661B208C3900A7A03B /* FilterPickerView */ = {
-			isa = PBXGroup;
-			children = (
-				F295E5671B208C6500A7A03B /* FilterPickerViewAdapter.h */,
-				F295E5681B208C6500A7A03B /* FilterPickerViewAdapter.m */,
-				F295E56A1B208CE700A7A03B /* FilterPickerViewDelegate.h */,
-				F295E56B1B208CE700A7A03B /* FilterPickerViewDelegate.m */,
-				F295E56E1B208EFC00A7A03B /* FilterPickerDataSource.h */,
-				F295E56F1B208EFC00A7A03B /* FilterPickerDataSource.m */,
-			);
-			name = FilterPickerView;
-			sourceTree = "<group>";
-		};
-		F2FECAC61B1F4E46005253B0 /* PickerView */ = {
-			isa = PBXGroup;
-			children = (
-				F295E5661B208C3900A7A03B /* FilterPickerView */,
-				F295E5611B1F922800A7A03B /* UserPickerView */,
-				F295E55D1B1F8DCC00A7A03B /* BasePickerViewAdapter.h */,
-				F295E55E1B1F8DCC00A7A03B /* BasePickerViewAdapter.m */,
-			);
-			name = PickerView;
+			path = PickerView;
 			sourceTree = "<group>";
 		};
 		F9FE532600B8A1C56C214958 /* Frameworks */ = {
@@ -726,24 +679,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				DFF176CF1B1CD21A005095E9 /* AppDelegate.m in Sources */,
+				DFFF48491B262084000691B5 /* PickerObject.m in Sources */,
 				DF48E7FA1B1F75B200154FC1 /* UIImageView+SDWebCache.m in Sources */,
-				F295E5591B1F89A300A7A03B /* UserPickerViewDelegate.m in Sources */,
 				DF48E7B01B1CE01900154FC1 /* BaseUnmanagedModel.m in Sources */,
+				DFFF48481B262084000691B5 /* BasePickerViewAdapter.m in Sources */,
 				DF48E7E81B1DF5A600154FC1 /* MCCSmartGroup.m in Sources */,
 				DF48E8021B220D7700154FC1 /* JSONRequestOperation.m in Sources */,
 				DF48E7CC1B1DEC0B00154FC1 /* CustomTableView.m in Sources */,
-				F295E55F1B1F8DCC00A7A03B /* BasePickerViewAdapter.m in Sources */,
 				DF48E7C21B1CF31800154FC1 /* VCTwitterFeed.m in Sources */,
-				F295E56C1B208CE700A7A03B /* FilterPickerViewDelegate.m in Sources */,
 				DF48E7D61B1DED0900154FC1 /* UIView+Positioning.m in Sources */,
 				DF48E8061B2218C900154FC1 /* NSDate+SimpleTimeAgo.m in Sources */,
 				DF48E7AB1B1CD70400154FC1 /* RestkitRequest.m in Sources */,
-				F295E56D1B208E5100A7A03B /* UserPickerViewAdapter.m in Sources */,
-				F295E5701B208EFC00A7A03B /* FilterPickerDataSource.m in Sources */,
 				DF48E7AC1B1CD70400154FC1 /* ServerWrapper.m in Sources */,
-				F295E55C1B1F8A8A00A7A03B /* UserPickerDataSource.m in Sources */,
 				DFF176D01B1CD21A005095E9 /* APIInfo.m in Sources */,
-				F295E5691B208C6500A7A03B /* FilterPickerViewAdapter.m in Sources */,
 				DF48E7F31B1F499C00154FC1 /* RestkitRequestReponse.m in Sources */,
 				DF48E7B61B1CE1D400154FC1 /* Tweet.m in Sources */,
 				DFF176D11B1CD21A005095E9 /* RestkitService.m in Sources */,
@@ -923,6 +871,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
+					"$(PROJECT_DIR)/Filtacular/ThirdParty",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -943,6 +892,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
+					"$(PROJECT_DIR)/Filtacular/ThirdParty",
 				);
 				INFOPLIST_FILE = FiltacularTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";

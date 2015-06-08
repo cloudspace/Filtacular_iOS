@@ -20,6 +20,7 @@
     mapping.identificationAttributes = @[@"identifier"];
     [mapping addAttributeMappingsFromArray:@[@"nickname"]];
     [mapping addAttributeMappingsFromDictionary:@{@"user-id": @"userId", @"id": @"identifier"}];
+
     
     return mapping;
 }
@@ -42,6 +43,10 @@
     [[self mainContext] save:&error];
     
     return @[user1, user2, user3];
+}
+
+- (NSString*)stringForPicker {
+    return self.nickname;
 }
 
 @end

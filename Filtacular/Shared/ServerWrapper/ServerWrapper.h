@@ -18,6 +18,7 @@
 /*! Make a sync requests inside this queue */
 + (dispatch_queue_t)requestQueue;
 
+- (void)cancelAllRequestOperationsWithMethod:(RKRequestMethod)method matchingPathPattern:(NSString *)pathPattern;
 - (void)performRequest:(RestkitRequest*)request;
 - (RestkitRequestReponse*)performSyncRequest:(RestkitRequest*)request;
 - (RestkitRequestReponse*)performSyncGet:(NSString*)path;

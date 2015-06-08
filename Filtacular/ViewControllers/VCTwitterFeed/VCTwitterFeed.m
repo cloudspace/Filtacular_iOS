@@ -10,11 +10,11 @@
 #import "CustomTableView.h"
 #import "Tweet.h"
 #import "TweetCell.h"
-#import "UserPickerViewAdapter.h"
-#import "FilterPickerViewAdapter.h"
 #import "User.h"
-#import "Selectable.h"
+#import "BasePickerViewAdapter.h"
+#import "ServerWrapper.h"
 
+#import <TwitterKit/TwitterKit.h>
 
 typedef void (^animationFinishBlock)(BOOL finished);
 
@@ -31,18 +31,13 @@ typedef void (^animationFinishBlock)(BOOL finished);
 @property (strong, nonatomic) NSArray* tableData;
 
 @property (strong, nonatomic) BasePickerViewAdapter* currentPickerAdapter;
-@property (strong, nonatomic) UserPickerViewAdapter* userPickerAdapter;
-@property (strong, nonatomic) FilterPickerViewAdapter* filterPickerAdapter;
-
-@property (assign, nonatomic) BOOL isPickerVisible;
-
-@property (strong, nonatomic) User* selectedUser;
-@property (strong, nonatomic) NSString* selectedFilter;
 
 @property (copy, nonatomic) animationFinishBlock onPickerVisible;
 @property (copy, nonatomic) animationFinishBlock onPickerHidden;
 
 @property (copy, nonatomic) void(^onStartPickerShowAnimation)();
+
+@property (strong, nonatomic) NSOperationQueue* twitterUpdateQueue;
 
 @end
 
@@ -50,19 +45,76 @@ typedef void (^animationFinishBlock)(BOOL finished);
 
 - (void)viewDidLoad {
     
+    _tableTapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onTableTapped)];
+    _currentPickerAdapter = [BasePickerViewAdapter new];
+    [_currentPickerAdapter bind:_pickerView];
+    
+    _twitterUpdateQueue = [[NSOperationQueue alloc] init];
+    _twitterUpdateQueue.name = @"Twitter Update Queue";
+    _twitterUpdateQueue.maxConcurrentOperationCount = 1;
+    
     [_table setNoItemText:@"There are no tweets."];
     [_table setTableViewCellClass:[TweetCell class]];
     [_table setSelectObjectBlock:nil];
     
-    self.userPickerAdapter = [[UserPickerViewAdapter alloc] init];
-    self.filterPickerAdapter = [[FilterPickerViewAdapter alloc] init];
     [self updateTweets];
-    
-    self.isPickerVisible = NO;
 }
 
 - (void)updateTweets {
-    [self performSelector:@selector(fakeLoadTweets) withObject:nil afterDelay:0.5f];
+    [_twitterUpdateQueue cancelAllOperations];
+    [[ServerWrapper sharedInstance] cancelAllRequestOperationsWithMethod:RKRequestMethodGET matchingPathPattern:@"/twitter-users/:userId/tweets"];
+    
+    [_table clearAndWaitForNewData];
+    NSBlockOperation* twitterUpdater = [[NSBlockOperation alloc] init];
+    __weak NSBlockOperation* twitterBlockOp = twitterUpdater;
+    [twitterUpdater addExecutionBlock:^{
+        if (twitterBlockOp.cancelled)
+            return;
+        
+        RestkitRequest* request = [RestkitRequest new];
+        request.requestMethod = RKRequestMethodGET;
+        request.path = [NSString stringWithFormat:@"/twitter-users/%@/tweets", _selectedUser.userId];;
+        request.parameters = @{@"filter":@{_selectedFilter: @(1)}};
+        
+        RestkitRequestReponse* response = [[ServerWrapper sharedInstance] performSyncRequest:request];
+        if (response.successful == false) {
+            //TODO
+            return;
+        }
+        
+        if (twitterBlockOp.cancelled)
+            return;
+        
+        NSArray* filtacularTweets = response.mappingResult.array;
+        NSMutableArray* tweetIds = [[NSMutableArray alloc] initWithCapacity:filtacularTweets.count];
+        for (Tweet* eachTweet in filtacularTweets) {
+            [tweetIds addObject:eachTweet.tweetId];
+        }
+        
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            if (twitterBlockOp.cancelled)
+                return;
+            [[[Twitter sharedInstance] APIClient] loadTweetsWithIDs:tweetIds completion:^(NSArray *tweets,  NSError *error) {
+                
+                if (twitterBlockOp.cancelled)
+                    return;
+                
+                for (Tweet* eachTweet in filtacularTweets) {
+                    TWTRTweet* twitterTweet = [eachTweet tweetWithTwitterId:tweets];
+                    if (twitterTweet == nil)
+                        continue;
+                    
+                    [eachTweet configureWithTwitterTweet:twitterTweet];
+                }
+                
+                
+                [_table loadData:filtacularTweets];
+                
+            }];
+        });
+    }];
+    
+    [_twitterUpdateQueue addOperation:twitterUpdater];
 }
 
 - (void)fakeLoadTweets {
@@ -70,6 +122,7 @@ typedef void (^animationFinishBlock)(BOOL finished);
     for (int i = arc4random_uniform(100); i >= 0; i -=1) {
         [tweetMut addObject:[Tweet generateRandomTweet]];
     }
+    
     NSArray* tweets = [NSArray arrayWithArray:tweetMut];
     self.tableData = [tweets sortedArrayUsingComparator:^NSComparisonResult(Tweet* obj1, Tweet* obj2) {
         return [obj2.tweetCreatedAt compare:obj1.tweetCreatedAt];
@@ -94,127 +147,106 @@ typedef void (^animationFinishBlock)(BOOL finished);
 #pragma mark - Actions
 
 - (IBAction)tapFilter {
-    [self updateCurrentPicker:self.filterPickerAdapter :self.filters :^(id item){
-        [self onFilterSelected:item];
+
+    NSInteger indexOfCurrentObj = [_filters indexOfObject:_selectedFilter];
+    [self showPickerForData:_filters selectedIndex:indexOfCurrentObj];
+    __weak VCTwitterFeed* weakSelf = self;
+    [_currentPickerAdapter setOnItemSelected:^(id item) {
+        VCTwitterFeed* strongSelf = weakSelf;
+        [strongSelf onFilterSelected:item];
     }];
-    __weak typeof(self) weakSelf = self;
-    self.onStartPickerShowAnimation = ^(){
-        NSUInteger index = [weakSelf.filters indexOfObject: weakSelf.selectedFilter];
-        if(index != NSNotFound)
-            [weakSelf.pickerView selectRow:index inComponent:0 animated:NO];
-    };
 }
 
 - (IBAction)tapUser {
-    [self updateCurrentPicker:self.userPickerAdapter :self.users :^(id item){
-        [self onUserSelected:item];
-    }];
     
-    __weak typeof(self) weakSelf = self;
-    self.onStartPickerShowAnimation = ^(){
-        NSUInteger index = [weakSelf.users indexOfObject: weakSelf.selectedUser];
-        if(index != NSNotFound)
-            [weakSelf.pickerView selectRow:index inComponent:0 animated:NO];
-    };
+    NSInteger indexOfCurrentObj = [_users indexOfObject:_selectedUser];
+    [self showPickerForData:_users selectedIndex:indexOfCurrentObj];
+    
+    __weak VCTwitterFeed* weakSelf = self;
+    [_currentPickerAdapter setOnItemSelected:^(id item) {
+        VCTwitterFeed* strongSelf = weakSelf;
+        [strongSelf onUserSelected:item];
+    }];
+}
+
+- (void)showPickerForData:(NSArray*)data selectedIndex:(NSInteger)index {
+    bool pickerIsHidden = (self.filterBarPositionFromBottomConstraint.constant == 0);
+    if (pickerIsHidden) {
+        _currentPickerAdapter.data = data;
+        [_pickerView reloadAllComponents];
+        [_pickerView selectRow:index inComponent:0 animated:false];
+        [self animateShowViewPickerCompletion:nil];
+        return;
+    }
+    
+    bool pickerIsShowingCurrentData = (_currentPickerAdapter.data == data);
+    if (pickerIsShowingCurrentData) {
+        [self animateHideViewPickerCompletion:nil];
+        return;
+    }
+    
+    _currentPickerAdapter.data = nil;
+    [self animateHideViewPickerCompletion:^(BOOL finished) {
+        _currentPickerAdapter.data = data;
+        [_pickerView reloadAllComponents];
+        [_pickerView selectRow:index inComponent:0 animated:false];
+        [self animateShowViewPickerCompletion:nil];
+    }];
 }
 
 - (void)onFilterSelected:(id) filter
 {
-    //TODO, filter tweets by selected filter
+    if (self.selectedFilter == filter)
+        return;
+    
     self.selectedFilter = filter;
     [self.filterButton setTitle:filter forState:UIControlStateNormal];
+    [self updateTweets];
 }
 
 - (void)onUserSelected:(id) user
 {
-    //TODO, filter tweets by selected user
+    if (self.selectedUser == user)
+        return;
+    
     self.selectedUser = user;
     [self.userButton setTitle:[user nickname] forState:UIControlStateNormal];
+    [self updateTweets];
 }
 
+//TODO: Needed?
 - (UIRectEdge)edgesForExtendedLayout {
     return UIRectEdgeNone;
 }
 
 #pragma mark - View Picker
 
-- (void)updateCurrentPicker:(BasePickerViewAdapter*) to : (NSArray*) data :(itemSelectedBlock) block
+- (void)animateShowViewPickerCompletion:(void (^)(BOOL finished))completion
 {
-    // Check if we are toggling visibility or switching to the other view picker
-    BOOL isToggling = (!self.currentPickerAdapter || self.currentPickerAdapter == to) ? YES : NO;
-    self.currentPickerAdapter = to;
-    [self.currentPickerAdapter bind:self.pickerView :block];
-    
-    //Clear picker view content (or else we'll see cached picker view entries as we transition out)
-    [self.currentPickerAdapter setData: nil];
-    [self.pickerView reloadAllComponents];
-    
-    __weak typeof(self) weakSelf = self;
-    if(isToggling){
-        self.onPickerHidden = ^(BOOL finished) { weakSelf.isPickerVisible = NO; };
-        [self.currentPickerAdapter setData: data];
-        [self toggleViewPickerVisibility];
-    } else{
-        self.onPickerHidden = ^(BOOL finished){
-            [weakSelf.currentPickerAdapter setData: data];
-            [weakSelf.pickerView reloadAllComponents];      //redraws entries in picker view
-            [weakSelf animateShowViewPicker];
-        };
-        [self animateHideViewPicker];
-    }
-}
-
-- (void)toggleViewPickerVisibility
-{
-    if(!self.isPickerVisible){
-        [self animateShowViewPicker];
-    }else{
-        [self animateHideViewPicker];
-    }
-}
-
-- (void) animateShowViewPicker
-{
-    if(self.onStartPickerShowAnimation)
+    if (self.onStartPickerShowAnimation)
         self.onStartPickerShowAnimation();
     
     self.filterBarPositionFromBottomConstraint.constant = self.pickerView.frame.size.height;
-    [UIView animateWithDuration:.25f
-                     animations:^{
-                         [self.view layoutIfNeeded];
-                     }completion:self.onPickerVisible];
+    [UIView animateWithDuration:0.33f animations:^{
+        [self.view layoutIfNeeded];
+    } completion:completion];
     
-    [self attachTableTapListener];
-    
-    self.isPickerVisible = YES;
-}
-
-- (void) animateHideViewPicker{
-    self.filterBarPositionFromBottomConstraint.constant = 0;
-    [UIView animateWithDuration:.25f
-                     animations:^{
-                         [self.view layoutIfNeeded];
-                     }
-                     completion:self.onPickerHidden];
-
-    [self detachTableTapListener];
-}
-
-- (void) onTableTapped
-{
-    self.onPickerHidden = nil;
-    [self animateHideViewPicker];
-}
-
-- (void)attachTableTapListener
-{
-    self.tableTapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onTableTapped)];
     [self.table addGestureRecognizer:self.tableTapGesture];
 }
 
-- (void)detachTableTapListener
-{
+- (void)animateHideViewPickerCompletion:(void (^)(BOOL finished))completion {
+    self.filterBarPositionFromBottomConstraint.constant = 0;
+    [UIView animateWithDuration:0.33f animations:^{
+        [self.view layoutIfNeeded];
+    } completion:completion];
+
     [self.table removeGestureRecognizer:self.tableTapGesture];
 }
+
+- (void)onTableTapped
+{
+    [self animateHideViewPickerCompletion:nil];
+}
+
 
 @end

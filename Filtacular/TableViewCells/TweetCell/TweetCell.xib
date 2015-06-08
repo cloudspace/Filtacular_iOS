@@ -10,7 +10,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="439"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="438.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="439"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" id="QgT-z7-Nft" userLabel="View - Top bar">
@@ -74,7 +74,7 @@
                             <action selector="tapToTweeter" destination="KGk-i7-Jjw" eventType="touchUpInside" id="hMa-U4-GqI"/>
                         </connections>
                     </button>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="cJO-Ct-O6h">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="19" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="cJO-Ct-O6h">
                         <rect key="frame" x="92" y="37" width="212" height="53"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -109,7 +109,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" id="vgc-GO-0X0" userLabel="View - Bottom Bar">
-                        <rect key="frame" x="0.0" y="385" width="320" height="52"/>
+                        <rect key="frame" x="0.0" y="384" width="320" height="52"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" id="Bz3-xA-AOM" userLabel="View - Reply">
@@ -202,7 +202,7 @@
                         </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="YZP-Cz-KDE" userLabel="Button - To Link">
-                        <rect key="frame" x="0.0" y="89" width="320" height="288"/>
+                        <rect key="frame" x="0.0" y="89" width="320" height="287"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <state key="normal">

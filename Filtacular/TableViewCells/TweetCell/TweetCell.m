@@ -47,7 +47,7 @@
     _lblUrlText.text = @"";
     
     _lblDisplayName.text = tweet.displayName;
-    _lblUserName.text = tweet.userName;
+    _lblUserName.text = [NSString stringWithFormat:@"@%@", tweet.userName];
     _lblDatePosted.text = [tweet simpleTimeAgo];
     _lblPostText.text = tweet.text;
     
@@ -99,8 +99,8 @@
         [_imgUrlPic setImageWithURL:tweet.urlImage placeholderImage:nil options:SDWebImageRetryFailed];
     }
     
-    _lblUrlText.text = tweet.urlDescription;
-    _lblUrlDomain.text = tweet.urlTitle;
+    _lblUrlText.text = tweet.urlTitle;
+    _lblUrlDomain.text = [[NSURL URLWithString:tweet.urlLink] host];
 }
 
 const float cPadding = 16.0f;
@@ -163,32 +163,38 @@ const float cPadding = 16.0f;
 }
 
 - (void)fitToHeight:(UILabel*)label {
-    CGPoint oldPosition = label.origin;
-    CGFloat oldWidth = label.width;
     CGSize spaceToSizeIn = label.size;
     spaceToSizeIn.height = MAXFLOAT;
-    NSDictionary* attributes = @{NSFontAttributeName: label.font};
     
+    if (label.text == nil)
+        label.text = @"";
+    
+    NSMutableParagraphStyle * paragraphStyle = [[NSMutableParagraphStyle defaultParagraphStyle] mutableCopy];
+    paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
+    
+    NSDictionary* attributes = @{NSFontAttributeName: label.font, NSParagraphStyleAttributeName:paragraphStyle};
+    label.text = [label.text stringByReplacingOccurrencesOfString:@"رً ॣ ॣ ॣ" withString:@"j ॣ ॣ ॣ"];
+
     CGRect newLabelRect = [label.text boundingRectWithSize:spaceToSizeIn options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil];
-    label.frame = newLabelRect;
-    label.origin = oldPosition;
-    label.width = oldWidth;
+    label.height = newLabelRect.size.height + label.font.lineHeight;
     
 }
 
 - (void)fitToWidth:(UILabel*)label maxWidth:(float)maxWidth {
-    CGPoint oldPosition = label.origin;
-    CGFloat oldHeight = label.height;
     CGSize spaceToSizeIn = label.size;
     spaceToSizeIn.width = maxWidth;
     spaceToSizeIn.height = label.height;
-    NSDictionary* attributes = @{NSFontAttributeName: label.font};
+    if (label.text == nil)
+        label.text = @"";
+    
+    NSMutableParagraphStyle * paragraphStyle = [[NSMutableParagraphStyle defaultParagraphStyle] mutableCopy];
+    paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
+    
+    NSDictionary* attributes = @{NSFontAttributeName: label.font, NSParagraphStyleAttributeName:paragraphStyle};
+    label.text = [label.text stringByReplacingOccurrencesOfString:@"رً ॣ ॣ ॣ" withString:@"j ॣ ॣ ॣ"];
     
     CGRect newLabelRect = [label.text boundingRectWithSize:spaceToSizeIn options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil];
-    label.frame = newLabelRect;
-    label.origin = oldPosition;
-    label.height = oldHeight;
-    
+    label.width = newLabelRect.size.width;
 }
 
 - (void)tapBigPic {
@@ -214,7 +220,7 @@ const float cPadding = 16.0f;
 }
 
 - (IBAction)tapToTweet {
-    NSString* link = [NSString stringWithFormat:@"https://twitter.com/%@/status/%i", _cachedTweet.userName, _cachedTweet.tweetId];
+    NSString* link = [NSString stringWithFormat:@"https://twitter.com/%@/status/%@", _cachedTweet.userName, _cachedTweet.tweetId];
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:link]];
 }
 
