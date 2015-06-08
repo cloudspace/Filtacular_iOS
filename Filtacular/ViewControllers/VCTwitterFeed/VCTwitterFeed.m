@@ -14,7 +14,9 @@
 #import "FilterPickerViewAdapter.h"
 #import "User.h"
 #import "Selectable.h"
+#import "ServerWrapper.h"
 
+#import <TwitterKit/TwitterKit.h>
 
 typedef void (^animationFinishBlock)(BOOL finished);
 
@@ -35,9 +37,6 @@ typedef void (^animationFinishBlock)(BOOL finished);
 @property (strong, nonatomic) FilterPickerViewAdapter* filterPickerAdapter;
 
 @property (assign, nonatomic) BOOL isPickerVisible;
-
-@property (strong, nonatomic) User* selectedUser;
-@property (strong, nonatomic) NSString* selectedFilter;
 
 @property (copy, nonatomic) animationFinishBlock onPickerVisible;
 @property (copy, nonatomic) animationFinishBlock onPickerHidden;
@@ -62,7 +61,45 @@ typedef void (^animationFinishBlock)(BOOL finished);
 }
 
 - (void)updateTweets {
-    [self performSelector:@selector(fakeLoadTweets) withObject:nil afterDelay:0.5f];
+    //[self performSelector:@selector(fakeLoadTweets) withObject:nil afterDelay:0.5f];
+    
+    dispatch_async([ServerWrapper requestQueue], ^{
+        RestkitRequest* request = [RestkitRequest new];
+        request.requestMethod = RKRequestMethodGET;
+        request.path = [NSString stringWithFormat:@"/twitter-users/%@/tweets", _selectedUser.userId];;
+        request.parameters = @{_selectedFilter: @(1)};
+        
+        RestkitRequestReponse* response = [[ServerWrapper sharedInstance] performSyncRequest:request];
+        if (response.successful == false) {
+            //TODO
+            return;
+        }
+        
+        NSArray* filtacularTweets = response.mappingResult.array;
+        NSMutableArray* tweetIds = [[NSMutableArray alloc] initWithCapacity:filtacularTweets.count];
+        for (Tweet* eachTweet in filtacularTweets) {
+            [tweetIds addObject:eachTweet.tweetId];
+        }
+        
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            [[[Twitter sharedInstance] APIClient] loadTweetsWithIDs:tweetIds completion:^(NSArray *tweets,  NSError *error) {
+                if (error)
+                    return;
+                
+                for (Tweet* eachTweet in filtacularTweets) {
+                    TWTRTweet* twitterTweet = [eachTweet tweetWithTwitterId:tweets];
+                    if (twitterTweet == nil)
+                        continue;
+                    
+                    [eachTweet configureWithTwitterTweet:twitterTweet];
+                }
+                
+                
+                [_table loadData:filtacularTweets];
+                
+            }];
+        });
+    });
 }
 
 - (void)fakeLoadTweets {

@@ -41,6 +41,9 @@
 		DF48E7FA1B1F75B200154FC1 /* UIImageView+SDWebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = DF48E7F91B1F75B200154FC1 /* UIImageView+SDWebCache.m */; };
 		DF48E8021B220D7700154FC1 /* JSONRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = DF48E8011B220D7700154FC1 /* JSONRequestOperation.m */; };
 		DF48E8061B2218C900154FC1 /* NSDate+SimpleTimeAgo.m in Sources */ = {isa = PBXBuildFile; fileRef = DF48E8051B2218C900154FC1 /* NSDate+SimpleTimeAgo.m */; };
+		DF48E8071B2239A600154FC1 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2DDB23D1B1CF8F7004C0A8C /* Fabric.framework */; };
+		DF48E8081B2239A900154FC1 /* TwitterCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2DDB23E1B1CF8F7004C0A8C /* TwitterCore.framework */; };
+		DF48E8091B2239AD00154FC1 /* TwitterKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2DDB23F1B1CF8F7004C0A8C /* TwitterKit.framework */; };
 		DFF176CF1B1CD21A005095E9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF176C91B1CD21A005095E9 /* AppDelegate.m */; };
 		DFF176D01B1CD21A005095E9 /* APIInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF176CC1B1CD21A005095E9 /* APIInfo.m */; };
 		DFF176D11B1CD21A005095E9 /* RestkitService.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF176CE1B1CD21A005095E9 /* RestkitService.m */; };
@@ -178,6 +181,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				85026EE1519951E127FB997B /* libPods-FiltacularTests.a in Frameworks */,
+				DF48E8081B2239A900154FC1 /* TwitterCore.framework in Frameworks */,
+				DF48E8071B2239A600154FC1 /* Fabric.framework in Frameworks */,
+				DF48E8091B2239AD00154FC1 /* TwitterKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -923,6 +929,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
+					"$(PROJECT_DIR)/Filtacular/ThirdParty",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -943,6 +950,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
+					"$(PROJECT_DIR)/Filtacular/ThirdParty",
 				);
 				INFOPLIST_FILE = FiltacularTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";

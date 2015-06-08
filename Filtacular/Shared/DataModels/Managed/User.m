@@ -20,6 +20,7 @@
     mapping.identificationAttributes = @[@"identifier"];
     [mapping addAttributeMappingsFromArray:@[@"nickname"]];
     [mapping addAttributeMappingsFromDictionary:@{@"user-id": @"userId", @"id": @"identifier"}];
+
     
     return mapping;
 }

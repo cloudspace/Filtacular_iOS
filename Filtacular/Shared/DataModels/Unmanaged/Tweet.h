@@ -8,6 +8,8 @@
 
 #import "BaseUnmanagedModel.h"
 
+@class TWTRTweet;
+
 @interface Tweet : BaseUnmanagedModel
 
 @property (nonatomic, strong) NSString* displayName;
@@ -18,10 +20,13 @@
 @property (nonatomic, strong) NSString* urlDescription;
 @property (nonatomic, strong) NSString* urlTitle;
 @property (nonatomic, strong) NSString* urlImage;
+@property (nonatomic, strong) NSString* media;
 @property (nonatomic, strong) NSString* text;
-@property (nonatomic, assign) int retweetCount;
-@property (nonatomic, assign) int favoriteCount;
-@property (nonatomic, assign) int tweetId;
+@property (nonatomic, assign) long long retweetCount;
+@property (nonatomic, assign) long long favoriteCount;
+@property (nonatomic, assign) NSString* tweetId;
+@property (nonatomic, assign) int identifier;
+
 @property (nonatomic, assign) bool pictureOnly;//big picture mode
 @property (nonatomic, assign) bool retweeted;
 @property (nonatomic, assign) bool favorited;
@@ -35,5 +40,9 @@
 + (Tweet*)generateRandomTweet;
 
 - (NSString *)simpleTimeAgo;
+
+- (TWTRTweet*)tweetWithTwitterId:(NSArray*)arrayOfTweets;
+
+- (void)configureWithTwitterTweet:(TWTRTweet*)twitterTweet;
 
 @end

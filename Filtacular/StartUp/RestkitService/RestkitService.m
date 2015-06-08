@@ -105,7 +105,7 @@
     RKResponseDescriptor * responseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:[User entityMapping] method:RKRequestMethodGET pathPattern:@"/twitter-users" keyPath:@"data" statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
     [objectManager addResponseDescriptor:responseDescriptor];
 
-    responseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:[Tweet objectMapping] method:RKRequestMethodGET pathPattern:@"/twitter-users/:nickname" keyPath:nil statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
+    responseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:[Tweet objectMapping] method:RKRequestMethodGET pathPattern:@"/twitter-users/:nickname/tweets" keyPath:@"data" statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
     [objectManager addResponseDescriptor:responseDescriptor];
     
     

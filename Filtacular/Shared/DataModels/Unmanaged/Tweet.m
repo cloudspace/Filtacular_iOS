@@ -9,6 +9,7 @@
 #import "Tweet.h"
 
 #import "NSDate+SimpleTimeAgo.h"
+#import <TwitterKit/TwitterKit.h>
 
 @implementation Tweet
 
@@ -27,8 +28,7 @@
 
 + (RKObjectMapping*)objectMapping {
     RKObjectMapping *mapping = [super objectMapping];
-    [mapping addAttributeMappingsFromArray:@[@"displayName", @"userName", @"text", @"profilePicUrl", @"pictureOnly"]];
-    [mapping addAttributeMappingsFromDictionary:@{@"tweet_id": @"tweetId", @"url_description": @"urlDescription", @"url_title": @"urlTitle", @"url_image":@"urlImage", @"url_link": @"urlLink", @"tweetCreatedAt": @"tweet_created_at", @"retweet_count":@"retweetCount", @"favorites_count":@"favoriteCount"}];
+    [mapping addAttributeMappingsFromDictionary:@{@"tweet-id": @"tweetId", @"url-description": @"urlDescription", @"url-title": @"urlTitle", @"url-image":@"urlImage", @"url-link": @"urlLink", @"tweet-created-at": @"tweetCreatedAt", @"retweet-count":@"retweetCount", @"favorites-count":@"favoriteCount", @"expanded-text": @"text"}];
     
     return mapping;
 }
@@ -97,6 +97,24 @@ static int cFavoriteCounts[cNumRandoms] = { 0, 6, 200 };
         newTweet.pictureOnly = (arc4random_uniform(2) == 1);
     
     return newTweet;
+}
+
+- (TWTRTweet*)tweetWithTwitterId:(NSArray*)arrayOfTweets {
+    for (TWTRTweet* eachTweet in arrayOfTweets) {
+        if ([eachTweet.tweetID isEqualToString:_tweetId] == false)
+            continue;
+        return eachTweet;
+    }
+    
+    return nil;
+}
+
+- (void)configureWithTwitterTweet:(TWTRTweet*)twitterTweet {
+    displayName = twitterTweet.author.name;
+    userName = twitterTweet.author.screenName;
+    profilePicUrl = twitterTweet.author.profileImageURL;
+    _retweeted = twitterTweet.isRetweeted;
+    _favorited = twitterTweet.isFavorited;
 }
 
 - (NSString *)simpleTimeAgo {
