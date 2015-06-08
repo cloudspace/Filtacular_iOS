@@ -28,7 +28,7 @@
 
 + (RKObjectMapping*)objectMapping {
     RKObjectMapping *mapping = [super objectMapping];
-    [mapping addAttributeMappingsFromDictionary:@{@"tweet-id": @"tweetId", @"url-description": @"urlDescription", @"url-title": @"urlTitle", @"url-image":@"urlImage", @"url-link": @"urlLink", @"tweet-created-at": @"tweetCreatedAt", @"retweet-count":@"retweetCount", @"favorites-count":@"favoriteCount", @"expanded-text": @"text"}];
+    [mapping addAttributeMappingsFromDictionary:@{@"tweet-id": @"tweetId", @"url-description": @"urlDescription", @"url-title": @"urlTitle", @"url-image":@"urlImage", @"url-link": @"urlLink", @"tweet-created-at": @"tweetCreatedAt", @"retweet-count":@"retweetCount", @"favorites-count":@"favoriteCount", @"expanded-text": @"text", @"profile-image-url":@"profilePicUrl", @"name":@"displayName"}];
     
     return mapping;
 }
@@ -110,9 +110,7 @@ static int cFavoriteCounts[cNumRandoms] = { 0, 6, 200 };
 }
 
 - (void)configureWithTwitterTweet:(TWTRTweet*)twitterTweet {
-    displayName = twitterTweet.author.name;
     userName = twitterTweet.author.screenName;
-    profilePicUrl = twitterTweet.author.profileImageURL;
     _retweeted = twitterTweet.isRetweeted;
     _favorited = twitterTweet.isFavorited;
 }
