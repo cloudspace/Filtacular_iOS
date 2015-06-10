@@ -27,9 +27,11 @@
 @synthesize favoriteCount;
 @synthesize pictureOnly;
 @synthesize tweetId;
+@synthesize media;
 
 + (RKObjectMapping*)objectMapping {
     RKObjectMapping *mapping = [super objectMapping];
+    [mapping addAttributeMappingsFromArray:@[@"media"]];
     [mapping addAttributeMappingsFromDictionary:@{@"tweet-id": @"tweetId", @"url-description": @"urlDescription", @"url-title": @"urlTitle", @"url-image":@"urlImage", @"url-link": @"urlLink", @"tweet-created-at": @"tweetCreatedAt", @"retweet-count":@"retweetCount", @"favorites-count":@"favoriteCount", @"expanded-text": @"text", @"profile-image-url":@"profilePicUrl", @"name":@"displayName", @"id": @"identifier"}];
     
     return mapping;
@@ -121,6 +123,17 @@ static int cFavoriteCounts[cNumRandoms] = { 0, 6, 200 };
     return [self.tweetCreatedAt timeAgoSimple];
 }
 
-
+- (NSString*)imageUrl {
+    if (urlImage.length > 0)
+        return urlImage;
+    
+    if (media.length > 5) {
+        NSString* url = [media substringFromIndex:2];
+        url = [url substringToIndex:url.length - 2];
+        return url;
+    }
+    
+    return nil;
+}
 
 @end

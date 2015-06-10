@@ -37,7 +37,8 @@
 
 + (Tweet*)generateRandomTweet;
 
-- (NSString *)simpleTimeAgo;
+- (NSString*)simpleTimeAgo;
+- (NSString*)imageUrl;
 
 - (TWTRTweet*)tweetWithTwitterId:(NSArray*)arrayOfTweets;
 

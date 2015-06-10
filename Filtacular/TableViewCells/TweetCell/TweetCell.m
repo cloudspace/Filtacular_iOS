@@ -77,7 +77,7 @@
 - (void)configureBigPic:(Tweet*)tweet {
     _btnBigPic.hidden = false;
     _imgBigPic.hidden = false;
-    [_imgBigPic setImageWithURL:tweet.urlImage placeholderImage:nil options:SDWebImageRetryFailed];
+    [_imgBigPic setImageWithURL:tweet.imageUrl placeholderImage:nil options:SDWebImageRetryFailed];
     
     _btnToLink.enabled = false;
     
@@ -89,7 +89,7 @@
 
 - (void)configureLinkDetails:(Tweet*)tweet {
     bool hasUrl = (tweet.urlLink.length != 0);
-    bool hasImage = (tweet.urlImage.length != 0);
+    bool hasImage = (tweet.imageUrl.length != 0);
     
     _btnToLink.enabled = hasUrl;
     
@@ -97,7 +97,7 @@
         return;
     
     if (hasImage) {
-        [_imgUrlPic setImageWithURL:tweet.urlImage placeholderImage:nil options:SDWebImageRetryFailed];
+        [_imgUrlPic setImageWithURL:tweet.imageUrl placeholderImage:nil options:SDWebImageRetryFailed];
     }
     
     _lblUrlText.text = tweet.urlTitle;
@@ -109,7 +109,7 @@ const float cPadding = 16.0f;
 - (void)repositionSubviewsWithTweet:(Tweet*)tweet {
     
     bool hasUrl = (tweet.urlLink.length != 0 && tweet.pictureOnly == false);
-    bool hasImage = (tweet.urlImage.length != 0);
+    bool hasImage = (tweet.imageUrl.length != 0);
     
     //reposition username
     [self fitToWidth:_lblDisplayName maxWidth:126.0f];

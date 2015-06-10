@@ -33,7 +33,7 @@
     
     //NOTE: Uncomment for better logs
     //RKLogConfigureByName("RestKit/Network", RKLogLevelTrace);
-    RKLogConfigureByName("RestKit/ObjectMapping", RKLogLevelTrace);
+    //RKLogConfigureByName("RestKit/ObjectMapping", RKLogLevelTrace);
     
     //Configure client
     //objectManager.HTTPClient.allowsInvalidSSLCertificate = true;
