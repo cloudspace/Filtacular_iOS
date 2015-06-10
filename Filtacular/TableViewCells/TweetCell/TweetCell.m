@@ -12,6 +12,7 @@
 #import "UIView+Positioning.h"
 #import "UIImageView+SDWebCache.h"
 
+#import "ServerWrapper.h"
 
 @interface TweetCell ()
 @property (strong, nonatomic) IBOutlet UILabel *lblDisplayName;
@@ -166,24 +167,22 @@ const float cPadding = 16.0f;
     CGSize spaceToSizeIn = label.size;
     spaceToSizeIn.height = MAXFLOAT;
     
-    if (label.text == nil)
-        label.text = @"";
+    CGSize newLabelSize = [self boundingSizeInSpace:spaceToSizeIn WithLabel:label];
     
-    NSMutableParagraphStyle * paragraphStyle = [[NSMutableParagraphStyle defaultParagraphStyle] mutableCopy];
-    paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
-    
-    NSDictionary* attributes = @{NSFontAttributeName: label.font, NSParagraphStyleAttributeName:paragraphStyle};
-    label.text = [label.text stringByReplacingOccurrencesOfString:@"رً ॣ ॣ ॣ" withString:@"j ॣ ॣ ॣ"];
-
-    CGRect newLabelRect = [label.text boundingRectWithSize:spaceToSizeIn options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil];
-    label.height = newLabelRect.size.height + label.font.lineHeight;
-    
+    label.height = newLabelSize.height + label.font.lineHeight;
 }
 
 - (void)fitToWidth:(UILabel*)label maxWidth:(float)maxWidth {
     CGSize spaceToSizeIn = label.size;
     spaceToSizeIn.width = maxWidth;
     spaceToSizeIn.height = label.height;
+
+    CGSize newLabelSize = [self boundingSizeInSpace:spaceToSizeIn WithLabel:label];
+    
+    label.width = newLabelSize.width;
+}
+
+- (CGSize)boundingSizeInSpace:(CGSize)space WithLabel:(UILabel*)label {
     if (label.text == nil)
         label.text = @"";
     
@@ -193,8 +192,9 @@ const float cPadding = 16.0f;
     NSDictionary* attributes = @{NSFontAttributeName: label.font, NSParagraphStyleAttributeName:paragraphStyle};
     label.text = [label.text stringByReplacingOccurrencesOfString:@"رً ॣ ॣ ॣ" withString:@"j ॣ ॣ ॣ"];
     
-    CGRect newLabelRect = [label.text boundingRectWithSize:spaceToSizeIn options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil];
-    label.width = newLabelRect.size.width;
+    CGRect newLabelRect = [label.text boundingRectWithSize:space options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil];
+    
+    return newLabelRect.size;
 }
 
 - (void)tapBigPic {
@@ -204,29 +204,57 @@ const float cPadding = 16.0f;
 }
 
 - (IBAction)tapReply {
-
+    if (_cachedTweet.tappedLink == nil)
+        return;
+    
+    NSString* username = _cachedTweet.userName;
+    NSString* tweetId = _cachedTweet.tweetId;
+    NSString* link = [NSString stringWithFormat:@"https://twitter.com/%@/status/%@#tweet-box-reply-to-%@", username, tweetId, tweetId];
+    _cachedTweet.tappedLink(link);
 }
 
 - (IBAction)tapRetweet {
     
     _cachedTweet.retweeted = true;
+    _cachedTweet.retweetCount += 1;
     _btnRetweet.enabled = false;
+    [_btnRetweet setTitle:[@(_cachedTweet.retweetCount) stringValue] forState:UIControlStateNormal];
+    
+    RestkitRequest* request = [RestkitRequest new];
+    request.requestMethod = RKRequestMethodGET;
+    request.path = @"/retweet";
+    request.parameters = @{@"tweet_id":_cachedTweet.tweetId};
+    request.noMappingRequired = true;
+    [[ServerWrapper sharedInstance] performRequest:request];
 }
 
 - (IBAction)tapFavorite {
     
     _cachedTweet.favorited = true;
+    _cachedTweet.favoriteCount += 1;
     _btnFavorite.enabled = false;
+    [_btnFavorite setTitle:[@(_cachedTweet.favoriteCount) stringValue] forState:UIControlStateNormal];
+    
+    RestkitRequest* request = [RestkitRequest new];
+    request.requestMethod = RKRequestMethodGET;
+    request.path = @"/favorite";
+    request.parameters = @{@"tweet_id":_cachedTweet.tweetId};
+    request.noMappingRequired = true;
+    [[ServerWrapper sharedInstance] performRequest:request];
 }
 
 - (IBAction)tapToTweet {
+    if (_cachedTweet.tappedLink == nil)
+        return;
     NSString* link = [NSString stringWithFormat:@"https://twitter.com/%@/status/%@", _cachedTweet.userName, _cachedTweet.tweetId];
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:link]];
+    _cachedTweet.tappedLink(link);
 }
 
 - (IBAction)tapToTweeter {
+    if (_cachedTweet.tappedLink == nil)
+        return;
     NSString* link = [NSString stringWithFormat:@"https://twitter.com/%@", _cachedTweet.userName];
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:link]];
+    _cachedTweet.tappedLink(link);
 }
 
 - (IBAction)tapToLink {

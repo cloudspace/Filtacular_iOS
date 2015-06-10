@@ -13,6 +13,7 @@
 
 @implementation Tweet
 
+@synthesize identifier;
 @synthesize displayName;
 @synthesize userName;
 @synthesize profilePicUrl;
@@ -25,10 +26,11 @@
 @synthesize retweetCount;
 @synthesize favoriteCount;
 @synthesize pictureOnly;
+@synthesize tweetId;
 
 + (RKObjectMapping*)objectMapping {
     RKObjectMapping *mapping = [super objectMapping];
-    [mapping addAttributeMappingsFromDictionary:@{@"tweet-id": @"tweetId", @"url-description": @"urlDescription", @"url-title": @"urlTitle", @"url-image":@"urlImage", @"url-link": @"urlLink", @"tweet-created-at": @"tweetCreatedAt", @"retweet-count":@"retweetCount", @"favorites-count":@"favoriteCount", @"expanded-text": @"text", @"profile-image-url":@"profilePicUrl", @"name":@"displayName"}];
+    [mapping addAttributeMappingsFromDictionary:@{@"tweet-id": @"tweetId", @"url-description": @"urlDescription", @"url-title": @"urlTitle", @"url-image":@"urlImage", @"url-link": @"urlLink", @"tweet-created-at": @"tweetCreatedAt", @"retweet-count":@"retweetCount", @"favorites-count":@"favoriteCount", @"expanded-text": @"text", @"profile-image-url":@"profilePicUrl", @"name":@"displayName", @"id": @"identifier"}];
     
     return mapping;
 }
@@ -101,7 +103,7 @@ static int cFavoriteCounts[cNumRandoms] = { 0, 6, 200 };
 
 - (TWTRTweet*)tweetWithTwitterId:(NSArray*)arrayOfTweets {
     for (TWTRTweet* eachTweet in arrayOfTweets) {
-        if ([eachTweet.tweetID isEqualToString:_tweetId] == false)
+        if ([eachTweet.tweetID isEqualToString:self.tweetId] == false)
             continue;
         return eachTweet;
     }

@@ -15,6 +15,7 @@
 #import "ServerWrapper.h"
 
 #import <TwitterKit/TwitterKit.h>
+#import <SVWebViewController.h>
 
 typedef void (^animationFinishBlock)(BOOL finished);
 
@@ -60,6 +61,11 @@ typedef void (^animationFinishBlock)(BOOL finished);
     [self updateTweets];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:true animated:animated];
+}
+
 - (void)updateTweets {
     [_twitterUpdateQueue cancelAllOperations];
     [[ServerWrapper sharedInstance] cancelAllRequestOperationsWithMethod:RKRequestMethodGET matchingPathPattern:@"/twitter-users/:userId/tweets"];
@@ -71,10 +77,12 @@ typedef void (^animationFinishBlock)(BOOL finished);
         if (twitterBlockOp.cancelled)
             return;
         
+        NSString* filter = [_selectedFilter stringByReplacingOccurrencesOfString:@" " withString:@"_"];
+        
         RestkitRequest* request = [RestkitRequest new];
         request.requestMethod = RKRequestMethodGET;
-        request.path = [NSString stringWithFormat:@"/twitter-users/%@/tweets", _selectedUser.userId];;
-        request.parameters = @{@"filter":@{_selectedFilter: @(1)}};
+        request.path = [NSString stringWithFormat:@"/twitter-users/%@/tweets", _selectedUser.userId];
+        request.parameters = @{@"filter":@{filter: @(1)}};
         
         RestkitRequestReponse* response = [[ServerWrapper sharedInstance] performSyncRequest:request];
         if (response.successful == false) {
@@ -108,7 +116,7 @@ typedef void (^animationFinishBlock)(BOOL finished);
                 }
                 
                 
-                [_table loadData:filtacularTweets];
+                [self loadTweets:filtacularTweets];
                 
             }];
         });
@@ -117,19 +125,16 @@ typedef void (^animationFinishBlock)(BOOL finished);
     [_twitterUpdateQueue addOperation:twitterUpdater];
 }
 
-- (void)fakeLoadTweets {
-    NSMutableArray * tweetMut = [NSMutableArray new];
-    for (int i = arc4random_uniform(100); i >= 0; i -=1) {
-        [tweetMut addObject:[Tweet generateRandomTweet]];
-    }
-    
-    NSArray* tweets = [NSArray arrayWithArray:tweetMut];
+- (void)loadTweets:(NSArray*)tweets {
     self.tableData = [tweets sortedArrayUsingComparator:^NSComparisonResult(Tweet* obj1, Tweet* obj2) {
         return [obj2.tweetCreatedAt compare:obj1.tweetCreatedAt];
     }];
     
     __weak VCTwitterFeed* weakSelf = self;
     for (__weak Tweet* eachTweet in tweets) {
+        
+        if ([_selectedFilter isEqualToString:@"aye aye"])
+            eachTweet.pictureOnly = true;
         
         [eachTweet setTappedBigPic:^{
             Tweet* strongTweet = eachTweet;
@@ -139,8 +144,25 @@ typedef void (^animationFinishBlock)(BOOL finished);
             [strongSelf.table cellHeightChanged];
         }];
         
+        [eachTweet setTappedLink:^(NSString* link) {
+            VCTwitterFeed* strongSelf = weakSelf;
+            SVWebViewController *webViewController = [[SVWebViewController alloc] initWithAddress:link];
+            [strongSelf.navigationController pushViewController:webViewController animated:YES];
+            [strongSelf.navigationController setNavigationBarHidden:false animated:false];
+        }];
+        
     }
     [_table loadData:tweets];
+}
+
+- (void)fakeLoadTweets {
+    NSMutableArray * tweetMut = [NSMutableArray new];
+    for (int i = arc4random_uniform(100); i >= 0; i -=1) {
+        [tweetMut addObject:[Tweet generateRandomTweet]];
+    }
+    NSArray* tweets = [NSArray arrayWithArray:tweetMut];
+    
+    [self loadTweets:tweets];
 }
 
 
@@ -210,7 +232,9 @@ typedef void (^animationFinishBlock)(BOOL finished);
         return;
     
     self.selectedUser = user;
-    [self.userButton setTitle:[user nickname] forState:UIControlStateNormal];
+    NSString* userNameText = [[user nickname] stringByReplacingOccurrencesOfString:@"_" withString:@" "];
+    userNameText = [userNameText stringByAppendingString:@"'s"];
+    [self.userButton setTitle:userNameText forState:UIControlStateNormal];
     [self updateTweets];
 }
 

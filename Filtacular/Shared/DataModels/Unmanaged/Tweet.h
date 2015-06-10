@@ -24,7 +24,7 @@
 @property (nonatomic, strong) NSString* text;
 @property (nonatomic, assign) long long retweetCount;
 @property (nonatomic, assign) long long favoriteCount;
-@property (nonatomic, assign) NSString* tweetId;
+@property (nonatomic, strong) NSString* tweetId;
 @property (nonatomic, assign) int identifier;
 
 @property (nonatomic, assign) bool pictureOnly;//big picture mode
@@ -33,9 +33,7 @@
 
 @property (nonatomic, assign) bool bigPicOpenedCache;
 @property (nonatomic, copy) void (^tappedBigPic) ();
-@property (nonatomic, copy) void (^tappedLink) ();
-@property (nonatomic, copy) void (^tappedUser) ();
-@property (nonatomic, copy) void (^tappedTweet) ();
+@property (nonatomic, copy) void (^tappedLink) (NSString* link);
 
 + (Tweet*)generateRandomTweet;
 

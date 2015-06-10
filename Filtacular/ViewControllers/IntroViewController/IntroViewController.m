@@ -34,6 +34,11 @@
 }
 
 - (void)loginToFiltacular:(TWTRSession*)twitterSession {
+    
+    //TWTROAuthSigning *oauthSigning = [[TWTROAuthSigning alloc] initWithAuthConfig:[Twitter sharedInstance].authConfig authSession:twitterSession];
+    
+    //NSDictionary *authHeaders = [oauthSigning OAuthEchoHeadersToVerifyCredentials];
+
     _btnTwitterLogin.enabled = false;
     dispatch_async([ServerWrapper requestQueue], ^{
     
@@ -71,14 +76,19 @@
             return;
         }
         
-        NSArray* filters = response.mappingResult.array;
+        NSMutableArray* filters = [response.mappingResult.array mutableCopy];
         if (filters.count == 0)
             return;
+        
+        for (int i = 0; i < filters.count; i+=1)
+        {
+            filters[i] = [filters[i] stringByReplacingOccurrencesOfString:@"_" withString:@" "];
+        }
         
         dispatch_sync(dispatch_get_main_queue(), ^{
             VCTwitterFeed* vcTwitterFeed = [VCTwitterFeed new];
             vcTwitterFeed.users = users;
-            vcTwitterFeed.filters = filters;
+            vcTwitterFeed.filters = [NSArray arrayWithArray:filters];
             vcTwitterFeed.twitterSession = twitterSession;
             vcTwitterFeed.selectedUser = selectedUser;
             vcTwitterFeed.selectedFilter = filters[0];
