@@ -90,6 +90,7 @@
 - (void)configureLinkDetails:(Tweet*)tweet {
     bool hasUrl = (tweet.urlLink.length != 0);
     bool hasImage = (tweet.imageUrl.length != 0);
+    bool hasUrlTitle = (tweet.urlTitle.length != 0);
     
     _btnToLink.enabled = hasUrl;
     
@@ -100,8 +101,10 @@
         [_imgUrlPic setImageWithURL:tweet.imageUrl placeholderImage:nil options:SDWebImageRetryFailed];
     }
     
-    _lblUrlText.text = tweet.urlTitle;
-    _lblUrlDomain.text = [[NSURL URLWithString:tweet.urlLink] host];
+    if (hasUrlTitle) {
+        _lblUrlText.text = tweet.urlTitle;
+        _lblUrlDomain.text = [[NSURL URLWithString:tweet.urlLink] host];
+    }
 }
 
 const float cPadding = 16.0f;
@@ -116,9 +119,8 @@ const float cPadding = 16.0f;
     if (_lblDisplayName.width == 0.0f)
         _lblDisplayName.width = 126.0f;
     _lblUserName.x = _lblDisplayName.x + _lblDisplayName.width + 4.0f;
-    [self fitToWidth:_lblUserName maxWidth:257.0f - _lblUserName.x];
-    if (_lblUserName.width == 0.0f)
-        _lblUserName.width = 51.0f;
+
+    _lblUserName.width = 263.0f - _lblUserName.x;
     
     //reposition everything else
     [self fitToHeight:_lblPostText];
@@ -137,13 +139,16 @@ const float cPadding = 16.0f;
             yOffset += _imgUrlPic.height + cPadding;
         }
         
-        [self fitToHeight:_lblUrlText];
+        if (_lblUrlText.text.length > 0) {
         
-        _lblUrlText.y = yOffset;
-        yOffset += _lblUrlText.height + cPadding;
+            [self fitToHeight:_lblUrlText];
         
-        _lblUrlDomain.y = yOffset;
-        yOffset += _lblUrlDomain.height + cPadding;
+            _lblUrlText.y = yOffset;
+            yOffset += _lblUrlText.height + cPadding;
+            
+            _lblUrlDomain.y = yOffset;
+            yOffset += _lblUrlDomain.height + cPadding;
+        }
     }
     
     if (tweet.pictureOnly) {
@@ -246,6 +251,7 @@ const float cPadding = 16.0f;
 - (IBAction)tapToTweet {
     if (_cachedTweet.tappedLink == nil)
         return;
+    
     NSString* link = [NSString stringWithFormat:@"https://twitter.com/%@/status/%@", _cachedTweet.userName, _cachedTweet.tweetId];
     _cachedTweet.tappedLink(link);
 }
@@ -253,12 +259,15 @@ const float cPadding = 16.0f;
 - (IBAction)tapToTweeter {
     if (_cachedTweet.tappedLink == nil)
         return;
+    
     NSString* link = [NSString stringWithFormat:@"https://twitter.com/%@", _cachedTweet.userName];
     _cachedTweet.tappedLink(link);
 }
 
 - (IBAction)tapToLink {
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:_cachedTweet.urlLink]];
+    if (_cachedTweet.tappedLink == nil)
+        return;
+    _cachedTweet.tappedLink(_cachedTweet.urlLink);
 }
 
 - (void)layoutSubviews {
