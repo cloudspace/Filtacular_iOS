@@ -34,15 +34,35 @@
 }
 
 - (void)loginToFiltacular:(TWTRSession*)twitterSession {
-    
-    //TWTROAuthSigning *oauthSigning = [[TWTROAuthSigning alloc] initWithAuthConfig:[Twitter sharedInstance].authConfig authSession:twitterSession];
-    
-    //NSDictionary *authHeaders = [oauthSigning OAuthEchoHeadersToVerifyCredentials];
 
     _btnTwitterLogin.enabled = false;
     dispatch_async([ServerWrapper requestQueue], ^{
+        
+        RestkitRequest* request = [RestkitRequest new];
+        request.requestMethod = RKRequestMethodGET;
+        request.path = @"/auth/twitter_access_token/callback";
+        request.noMappingRequired = true;
+        request.parameters = @{@"token":twitterSession.authToken, @"token_secret":twitterSession.authTokenSecret};
+        
+        RestkitRequestReponse* response = [[ServerWrapper sharedInstance] performSyncRequest:request];
+        
+        if (response.successful == false) {
+            //TODO
+            NSHTTPURLResponse* urlResponse = response.error.userInfo[AFNetworkingOperationFailingURLResponseErrorKey];
+            NSString* absoluteString = urlResponse.URL.absoluteString;
+            if ([absoluteString isEqualToString:@"http://filtacular.com/waitlist"])
+            {
+                dispatch_sync(dispatch_get_main_queue(), ^{
+                    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Wait List" message:@"Thanks for connecting your Twitter account. We'll reach out when you can see the goodness." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                    [alert show];
+                });
+            }
+            
+            if ([absoluteString isEqualToString:@"http://filtacular.com/user/IsaacPaul13"] == false)
+                return;
+        }
     
-        RestkitRequestReponse* response = [[ServerWrapper sharedInstance] performSyncGet:@"/twitter-users"];
+        response = [[ServerWrapper sharedInstance] performSyncGet:@"/twitter-users"];
         if (response.successful == false) {
             //TODO
             return;
@@ -50,7 +70,7 @@
         
         NSArray* users = response.mappingResult.array;
         
-        RestkitRequest* request = [RestkitRequest new];
+        request = [RestkitRequest new];
         request.requestMethod = RKRequestMethodGET;
         request.path = @"/lenses";
         request.noMappingRequired = true;
@@ -72,7 +92,6 @@
         }
         
         if (selectedUser == nil) {
-            
             return;
         }
         
