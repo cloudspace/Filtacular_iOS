@@ -136,6 +136,9 @@ typedef void (^animationFinishBlock)(BOOL finished);
         if ([_selectedFilter isEqualToString:@"aye aye"])
             eachTweet.pictureOnly = true;
         
+        if ([_selectedUser.nickname isEqualToString:_twitterSession.userName] == false)
+            eachTweet.showFollowButton = true;
+        
         [eachTweet setTappedBigPic:^{
             Tweet* strongTweet = eachTweet;
             strongTweet.bigPicOpenedCache = !strongTweet.bigPicOpenedCache;

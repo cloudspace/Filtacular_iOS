@@ -108,7 +108,7 @@
                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <view contentMode="scaleToFill" id="vgc-GO-0X0" userLabel="View - Bottom Bar">
+                    <view contentMode="scaleToFill" id="vgc-GO-0X0" userLabel="View - Bottom Bar" customClass="OAStackView">
                         <rect key="frame" x="0.0" y="383" width="320" height="52"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <subviews>
@@ -136,7 +136,7 @@
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="zyG-ni-58H">
                                         <rect key="frame" x="0.0" y="0.0" width="104" height="52"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                         <inset key="titleEdgeInsets" minX="4" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -164,7 +164,7 @@
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="BjK-m0-08s">
                                         <rect key="frame" x="0.0" y="0.0" width="104" height="52"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                         <inset key="titleEdgeInsets" minX="4" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="4" maxY="0.0"/>
@@ -185,13 +185,31 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
+                            <view contentMode="scaleToFill" id="2Po-TN-ooo" userLabel="View - Follow">
+                                <rect key="frame" x="291" y="0.0" width="104" height="52"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" heightSizable="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="b7N-uv-UC5">
+                                        <rect key="frame" x="0.0" y="0.0" width="104" height="52"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                        <state key="normal" image="follow">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="tapFollow" destination="KGk-i7-Jjw" eventType="touchUpInside" id="9L3-2I-j4n"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </view>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="ZmC-le-ems" userLabel="Image View - Big Pic">
                         <rect key="frame" x="16" y="95" width="288" height="250"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                 <integer key="value" value="5"/>
@@ -225,6 +243,7 @@
             <connections>
                 <outlet property="btnBigPic" destination="6kq-mW-96u" id="htk-Jo-ofZ"/>
                 <outlet property="btnFavorite" destination="BjK-m0-08s" id="GVB-D2-MVO"/>
+                <outlet property="btnFollow" destination="b7N-uv-UC5" id="gta-AM-7Zc"/>
                 <outlet property="btnRetweet" destination="zyG-ni-58H" id="lcY-BN-Sae"/>
                 <outlet property="btnToLink" destination="YZP-Cz-KDE" id="FKJ-PY-md9"/>
                 <outlet property="btnToTweet" destination="xYm-eF-t3K" id="f7O-yc-3N3"/>
@@ -239,6 +258,7 @@
                 <outlet property="lblUrlText" destination="luV-Di-LK3" id="Uuj-KU-U65"/>
                 <outlet property="lblUserName" destination="96b-bM-vaN" id="SUV-Iu-Fji"/>
                 <outlet property="viewBottomBar" destination="vgc-GO-0X0" id="lvq-MH-rJc"/>
+                <outlet property="viewFollow" destination="2Po-TN-ooo" id="bNv-zd-HAH"/>
             </connections>
             <point key="canvasLocation" x="159" y="414.5"/>
         </tableViewCell>
@@ -247,6 +267,7 @@
         <image name="favorite_0" width="20" height="20"/>
         <image name="favorite_1" width="20" height="20"/>
         <image name="favorite_2" width="20" height="20"/>
+        <image name="follow" width="32" height="23"/>
         <image name="reply_0" width="20" height="20"/>
         <image name="reply_1" width="20" height="20"/>
         <image name="retweet_0" width="24" height="20"/>

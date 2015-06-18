@@ -14,6 +14,8 @@
 
 #import "ServerWrapper.h"
 
+#import <OAStackView.h>
+
 @interface TweetCell ()
 @property (strong, nonatomic) IBOutlet UILabel *lblDisplayName;
 @property (strong, nonatomic) IBOutlet UILabel *lblUserName;
@@ -23,7 +25,7 @@
 @property (strong, nonatomic) IBOutlet UIImageView *imgUrlPic;
 @property (strong, nonatomic) IBOutlet UILabel *lblUrlText;
 @property (strong, nonatomic) IBOutlet UILabel *lblUrlDomain;
-@property (strong, nonatomic) IBOutlet UIView *viewBottomBar;
+@property (strong, nonatomic) IBOutlet OAStackView *viewBottomBar;
 @property (strong, nonatomic) IBOutlet UIImageView *imgBigPic;
 @property (strong, nonatomic) IBOutlet UIButton *btnBigPic;
 @property (strong, nonatomic) IBOutlet UIButton *btnRetweet;
@@ -31,6 +33,8 @@
 @property (strong, nonatomic) IBOutlet UIButton *btnToTweet;
 @property (strong, nonatomic) IBOutlet UIButton *btnToTweeter;
 @property (strong, nonatomic) IBOutlet UIButton *btnToLink;
+@property (strong, nonatomic) IBOutlet UIButton *btnFollow;
+@property (strong, nonatomic) IBOutlet UIView *viewFollow;
 
 @property (assign, nonatomic) bool bigPicOpen;
 @property (strong, nonatomic) Tweet* cachedTweet;
@@ -38,6 +42,24 @@
 @end
 
 @implementation TweetCell
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    _viewBottomBar.distribution = OAStackViewDistributionFillEqually;
+    _viewBottomBar.alignment = OAStackViewAlignmentFill;
+    _viewBottomBar.axis = UILayoutConstraintAxisHorizontal;
+    _viewBottomBar.spacing = 0.0f;
+    
+    NSArray* subviews = [_viewBottomBar.subviews copy];
+    
+    for (UIView* eachView in subviews) {
+        [eachView removeFromSuperview];
+    }
+    
+    for (UIView* eachView in subviews) {
+        [_viewBottomBar addArrangedSubview:eachView];
+    }
+}
 
 - (void)configureWithObject:(Tweet*)tweet {
     
@@ -61,6 +83,9 @@
     bool disableFavorite = (tweet.favorited);
     [_btnRetweet setEnabled:!disableRetweet];
     [_btnFavorite setEnabled:!disableFavorite];
+    [_btnFollow setEnabled:!tweet.followed];
+    
+    [_viewFollow setHidden:!tweet.showFollowButton];
     
     if (tweet.pictureOnly) {
         [self configureBigPic:tweet];
@@ -164,7 +189,7 @@ const float cPadding = 16.0f;
         }
     }
     else {
-        self.height = yOffset - cPadding + _viewBottomBar.height;
+        self.height = yOffset + _viewBottomBar.height;
     }
 }
 
@@ -243,6 +268,18 @@ const float cPadding = 16.0f;
     RestkitRequest* request = [RestkitRequest new];
     request.requestMethod = RKRequestMethodGET;
     request.path = @"/favorite";
+    request.parameters = @{@"tweet_id":_cachedTweet.tweetId};
+    request.noMappingRequired = true;
+    [[ServerWrapper sharedInstance] performRequest:request];
+}
+
+- (IBAction)tapFollow {
+    _cachedTweet.followed = true;
+    _btnFollow.enabled = false;
+    
+    RestkitRequest* request = [RestkitRequest new];
+    request.requestMethod = RKRequestMethodGET;
+    request.path = @"/follow";
     request.parameters = @{@"tweet_id":_cachedTweet.tweetId};
     request.noMappingRequired = true;
     [[ServerWrapper sharedInstance] performRequest:request];

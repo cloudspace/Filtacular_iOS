@@ -30,6 +30,8 @@
 @property (nonatomic, assign) bool pictureOnly;//big picture mode
 @property (nonatomic, assign) bool retweeted;
 @property (nonatomic, assign) bool favorited;
+@property (nonatomic, assign) bool followed;
+@property (nonatomic, assign) bool showFollowButton;
 
 @property (nonatomic, assign) bool bigPicOpenedCache;
 @property (nonatomic, copy) void (^tappedBigPic) ();
