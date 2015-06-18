@@ -32,7 +32,7 @@
 + (RKObjectMapping*)objectMapping {
     RKObjectMapping *mapping = [super objectMapping];
     [mapping addAttributeMappingsFromArray:@[@"media"]];
-    [mapping addAttributeMappingsFromDictionary:@{@"tweet-id": @"tweetId", @"url-description": @"urlDescription", @"url-title": @"urlTitle", @"url-image":@"urlImage", @"url-link": @"urlLink", @"tweet-created-at": @"tweetCreatedAt", @"retweet-count":@"retweetCount", @"favorites-count":@"favoriteCount", @"expanded-text": @"text", @"profile-image-url":@"profilePicUrl", @"name":@"displayName", @"id": @"identifier"}];
+    [mapping addAttributeMappingsFromDictionary:@{@"tweet-id": @"tweetId", @"url-description": @"urlDescription", @"url-title":@"urlTitle", @"url-image":@"urlImage", @"url-link":@"urlLink", @"tweet-created-at":@"tweetCreatedAt", @"retweet-count":@"retweetCount", @"favorites-count":@"favoriteCount", @"expanded-text": @"text", @"profile-image-url":@"profilePicUrl", @"name":@"displayName", @"id": @"identifier", @"screen-name":@"userName"}];
     
     return mapping;
 }
