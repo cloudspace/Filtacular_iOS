@@ -59,7 +59,6 @@ static dispatch_queue_t sRequestQueue;
     dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
     
     request.failure = [self hookFailureBlock:request.failure withBlock:^(RKObjectRequestOperation *operation, NSError *error) {
-        //RKErrorMessage *errorMessage = [[error.userInfo objectForKey:RKObjectMapperErrorObjectsKey] firstObject];
         response.successful = false;
         response.error = error;
         dispatch_semaphore_signal(semaphore);

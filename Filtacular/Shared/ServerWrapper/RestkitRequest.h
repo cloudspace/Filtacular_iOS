@@ -20,6 +20,7 @@ typedef void (^RestkitSuccessBlock)(RKObjectRequestOperation *operation, RKMappi
 @property (strong, nonatomic) NSObject* object;
 @property (strong, nonatomic) NSString* path;
 @property (strong, nonatomic) NSDictionary* parameters;
+@property (strong, nonatomic) NSDictionary* customHeaders;
 @property (copy, nonatomic) RestkitSuccessBlock success;
 @property (copy, nonatomic) RestkitFailureBlock failure;
 

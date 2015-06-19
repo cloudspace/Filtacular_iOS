@@ -280,7 +280,7 @@ const float cPadding = 16.0f;
     RestkitRequest* request = [RestkitRequest new];
     request.requestMethod = RKRequestMethodGET;
     request.path = @"/follow";
-    request.parameters = @{@"tweet_id":_cachedTweet.tweetId};
+    request.parameters = @{@"screen_name":_cachedTweet.userName};
     request.noMappingRequired = true;
     [[ServerWrapper sharedInstance] performRequest:request];
 }
