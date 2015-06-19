@@ -58,7 +58,8 @@
                 });
             }
             
-            if ([absoluteString isEqualToString:@"http://filtacular.com/user/IsaacPaul13"] == false)
+            NSString* expectedResponseUrl = [NSString stringWithFormat:@"http://filtacular.com/user/%@", twitterSession.userName];
+            if ([absoluteString isEqualToString:expectedResponseUrl] == false)
                 return;
         }
     
