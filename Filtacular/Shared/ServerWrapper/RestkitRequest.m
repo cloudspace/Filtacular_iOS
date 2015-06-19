@@ -60,10 +60,21 @@
 }
 
 - (void)performSimpleGETRequest:(RKObjectManager*)objectManager {
-    AFHTTPClient * client = objectManager.HTTPClient;
-    [client getPath:_path parameters:_parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    AFHTTPClient* client = objectManager.HTTPClient;
+    NSMutableURLRequest* request = [client requestWithMethod:@"GET" path:_path parameters:_parameters];
+    if (_customHeaders) {
+        for (NSString* eachKey in request.allHTTPHeaderFields.allKeys) {
+            [request setValue:nil forHTTPHeaderField:eachKey];
+        }
+        [request setAllHTTPHeaderFields:_customHeaders];
+    }
+    
+    AFHTTPRequestOperation *operation = [client HTTPRequestOperationWithRequest:request success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
-        RKMappingResult* result = [[RKMappingResult alloc] initWithDictionary:@{@"simpleResponse":responseObject}];
+        NSDictionary* simpleResponse = @{};
+        if (responseObject)
+            simpleResponse = @{@"simpleResponse":responseObject};
+        RKMappingResult* result = [[RKMappingResult alloc] initWithDictionary:simpleResponse];
         if (_success)
             _success(nil, result);
         
@@ -72,6 +83,7 @@
         if (_failure)
             _failure(nil, error);
     }];
+    [client enqueueHTTPRequestOperation:operation];
 }
 
 - (void)performPOSTRequest:(RKObjectManager*)objectManager {

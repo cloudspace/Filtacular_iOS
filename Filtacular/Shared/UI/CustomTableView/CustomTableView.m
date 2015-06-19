@@ -33,6 +33,7 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     [self setUpTable];
+    [_table setHidden:true];
 }
 
 - (void)setTableViewCellClass:(Class)tableViewCellClass {
@@ -111,6 +112,7 @@
     
     bool hideNoItemsLabel = (_tableData.count != 0);
     [_lblNoItems setHidden:hideNoItemsLabel];
+    [_table setHidden:!hideNoItemsLabel];
     
     [_refreshControl endRefreshing];
     [_activityIndicator stopAnimating];
@@ -127,6 +129,7 @@
     [_smartGroup processUpdates];
     
     [_lblNoItems setHidden:true];
+    [_table setHidden:true];
     [_activityIndicator startAnimating];
 }
 

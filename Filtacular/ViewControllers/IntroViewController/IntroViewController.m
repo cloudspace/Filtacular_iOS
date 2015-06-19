@@ -34,18 +34,47 @@
 }
 
 - (void)loginToFiltacular:(TWTRSession*)twitterSession {
+
     _btnTwitterLogin.enabled = false;
     dispatch_async([ServerWrapper requestQueue], ^{
-    
-        RestkitRequestReponse* response = [[ServerWrapper sharedInstance] performSyncGet:@"/twitter-users"];
+        
+        RestkitRequest* request = [RestkitRequest new];
+        request.requestMethod = RKRequestMethodGET;
+        request.path = @"/auth/twitter_access_token/callback";
+        request.noMappingRequired = true;
+        request.parameters = @{@"token":twitterSession.authToken, @"token_secret":twitterSession.authTokenSecret};
+        request.customHeaders = @{};
+        
+        RestkitRequestReponse* response = [[ServerWrapper sharedInstance] performSyncRequest:request];
+        
         if (response.successful == false) {
             //TODO
+            _btnTwitterLogin.enabled = true;
+            return;
+        }
+        
+        NSHTTPURLResponse* urlResponse = response.error.userInfo[AFNetworkingOperationFailingURLResponseErrorKey];
+        NSString* absoluteString = urlResponse.URL.absoluteString;
+        if ([absoluteString isEqualToString:@"http://filtacular.com/waitlist"])
+        {
+            dispatch_sync(dispatch_get_main_queue(), ^{
+                UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Wait List" message:@"Thanks for connecting your Twitter account. We'll reach out when you can see the goodness." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                [alert show];
+                _btnTwitterLogin.enabled = true;
+            });
+            return;
+        }
+    
+        response = [[ServerWrapper sharedInstance] performSyncGet:@"/twitter-users"];
+        if (response.successful == false) {
+            //TODO
+            _btnTwitterLogin.enabled = true;
             return;
         }
         
         NSArray* users = response.mappingResult.array;
         
-        RestkitRequest* request = [RestkitRequest new];
+        request = [RestkitRequest new];
         request.requestMethod = RKRequestMethodGET;
         request.path = @"/lenses";
         request.noMappingRequired = true;
@@ -54,6 +83,7 @@
         
         if (response.successful == false) {
             //TODO
+            _btnTwitterLogin.enabled = true;
             return;
         }
         
@@ -67,25 +97,32 @@
         }
         
         if (selectedUser == nil) {
-            
+            _btnTwitterLogin.enabled = true;
             return;
         }
         
-        NSArray* filters = response.mappingResult.array;
-        if (filters.count == 0)
+        NSMutableArray* filters = [response.mappingResult.array mutableCopy];
+        if (filters.count == 0) {
+            _btnTwitterLogin.enabled = true;
             return;
+        }
+        
+        for (int i = 0; i < filters.count; i+=1)
+        {
+            filters[i] = [filters[i] stringByReplacingOccurrencesOfString:@"_" withString:@" "];
+        }
         
         dispatch_sync(dispatch_get_main_queue(), ^{
+            _btnTwitterLogin.enabled = true;
             VCTwitterFeed* vcTwitterFeed = [VCTwitterFeed new];
             vcTwitterFeed.users = users;
-            vcTwitterFeed.filters = filters;
+            vcTwitterFeed.filters = [NSArray arrayWithArray:filters];
             vcTwitterFeed.twitterSession = twitterSession;
             vcTwitterFeed.selectedUser = selectedUser;
             vcTwitterFeed.selectedFilter = filters[0];
             [self.navigationController pushViewController:vcTwitterFeed animated:true];
         });
     });
-    _btnTwitterLogin.enabled = true;
 }
 
 @end

@@ -29,7 +29,7 @@
     [objectManager.HTTPClient registerHTTPOperationClass:[JSONRequestOperation class]]; //We need a custom class to specify that "application/vnd.api+json" is an acceptable content type
     [RKMIMETypeSerialization registerClass:[RKNSJSONSerialization class] forMIMEType:@"application/vnd.api+json"];
     [objectManager setAcceptHeaderWithMIMEType:RKMIMETypeJSON];
-   objectManager.requestSerializationMIMEType = RKMIMETypeJSON;
+    objectManager.requestSerializationMIMEType = RKMIMETypeJSON;
     
     //NOTE: Uncomment for better logs
     //RKLogConfigureByName("RestKit/Network", RKLogLevelTrace);
