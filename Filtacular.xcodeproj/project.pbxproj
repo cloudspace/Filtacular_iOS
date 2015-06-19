@@ -44,6 +44,12 @@
 		DF48E8071B2239A600154FC1 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2DDB23D1B1CF8F7004C0A8C /* Fabric.framework */; };
 		DF48E8081B2239A900154FC1 /* TwitterCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2DDB23E1B1CF8F7004C0A8C /* TwitterCore.framework */; };
 		DF48E8091B2239AD00154FC1 /* TwitterKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2DDB23F1B1CF8F7004C0A8C /* TwitterKit.framework */; };
+		DF93444F1B34779600297E38 /* PageLoadingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF93444D1B34779600297E38 /* PageLoadingCell.m */; };
+		DF9344501B34779600297E38 /* PageLoadingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF93444E1B34779600297E38 /* PageLoadingCell.xib */; };
+		DF9344531B34786000297E38 /* LoadingCallBack.m in Sources */ = {isa = PBXBuildFile; fileRef = DF9344521B34786000297E38 /* LoadingCallBack.m */; };
+		DF9344601B3493AB00297E38 /* NSError+URLError.m in Sources */ = {isa = PBXBuildFile; fileRef = DF9344591B3493AB00297E38 /* NSError+URLError.m */; };
+		DF9344611B3493AB00297E38 /* NSObject+Shortcuts.m in Sources */ = {isa = PBXBuildFile; fileRef = DF93445C1B3493AB00297E38 /* NSObject+Shortcuts.m */; };
+		DF9344621B3493AB00297E38 /* UIAlertView+Shortcuts.m in Sources */ = {isa = PBXBuildFile; fileRef = DF93445F1B3493AB00297E38 /* UIAlertView+Shortcuts.m */; };
 		DFF176CF1B1CD21A005095E9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF176C91B1CD21A005095E9 /* AppDelegate.m */; };
 		DFF176D01B1CD21A005095E9 /* APIInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF176CC1B1CD21A005095E9 /* APIInfo.m */; };
 		DFF176D11B1CD21A005095E9 /* RestkitService.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF176CE1B1CD21A005095E9 /* RestkitService.m */; };
@@ -127,6 +133,17 @@
 		DF48E8011B220D7700154FC1 /* JSONRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONRequestOperation.m; sourceTree = "<group>"; };
 		DF48E8041B2218C900154FC1 /* NSDate+SimpleTimeAgo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+SimpleTimeAgo.h"; sourceTree = "<group>"; };
 		DF48E8051B2218C900154FC1 /* NSDate+SimpleTimeAgo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+SimpleTimeAgo.m"; sourceTree = "<group>"; };
+		DF93444C1B34779600297E38 /* PageLoadingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageLoadingCell.h; sourceTree = "<group>"; };
+		DF93444D1B34779600297E38 /* PageLoadingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageLoadingCell.m; sourceTree = "<group>"; };
+		DF93444E1B34779600297E38 /* PageLoadingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PageLoadingCell.xib; sourceTree = "<group>"; };
+		DF9344511B34786000297E38 /* LoadingCallBack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadingCallBack.h; sourceTree = "<group>"; };
+		DF9344521B34786000297E38 /* LoadingCallBack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadingCallBack.m; sourceTree = "<group>"; };
+		DF9344581B3493AB00297E38 /* NSError+URLError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+URLError.h"; sourceTree = "<group>"; };
+		DF9344591B3493AB00297E38 /* NSError+URLError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+URLError.m"; sourceTree = "<group>"; };
+		DF93445B1B3493AB00297E38 /* NSObject+Shortcuts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Shortcuts.h"; sourceTree = "<group>"; };
+		DF93445C1B3493AB00297E38 /* NSObject+Shortcuts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Shortcuts.m"; sourceTree = "<group>"; };
+		DF93445E1B3493AB00297E38 /* UIAlertView+Shortcuts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertView+Shortcuts.h"; sourceTree = "<group>"; };
+		DF93445F1B3493AB00297E38 /* UIAlertView+Shortcuts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertView+Shortcuts.m"; sourceTree = "<group>"; };
 		DFF176C81B1CD21A005095E9 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		DFF176C91B1CD21A005095E9 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		DFF176CB1B1CD21A005095E9 /* APIInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIInfo.h; sourceTree = "<group>"; };
@@ -323,6 +340,9 @@
 		DF48E7D21B1DECD200154FC1 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				DF9344571B3493AB00297E38 /* NSError */,
+				DF93445A1B3493AB00297E38 /* NSObject */,
+				DF93445D1B3493AB00297E38 /* UIAlertView */,
 				DF48E8031B2218A200154FC1 /* NSDate */,
 				DF48E7F71B1F758300154FC1 /* UIImageView */,
 				DF48E7D31B1DED0900154FC1 /* UIView */,
@@ -351,6 +371,7 @@
 		DF48E7DB1B1DF01F00154FC1 /* TableViewCells */ = {
 			isa = PBXGroup;
 			children = (
+				DF93444B1B34777000297E38 /* PageLoadingCell */,
 				DF48E7DC1B1DF04600154FC1 /* TweetCell */,
 			);
 			path = TableViewCells;
@@ -404,6 +425,43 @@
 				DF48E8051B2218C900154FC1 /* NSDate+SimpleTimeAgo.m */,
 			);
 			path = NSDate;
+			sourceTree = "<group>";
+		};
+		DF93444B1B34777000297E38 /* PageLoadingCell */ = {
+			isa = PBXGroup;
+			children = (
+				DF93444C1B34779600297E38 /* PageLoadingCell.h */,
+				DF93444D1B34779600297E38 /* PageLoadingCell.m */,
+				DF93444E1B34779600297E38 /* PageLoadingCell.xib */,
+			);
+			path = PageLoadingCell;
+			sourceTree = "<group>";
+		};
+		DF9344571B3493AB00297E38 /* NSError */ = {
+			isa = PBXGroup;
+			children = (
+				DF9344581B3493AB00297E38 /* NSError+URLError.h */,
+				DF9344591B3493AB00297E38 /* NSError+URLError.m */,
+			);
+			path = NSError;
+			sourceTree = "<group>";
+		};
+		DF93445A1B3493AB00297E38 /* NSObject */ = {
+			isa = PBXGroup;
+			children = (
+				DF93445B1B3493AB00297E38 /* NSObject+Shortcuts.h */,
+				DF93445C1B3493AB00297E38 /* NSObject+Shortcuts.m */,
+			);
+			path = NSObject;
+			sourceTree = "<group>";
+		};
+		DF93445D1B3493AB00297E38 /* UIAlertView */ = {
+			isa = PBXGroup;
+			children = (
+				DF93445E1B3493AB00297E38 /* UIAlertView+Shortcuts.h */,
+				DF93445F1B3493AB00297E38 /* UIAlertView+Shortcuts.m */,
+			);
+			path = UIAlertView;
 			sourceTree = "<group>";
 		};
 		DFF176C71B1CD21A005095E9 /* StartUp */ = {
@@ -476,6 +534,8 @@
 				DF48E7AF1B1CE01900154FC1 /* BaseUnmanagedModel.m */,
 				DF48E7B41B1CE1D400154FC1 /* Tweet.h */,
 				DF48E7B51B1CE1D400154FC1 /* Tweet.m */,
+				DF9344511B34786000297E38 /* LoadingCallBack.h */,
+				DF9344521B34786000297E38 /* LoadingCallBack.m */,
 			);
 			path = Unmanaged;
 			sourceTree = "<group>";
@@ -594,6 +654,7 @@
 				DF48E7E11B1DF06200154FC1 /* TweetCell.xib in Resources */,
 				DF48E7C41B1CF38900154FC1 /* VCTwitterFeed.xib in Resources */,
 				DF17730C1B1CC29B00AD4CA4 /* AppledocSettings.plist in Resources */,
+				DF9344501B34779600297E38 /* PageLoadingCell.xib in Resources */,
 				DF183BAA1B1CAA2B0001DDA4 /* LaunchScreen.xib in Resources */,
 				DF48E7CD1B1DEC0B00154FC1 /* CustomTableView.xib in Resources */,
 				F2DDB2441B1CF8F7004C0A8C /* TwitterKitResources.bundle in Resources */,
@@ -686,6 +747,7 @@
 				DF48E7E81B1DF5A600154FC1 /* MCCSmartGroup.m in Sources */,
 				DF48E8021B220D7700154FC1 /* JSONRequestOperation.m in Sources */,
 				DF48E7CC1B1DEC0B00154FC1 /* CustomTableView.m in Sources */,
+				DF9344611B3493AB00297E38 /* NSObject+Shortcuts.m in Sources */,
 				DF48E7C21B1CF31800154FC1 /* VCTwitterFeed.m in Sources */,
 				DF48E7D61B1DED0900154FC1 /* UIView+Positioning.m in Sources */,
 				DF48E8061B2218C900154FC1 /* NSDate+SimpleTimeAgo.m in Sources */,
@@ -693,6 +755,9 @@
 				DF48E7AC1B1CD70400154FC1 /* ServerWrapper.m in Sources */,
 				DFF176D01B1CD21A005095E9 /* APIInfo.m in Sources */,
 				DF48E7F31B1F499C00154FC1 /* RestkitRequestReponse.m in Sources */,
+				DF93444F1B34779600297E38 /* PageLoadingCell.m in Sources */,
+				DF9344601B3493AB00297E38 /* NSError+URLError.m in Sources */,
+				DF9344531B34786000297E38 /* LoadingCallBack.m in Sources */,
 				DF48E7B61B1CE1D400154FC1 /* Tweet.m in Sources */,
 				DFF176D11B1CD21A005095E9 /* RestkitService.m in Sources */,
 				DF48E7DA1B1DEE1500154FC1 /* IntroViewController.m in Sources */,
@@ -703,6 +768,7 @@
 				DF48E7EE1B1E0E6D00154FC1 /* RootNavigationController.m in Sources */,
 				DF48E7B31B1CE01F00154FC1 /* BaseManagedModel.m in Sources */,
 				DF183B991B1CAA2B0001DDA4 /* main.m in Sources */,
+				DF9344621B3493AB00297E38 /* UIAlertView+Shortcuts.m in Sources */,
 				DF48E7D11B1DEC8700154FC1 /* Widget.m in Sources */,
 				DF48E7E01B1DF06200154FC1 /* TweetCell.m in Sources */,
 			);

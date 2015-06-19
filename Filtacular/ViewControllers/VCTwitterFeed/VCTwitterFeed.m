@@ -9,7 +9,9 @@
 #import "VCTwitterFeed.h"
 #import "CustomTableView.h"
 #import "Tweet.h"
+#import "LoadingCallBack.h"
 #import "TweetCell.h"
+#import "PageLoadingCell.h"
 #import "User.h"
 #import "BasePickerViewAdapter.h"
 #import "ServerWrapper.h"
@@ -28,17 +30,15 @@ typedef void (^animationFinishBlock)(BOOL finished);
 @property (strong, nonatomic) IBOutlet UIButton* filterButton;
 
 @property (strong, nonatomic) UITapGestureRecognizer* tableTapGesture;
-
 @property (strong, nonatomic) NSArray* tableData;
-
 @property (strong, nonatomic) BasePickerViewAdapter* currentPickerAdapter;
+@property (strong, nonatomic) NSOperationQueue* twitterUpdateQueue;
 
 @property (copy, nonatomic) animationFinishBlock onPickerVisible;
 @property (copy, nonatomic) animationFinishBlock onPickerHidden;
-
 @property (copy, nonatomic) void(^onStartPickerShowAnimation)();
 
-@property (strong, nonatomic) NSOperationQueue* twitterUpdateQueue;
+@property (assign, nonatomic) bool canRefresh;
 
 @end
 
@@ -55,10 +55,16 @@ typedef void (^animationFinishBlock)(BOOL finished);
     _twitterUpdateQueue.maxConcurrentOperationCount = 1;
     
     [_table setNoItemText:@"There are no tweets."];
-    [_table setTableViewCellClass:[TweetCell class]];
+    [_table addTableCellClass:[TweetCell class] forDataType:[Tweet class]];
+    [_table addTableCellClass:[PageLoadingCell class] forDataType:[LoadingCallBack class]];
     [_table setSelectObjectBlock:nil];
+    __weak VCTwitterFeed* weakSelf = self;
+    [_table setRefreshCalled:^{
+        VCTwitterFeed* strongSelf = weakSelf;
+        [strongSelf addNewerTweets];
+    }];
     
-    [self updateTweets];
+    [self updateAllTweets];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -66,11 +72,31 @@ typedef void (^animationFinishBlock)(BOOL finished);
     [self.navigationController setNavigationBarHidden:true animated:animated];
 }
 
-- (void)updateTweets {
+- (void)updateAllTweets {
+
+    [_table clearAndWaitForNewData];
+    _tableData = @[];
+    [self fetchTweets:@{} pageDictionary:@{@"number":@(1), @"size":@(10)}];
+}
+
+- (void)addNewerTweets {
+    
+    Tweet* firstTweet = [_tableData objectAtIndex:0];
+    [self fetchTweets:@{@"created_before":firstTweet.tweetCreatedAt} pageDictionary:@{}];
+}
+
+- (void)addMoreTweets {
+    Tweet* lastTweet = [_tableData lastObject];
+    if ([lastTweet isKindOfClass:[LoadingCallBack class]])
+        lastTweet = _tableData[_tableData.count - 2];
+    
+    [self fetchTweets:@{@"created_after":lastTweet.tweetCreatedAt} pageDictionary:@{@"number":@(1), @"size":@(10)}];
+}
+
+- (void)fetchTweets:(NSDictionary*)filterDictionary pageDictionary:(NSDictionary*)pageDic {
     [_twitterUpdateQueue cancelAllOperations];
     [[ServerWrapper sharedInstance] cancelAllRequestOperationsWithMethod:RKRequestMethodGET matchingPathPattern:@"/twitter-users/:userId/tweets"];
     
-    [_table clearAndWaitForNewData];
     NSBlockOperation* twitterUpdater = [[NSBlockOperation alloc] init];
     __weak NSBlockOperation* twitterBlockOp = twitterUpdater;
     [twitterUpdater addExecutionBlock:^{
@@ -78,11 +104,13 @@ typedef void (^animationFinishBlock)(BOOL finished);
             return;
         
         NSString* filter = [_selectedFilter stringByReplacingOccurrencesOfString:@" " withString:@"_"];
+        NSMutableDictionary* filterMod = [filterDictionary mutableCopy];
+        [filterMod setObject:@(1) forKey:filter];
         
         RestkitRequest* request = [RestkitRequest new];
         request.requestMethod = RKRequestMethodGET;
         request.path = [NSString stringWithFormat:@"/twitter-users/%@/tweets", _selectedUser.userId];
-        request.parameters = @{@"filter":@{filter: @(1)}};
+        request.parameters = @{@"filter":filterMod, @"page":pageDic};
         
         RestkitRequestReponse* response = [[ServerWrapper sharedInstance] performSyncRequest:request];
         if (response.successful == false) {
@@ -94,31 +122,14 @@ typedef void (^animationFinishBlock)(BOOL finished);
             return;
         
         NSArray* filtacularTweets = response.mappingResult.array;
-        NSMutableArray* tweetIds = [[NSMutableArray alloc] initWithCapacity:filtacularTweets.count];
-        for (Tweet* eachTweet in filtacularTweets) {
-            [tweetIds addObject:eachTweet.tweetId];
-        }
         
         dispatch_sync(dispatch_get_main_queue(), ^{
             if (twitterBlockOp.cancelled)
                 return;
-            [[[Twitter sharedInstance] APIClient] loadTweetsWithIDs:tweetIds completion:^(NSArray *tweets,  NSError *error) {
-                
-                if (twitterBlockOp.cancelled)
-                    return;
-                
-                for (Tweet* eachTweet in filtacularTweets) {
-                    TWTRTweet* twitterTweet = [eachTweet tweetWithTwitterId:tweets];
-                    if (twitterTweet == nil)
-                        continue;
-                    
-                    [eachTweet configureWithTwitterTweet:twitterTweet];
-                }
-                
-                
-                [self loadTweets:filtacularTweets];
-                
-            }];
+            
+            bool thereMayBeMoreTweets = [pageDic[@"size"] isEqual:@(filtacularTweets.count)];
+            _canRefresh = thereMayBeMoreTweets;
+            [self loadTweets:filtacularTweets];
         });
     }];
     
@@ -126,7 +137,17 @@ typedef void (^animationFinishBlock)(BOOL finished);
 }
 
 - (void)loadTweets:(NSArray*)tweets {
-    self.tableData = [tweets sortedArrayUsingComparator:^NSComparisonResult(Tweet* obj1, Tweet* obj2) {
+    
+    id lastObj = [_tableData lastObject];
+    if ([lastObj isKindOfClass:[LoadingCallBack class]]) {
+        NSRange range;
+        range.location = 0;
+        range.length = _tableData.count - 1;
+        _tableData = [_tableData subarrayWithRange:range];
+    }
+    
+    _tableData = [_tableData arrayByAddingObjectsFromArray:tweets];
+    _tableData = [_tableData sortedArrayUsingComparator:^NSComparisonResult(Tweet* obj1, Tweet* obj2) {
         return [obj2.tweetCreatedAt compare:obj1.tweetCreatedAt];
     }];
     
@@ -155,7 +176,26 @@ typedef void (^animationFinishBlock)(BOOL finished);
         }];
         
     }
-    [_table loadData:tweets];
+    
+    if (_canRefresh)
+    {
+        __weak VCTwitterFeed* weakSelf = self;
+        LoadingCallBack* callbackModel = [LoadingCallBack new];
+        [callbackModel setIsShown:^{
+            VCTwitterFeed* strongSelf = weakSelf;
+            [strongSelf addMoreTweets];
+        }];
+        _tableData = [_tableData arrayByAddingObject:callbackModel];
+    }
+    
+    if (tweets.count > 0) {
+        [_table activateRefreshable];
+    }
+    else {
+        [_table deactivateRefreshable];
+    }
+    
+    [_table loadData:_tableData];
 }
 
 - (void)fakeLoadTweets {
@@ -226,7 +266,7 @@ typedef void (^animationFinishBlock)(BOOL finished);
     
     self.selectedFilter = filter;
     [self.filterButton setTitle:filter forState:UIControlStateNormal];
-    [self updateTweets];
+    [self updateAllTweets];
 }
 
 - (void)onUserSelected:(id) user
@@ -238,7 +278,7 @@ typedef void (^animationFinishBlock)(BOOL finished);
     NSString* userNameText = [[user nickname] stringByReplacingOccurrencesOfString:@"_" withString:@" "];
     userNameText = [userNameText stringByAppendingString:@"'s"];
     [self.userButton setTitle:userNameText forState:UIControlStateNormal];
-    [self updateTweets];
+    [self updateAllTweets];
 }
 
 //TODO: Needed?

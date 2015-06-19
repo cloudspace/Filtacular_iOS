@@ -14,10 +14,12 @@ typedef void(^DidSelectObjectBlock)(id object);
 
 @interface CustomTableView : Widget
 
-@property (strong, nonatomic) Class tableViewCellClass;
 @property (assign, nonatomic) CGFloat tableViewCellHeight;
-@property (strong, nonatomic) UIView* footerView;
+@property (nonatomic, copy) void (^refreshCalled) ();
 
+- (void)activateRefreshable;
+- (void)deactivateRefreshable;
+- (void)addTableCellClass:(Class)theClass forDataType:(Class)dataType;
 - (void)loadData:(NSArray*)data;
 - (void)loadData:(NSArray*)data withNoItemText:(NSString*)noItemText;
 - (void)setSelectObjectBlock:(DidSelectObjectBlock)block;

@@ -11,5 +11,6 @@
 @protocol ConfigurableView <NSObject>
 
 - (void)configureWithObject:(id)object;
+- (CGFloat)calculateHeightWith:(id)object;
 
 @end

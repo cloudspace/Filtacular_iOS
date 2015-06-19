@@ -11,8 +11,13 @@
 #import "ServerWrapper.h"
 
 #import "User.h"
+#import "NSObject+Shortcuts.h"
+#import "NSError+URLError.h"
+#import "UIAlertView+Shortcuts.h"
 
 #import <TwitterKit/TwitterKit.h>
+
+#import <SDWebImageCompat.h>
 
 @interface IntroViewController ()
 
@@ -38,20 +43,30 @@
     _btnTwitterLogin.enabled = false;
     dispatch_async([ServerWrapper requestQueue], ^{
         
+         void(^failureBlock)(RKObjectRequestOperation *operation, NSError *error) = ^(RKObjectRequestOperation *operation, NSError *error) {
+            dispatch_main_sync_safe(^{
+                if (error) {
+                    if ([error isConnectionError])
+                        [UIAlertView showMessage:[error connectionErrorString]];
+                    else
+                        [UIAlertView showError:error];
+                }
+                
+                _btnTwitterLogin.enabled = true;
+            });
+        };
+        
         RestkitRequest* request = [RestkitRequest new];
         request.requestMethod = RKRequestMethodGET;
         request.path = @"/auth/twitter_access_token/callback";
         request.noMappingRequired = true;
         request.parameters = @{@"token":twitterSession.authToken, @"token_secret":twitterSession.authTokenSecret};
         request.customHeaders = @{};
+        request.failure = failureBlock;
         
         RestkitRequestReponse* response = [[ServerWrapper sharedInstance] performSyncRequest:request];
-        
-        if (response.successful == false) {
-            //TODO
-            _btnTwitterLogin.enabled = true;
-            return;
-        }
+//        if (response.successful == false)
+//            return;
         
         NSHTTPURLResponse* urlResponse = response.error.userInfo[AFNetworkingOperationFailingURLResponseErrorKey];
         NSString* absoluteString = urlResponse.URL.absoluteString;
@@ -67,8 +82,7 @@
     
         response = [[ServerWrapper sharedInstance] performSyncGet:@"/twitter-users"];
         if (response.successful == false) {
-            //TODO
-            _btnTwitterLogin.enabled = true;
+            failureBlock(nil, response.error);
             return;
         }
         
@@ -78,14 +92,11 @@
         request.requestMethod = RKRequestMethodGET;
         request.path = @"/lenses";
         request.noMappingRequired = true;
+        request.failure = failureBlock;
         
         response = [[ServerWrapper sharedInstance] performSyncRequest:request];
-        
-        if (response.successful == false) {
-            //TODO
-            _btnTwitterLogin.enabled = true;
+        if (response.successful == false)
             return;
-        }
         
         User* selectedUser;
         for (User* eachUser in users)
@@ -97,13 +108,18 @@
         }
         
         if (selectedUser == nil) {
-            _btnTwitterLogin.enabled = true;
+            NSString* errorMsg = [NSString stringWithFormat:@"Could not find user %@ (%@) in /twitter-users", [twitterSession userID], [twitterSession userName]];
+            failureBlock(nil, [self errorWithCode:0 andLocalizedDescription:errorMsg]);
             return;
         }
         
+        users = [users sortedArrayUsingComparator:^NSComparisonResult(User* obj1, User* obj2) {
+            return [[obj1.nickname lowercaseString] compare:[obj2.nickname lowercaseString]];
+        }];
+        
         NSMutableArray* filters = [response.mappingResult.array mutableCopy];
         if (filters.count == 0) {
-            _btnTwitterLogin.enabled = true;
+            failureBlock(nil, [self errorWithCode:1 andLocalizedDescription:@"No filters returned from the server"]);
             return;
         }
         

@@ -18,7 +18,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *lblNoItems;
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 
-@property (strong, nonatomic) NSString* cellId;
+@property (strong, nonatomic) NSMutableDictionary* tableCellClassForDataType;
 @property (strong, nonatomic) UIRefreshControl* refreshControl;
 @property (strong, nonatomic) UITableViewController* tableViewController;
 @property (strong, nonatomic) NSMutableArray* tableData;
@@ -36,12 +36,11 @@
     [_table setHidden:true];
 }
 
-- (void)setTableViewCellClass:(Class)tableViewCellClass {
-    _tableViewCellClass = tableViewCellClass;
-    UITableViewCell* temp = [_tableViewCellClass createFromNib];
-    [_table setRowHeight:temp.height];
-    self.tableViewCellHeight = temp.height;
-    self.cellId = [NSString stringWithFormat:@"%@Id", NSStringFromClass(_tableViewCellClass)];
+- (void)addTableCellClass:(Class)theClass forDataType:(Class)dataType {
+    if (_tableCellClassForDataType == nil)
+        _tableCellClassForDataType = [NSMutableDictionary new];
+    
+    _tableCellClassForDataType[NSStringFromClass(dataType)] = theClass;
 }
 
 - (void)setNoItemText:(NSString*)noItemText {
@@ -56,7 +55,7 @@
 - (void)setUpTable {
     [_table setRowHeight:_tableViewCellHeight];
     self.refreshControl = [UIRefreshControl new];
-    [_refreshControl addTarget:self action:@selector(refreshCalled) forControlEvents:UIControlEventValueChanged];
+    [_refreshControl addTarget:self action:@selector(userPulledToRefresh) forControlEvents:UIControlEventValueChanged];
     self.tableViewController = [UITableViewController new];
     [_tableViewController setView:_table];
     self.tableData  = [NSMutableArray new];
@@ -74,11 +73,7 @@
     self.smartGroup.viewBlock = ^UIView *(NSInteger index, id data) {
         CustomTableView* strongSelf = weakSelf;
         
-        id cell = nil;
-        cell = (id)[strongSelf.table dequeueReusableCellWithIdentifier:strongSelf.cellId];
-        
-        if (!cell)
-            cell = [strongSelf.tableViewCellClass createFromNib];
+        id cell = [strongSelf cellForObject:data];
         
         [cell configureWithObject:data];
         return cell;
@@ -116,16 +111,10 @@
     
     [_refreshControl endRefreshing];
     [_activityIndicator stopAnimating];
-    
-    if (data.count > 0)
-        [_table setTableFooterView:_footerView];
-    else
-        [_table setTableFooterView:nil];
 }
 
 - (void)clearAndWaitForNewData {
     self.tableData = nil;
-    [_table setTableFooterView:nil];
     [_smartGroup processUpdates];
     
     [_lblNoItems setHidden:true];
@@ -133,8 +122,9 @@
     [_activityIndicator startAnimating];
 }
 
-- (void)refreshCalled {
-    
+- (void)userPulledToRefresh {
+    if (_refreshCalled)
+        _refreshCalled();
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -146,9 +136,23 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     id object = _tableData[indexPath.row];
-    id <ConfigurableView> cell = [_smartGroup viewForRowAtIndex:indexPath.row];
-    [cell configureWithObject:object];
-    return [(UIView*)cell frame].size.height;
+    
+    id cell = [self cellForObject:object];
+    
+    CGFloat height = [cell calculateHeightWith:object];
+    return height;
+}
+
+- (UITableViewCell*)cellForObject:(id)object {
+    id cell = nil;
+    NSString* key = NSStringFromClass([object class]);
+    Class tableViewCellClass = self.tableCellClassForDataType[key];
+    NSString* cellId = [NSString stringWithFormat:@"%@Id", NSStringFromClass(tableViewCellClass)];
+    cell = (id)[self.table dequeueReusableCellWithIdentifier:cellId];
+    
+    if (!cell)
+        cell = [tableViewCellClass createFromNib];
+    return cell;
 }
 
 @end

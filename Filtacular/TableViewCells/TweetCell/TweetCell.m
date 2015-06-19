@@ -99,6 +99,11 @@
     [self repositionSubviewsWithTweet:tweet];
 }
 
+- (CGFloat)calculateHeightWith:(Tweet*)tweet {
+    [self configureWithObject:tweet];
+    return self.height;
+}
+
 - (void)configureBigPic:(Tweet*)tweet {
     _btnBigPic.hidden = false;
     _imgBigPic.hidden = false;
