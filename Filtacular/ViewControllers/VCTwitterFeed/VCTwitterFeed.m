@@ -58,6 +58,7 @@ typedef void (^animationFinishBlock)(BOOL finished);
     [_table addTableCellClass:[TweetCell class] forDataType:[Tweet class]];
     [_table addTableCellClass:[PageLoadingCell class] forDataType:[LoadingCallBack class]];
     [_table setSelectObjectBlock:nil];
+    [_table activateRefreshable];
     __weak VCTwitterFeed* weakSelf = self;
     [_table setRefreshCalled:^{
         VCTwitterFeed* strongSelf = weakSelf;
