@@ -76,7 +76,7 @@ typedef void (^animationFinishBlock)(BOOL finished);
 
     [_table clearAndWaitForNewData];
     _tableData = @[];
-    [self fetchTweets:@{} pageDictionary:@{@"number":@(1), @"size":@(10)}];
+    [self fetchTweets:@{} pageDictionary:@{@"number":@(1), @"size":@(100)}];
 }
 
 - (void)addNewerTweets {
@@ -90,7 +90,7 @@ typedef void (^animationFinishBlock)(BOOL finished);
     if ([lastTweet isKindOfClass:[LoadingCallBack class]])
         lastTweet = _tableData[_tableData.count - 2];
     
-    [self fetchTweets:@{@"created_after":lastTweet.tweetCreatedAt} pageDictionary:@{@"number":@(1), @"size":@(10)}];
+    [self fetchTweets:@{@"created_after":lastTweet.tweetCreatedAt} pageDictionary:@{@"number":@(1), @"size":@(100)}];
 }
 
 - (void)fetchTweets:(NSDictionary*)filterDictionary pageDictionary:(NSDictionary*)pageDic {
