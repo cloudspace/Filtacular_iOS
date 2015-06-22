@@ -81,6 +81,11 @@ typedef void (^animationFinishBlock)(BOOL finished);
 
 - (void)addNewerTweets {
     
+    if (_tableData.count == 0) {
+        [self updateAllTweets];
+        return;
+    }
+    
     Tweet* firstTweet = [_tableData objectAtIndex:0];
     [self fetchTweets:@{@"created_before":firstTweet.tweetCreatedAt} pageDictionary:@{@"number":@(1), @"size":@(1073741823)}];
 }
@@ -187,13 +192,6 @@ typedef void (^animationFinishBlock)(BOOL finished);
             [strongSelf addMoreTweets];
         }];
         _tableData = [_tableData arrayByAddingObject:callbackModel];
-    }
-    
-    if (tweets.count > 0) {
-        [_table activateRefreshable];
-    }
-    else {
-        [_table deactivateRefreshable];
     }
     
     [_table loadData:_tableData];
