@@ -38,6 +38,7 @@
 @property (nonatomic, copy) void (^tappedLink) (NSString* link);
 
 + (Tweet*)generateRandomTweet;
++ (NSArray*)removeDuplicates:(NSArray*)tweets;
 
 - (NSString*)simpleTimeAgo;
 - (NSString*)imageUrl;

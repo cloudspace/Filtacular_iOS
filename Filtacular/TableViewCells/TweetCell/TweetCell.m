@@ -45,6 +45,7 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+    
     _viewBottomBar.distribution = OAStackViewDistributionFillEqually;
     _viewBottomBar.alignment = OAStackViewAlignmentFill;
     _viewBottomBar.axis = UILayoutConstraintAxisHorizontal;
@@ -97,6 +98,11 @@
     }
     
     [self repositionSubviewsWithTweet:tweet];
+}
+
+- (CGFloat)calculateHeightWith:(Tweet*)tweet {
+    [self configureWithObject:tweet];
+    return self.height;
 }
 
 - (void)configureBigPic:(Tweet*)tweet {
