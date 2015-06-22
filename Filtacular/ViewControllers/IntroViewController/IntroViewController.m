@@ -65,8 +65,8 @@
         request.failure = failureBlock;
         
         RestkitRequestReponse* response = [[ServerWrapper sharedInstance] performSyncRequest:request];
-//        if (response.successful == false)
-//            return;
+        if (response.successful == false)
+            return;
         
         NSHTTPURLResponse* urlResponse = response.error.userInfo[AFNetworkingOperationFailingURLResponseErrorKey];
         NSString* absoluteString = urlResponse.URL.absoluteString;
