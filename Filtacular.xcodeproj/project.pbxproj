@@ -50,6 +50,7 @@
 		DF9344601B3493AB00297E38 /* NSError+URLError.m in Sources */ = {isa = PBXBuildFile; fileRef = DF9344591B3493AB00297E38 /* NSError+URLError.m */; };
 		DF9344611B3493AB00297E38 /* NSObject+Shortcuts.m in Sources */ = {isa = PBXBuildFile; fileRef = DF93445C1B3493AB00297E38 /* NSObject+Shortcuts.m */; };
 		DF9344621B3493AB00297E38 /* UIAlertView+Shortcuts.m in Sources */ = {isa = PBXBuildFile; fileRef = DF93445F1B3493AB00297E38 /* UIAlertView+Shortcuts.m */; };
+		DF9344681B38901D00297E38 /* CATransformLayer+HideOpaqueWarning.m in Sources */ = {isa = PBXBuildFile; fileRef = DF9344671B38901D00297E38 /* CATransformLayer+HideOpaqueWarning.m */; };
 		DFF176CF1B1CD21A005095E9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF176C91B1CD21A005095E9 /* AppDelegate.m */; };
 		DFF176D01B1CD21A005095E9 /* APIInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF176CC1B1CD21A005095E9 /* APIInfo.m */; };
 		DFF176D11B1CD21A005095E9 /* RestkitService.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF176CE1B1CD21A005095E9 /* RestkitService.m */; };
@@ -144,6 +145,8 @@
 		DF93445C1B3493AB00297E38 /* NSObject+Shortcuts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Shortcuts.m"; sourceTree = "<group>"; };
 		DF93445E1B3493AB00297E38 /* UIAlertView+Shortcuts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertView+Shortcuts.h"; sourceTree = "<group>"; };
 		DF93445F1B3493AB00297E38 /* UIAlertView+Shortcuts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertView+Shortcuts.m"; sourceTree = "<group>"; };
+		DF9344661B38901D00297E38 /* CATransformLayer+HideOpaqueWarning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CATransformLayer+HideOpaqueWarning.h"; sourceTree = "<group>"; };
+		DF9344671B38901D00297E38 /* CATransformLayer+HideOpaqueWarning.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CATransformLayer+HideOpaqueWarning.m"; sourceTree = "<group>"; };
 		DFF176C81B1CD21A005095E9 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		DFF176C91B1CD21A005095E9 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		DFF176CB1B1CD21A005095E9 /* APIInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIInfo.h; sourceTree = "<group>"; };
@@ -340,6 +343,7 @@
 		DF48E7D21B1DECD200154FC1 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				DF9344651B388FED00297E38 /* CATransformLayer */,
 				DF9344571B3493AB00297E38 /* NSError */,
 				DF93445A1B3493AB00297E38 /* NSObject */,
 				DF93445D1B3493AB00297E38 /* UIAlertView */,
@@ -462,6 +466,15 @@
 				DF93445F1B3493AB00297E38 /* UIAlertView+Shortcuts.m */,
 			);
 			path = UIAlertView;
+			sourceTree = "<group>";
+		};
+		DF9344651B388FED00297E38 /* CATransformLayer */ = {
+			isa = PBXGroup;
+			children = (
+				DF9344661B38901D00297E38 /* CATransformLayer+HideOpaqueWarning.h */,
+				DF9344671B38901D00297E38 /* CATransformLayer+HideOpaqueWarning.m */,
+			);
+			path = CATransformLayer;
 			sourceTree = "<group>";
 		};
 		DFF176C71B1CD21A005095E9 /* StartUp */ = {
@@ -741,6 +754,7 @@
 			files = (
 				DFF176CF1B1CD21A005095E9 /* AppDelegate.m in Sources */,
 				DFFF48491B262084000691B5 /* PickerObject.m in Sources */,
+				DF9344681B38901D00297E38 /* CATransformLayer+HideOpaqueWarning.m in Sources */,
 				DF48E7FA1B1F75B200154FC1 /* UIImageView+SDWebCache.m in Sources */,
 				DF48E7B01B1CE01900154FC1 /* BaseUnmanagedModel.m in Sources */,
 				DFFF48481B262084000691B5 /* BasePickerViewAdapter.m in Sources */,
