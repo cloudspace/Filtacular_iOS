@@ -8,15 +8,60 @@
 
 /* Begin PBXBuildFile section */
 		85026EE1519951E127FB997B /* libPods-FiltacularTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F87BD5DD489DB985D5711B7B /* libPods-FiltacularTests.a */; };
+		DB1BE132AE4A22BF594B8604 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 334450DE7229DC724EF42003 /* libPods.a */; };
 		DF17730C1B1CC29B00AD4CA4 /* AppledocSettings.plist in Resources */ = {isa = PBXBuildFile; fileRef = DF17730B1B1CC29A00AD4CA4 /* AppledocSettings.plist */; };
 		DF183B991B1CAA2B0001DDA4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DF183B981B1CAA2B0001DDA4 /* main.m */; };
-		DF183B9C1B1CAA2B0001DDA4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DF183B9B1B1CAA2B0001DDA4 /* AppDelegate.m */; };
 		DF183B9F1B1CAA2B0001DDA4 /* Filtacular.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DF183B9D1B1CAA2B0001DDA4 /* Filtacular.xcdatamodeld */; };
-		DF183BA21B1CAA2B0001DDA4 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF183BA11B1CAA2B0001DDA4 /* ViewController.m */; };
 		DF183BA51B1CAA2B0001DDA4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF183BA31B1CAA2B0001DDA4 /* Main.storyboard */; };
 		DF183BA71B1CAA2B0001DDA4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DF183BA61B1CAA2B0001DDA4 /* Images.xcassets */; };
 		DF183BAA1B1CAA2B0001DDA4 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF183BA81B1CAA2B0001DDA4 /* LaunchScreen.xib */; };
 		DF183BB61B1CAA2B0001DDA4 /* FiltacularTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DF183BB51B1CAA2B0001DDA4 /* FiltacularTests.m */; };
+		DF48E7AB1B1CD70400154FC1 /* RestkitRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = DF48E7A81B1CD70400154FC1 /* RestkitRequest.m */; };
+		DF48E7AC1B1CD70400154FC1 /* ServerWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = DF48E7AA1B1CD70400154FC1 /* ServerWrapper.m */; };
+		DF48E7B01B1CE01900154FC1 /* BaseUnmanagedModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DF48E7AF1B1CE01900154FC1 /* BaseUnmanagedModel.m */; };
+		DF48E7B31B1CE01F00154FC1 /* BaseManagedModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DF48E7B21B1CE01F00154FC1 /* BaseManagedModel.m */; };
+		DF48E7B61B1CE1D400154FC1 /* Tweet.m in Sources */ = {isa = PBXBuildFile; fileRef = DF48E7B51B1CE1D400154FC1 /* Tweet.m */; };
+		DF48E7BB1B1CE7C700154FC1 /* TweetTest.m in Sources */ = {isa = PBXBuildFile; fileRef = DF48E7BA1B1CE7C700154FC1 /* TweetTest.m */; };
+		DF48E7BC1B1CE7CC00154FC1 /* BaseUnmanagedModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DF48E7AF1B1CE01900154FC1 /* BaseUnmanagedModel.m */; };
+		DF48E7BD1B1CE7D000154FC1 /* Tweet.m in Sources */ = {isa = PBXBuildFile; fileRef = DF48E7B51B1CE1D400154FC1 /* Tweet.m */; };
+		DF48E7C21B1CF31800154FC1 /* VCTwitterFeed.m in Sources */ = {isa = PBXBuildFile; fileRef = DF48E7C11B1CF31800154FC1 /* VCTwitterFeed.m */; };
+		DF48E7C41B1CF38900154FC1 /* VCTwitterFeed.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF48E7C31B1CF38900154FC1 /* VCTwitterFeed.xib */; };
+		DF48E7CC1B1DEC0B00154FC1 /* CustomTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = DF48E7CA1B1DEC0B00154FC1 /* CustomTableView.m */; };
+		DF48E7CD1B1DEC0B00154FC1 /* CustomTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF48E7CB1B1DEC0B00154FC1 /* CustomTableView.xib */; };
+		DF48E7D11B1DEC8700154FC1 /* Widget.m in Sources */ = {isa = PBXBuildFile; fileRef = DF48E7D01B1DEC8700154FC1 /* Widget.m */; };
+		DF48E7D61B1DED0900154FC1 /* UIView+Positioning.m in Sources */ = {isa = PBXBuildFile; fileRef = DF48E7D51B1DED0900154FC1 /* UIView+Positioning.m */; };
+		DF48E7DA1B1DEE1500154FC1 /* IntroViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF48E7D91B1DEE1500154FC1 /* IntroViewController.m */; };
+		DF48E7E01B1DF06200154FC1 /* TweetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF48E7DE1B1DF06200154FC1 /* TweetCell.m */; };
+		DF48E7E11B1DF06200154FC1 /* TweetCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF48E7DF1B1DF06200154FC1 /* TweetCell.xib */; };
+		DF48E7E81B1DF5A600154FC1 /* MCCSmartGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = DF48E7E41B1DF5A600154FC1 /* MCCSmartGroup.m */; };
+		DF48E7E91B1DF5A600154FC1 /* MCCSmartGroupManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DF48E7E61B1DF5A600154FC1 /* MCCSmartGroupManager.m */; };
+		DF48E7EA1B1DF5A600154FC1 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = DF48E7E71B1DF5A600154FC1 /* README.md */; };
+		DF48E7EE1B1E0E6D00154FC1 /* RootNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF48E7ED1B1E0E6D00154FC1 /* RootNavigationController.m */; };
+		DF48E7F31B1F499C00154FC1 /* RestkitRequestReponse.m in Sources */ = {isa = PBXBuildFile; fileRef = DF48E7F21B1F499C00154FC1 /* RestkitRequestReponse.m */; };
+		DF48E7FA1B1F75B200154FC1 /* UIImageView+SDWebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = DF48E7F91B1F75B200154FC1 /* UIImageView+SDWebCache.m */; };
+		DF48E8021B220D7700154FC1 /* JSONRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = DF48E8011B220D7700154FC1 /* JSONRequestOperation.m */; };
+		DF48E8061B2218C900154FC1 /* NSDate+SimpleTimeAgo.m in Sources */ = {isa = PBXBuildFile; fileRef = DF48E8051B2218C900154FC1 /* NSDate+SimpleTimeAgo.m */; };
+		DF48E8071B2239A600154FC1 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2DDB23D1B1CF8F7004C0A8C /* Fabric.framework */; };
+		DF48E8081B2239A900154FC1 /* TwitterCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2DDB23E1B1CF8F7004C0A8C /* TwitterCore.framework */; };
+		DF48E8091B2239AD00154FC1 /* TwitterKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2DDB23F1B1CF8F7004C0A8C /* TwitterKit.framework */; };
+		DF93444F1B34779600297E38 /* PageLoadingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF93444D1B34779600297E38 /* PageLoadingCell.m */; };
+		DF9344501B34779600297E38 /* PageLoadingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF93444E1B34779600297E38 /* PageLoadingCell.xib */; };
+		DF9344531B34786000297E38 /* LoadingCallBack.m in Sources */ = {isa = PBXBuildFile; fileRef = DF9344521B34786000297E38 /* LoadingCallBack.m */; };
+		DF9344601B3493AB00297E38 /* NSError+URLError.m in Sources */ = {isa = PBXBuildFile; fileRef = DF9344591B3493AB00297E38 /* NSError+URLError.m */; };
+		DF9344611B3493AB00297E38 /* NSObject+Shortcuts.m in Sources */ = {isa = PBXBuildFile; fileRef = DF93445C1B3493AB00297E38 /* NSObject+Shortcuts.m */; };
+		DF9344621B3493AB00297E38 /* UIAlertView+Shortcuts.m in Sources */ = {isa = PBXBuildFile; fileRef = DF93445F1B3493AB00297E38 /* UIAlertView+Shortcuts.m */; };
+		DF9344681B38901D00297E38 /* CATransformLayer+HideOpaqueWarning.m in Sources */ = {isa = PBXBuildFile; fileRef = DF9344671B38901D00297E38 /* CATransformLayer+HideOpaqueWarning.m */; };
+		DFF176CF1B1CD21A005095E9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF176C91B1CD21A005095E9 /* AppDelegate.m */; };
+		DFF176D01B1CD21A005095E9 /* APIInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF176CC1B1CD21A005095E9 /* APIInfo.m */; };
+		DFF176D11B1CD21A005095E9 /* RestkitService.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF176CE1B1CD21A005095E9 /* RestkitService.m */; };
+		DFF176D41B1CD242005095E9 /* Filtacular-API.plist in Resources */ = {isa = PBXBuildFile; fileRef = DFF176D31B1CD242005095E9 /* Filtacular-API.plist */; };
+		DFFF48481B262084000691B5 /* BasePickerViewAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = DFFF48451B262084000691B5 /* BasePickerViewAdapter.m */; };
+		DFFF48491B262084000691B5 /* PickerObject.m in Sources */ = {isa = PBXBuildFile; fileRef = DFFF48471B262084000691B5 /* PickerObject.m */; };
+		F24807BF1B1DF1CD009A6310 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = F24807BE1B1DF1CD009A6310 /* User.m */; };
+		F2DDB2411B1CF8F7004C0A8C /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2DDB23D1B1CF8F7004C0A8C /* Fabric.framework */; };
+		F2DDB2421B1CF8F7004C0A8C /* TwitterCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2DDB23E1B1CF8F7004C0A8C /* TwitterCore.framework */; };
+		F2DDB2431B1CF8F7004C0A8C /* TwitterKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2DDB23F1B1CF8F7004C0A8C /* TwitterKit.framework */; };
+		F2DDB2441B1CF8F7004C0A8C /* TwitterKitResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F2DDB2401B1CF8F7004C0A8C /* TwitterKitResources.bundle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,23 +75,95 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		334450DE7229DC724EF42003 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		446A752EC5D9CE5C0F37069A /* Pods-FiltacularTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FiltacularTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FiltacularTests/Pods-FiltacularTests.debug.xcconfig"; sourceTree = "<group>"; };
+		68604422666334DB8E77C8CC /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		B96F0681D71772C68BB0A0E2 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		C20F244065095227C4DD1B2B /* Pods-FiltacularTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FiltacularTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FiltacularTests/Pods-FiltacularTests.release.xcconfig"; sourceTree = "<group>"; };
 		DF17730B1B1CC29A00AD4CA4 /* AppledocSettings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AppledocSettings.plist; sourceTree = "<group>"; };
 		DF183B931B1CAA2B0001DDA4 /* Filtacular.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Filtacular.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF183B971B1CAA2B0001DDA4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DF183B981B1CAA2B0001DDA4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		DF183B9A1B1CAA2B0001DDA4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		DF183B9B1B1CAA2B0001DDA4 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		DF183B9E1B1CAA2B0001DDA4 /* Filtacular.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Filtacular.xcdatamodel; sourceTree = "<group>"; };
-		DF183BA01B1CAA2B0001DDA4 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		DF183BA11B1CAA2B0001DDA4 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		DF183BA41B1CAA2B0001DDA4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DF183BA61B1CAA2B0001DDA4 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		DF183BA91B1CAA2B0001DDA4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		DF183BAF1B1CAA2B0001DDA4 /* FiltacularTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FiltacularTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF183BB41B1CAA2B0001DDA4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DF183BB51B1CAA2B0001DDA4 /* FiltacularTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FiltacularTests.m; sourceTree = "<group>"; };
+		DF48E7A71B1CD70400154FC1 /* RestkitRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestkitRequest.h; sourceTree = "<group>"; };
+		DF48E7A81B1CD70400154FC1 /* RestkitRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestkitRequest.m; sourceTree = "<group>"; };
+		DF48E7A91B1CD70400154FC1 /* ServerWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerWrapper.h; sourceTree = "<group>"; };
+		DF48E7AA1B1CD70400154FC1 /* ServerWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerWrapper.m; sourceTree = "<group>"; };
+		DF48E7AE1B1CE01900154FC1 /* BaseUnmanagedModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseUnmanagedModel.h; sourceTree = "<group>"; };
+		DF48E7AF1B1CE01900154FC1 /* BaseUnmanagedModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseUnmanagedModel.m; sourceTree = "<group>"; };
+		DF48E7B11B1CE01F00154FC1 /* BaseManagedModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseManagedModel.h; sourceTree = "<group>"; };
+		DF48E7B21B1CE01F00154FC1 /* BaseManagedModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseManagedModel.m; sourceTree = "<group>"; };
+		DF48E7B41B1CE1D400154FC1 /* Tweet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tweet.h; sourceTree = "<group>"; };
+		DF48E7B51B1CE1D400154FC1 /* Tweet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tweet.m; sourceTree = "<group>"; };
+		DF48E7B91B1CE7C700154FC1 /* TweetTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweetTest.h; sourceTree = "<group>"; };
+		DF48E7BA1B1CE7C700154FC1 /* TweetTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweetTest.m; sourceTree = "<group>"; };
+		DF48E7C01B1CF31800154FC1 /* VCTwitterFeed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VCTwitterFeed.h; sourceTree = "<group>"; };
+		DF48E7C11B1CF31800154FC1 /* VCTwitterFeed.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VCTwitterFeed.m; sourceTree = "<group>"; wrapsLines = 0; };
+		DF48E7C31B1CF38900154FC1 /* VCTwitterFeed.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VCTwitterFeed.xib; sourceTree = "<group>"; };
+		DF48E7C71B1DEC0B00154FC1 /* ConfigurableViewProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigurableViewProtocol.h; sourceTree = "<group>"; };
+		DF48E7C91B1DEC0B00154FC1 /* CustomTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomTableView.h; sourceTree = "<group>"; };
+		DF48E7CA1B1DEC0B00154FC1 /* CustomTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomTableView.m; sourceTree = "<group>"; };
+		DF48E7CB1B1DEC0B00154FC1 /* CustomTableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomTableView.xib; sourceTree = "<group>"; };
+		DF48E7CF1B1DEC8700154FC1 /* Widget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Widget.h; sourceTree = "<group>"; };
+		DF48E7D01B1DEC8700154FC1 /* Widget.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Widget.m; sourceTree = "<group>"; };
+		DF48E7D41B1DED0900154FC1 /* UIView+Positioning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Positioning.h"; sourceTree = "<group>"; };
+		DF48E7D51B1DED0900154FC1 /* UIView+Positioning.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Positioning.m"; sourceTree = "<group>"; };
+		DF48E7D81B1DEE1500154FC1 /* IntroViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroViewController.h; sourceTree = "<group>"; };
+		DF48E7D91B1DEE1500154FC1 /* IntroViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntroViewController.m; sourceTree = "<group>"; };
+		DF48E7DD1B1DF06200154FC1 /* TweetCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweetCell.h; sourceTree = "<group>"; };
+		DF48E7DE1B1DF06200154FC1 /* TweetCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweetCell.m; sourceTree = "<group>"; };
+		DF48E7DF1B1DF06200154FC1 /* TweetCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TweetCell.xib; sourceTree = "<group>"; };
+		DF48E7E31B1DF5A600154FC1 /* MCCSmartGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCCSmartGroup.h; sourceTree = "<group>"; };
+		DF48E7E41B1DF5A600154FC1 /* MCCSmartGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCCSmartGroup.m; sourceTree = "<group>"; };
+		DF48E7E51B1DF5A600154FC1 /* MCCSmartGroupManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCCSmartGroupManager.h; sourceTree = "<group>"; };
+		DF48E7E61B1DF5A600154FC1 /* MCCSmartGroupManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCCSmartGroupManager.m; sourceTree = "<group>"; };
+		DF48E7E71B1DF5A600154FC1 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		DF48E7EC1B1E0E6D00154FC1 /* RootNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootNavigationController.h; sourceTree = "<group>"; };
+		DF48E7ED1B1E0E6D00154FC1 /* RootNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootNavigationController.m; sourceTree = "<group>"; };
+		DF48E7F11B1F499C00154FC1 /* RestkitRequestReponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestkitRequestReponse.h; sourceTree = "<group>"; };
+		DF48E7F21B1F499C00154FC1 /* RestkitRequestReponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestkitRequestReponse.m; sourceTree = "<group>"; };
+		DF48E7F81B1F75B200154FC1 /* UIImageView+SDWebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+SDWebCache.h"; sourceTree = "<group>"; };
+		DF48E7F91B1F75B200154FC1 /* UIImageView+SDWebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+SDWebCache.m"; sourceTree = "<group>"; };
+		DF48E8001B220D7700154FC1 /* JSONRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONRequestOperation.h; sourceTree = "<group>"; };
+		DF48E8011B220D7700154FC1 /* JSONRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONRequestOperation.m; sourceTree = "<group>"; };
+		DF48E8041B2218C900154FC1 /* NSDate+SimpleTimeAgo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+SimpleTimeAgo.h"; sourceTree = "<group>"; };
+		DF48E8051B2218C900154FC1 /* NSDate+SimpleTimeAgo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+SimpleTimeAgo.m"; sourceTree = "<group>"; };
+		DF93444C1B34779600297E38 /* PageLoadingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageLoadingCell.h; sourceTree = "<group>"; };
+		DF93444D1B34779600297E38 /* PageLoadingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageLoadingCell.m; sourceTree = "<group>"; };
+		DF93444E1B34779600297E38 /* PageLoadingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PageLoadingCell.xib; sourceTree = "<group>"; };
+		DF9344511B34786000297E38 /* LoadingCallBack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadingCallBack.h; sourceTree = "<group>"; };
+		DF9344521B34786000297E38 /* LoadingCallBack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadingCallBack.m; sourceTree = "<group>"; };
+		DF9344581B3493AB00297E38 /* NSError+URLError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+URLError.h"; sourceTree = "<group>"; };
+		DF9344591B3493AB00297E38 /* NSError+URLError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+URLError.m"; sourceTree = "<group>"; };
+		DF93445B1B3493AB00297E38 /* NSObject+Shortcuts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Shortcuts.h"; sourceTree = "<group>"; };
+		DF93445C1B3493AB00297E38 /* NSObject+Shortcuts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Shortcuts.m"; sourceTree = "<group>"; };
+		DF93445E1B3493AB00297E38 /* UIAlertView+Shortcuts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertView+Shortcuts.h"; sourceTree = "<group>"; };
+		DF93445F1B3493AB00297E38 /* UIAlertView+Shortcuts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertView+Shortcuts.m"; sourceTree = "<group>"; };
+		DF9344661B38901D00297E38 /* CATransformLayer+HideOpaqueWarning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CATransformLayer+HideOpaqueWarning.h"; sourceTree = "<group>"; };
+		DF9344671B38901D00297E38 /* CATransformLayer+HideOpaqueWarning.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CATransformLayer+HideOpaqueWarning.m"; sourceTree = "<group>"; };
+		DFF176C81B1CD21A005095E9 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		DFF176C91B1CD21A005095E9 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		DFF176CB1B1CD21A005095E9 /* APIInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIInfo.h; sourceTree = "<group>"; };
+		DFF176CC1B1CD21A005095E9 /* APIInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIInfo.m; sourceTree = "<group>"; };
+		DFF176CD1B1CD21A005095E9 /* RestkitService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestkitService.h; sourceTree = "<group>"; };
+		DFF176CE1B1CD21A005095E9 /* RestkitService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestkitService.m; sourceTree = "<group>"; };
+		DFF176D31B1CD242005095E9 /* Filtacular-API.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Filtacular-API.plist"; sourceTree = "<group>"; };
+		DFFF48441B262084000691B5 /* BasePickerViewAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasePickerViewAdapter.h; sourceTree = "<group>"; };
+		DFFF48451B262084000691B5 /* BasePickerViewAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BasePickerViewAdapter.m; sourceTree = "<group>"; };
+		DFFF48461B262084000691B5 /* PickerObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickerObject.h; sourceTree = "<group>"; };
+		DFFF48471B262084000691B5 /* PickerObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickerObject.m; sourceTree = "<group>"; };
+		F24807BD1B1DF1CD009A6310 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		F24807BE1B1DF1CD009A6310 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		F2DDB23D1B1CF8F7004C0A8C /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fabric.framework; path = Filtacular/ThirdParty/Fabric.framework; sourceTree = "<group>"; };
+		F2DDB23E1B1CF8F7004C0A8C /* TwitterCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TwitterCore.framework; path = Filtacular/ThirdParty/TwitterCore.framework; sourceTree = "<group>"; };
+		F2DDB23F1B1CF8F7004C0A8C /* TwitterKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TwitterKit.framework; path = Filtacular/ThirdParty/TwitterKit.framework; sourceTree = "<group>"; };
+		F2DDB2401B1CF8F7004C0A8C /* TwitterKitResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = TwitterKitResources.bundle; path = Filtacular/ThirdParty/TwitterKitResources.bundle; sourceTree = "<group>"; };
 		F87BD5DD489DB985D5711B7B /* libPods-FiltacularTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FiltacularTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -55,6 +172,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DB1BE132AE4A22BF594B8604 /* libPods.a in Frameworks */,
+				F2DDB2421B1CF8F7004C0A8C /* TwitterCore.framework in Frameworks */,
+				F2DDB2411B1CF8F7004C0A8C /* Fabric.framework in Frameworks */,
+				F2DDB2431B1CF8F7004C0A8C /* TwitterKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +184,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				85026EE1519951E127FB997B /* libPods-FiltacularTests.a in Frameworks */,
+				DF48E8081B2239A900154FC1 /* TwitterCore.framework in Frameworks */,
+				DF48E8071B2239A600154FC1 /* Fabric.framework in Frameworks */,
+				DF48E8091B2239AD00154FC1 /* TwitterKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,6 +198,8 @@
 			children = (
 				446A752EC5D9CE5C0F37069A /* Pods-FiltacularTests.debug.xcconfig */,
 				C20F244065095227C4DD1B2B /* Pods-FiltacularTests.release.xcconfig */,
+				B96F0681D71772C68BB0A0E2 /* Pods.debug.xcconfig */,
+				68604422666334DB8E77C8CC /* Pods.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -101,14 +227,13 @@
 		DF183B951B1CAA2B0001DDA4 /* Filtacular */ = {
 			isa = PBXGroup;
 			children = (
-				DF183B9A1B1CAA2B0001DDA4 /* AppDelegate.h */,
-				DF183B9B1B1CAA2B0001DDA4 /* AppDelegate.m */,
-				DF183BA01B1CAA2B0001DDA4 /* ViewController.h */,
-				DF183BA11B1CAA2B0001DDA4 /* ViewController.m */,
+				DFF176C71B1CD21A005095E9 /* StartUp */,
+				DFF176D61B1CD555005095E9 /* Shared */,
+				DF48E7BE1B1CF29200154FC1 /* ViewControllers */,
+				DF48E7DB1B1DF01F00154FC1 /* TableViewCells */,
 				DF183BA31B1CAA2B0001DDA4 /* Main.storyboard */,
 				DF183BA61B1CAA2B0001DDA4 /* Images.xcassets */,
 				DF183BA81B1CAA2B0001DDA4 /* LaunchScreen.xib */,
-				DF183B9D1B1CAA2B0001DDA4 /* Filtacular.xcdatamodeld */,
 				DF183B961B1CAA2B0001DDA4 /* Supporting Files */,
 			);
 			path = Filtacular;
@@ -117,6 +242,7 @@
 		DF183B961B1CAA2B0001DDA4 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				DFF176D21B1CD242005095E9 /* APIConfigurations */,
 				DF17730B1B1CC29A00AD4CA4 /* AppledocSettings.plist */,
 				DF183B971B1CAA2B0001DDA4 /* Info.plist */,
 				DF183B981B1CAA2B0001DDA4 /* main.m */,
@@ -129,6 +255,8 @@
 			children = (
 				DF183BB51B1CAA2B0001DDA4 /* FiltacularTests.m */,
 				DF183BB31B1CAA2B0001DDA4 /* Supporting Files */,
+				DF48E7B91B1CE7C700154FC1 /* TweetTest.h */,
+				DF48E7BA1B1CE7C700154FC1 /* TweetTest.m */,
 			);
 			path = FiltacularTests;
 			sourceTree = "<group>";
@@ -141,10 +269,311 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		DF48E7A61B1CD70400154FC1 /* ServerWrapper */ = {
+			isa = PBXGroup;
+			children = (
+				DF48E7A71B1CD70400154FC1 /* RestkitRequest.h */,
+				DF48E7A81B1CD70400154FC1 /* RestkitRequest.m */,
+				DF48E7A91B1CD70400154FC1 /* ServerWrapper.h */,
+				DF48E7AA1B1CD70400154FC1 /* ServerWrapper.m */,
+				DF48E7F11B1F499C00154FC1 /* RestkitRequestReponse.h */,
+				DF48E7F21B1F499C00154FC1 /* RestkitRequestReponse.m */,
+			);
+			path = ServerWrapper;
+			sourceTree = "<group>";
+		};
+		DF48E7BE1B1CF29200154FC1 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				DF48E7EB1B1E0E4100154FC1 /* RootNavigationController */,
+				DF48E7D71B1DEDE700154FC1 /* IntroViewController */,
+				DF48E7BF1B1CF2B900154FC1 /* VCTwitterFeed */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		DF48E7BF1B1CF2B900154FC1 /* VCTwitterFeed */ = {
+			isa = PBXGroup;
+			children = (
+				DF48E7C01B1CF31800154FC1 /* VCTwitterFeed.h */,
+				DF48E7C11B1CF31800154FC1 /* VCTwitterFeed.m */,
+				DF48E7C31B1CF38900154FC1 /* VCTwitterFeed.xib */,
+			);
+			path = VCTwitterFeed;
+			sourceTree = "<group>";
+		};
+		DF48E7C51B1DEC0B00154FC1 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				DFFF48431B262084000691B5 /* PickerView */,
+				DF48E7C61B1DEC0B00154FC1 /* ConfigurableViewProtocol */,
+				DF48E7C81B1DEC0B00154FC1 /* CustomTableView */,
+				DF48E7CE1B1DEC8700154FC1 /* Widget */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		DF48E7C61B1DEC0B00154FC1 /* ConfigurableViewProtocol */ = {
+			isa = PBXGroup;
+			children = (
+				DF48E7C71B1DEC0B00154FC1 /* ConfigurableViewProtocol.h */,
+			);
+			path = ConfigurableViewProtocol;
+			sourceTree = "<group>";
+		};
+		DF48E7C81B1DEC0B00154FC1 /* CustomTableView */ = {
+			isa = PBXGroup;
+			children = (
+				DF48E7C91B1DEC0B00154FC1 /* CustomTableView.h */,
+				DF48E7CA1B1DEC0B00154FC1 /* CustomTableView.m */,
+				DF48E7CB1B1DEC0B00154FC1 /* CustomTableView.xib */,
+			);
+			path = CustomTableView;
+			sourceTree = "<group>";
+		};
+		DF48E7CE1B1DEC8700154FC1 /* Widget */ = {
+			isa = PBXGroup;
+			children = (
+				DF48E7CF1B1DEC8700154FC1 /* Widget.h */,
+				DF48E7D01B1DEC8700154FC1 /* Widget.m */,
+			);
+			path = Widget;
+			sourceTree = "<group>";
+		};
+		DF48E7D21B1DECD200154FC1 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				DF9344651B388FED00297E38 /* CATransformLayer */,
+				DF9344571B3493AB00297E38 /* NSError */,
+				DF93445A1B3493AB00297E38 /* NSObject */,
+				DF93445D1B3493AB00297E38 /* UIAlertView */,
+				DF48E8031B2218A200154FC1 /* NSDate */,
+				DF48E7F71B1F758300154FC1 /* UIImageView */,
+				DF48E7D31B1DED0900154FC1 /* UIView */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
+		DF48E7D31B1DED0900154FC1 /* UIView */ = {
+			isa = PBXGroup;
+			children = (
+				DF48E7D41B1DED0900154FC1 /* UIView+Positioning.h */,
+				DF48E7D51B1DED0900154FC1 /* UIView+Positioning.m */,
+			);
+			path = UIView;
+			sourceTree = "<group>";
+		};
+		DF48E7D71B1DEDE700154FC1 /* IntroViewController */ = {
+			isa = PBXGroup;
+			children = (
+				DF48E7D81B1DEE1500154FC1 /* IntroViewController.h */,
+				DF48E7D91B1DEE1500154FC1 /* IntroViewController.m */,
+			);
+			path = IntroViewController;
+			sourceTree = "<group>";
+		};
+		DF48E7DB1B1DF01F00154FC1 /* TableViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				DF93444B1B34777000297E38 /* PageLoadingCell */,
+				DF48E7DC1B1DF04600154FC1 /* TweetCell */,
+			);
+			path = TableViewCells;
+			sourceTree = "<group>";
+		};
+		DF48E7DC1B1DF04600154FC1 /* TweetCell */ = {
+			isa = PBXGroup;
+			children = (
+				DF48E7DD1B1DF06200154FC1 /* TweetCell.h */,
+				DF48E7DE1B1DF06200154FC1 /* TweetCell.m */,
+				DF48E7DF1B1DF06200154FC1 /* TweetCell.xib */,
+			);
+			path = TweetCell;
+			sourceTree = "<group>";
+		};
+		DF48E7E21B1DF5A600154FC1 /* MCCSmartGroups */ = {
+			isa = PBXGroup;
+			children = (
+				DF48E7E31B1DF5A600154FC1 /* MCCSmartGroup.h */,
+				DF48E7E41B1DF5A600154FC1 /* MCCSmartGroup.m */,
+				DF48E7E51B1DF5A600154FC1 /* MCCSmartGroupManager.h */,
+				DF48E7E61B1DF5A600154FC1 /* MCCSmartGroupManager.m */,
+				DF48E7E71B1DF5A600154FC1 /* README.md */,
+			);
+			name = MCCSmartGroups;
+			path = Filtacular/ThirdParty/MCCSmartGroups;
+			sourceTree = "<group>";
+		};
+		DF48E7EB1B1E0E4100154FC1 /* RootNavigationController */ = {
+			isa = PBXGroup;
+			children = (
+				DF48E7EC1B1E0E6D00154FC1 /* RootNavigationController.h */,
+				DF48E7ED1B1E0E6D00154FC1 /* RootNavigationController.m */,
+			);
+			path = RootNavigationController;
+			sourceTree = "<group>";
+		};
+		DF48E7F71B1F758300154FC1 /* UIImageView */ = {
+			isa = PBXGroup;
+			children = (
+				DF48E7F81B1F75B200154FC1 /* UIImageView+SDWebCache.h */,
+				DF48E7F91B1F75B200154FC1 /* UIImageView+SDWebCache.m */,
+			);
+			path = UIImageView;
+			sourceTree = "<group>";
+		};
+		DF48E8031B2218A200154FC1 /* NSDate */ = {
+			isa = PBXGroup;
+			children = (
+				DF48E8041B2218C900154FC1 /* NSDate+SimpleTimeAgo.h */,
+				DF48E8051B2218C900154FC1 /* NSDate+SimpleTimeAgo.m */,
+			);
+			path = NSDate;
+			sourceTree = "<group>";
+		};
+		DF93444B1B34777000297E38 /* PageLoadingCell */ = {
+			isa = PBXGroup;
+			children = (
+				DF93444C1B34779600297E38 /* PageLoadingCell.h */,
+				DF93444D1B34779600297E38 /* PageLoadingCell.m */,
+				DF93444E1B34779600297E38 /* PageLoadingCell.xib */,
+			);
+			path = PageLoadingCell;
+			sourceTree = "<group>";
+		};
+		DF9344571B3493AB00297E38 /* NSError */ = {
+			isa = PBXGroup;
+			children = (
+				DF9344581B3493AB00297E38 /* NSError+URLError.h */,
+				DF9344591B3493AB00297E38 /* NSError+URLError.m */,
+			);
+			path = NSError;
+			sourceTree = "<group>";
+		};
+		DF93445A1B3493AB00297E38 /* NSObject */ = {
+			isa = PBXGroup;
+			children = (
+				DF93445B1B3493AB00297E38 /* NSObject+Shortcuts.h */,
+				DF93445C1B3493AB00297E38 /* NSObject+Shortcuts.m */,
+			);
+			path = NSObject;
+			sourceTree = "<group>";
+		};
+		DF93445D1B3493AB00297E38 /* UIAlertView */ = {
+			isa = PBXGroup;
+			children = (
+				DF93445E1B3493AB00297E38 /* UIAlertView+Shortcuts.h */,
+				DF93445F1B3493AB00297E38 /* UIAlertView+Shortcuts.m */,
+			);
+			path = UIAlertView;
+			sourceTree = "<group>";
+		};
+		DF9344651B388FED00297E38 /* CATransformLayer */ = {
+			isa = PBXGroup;
+			children = (
+				DF9344661B38901D00297E38 /* CATransformLayer+HideOpaqueWarning.h */,
+				DF9344671B38901D00297E38 /* CATransformLayer+HideOpaqueWarning.m */,
+			);
+			path = CATransformLayer;
+			sourceTree = "<group>";
+		};
+		DFF176C71B1CD21A005095E9 /* StartUp */ = {
+			isa = PBXGroup;
+			children = (
+				DFF176C81B1CD21A005095E9 /* AppDelegate.h */,
+				DFF176C91B1CD21A005095E9 /* AppDelegate.m */,
+				DFF176CA1B1CD21A005095E9 /* RestkitService */,
+			);
+			path = StartUp;
+			sourceTree = "<group>";
+		};
+		DFF176CA1B1CD21A005095E9 /* RestkitService */ = {
+			isa = PBXGroup;
+			children = (
+				DFF176CB1B1CD21A005095E9 /* APIInfo.h */,
+				DFF176CC1B1CD21A005095E9 /* APIInfo.m */,
+				DFF176CD1B1CD21A005095E9 /* RestkitService.h */,
+				DFF176CE1B1CD21A005095E9 /* RestkitService.m */,
+				DF48E8001B220D7700154FC1 /* JSONRequestOperation.h */,
+				DF48E8011B220D7700154FC1 /* JSONRequestOperation.m */,
+			);
+			path = RestkitService;
+			sourceTree = "<group>";
+		};
+		DFF176D21B1CD242005095E9 /* APIConfigurations */ = {
+			isa = PBXGroup;
+			children = (
+				DFF176D31B1CD242005095E9 /* Filtacular-API.plist */,
+			);
+			path = APIConfigurations;
+			sourceTree = "<group>";
+		};
+		DFF176D61B1CD555005095E9 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				DF48E7D21B1DECD200154FC1 /* Categories */,
+				DF48E7C51B1DEC0B00154FC1 /* UI */,
+				DFF176D71B1CD555005095E9 /* DataModels */,
+				DF48E7A61B1CD70400154FC1 /* ServerWrapper */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		DFF176D71B1CD555005095E9 /* DataModels */ = {
+			isa = PBXGroup;
+			children = (
+				DFF176D81B1CD555005095E9 /* Managed */,
+				DFF176DA1B1CD555005095E9 /* Unmanaged */,
+			);
+			path = DataModels;
+			sourceTree = "<group>";
+		};
+		DFF176D81B1CD555005095E9 /* Managed */ = {
+			isa = PBXGroup;
+			children = (
+				DF183B9D1B1CAA2B0001DDA4 /* Filtacular.xcdatamodeld */,
+				DF48E7B11B1CE01F00154FC1 /* BaseManagedModel.h */,
+				DF48E7B21B1CE01F00154FC1 /* BaseManagedModel.m */,
+				F24807BD1B1DF1CD009A6310 /* User.h */,
+				F24807BE1B1DF1CD009A6310 /* User.m */,
+			);
+			path = Managed;
+			sourceTree = "<group>";
+		};
+		DFF176DA1B1CD555005095E9 /* Unmanaged */ = {
+			isa = PBXGroup;
+			children = (
+				DF48E7AE1B1CE01900154FC1 /* BaseUnmanagedModel.h */,
+				DF48E7AF1B1CE01900154FC1 /* BaseUnmanagedModel.m */,
+				DF48E7B41B1CE1D400154FC1 /* Tweet.h */,
+				DF48E7B51B1CE1D400154FC1 /* Tweet.m */,
+				DF9344511B34786000297E38 /* LoadingCallBack.h */,
+				DF9344521B34786000297E38 /* LoadingCallBack.m */,
+			);
+			path = Unmanaged;
+			sourceTree = "<group>";
+		};
+		DFFF48431B262084000691B5 /* PickerView */ = {
+			isa = PBXGroup;
+			children = (
+				DFFF48441B262084000691B5 /* BasePickerViewAdapter.h */,
+				DFFF48451B262084000691B5 /* BasePickerViewAdapter.m */,
+				DFFF48461B262084000691B5 /* PickerObject.h */,
+				DFFF48471B262084000691B5 /* PickerObject.m */,
+			);
+			path = PickerView;
+			sourceTree = "<group>";
+		};
 		F9FE532600B8A1C56C214958 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DF48E7E21B1DF5A600154FC1 /* MCCSmartGroups */,
+				F2DDB23D1B1CF8F7004C0A8C /* Fabric.framework */,
+				F2DDB23E1B1CF8F7004C0A8C /* TwitterCore.framework */,
+				F2DDB23F1B1CF8F7004C0A8C /* TwitterKit.framework */,
+				F2DDB2401B1CF8F7004C0A8C /* TwitterKitResources.bundle */,
 				F87BD5DD489DB985D5711B7B /* libPods-FiltacularTests.a */,
+				334450DE7229DC724EF42003 /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -156,9 +585,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DF183BB91B1CAA2B0001DDA4 /* Build configuration list for PBXNativeTarget "Filtacular" */;
 			buildPhases = (
+				51F3A23ED69448BD1AEBECFE /* Check Pods Manifest.lock */,
 				DF183B8F1B1CAA2B0001DDA4 /* Sources */,
 				DF183B901B1CAA2B0001DDA4 /* Frameworks */,
 				DF183B911B1CAA2B0001DDA4 /* Resources */,
+				7DF6BDBBC0A12F305B5A3B71 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -231,9 +662,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DFF176D41B1CD242005095E9 /* Filtacular-API.plist in Resources */,
 				DF183BA51B1CAA2B0001DDA4 /* Main.storyboard in Resources */,
+				DF48E7E11B1DF06200154FC1 /* TweetCell.xib in Resources */,
+				DF48E7C41B1CF38900154FC1 /* VCTwitterFeed.xib in Resources */,
 				DF17730C1B1CC29B00AD4CA4 /* AppledocSettings.plist in Resources */,
+				DF9344501B34779600297E38 /* PageLoadingCell.xib in Resources */,
 				DF183BAA1B1CAA2B0001DDA4 /* LaunchScreen.xib in Resources */,
+				DF48E7CD1B1DEC0B00154FC1 /* CustomTableView.xib in Resources */,
+				F2DDB2441B1CF8F7004C0A8C /* TwitterKitResources.bundle in Resources */,
 				DF183BA71B1CAA2B0001DDA4 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -248,6 +685,36 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		51F3A23ED69448BD1AEBECFE /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		7DF6BDBBC0A12F305B5A3B71 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		C5DC01DBF7DBEBB44E3DB3AE /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -285,10 +752,39 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DF183B9C1B1CAA2B0001DDA4 /* AppDelegate.m in Sources */,
+				DFF176CF1B1CD21A005095E9 /* AppDelegate.m in Sources */,
+				DFFF48491B262084000691B5 /* PickerObject.m in Sources */,
+				DF9344681B38901D00297E38 /* CATransformLayer+HideOpaqueWarning.m in Sources */,
+				DF48E7FA1B1F75B200154FC1 /* UIImageView+SDWebCache.m in Sources */,
+				DF48E7B01B1CE01900154FC1 /* BaseUnmanagedModel.m in Sources */,
+				DFFF48481B262084000691B5 /* BasePickerViewAdapter.m in Sources */,
+				DF48E7E81B1DF5A600154FC1 /* MCCSmartGroup.m in Sources */,
+				DF48E8021B220D7700154FC1 /* JSONRequestOperation.m in Sources */,
+				DF48E7CC1B1DEC0B00154FC1 /* CustomTableView.m in Sources */,
+				DF9344611B3493AB00297E38 /* NSObject+Shortcuts.m in Sources */,
+				DF48E7C21B1CF31800154FC1 /* VCTwitterFeed.m in Sources */,
+				DF48E7D61B1DED0900154FC1 /* UIView+Positioning.m in Sources */,
+				DF48E8061B2218C900154FC1 /* NSDate+SimpleTimeAgo.m in Sources */,
+				DF48E7AB1B1CD70400154FC1 /* RestkitRequest.m in Sources */,
+				DF48E7AC1B1CD70400154FC1 /* ServerWrapper.m in Sources */,
+				DFF176D01B1CD21A005095E9 /* APIInfo.m in Sources */,
+				DF48E7F31B1F499C00154FC1 /* RestkitRequestReponse.m in Sources */,
+				DF93444F1B34779600297E38 /* PageLoadingCell.m in Sources */,
+				DF9344601B3493AB00297E38 /* NSError+URLError.m in Sources */,
+				DF9344531B34786000297E38 /* LoadingCallBack.m in Sources */,
+				DF48E7B61B1CE1D400154FC1 /* Tweet.m in Sources */,
+				DFF176D11B1CD21A005095E9 /* RestkitService.m in Sources */,
+				DF48E7DA1B1DEE1500154FC1 /* IntroViewController.m in Sources */,
+				F24807BF1B1DF1CD009A6310 /* User.m in Sources */,
 				DF183B9F1B1CAA2B0001DDA4 /* Filtacular.xcdatamodeld in Sources */,
-				DF183BA21B1CAA2B0001DDA4 /* ViewController.m in Sources */,
+				DF48E7EA1B1DF5A600154FC1 /* README.md in Sources */,
+				DF48E7E91B1DF5A600154FC1 /* MCCSmartGroupManager.m in Sources */,
+				DF48E7EE1B1E0E6D00154FC1 /* RootNavigationController.m in Sources */,
+				DF48E7B31B1CE01F00154FC1 /* BaseManagedModel.m in Sources */,
 				DF183B991B1CAA2B0001DDA4 /* main.m in Sources */,
+				DF9344621B3493AB00297E38 /* UIAlertView+Shortcuts.m in Sources */,
+				DF48E7D11B1DEC8700154FC1 /* Widget.m in Sources */,
+				DF48E7E01B1DF06200154FC1 /* TweetCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -297,6 +793,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				DF183BB61B1CAA2B0001DDA4 /* FiltacularTests.m in Sources */,
+				DF48E7BC1B1CE7CC00154FC1 /* BaseUnmanagedModel.m in Sources */,
+				DF48E7BB1B1CE7C700154FC1 /* TweetTest.m in Sources */,
+				DF48E7BD1B1CE7D000154FC1 /* Tweet.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -412,8 +911,15 @@
 		};
 		DF183BBA1B1CAA2B0001DDA4 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B96F0681D71772C68BB0A0E2 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Filtacular/ThirdParty",
+				);
 				INFOPLIST_FILE = Filtacular/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -422,8 +928,15 @@
 		};
 		DF183BBB1B1CAA2B0001DDA4 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 68604422666334DB8E77C8CC /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Filtacular/ThirdParty",
+				);
 				INFOPLIST_FILE = Filtacular/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -438,6 +951,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
+					"$(PROJECT_DIR)/Filtacular/ThirdParty",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -458,6 +972,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
+					"$(PROJECT_DIR)/Filtacular/ThirdParty",
 				);
 				INFOPLIST_FILE = FiltacularTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -505,7 +1020,8 @@
 				DF183B9E1B1CAA2B0001DDA4 /* Filtacular.xcdatamodel */,
 			);
 			currentVersion = DF183B9E1B1CAA2B0001DDA4 /* Filtacular.xcdatamodel */;
-			path = Filtacular.xcdatamodeld;
+			name = Filtacular.xcdatamodeld;
+			path = ../../../Filtacular.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

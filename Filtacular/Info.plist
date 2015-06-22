@@ -20,10 +20,33 @@
 	<string>????</string>
 	<key>CFBundleVersion</key>
 	<string>0.1</string>
+	<key>Fabric</key>
+	<dict>
+		<key>APIKey</key>
+		<string>10f371ccab6ea0713705fbb5dc2c6bd86f0aa474</string>
+		<key>Kits</key>
+		<array>
+			<dict>
+				<key>KitInfo</key>
+				<dict>
+					<key>consumerKey</key>
+					<string>i1BXuJjsT9k8Q2cgoBfFvKh4n</string>
+					<key>consumerSecret</key>
+					<string>lWpjtHJhNi6BJVA3FHEMp6W3gznnHfbtAZGk0PvGbUKxSAxqNZ</string>
+				</dict>
+				<key>KitName</key>
+				<string>Twitter</string>
+			</dict>
+		</array>
+	</dict>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
+	<key>UIStatusBarStyle</key>
+	<string>UIStatusBarStyleBlackOpaque</string>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<true/>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
 	<key>UIRequiredDeviceCapabilities</key>
