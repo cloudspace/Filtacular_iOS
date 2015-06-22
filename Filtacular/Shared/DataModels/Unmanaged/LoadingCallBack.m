@@ -10,4 +10,15 @@
 
 @implementation LoadingCallBack
 
+- (BOOL)isEqual:(id)object {
+    if ([object isKindOfClass:self.class])
+        return true;
+    
+    return false;
+}
+
+- (NSUInteger)hash {
+    return 1;
+}
+
 @end

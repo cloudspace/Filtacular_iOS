@@ -103,6 +103,32 @@ static int cFavoriteCounts[cNumRandoms] = { 0, 6, 200 };
     return newTweet;
 }
 
++ (NSArray*)removeDuplicates:(NSArray*)tweets {
+    
+    NSMutableArray* uniqueObjs = [NSMutableArray new];
+    
+    for (Tweet* eachTweet in tweets)
+    {
+        Tweet* matchingTweet = [self tweetWithId:eachTweet.identifier inTweets:uniqueObjs];
+        if (matchingTweet != nil)
+        {
+            continue;
+        }
+        [uniqueObjs addObject:eachTweet];
+    }
+    
+    return uniqueObjs;
+}
+
++ (Tweet*)tweetWithId:(int)identifier inTweets:(NSArray*)tweets {
+    for (Tweet* eachTweet in tweets)
+    {
+        if (eachTweet.identifier == identifier)
+            return eachTweet;
+    }
+    return nil;
+}
+
 - (TWTRTweet*)tweetWithTwitterId:(NSArray*)arrayOfTweets {
     for (TWTRTweet* eachTweet in arrayOfTweets) {
         if ([eachTweet.tweetID isEqualToString:self.tweetId] == false)
@@ -134,6 +160,22 @@ static int cFavoriteCounts[cNumRandoms] = { 0, 6, 200 };
     }
     
     return nil;
+}
+
+- (BOOL)isEqual:(id)object {
+    if ([object isKindOfClass:self.class] == false)
+        return false;
+    
+    Tweet* other = object;
+    
+    if (other.identifier != identifier)
+        return false;
+    
+    return true;
+}
+
+- (NSUInteger)hash {
+    return [self identifier];
 }
 
 @end

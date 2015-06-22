@@ -82,7 +82,7 @@ typedef void (^animationFinishBlock)(BOOL finished);
 - (void)addNewerTweets {
     
     Tweet* firstTweet = [_tableData objectAtIndex:0];
-    [self fetchTweets:@{@"created_before":firstTweet.tweetCreatedAt} pageDictionary:@{}];
+    [self fetchTweets:@{@"created_before":firstTweet.tweetCreatedAt} pageDictionary:@{@"number":@(1), @"size":@(1073741823)}];
 }
 
 - (void)addMoreTweets {
@@ -147,6 +147,7 @@ typedef void (^animationFinishBlock)(BOOL finished);
     }
     
     _tableData = [_tableData arrayByAddingObjectsFromArray:tweets];
+    _tableData = [Tweet removeDuplicates:_tableData];
     _tableData = [_tableData sortedArrayUsingComparator:^NSComparisonResult(Tweet* obj1, Tweet* obj2) {
         return [obj2.tweetCreatedAt compare:obj1.tweetCreatedAt];
     }];

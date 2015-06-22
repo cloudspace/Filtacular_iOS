@@ -45,6 +45,7 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+    
     _viewBottomBar.distribution = OAStackViewDistributionFillEqually;
     _viewBottomBar.alignment = OAStackViewAlignmentFill;
     _viewBottomBar.axis = UILayoutConstraintAxisHorizontal;

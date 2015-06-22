@@ -234,9 +234,6 @@ static const float cHeaderHeight = 24.0f;
       [__tableView insertRowsAtIndexPaths:indexPathsForSectionWithIndexSet(section, inserts)
                        withRowAnimation:__smartGroup.insertAnimation];
     }
-      
-      if ([__smartGroup.userInfo[@"table"] viewWithTag:1337] == nil) //TODO: stupid hack to get the section header to refresh; it also refreshes the rows which i do not want
-          [__tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
     
     if (__smartGroup.debug) { NSLog(@"Commiting updates for smartgroup %@", __smartGroup); }
     [__tableView endUpdates];
