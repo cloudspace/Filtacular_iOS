@@ -88,7 +88,7 @@ typedef void (^animationFinishBlock)(BOOL finished);
     }
     
     Tweet* firstTweet = [_tableData objectAtIndex:0];
-    [self fetchTweets:@{@"created_before":firstTweet.tweetCreatedAt} pageDictionary:@{@"number":@(1), @"size":@(1073741823)}];
+    [self fetchTweets:@{@"created_after":firstTweet.tweetCreatedAt} pageDictionary:@{@"number":@(1), @"size":@(1073741823)}];
 }
 
 - (void)addMoreTweets {
@@ -96,7 +96,7 @@ typedef void (^animationFinishBlock)(BOOL finished);
     if ([lastTweet isKindOfClass:[LoadingCallBack class]])
         lastTweet = _tableData[_tableData.count - 2];
     
-    [self fetchTweets:@{@"created_after":lastTweet.tweetCreatedAt} pageDictionary:@{@"number":@(1), @"size":@(100)}];
+    [self fetchTweets:@{@"created_before":lastTweet.tweetCreatedAt} pageDictionary:@{@"number":@(1), @"size":@(100)}];
 }
 
 - (void)fetchTweets:(NSDictionary*)filterDictionary pageDictionary:(NSDictionary*)pageDic {
@@ -134,7 +134,7 @@ typedef void (^animationFinishBlock)(BOOL finished);
                 return;
             
             bool thereMayBeMoreTweets = [pageDic[@"size"] isEqual:@(filtacularTweets.count)];
-            bool isRefreshing = (filterDictionary[@"created_before"] != nil);
+            bool isRefreshing = (filterDictionary[@"created_after"] != nil);
             if (isRefreshing == false)
                 _canRefresh = thereMayBeMoreTweets;
             [self loadTweets:filtacularTweets];
