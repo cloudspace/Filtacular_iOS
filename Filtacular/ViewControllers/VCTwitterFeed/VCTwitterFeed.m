@@ -134,7 +134,9 @@ typedef void (^animationFinishBlock)(BOOL finished);
                 return;
             
             bool thereMayBeMoreTweets = [pageDic[@"size"] isEqual:@(filtacularTweets.count)];
-            _canRefresh = thereMayBeMoreTweets;
+            bool isRefreshing = (filterDictionary[@"created_before"] != nil);
+            if (isRefreshing == false)
+                _canRefresh = thereMayBeMoreTweets;
             [self loadTweets:filtacularTweets];
         });
     }];
