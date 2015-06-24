@@ -21,6 +21,8 @@
 
 typedef void (^animationFinishBlock)(BOOL finished);
 
+static const int cTweetsPerPage = 100;
+
 @interface VCTwitterFeed ()
 
 @property (strong, nonatomic) IBOutlet CustomTableView* table;
@@ -39,6 +41,12 @@ typedef void (^animationFinishBlock)(BOOL finished);
 @property (copy, nonatomic) void(^onStartPickerShowAnimation)();
 
 @property (assign, nonatomic) bool canRefresh;
+
+//Paging Stuff
+
+@property (strong, nonatomic) NSDate* createdAfterRefFrame;
+@property (strong, nonatomic) NSDate* createdBeforeRefFrame;
+@property (assign, nonatomic) int nextPage;
 
 @end
 
@@ -79,7 +87,8 @@ typedef void (^animationFinishBlock)(BOOL finished);
 
     [_table clearAndWaitForNewData];
     _tableData = @[];
-    [self fetchTweets:@{} pageDictionary:@{@"number":@(1), @"size":@(100)}];
+    [self resetPagingFrameOfReferenceUsingFilter:_selectedFilter];
+    [self fetchTweets:_nextPage];
 }
 
 - (void)addNewerTweets {
@@ -89,19 +98,22 @@ typedef void (^animationFinishBlock)(BOOL finished);
         return;
     }
     
-    Tweet* firstTweet = [_tableData objectAtIndex:0];
-    [self fetchTweets:@{@"created_after":firstTweet.tweetCreatedAt} pageDictionary:@{@"number":@(1), @"size":@(1073741823)}];
+    [self resetPagingFrameOfReferenceUsingFilter:_selectedFilter];
+    [self fetchTweets:_nextPage];
 }
 
 - (void)addMoreTweets {
-    Tweet* lastTweet = [_tableData lastObject];
-    if ([lastTweet isKindOfClass:[LoadingCallBack class]])
-        lastTweet = _tableData[_tableData.count - 2];
-    
-    [self fetchTweets:@{@"created_before":lastTweet.tweetCreatedAt} pageDictionary:@{@"number":@(1), @"size":@(100)}];
+    [self fetchTweets:_nextPage];
 }
 
-- (void)fetchTweets:(NSDictionary*)filterDictionary pageDictionary:(NSDictionary*)pageDic {
+- (void)resetPagingFrameOfReferenceUsingFilter:(NSString*)filter {
+    _createdBeforeRefFrame = [NSDate date];
+    NSTimeInterval endTimeFrame = [_createdAfterRefFrame timeIntervalSinceReferenceDate] - 60 * 60 * 24; //24 hours earlier
+    _createdAfterRefFrame = [NSDate dateWithTimeIntervalSinceReferenceDate:endTimeFrame];
+    _nextPage = 1;
+}
+
+- (void)fetchTweets:(int)page {
     [_twitterUpdateQueue cancelAllOperations];
     [[ServerWrapper sharedInstance] cancelAllRequestOperationsWithMethod:RKRequestMethodGET matchingPathPattern:@"/twitter-users/:userId/tweets"];
     
@@ -111,6 +123,7 @@ typedef void (^animationFinishBlock)(BOOL finished);
         if (twitterBlockOp.cancelled)
             return;
         
+        NSDictionary* filterDictionary = @{@"created_before":_createdBeforeRefFrame, @"created_after":_createdAfterRefFrame};
         NSString* filter = [_selectedFilter stringByReplacingOccurrencesOfString:@" " withString:@"_"];
         NSMutableDictionary* filterMod = [filterDictionary mutableCopy];
         [filterMod setObject:@(1) forKey:filter];
@@ -118,7 +131,7 @@ typedef void (^animationFinishBlock)(BOOL finished);
         RestkitRequest* request = [RestkitRequest new];
         request.requestMethod = RKRequestMethodGET;
         request.path = [NSString stringWithFormat:@"/twitter-users/%@/tweets", _selectedUser.userId];
-        request.parameters = @{@"filter":filterMod, @"page":pageDic};
+        request.parameters = @{@"filter":filterMod, @"page":@{@"number":@(page), @"size":@(cTweetsPerPage)}};
         
         RestkitRequestReponse* response = [[ServerWrapper sharedInstance] performSyncRequest:request];
         if (response.successful == false) {
@@ -135,11 +148,12 @@ typedef void (^animationFinishBlock)(BOOL finished);
             if (twitterBlockOp.cancelled)
                 return;
             
-            bool thereMayBeMoreTweets = [pageDic[@"size"] isEqual:@(filtacularTweets.count)];
-            bool isRefreshing = (filterDictionary[@"created_after"] != nil);
-            if (isRefreshing == false)
-                _canRefresh = thereMayBeMoreTweets;
+            bool thereMayBeMoreTweets = (cTweetsPerPage == filtacularTweets.count);
+            _canRefresh = thereMayBeMoreTweets;
             [self loadTweets:filtacularTweets];
+            
+            if (_nextPage < page + 1)
+                _nextPage = page + 1;
         });
     }];
     
@@ -156,11 +170,12 @@ typedef void (^animationFinishBlock)(BOOL finished);
         _tableData = [_tableData subarrayWithRange:range];
     }
     
-    _tableData = [_tableData arrayByAddingObjectsFromArray:tweets];
+    if (_nextPage != 1)
+        _tableData = [_tableData arrayByAddingObjectsFromArray:tweets];
+    else
+        _tableData = tweets; //Fixes some ugly animations if we clear the table after we load the data.
+    
     _tableData = [Tweet removeDuplicates:_tableData];
-    _tableData = [_tableData sortedArrayUsingComparator:^NSComparisonResult(Tweet* obj1, Tweet* obj2) {
-        return [obj2.tweetCreatedAt compare:obj1.tweetCreatedAt];
-    }];
     
     __weak VCTwitterFeed* weakSelf = self;
     for (__weak Tweet* eachTweet in tweets) {
@@ -321,6 +336,5 @@ typedef void (^animationFinishBlock)(BOOL finished);
 {
     [self animateHideViewPickerCompletion:nil];
 }
-
 
 @end
