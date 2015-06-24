@@ -51,6 +51,7 @@
 		DF9344611B3493AB00297E38 /* NSObject+Shortcuts.m in Sources */ = {isa = PBXBuildFile; fileRef = DF93445C1B3493AB00297E38 /* NSObject+Shortcuts.m */; };
 		DF9344621B3493AB00297E38 /* UIAlertView+Shortcuts.m in Sources */ = {isa = PBXBuildFile; fileRef = DF93445F1B3493AB00297E38 /* UIAlertView+Shortcuts.m */; };
 		DF9344681B38901D00297E38 /* CATransformLayer+HideOpaqueWarning.m in Sources */ = {isa = PBXBuildFile; fileRef = DF9344671B38901D00297E38 /* CATransformLayer+HideOpaqueWarning.m */; };
+		DF93446C1B3B121200297E38 /* VCFakeLoadingScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = DF93446B1B3B121200297E38 /* VCFakeLoadingScreen.m */; };
 		DFF176CF1B1CD21A005095E9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF176C91B1CD21A005095E9 /* AppDelegate.m */; };
 		DFF176D01B1CD21A005095E9 /* APIInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF176CC1B1CD21A005095E9 /* APIInfo.m */; };
 		DFF176D11B1CD21A005095E9 /* RestkitService.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF176CE1B1CD21A005095E9 /* RestkitService.m */; };
@@ -147,6 +148,8 @@
 		DF93445F1B3493AB00297E38 /* UIAlertView+Shortcuts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertView+Shortcuts.m"; sourceTree = "<group>"; };
 		DF9344661B38901D00297E38 /* CATransformLayer+HideOpaqueWarning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CATransformLayer+HideOpaqueWarning.h"; sourceTree = "<group>"; };
 		DF9344671B38901D00297E38 /* CATransformLayer+HideOpaqueWarning.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CATransformLayer+HideOpaqueWarning.m"; sourceTree = "<group>"; };
+		DF93446A1B3B121200297E38 /* VCFakeLoadingScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VCFakeLoadingScreen.h; sourceTree = "<group>"; };
+		DF93446B1B3B121200297E38 /* VCFakeLoadingScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VCFakeLoadingScreen.m; sourceTree = "<group>"; };
 		DFF176C81B1CD21A005095E9 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		DFF176C91B1CD21A005095E9 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		DFF176CB1B1CD21A005095E9 /* APIInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIInfo.h; sourceTree = "<group>"; };
@@ -285,6 +288,7 @@
 		DF48E7BE1B1CF29200154FC1 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				DF9344691B3B11D900297E38 /* VCFakeLoadingScreen */,
 				DF48E7EB1B1E0E4100154FC1 /* RootNavigationController */,
 				DF48E7D71B1DEDE700154FC1 /* IntroViewController */,
 				DF48E7BF1B1CF2B900154FC1 /* VCTwitterFeed */,
@@ -475,6 +479,15 @@
 				DF9344671B38901D00297E38 /* CATransformLayer+HideOpaqueWarning.m */,
 			);
 			path = CATransformLayer;
+			sourceTree = "<group>";
+		};
+		DF9344691B3B11D900297E38 /* VCFakeLoadingScreen */ = {
+			isa = PBXGroup;
+			children = (
+				DF93446A1B3B121200297E38 /* VCFakeLoadingScreen.h */,
+				DF93446B1B3B121200297E38 /* VCFakeLoadingScreen.m */,
+			);
+			path = VCFakeLoadingScreen;
 			sourceTree = "<group>";
 		};
 		DFF176C71B1CD21A005095E9 /* StartUp */ = {
@@ -784,6 +797,7 @@
 				DF183B991B1CAA2B0001DDA4 /* main.m in Sources */,
 				DF9344621B3493AB00297E38 /* UIAlertView+Shortcuts.m in Sources */,
 				DF48E7D11B1DEC8700154FC1 /* Widget.m in Sources */,
+				DF93446C1B3B121200297E38 /* VCFakeLoadingScreen.m in Sources */,
 				DF48E7E01B1DF06200154FC1 /* TweetCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
