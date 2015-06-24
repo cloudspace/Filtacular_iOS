@@ -65,6 +65,8 @@ typedef void (^animationFinishBlock)(BOOL finished);
         [strongSelf addNewerTweets];
     }];
     
+    [self updateSelectedUserLabel:_selectedUser];
+    [self.filterButton setTitle:_selectedFilter forState:UIControlStateNormal];
     [self updateAllTweets];
 }
 
@@ -271,16 +273,20 @@ typedef void (^animationFinishBlock)(BOOL finished);
     [self updateAllTweets];
 }
 
-- (void)onUserSelected:(id) user
+- (void)onUserSelected:(User*) user
 {
     if (self.selectedUser == user)
         return;
     
     self.selectedUser = user;
-    NSString* userNameText = [[user nickname] stringByReplacingOccurrencesOfString:@"_" withString:@" "];
+    [self updateSelectedUserLabel:user];
+    [self updateAllTweets];
+}
+
+- (void)updateSelectedUserLabel:(User*)user {
+    NSString* userNameText = [user nickname];
     userNameText = [userNameText stringByAppendingString:@"'s"];
     [self.userButton setTitle:userNameText forState:UIControlStateNormal];
-    [self updateAllTweets];
 }
 
 //TODO: Needed?
@@ -289,7 +295,6 @@ typedef void (^animationFinishBlock)(BOOL finished);
 }
 
 #pragma mark - View Picker
-
 - (void)animateShowViewPickerCompletion:(void (^)(BOOL finished))completion
 {
     if (self.onStartPickerShowAnimation)

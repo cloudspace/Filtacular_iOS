@@ -7,7 +7,7 @@
         <!--Intro View Controller-->
         <scene sceneID="L9P-eF-4EY">
             <objects>
-                <viewController id="KAM-HN-Jy5" customClass="IntroViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="IntroViewControllerID" id="KAM-HN-Jy5" customClass="IntroViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="zuM-7B-4t1"/>
                         <viewControllerLayoutGuide type="bottom" id="2ab-Bl-ChR"/>

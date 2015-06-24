@@ -21,40 +21,53 @@
 
 @interface IntroViewController ()
 
-@property (nonatomic,strong) IBOutlet UIButton *btnTwitterLogin;
+@property (nonatomic, strong) IBOutlet UIButton *btnTwitterLogin;
 @end
 
 @implementation IntroViewController
 
++ (IntroViewController*)build {
+    UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    IntroViewController* vc = (IntroViewController*)[storyboard instantiateViewControllerWithIdentifier:@"IntroViewControllerID"];
+    return vc;
+}
 
 - (IBAction)tapTwitterLogin {
     [[Twitter sharedInstance] logInWithCompletion:^(TWTRSession *session, NSError *error) {
-         if (session) {
-             NSLog(@"signed in as %@", [session userName]);
-             [self loginToFiltacular:session];
-         } else {
-             NSLog(@"error: %@", [error localizedDescription]);
-         }
-     }];
-}
-
-- (void)loginToFiltacular:(TWTRSession*)twitterSession {
-
-    _btnTwitterLogin.enabled = false;
-    dispatch_async([ServerWrapper requestQueue], ^{
+        if (session == nil) {
+            NSLog(@"error: %@", [error localizedDescription]);
+            [UIAlertView showError:error];
+            return;
+        }
         
-         void(^failureBlock)(RKObjectRequestOperation *operation, NSError *error) = ^(RKObjectRequestOperation *operation, NSError *error) {
-            dispatch_main_sync_safe(^{
+        NSLog(@"signed in as %@", [session userName]);
+        _btnTwitterLogin.enabled = false;
+        
+        [IntroViewController loginToFiltacular:session failure:^(RKObjectRequestOperation *operation, NSError *error) {
+            dispatch_main_sync_safe(^{ //TODO we really should just call the back from the main thread to avoid this
                 if (error) {
-                    if ([error isConnectionError])
+                    if ([error isConnectionError]) {
                         [UIAlertView showMessage:[error connectionErrorString]];
-                    else
+                    }
+                    else if (error.code == 3) {
+                        [UIAlertView showAlertWithTitle:@"Wait List" andMessage:[error localizedDescription]];
+                    }
+                    else {
                         [UIAlertView showError:error];
+                    }
                 }
                 
                 _btnTwitterLogin.enabled = true;
             });
-        };
+        } success:^(VCTwitterFeed *vcTwitterFeed) {
+            _btnTwitterLogin.enabled = true;
+            [self.navigationController pushViewController:vcTwitterFeed animated:true];
+        }];
+     }];
+}
+
++ (void)loginToFiltacular:(TWTRSession*)twitterSession failure:(void (^)(RKObjectRequestOperation *operation, NSError *error))failureBlock success:(void (^)(VCTwitterFeed *vcTwitterFeed))successBlock {
+    dispatch_async([ServerWrapper requestQueue], ^{
         
         RestkitRequest* request = [RestkitRequest new];
         request.requestMethod = RKRequestMethodGET;
@@ -72,17 +85,16 @@
         NSString* absoluteString = urlResponse.URL.absoluteString;
         if ([absoluteString isEqualToString:@"http://filtacular.com/waitlist"])
         {
-            dispatch_sync(dispatch_get_main_queue(), ^{
-                UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Wait List" message:@"Thanks for connecting your Twitter account. We'll reach out when you can see the goodness." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-                [alert show];
-                _btnTwitterLogin.enabled = true;
-            });
+            NSError* error = [self errorWithCode:3 description:@"Thanks for connecting your Twitter account. We'll reach out when you can see the goodness."];
+            if (failureBlock)
+                failureBlock(nil, error);
             return;
         }
     
         response = [[ServerWrapper sharedInstance] performSyncGet:@"/twitter-users"];
         if (response.successful == false) {
-            failureBlock(nil, response.error);
+            if (failureBlock)
+                failureBlock(nil, response.error);
             return;
         }
         
@@ -109,7 +121,8 @@
         
         if (selectedUser == nil) {
             NSString* errorMsg = [NSString stringWithFormat:@"Could not find user %@ (%@) in /twitter-users", [twitterSession userID], [twitterSession userName]];
-            failureBlock(nil, [self errorWithCode:0 andLocalizedDescription:errorMsg]);
+            if (failureBlock)
+                failureBlock(nil, [self errorWithCode:0 andLocalizedDescription:errorMsg]);
             return;
         }
         
@@ -119,7 +132,8 @@
         
         NSMutableArray* filters = [response.mappingResult.array mutableCopy];
         if (filters.count == 0) {
-            failureBlock(nil, [self errorWithCode:1 andLocalizedDescription:@"No filters returned from the server"]);
+            if (failureBlock)
+                failureBlock(nil, [self errorWithCode:1 andLocalizedDescription:@"No filters returned from the server"]);
             return;
         }
         
@@ -129,14 +143,14 @@
         }
         
         dispatch_sync(dispatch_get_main_queue(), ^{
-            _btnTwitterLogin.enabled = true;
+            
             VCTwitterFeed* vcTwitterFeed = [VCTwitterFeed new];
             vcTwitterFeed.users = users;
             vcTwitterFeed.filters = [NSArray arrayWithArray:filters];
             vcTwitterFeed.twitterSession = twitterSession;
             vcTwitterFeed.selectedUser = selectedUser;
             vcTwitterFeed.selectedFilter = filters[0];
-            [self.navigationController pushViewController:vcTwitterFeed animated:true];
+            successBlock(vcTwitterFeed);
         });
     });
 }
