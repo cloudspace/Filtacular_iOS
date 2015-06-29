@@ -125,16 +125,13 @@
     
     _btnToLink.enabled = hasUrl;
     
-    if (hasUrl == false)
-        return;
-    
     if (hasImage) {
         [_imgUrlPic setImageWithURL:tweet.imageUrl placeholderImage:nil options:SDWebImageRetryFailed];
     }
     
     if (hasUrlTitle) {
         _lblUrlText.text = tweet.urlTitle;
-        _lblUrlDomain.text = [[NSURL URLWithString:tweet.urlLink] host];
+        _lblUrlDomain.text = [tweet displayLinkHost];
     }
 }
 
@@ -164,22 +161,21 @@ const float cPadding = 16.0f;
     _btnToLink.y = yOffset;
     _btnToLink.height = self.height - _btnToLink.y - _viewBottomBar.height;
     
-    if (hasUrl) {
-        if (hasImage) {
-            _imgUrlPic.y = yOffset;
-            yOffset += _imgUrlPic.height + cPadding;
-        }
+    if (hasImage) {
+        _imgUrlPic.y = yOffset;
+        yOffset += _imgUrlPic.height + cPadding;
+    }
+    
+    if (hasUrl && _lblUrlText.text.length > 0) {
+       
+        [self fitToHeight:_lblUrlText];
         
-        if (_lblUrlText.text.length > 0) {
+        _lblUrlText.y = yOffset;
+        yOffset += _lblUrlText.height + cPadding;
         
-            [self fitToHeight:_lblUrlText];
+        _lblUrlDomain.y = yOffset;
+        yOffset += _lblUrlDomain.height + cPadding;
         
-            _lblUrlText.y = yOffset;
-            yOffset += _lblUrlText.height + cPadding;
-            
-            _lblUrlDomain.y = yOffset;
-            yOffset += _lblUrlDomain.height + cPadding;
-        }
     }
     
     if (tweet.pictureOnly) {
