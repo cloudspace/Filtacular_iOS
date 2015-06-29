@@ -178,4 +178,26 @@ static int cFavoriteCounts[cNumRandoms] = { 0, 6, 200 };
     return [self identifier];
 }
 
+- (NSString*)displayLinkHost {
+    
+    return [Tweet formattedLinkHost:self.urlLink];
+}
+
++ (NSString*)formattedLinkHost:(NSString*)linkHostString {
+    NSString* host = [[NSURL URLWithString:linkHostString] host];
+    
+    if (host == nil)
+        return nil;
+    
+    if ([[[host substringToIndex:7] lowercaseString] isEqualToString:@"http://"])
+        host = [host substringFromIndex:7];
+    
+    if ([[[host substringToIndex:4] lowercaseString] isEqualToString:@"www."])
+        host = [host substringFromIndex:4];
+    
+    
+    host = [host uppercaseString];
+    return host;
+}
+
 @end
