@@ -136,11 +136,27 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     id object = _tableData[indexPath.row];
-    
-    id cell = [self cellForObject:object];
+    id cell = [self cachedCellForObject:object];
     
     CGFloat height = [cell calculateHeightWith:object];
     return height;
+}
+
+static NSMutableDictionary* sCellCache = nil;
+
+- (UITableViewCell*)cachedCellForObject:(id)object {
+    
+    if (sCellCache == nil)
+        sCellCache = [NSMutableDictionary new];
+    
+    NSString* key = NSStringFromClass([object class]);
+    UITableViewCell* cachedCell = [sCellCache objectForKey:key];
+    if (cachedCell == nil) {
+        Class tableViewCellClass = self.tableCellClassForDataType[key];
+        cachedCell = [tableViewCellClass createFromNib];
+        sCellCache[key] = cachedCell;
+    }
+    return cachedCell;
 }
 
 - (UITableViewCell*)cellForObject:(id)object {
