@@ -101,6 +101,8 @@
 }
 
 - (CGFloat)calculateHeightWith:(Tweet*)tweet {
+    self.width = [[UIScreen mainScreen] bounds].size.width;
+    [self layoutIfNeeded];
     [self configureWithObject:tweet];
     return self.height;
 }
@@ -125,16 +127,13 @@
     
     _btnToLink.enabled = hasUrl;
     
-    if (hasUrl == false)
-        return;
-    
     if (hasImage) {
         [_imgUrlPic setImageWithURL:tweet.imageUrl placeholderImage:nil options:SDWebImageRetryFailed];
     }
     
     if (hasUrlTitle) {
         _lblUrlText.text = tweet.urlTitle;
-        _lblUrlDomain.text = [[NSURL URLWithString:tweet.urlLink] host];
+        _lblUrlDomain.text = [tweet displayLinkHost];
     }
 }
 
@@ -143,15 +142,15 @@ const float cPadding = 16.0f;
 - (void)repositionSubviewsWithTweet:(Tweet*)tweet {
     
     bool hasUrl = (tweet.urlLink.length != 0 && tweet.pictureOnly == false);
-    bool hasImage = (tweet.imageUrl.length != 0);
+    bool hasImage = (tweet.imageUrl.length != 0 && tweet.pictureOnly == false);
     
     //reposition username
-    [self fitToWidth:_lblDisplayName maxWidth:126.0f];
+    [self fitToWidth:_lblDisplayName maxWidth:self.width * 0.4f];
     if (_lblDisplayName.width == 0.0f)
-        _lblDisplayName.width = 126.0f;
+        _lblDisplayName.width = self.width * 0.4f;
     _lblUserName.x = _lblDisplayName.x + _lblDisplayName.width + 4.0f;
 
-    _lblUserName.width = 263.0f - _lblUserName.x;
+    _lblUserName.width = self.width * 0.89f - _lblUserName.x;
     
     //reposition everything else
     [self fitToHeight:_lblPostText];
@@ -164,22 +163,21 @@ const float cPadding = 16.0f;
     _btnToLink.y = yOffset;
     _btnToLink.height = self.height - _btnToLink.y - _viewBottomBar.height;
     
-    if (hasUrl) {
-        if (hasImage) {
-            _imgUrlPic.y = yOffset;
-            yOffset += _imgUrlPic.height + cPadding;
-        }
+    if (hasImage) {
+        _imgUrlPic.y = yOffset;
+        yOffset += _imgUrlPic.height + cPadding;
+    }
+    
+    if (hasUrl && _lblUrlText.text.length > 0) {
+       
+        [self fitToHeight:_lblUrlText];
         
-        if (_lblUrlText.text.length > 0) {
+        _lblUrlText.y = yOffset;
+        yOffset += _lblUrlText.height + cPadding;
         
-            [self fitToHeight:_lblUrlText];
+        _lblUrlDomain.y = yOffset;
+        yOffset += _lblUrlDomain.height + cPadding;
         
-            _lblUrlText.y = yOffset;
-            yOffset += _lblUrlText.height + cPadding;
-            
-            _lblUrlDomain.y = yOffset;
-            yOffset += _lblUrlDomain.height + cPadding;
-        }
     }
     
     if (tweet.pictureOnly) {

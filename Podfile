@@ -1,7 +1,7 @@
 link_with ['Filtacular']
 
 pod 'SVWebViewController', :head
-pod 'OAStackView',  :git => 'https://github.com/izackp/OAStackView.git', :branch => 'missing_constraint_fix'
+pod 'OAStackView', :head
 
 # Networking / Caching
 pod 'SDWebImage', '~> 3.7'

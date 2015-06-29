@@ -42,6 +42,7 @@
 
 - (NSString*)simpleTimeAgo;
 - (NSString*)imageUrl;
+- (NSString*)displayLinkHost;
 
 - (TWTRTweet*)tweetWithTwitterId:(NSArray*)arrayOfTweets;
 
