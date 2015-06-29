@@ -101,6 +101,8 @@
 }
 
 - (CGFloat)calculateHeightWith:(Tweet*)tweet {
+    self.width = [[UIScreen mainScreen] bounds].size.width;
+    [self layoutIfNeeded];
     [self configureWithObject:tweet];
     return self.height;
 }
@@ -140,7 +142,7 @@ const float cPadding = 16.0f;
 - (void)repositionSubviewsWithTweet:(Tweet*)tweet {
     
     bool hasUrl = (tweet.urlLink.length != 0 && tweet.pictureOnly == false);
-    bool hasImage = (tweet.imageUrl.length != 0);
+    bool hasImage = (tweet.imageUrl.length != 0 && tweet.pictureOnly == false);
     
     //reposition username
     [self fitToWidth:_lblDisplayName maxWidth:126.0f];
