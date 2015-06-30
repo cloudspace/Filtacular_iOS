@@ -35,6 +35,7 @@
 @property (strong, nonatomic) IBOutlet UIButton *btnToLink;
 @property (strong, nonatomic) IBOutlet UIButton *btnFollow;
 @property (strong, nonatomic) IBOutlet UIView *viewFollow;
+@property (strong, nonatomic) IBOutlet UIView *viewLinkyLooCover;
 
 @property (assign, nonatomic) bool bigPicOpen;
 @property (strong, nonatomic) Tweet* cachedTweet;
@@ -69,6 +70,8 @@
     _imgUrlPic.image = nil;
     _lblUrlDomain.text = @"";
     _lblUrlText.text = @"";
+    _btnToTweeter.enabled = true;
+    _btnToTweet.enabled = true;
     
     _lblDisplayName.text = tweet.displayName;
     _lblUserName.text = [NSString stringWithFormat:@"@%@", tweet.userName];
@@ -87,6 +90,11 @@
     [_btnFollow setEnabled:!tweet.followed];
     
     [_viewFollow setHidden:!tweet.showFollowButton];
+    
+    if (tweet.linkOnly) {
+        _btnToTweeter.enabled = false;
+        _btnToTweet.enabled = false;
+    }
     
     if (tweet.pictureOnly) {
         [self configureBigPic:tweet];
@@ -143,14 +151,18 @@ const float cPadding = 16.0f;
     
     bool hasUrl = (tweet.urlLink.length != 0 && tweet.pictureOnly == false);
     bool hasImage = (tweet.imageUrl.length != 0 && tweet.pictureOnly == false);
+    bool linkOnly = tweet.linkOnly;
     
-    //reposition username
-    [self fitToWidth:_lblDisplayName maxWidth:self.width * 0.4f];
-    if (_lblDisplayName.width == 0.0f)
-        _lblDisplayName.width = self.width * 0.4f;
-    _lblUserName.x = _lblDisplayName.x + _lblDisplayName.width + 4.0f;
-
-    _lblUserName.width = self.width * 0.89f - _lblUserName.x;
+    [self repositionUserName];
+    
+    if (linkOnly) {
+        float yOffset = cPadding;
+        _viewLinkyLooCover.y = yOffset;
+        yOffset = [self repositionURLInfo:hasImage hasUrl:hasUrl fromOffset:yOffset];
+        _viewLinkyLooCover.height = yOffset - _viewLinkyLooCover.y;
+        self.height = yOffset;
+        return;
+    }
     
     //reposition everything else
     [self fitToHeight:_lblPostText];
@@ -160,25 +172,7 @@ const float cPadding = 16.0f;
     
     float yOffset = _lblPostText.y + _lblPostText.height + cPadding;
     
-    _btnToLink.y = yOffset;
-    _btnToLink.height = self.height - _btnToLink.y - _viewBottomBar.height;
-    
-    if (hasImage) {
-        _imgUrlPic.y = yOffset;
-        yOffset += _imgUrlPic.height + cPadding;
-    }
-    
-    if (hasUrl && _lblUrlText.text.length > 0) {
-       
-        [self fitToHeight:_lblUrlText];
-        
-        _lblUrlText.y = yOffset;
-        yOffset += _lblUrlText.height + cPadding;
-        
-        _lblUrlDomain.y = yOffset;
-        yOffset += _lblUrlDomain.height + cPadding;
-        
-    }
+    yOffset = [self repositionURLInfo:hasImage hasUrl:hasUrl fromOffset:yOffset];
     
     if (tweet.pictureOnly) {
         if (_bigPicOpen) {
@@ -195,6 +189,37 @@ const float cPadding = 16.0f;
     else {
         self.height = yOffset + _viewBottomBar.height;
     }
+}
+
+- (void)repositionUserName {
+    [self fitToWidth:_lblDisplayName maxWidth:self.width * 0.4f];
+    if (_lblDisplayName.width == 0.0f)
+        _lblDisplayName.width = self.width * 0.4f;
+    _lblUserName.x = _lblDisplayName.x + _lblDisplayName.width + 4.0f;
+    
+    _lblUserName.width = self.width * 0.89f - _lblUserName.x;
+}
+
+- (float)repositionURLInfo:(bool)hasImage hasUrl:(bool)hasUrl fromOffset:(float)yOffset {
+    _btnToLink.y = yOffset;
+    _btnToLink.height = self.height - _btnToLink.y - _viewBottomBar.height;
+    
+    if (hasImage) {
+        _imgUrlPic.y = yOffset;
+        yOffset += _imgUrlPic.height + cPadding;
+    }
+    
+    if (hasUrl && _lblUrlText.text.length > 0) {
+        
+        [self fitToHeight:_lblUrlText];
+        
+        _lblUrlText.y = yOffset;
+        yOffset += _lblUrlText.height + cPadding;
+        
+        _lblUrlDomain.y = yOffset;
+        yOffset += _lblUrlDomain.height + cPadding;
+    }
+    return yOffset;
 }
 
 - (void)fitToHeight:(UILabel*)label {
