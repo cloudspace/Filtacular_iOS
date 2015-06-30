@@ -48,5 +48,6 @@
 - (TWTRTweet*)tweetWithTwitterId:(NSArray*)arrayOfTweets;
 
 - (void)configureWithTwitterTweet:(TWTRTweet*)twitterTweet;
+- (bool)isValidLinkyLooTweet;
 
 @end
