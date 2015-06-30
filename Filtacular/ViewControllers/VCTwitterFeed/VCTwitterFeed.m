@@ -182,6 +182,8 @@ static const int cTweetsPerPage = 100;
         
         if ([_selectedFilter isEqualToString:@"aye aye"])
             eachTweet.pictureOnly = true;
+        else if ([_selectedFilter isEqualToString:@"linky loo"])
+            eachTweet.linkOnly = true;
         
         if ([_selectedUser.nickname isEqualToString:_twitterSession.userName] == false)
             eachTweet.showFollowButton = true;
