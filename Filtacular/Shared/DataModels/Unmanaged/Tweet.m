@@ -189,10 +189,10 @@ static int cFavoriteCounts[cNumRandoms] = { 0, 6, 200 };
     if (host == nil)
         return nil;
     
-    if ([[[host substringToIndex:7] lowercaseString] isEqualToString:@"http://"])
+    if (host.length >= 7 && [[[host substringToIndex:7] lowercaseString] isEqualToString:@"http://"])
         host = [host substringFromIndex:7];
     
-    if ([[[host substringToIndex:4] lowercaseString] isEqualToString:@"www."])
+    if (host.length >= 4 && [[[host substringToIndex:4] lowercaseString] isEqualToString:@"www."])
         host = [host substringFromIndex:4];
     
     
