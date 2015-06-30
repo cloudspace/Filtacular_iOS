@@ -24,6 +24,7 @@
 @property (strong, nonatomic) IBOutlet UIImageView *imgUserPic;
 @property (strong, nonatomic) IBOutlet UIImageView *imgUrlPic;
 @property (strong, nonatomic) IBOutlet UILabel *lblUrlText;
+@property (strong, nonatomic) IBOutlet UILabel *lblUrlDescription;
 @property (strong, nonatomic) IBOutlet UILabel *lblUrlDomain;
 @property (strong, nonatomic) IBOutlet OAStackView *viewBottomBar;
 @property (strong, nonatomic) IBOutlet UIImageView *imgBigPic;
@@ -70,8 +71,10 @@
     _imgUrlPic.image = nil;
     _lblUrlDomain.text = @"";
     _lblUrlText.text = @"";
+    _lblUrlDescription.text = @"";
     _btnToTweeter.enabled = true;
     _btnToTweet.enabled = true;
+    _viewLinkyLooCover.height = 0.0f;
     
     _lblDisplayName.text = tweet.displayName;
     _lblUserName.text = [NSString stringWithFormat:@"@%@", tweet.userName];
@@ -141,6 +144,7 @@
     
     if (hasUrlTitle) {
         _lblUrlText.text = tweet.urlTitle;
+        _lblUrlDescription.text = tweet.urlDescription;
         _lblUrlDomain.text = [tweet displayLinkHost];
     }
 }
@@ -215,6 +219,12 @@ const float cPadding = 16.0f;
         
         _lblUrlText.y = yOffset;
         yOffset += _lblUrlText.height + cPadding;
+        
+        if (_lblUrlDescription.text.length > 0) {
+            [self fitToHeight:_lblUrlDescription];
+            _lblUrlDescription.y = yOffset;
+            yOffset += _lblUrlDescription.height + cPadding;
+        }
         
         _lblUrlDomain.y = yOffset;
         yOffset += _lblUrlDomain.height + cPadding;
