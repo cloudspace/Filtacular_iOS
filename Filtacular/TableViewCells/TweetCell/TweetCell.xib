@@ -203,6 +203,14 @@
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Link Info" lineBreakMode="tailTruncation" numberOfLines="19" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="sun-QG-tRg">
+                        <rect key="frame" x="16" y="277" width="288" height="62"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PCGAMER.COM" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="6NW-eq-Tqc">
                         <rect key="frame" x="16" y="347" width="288" height="21"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
@@ -259,6 +267,7 @@
                 <outlet property="lblDatePosted" destination="Gf0-Pq-x0c" id="FMU-Er-uz9"/>
                 <outlet property="lblDisplayName" destination="PAS-8a-uuQ" id="P0t-hn-BAY"/>
                 <outlet property="lblPostText" destination="cJO-Ct-O6h" id="Ruw-r8-Bxz"/>
+                <outlet property="lblUrlDescription" destination="sun-QG-tRg" id="PrQ-kl-Cde"/>
                 <outlet property="lblUrlDomain" destination="6NW-eq-Tqc" id="Lnb-nf-LBb"/>
                 <outlet property="lblUrlText" destination="luV-Di-LK3" id="Uuj-KU-U65"/>
                 <outlet property="lblUserName" destination="96b-bM-vaN" id="SUV-Iu-Fji"/>
