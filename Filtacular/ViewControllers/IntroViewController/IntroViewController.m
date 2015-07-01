@@ -69,29 +69,35 @@
 + (void)loginToFiltacular:(TWTRSession*)twitterSession failure:(void (^)(RKObjectRequestOperation *operation, NSError *error))failureBlock success:(void (^)(VCTwitterFeed *vcTwitterFeed))successBlock {
     dispatch_async([ServerWrapper requestQueue], ^{
         
-        RestkitRequest* request = [RestkitRequest new];
-        request.requestMethod = RKRequestMethodGET;
-        request.path = @"/auth/twitter_access_token/callback";
-        request.noMappingRequired = true;
-        request.parameters = @{@"token":twitterSession.authToken, @"token_secret":twitterSession.authTokenSecret};
-        request.customHeaders = @{};
-        request.failure = failureBlock;
-        
-        RestkitRequestReponse* response = [[ServerWrapper sharedInstance] performSyncRequest:request];
-        if (response.successful == false)
-            return;
-        
-        NSHTTPURLResponse* urlResponse = response.error.userInfo[AFNetworkingOperationFailingURLResponseErrorKey];
-        NSString* absoluteString = urlResponse.URL.absoluteString;
-        if ([absoluteString isEqualToString:@"http://filtacular.com/waitlist"])
-        {
-            NSError* error = [self errorWithCode:3 description:@"Thanks for connecting your Twitter account. We'll reach out when you can see the goodness."];
-            if (failureBlock)
-                failureBlock(nil, error);
-            return;
+        AFHTTPClient* client = [RKObjectManager sharedManager].HTTPClient;
+        NSURL *cookieUrl = [NSURL URLWithString:@"/auth/twitter_access_token/callback" relativeToURL:client.baseURL];
+        NSArray* cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookiesForURL:cookieUrl];
+        bool shouldGetAccessCookies = (cookies.count == 0);
+        if (shouldGetAccessCookies) {
+            RestkitRequest* request = [RestkitRequest new];
+            request.requestMethod = RKRequestMethodGET;
+            request.path = @"/auth/twitter_access_token/callback";
+            request.noMappingRequired = true;
+            request.parameters = @{@"token":twitterSession.authToken, @"token_secret":twitterSession.authTokenSecret};
+            request.customHeaders = @{};
+            request.failure = failureBlock;
+            
+            RestkitRequestReponse* response = [[ServerWrapper sharedInstance] performSyncRequest:request];
+            if (response.successful == false)
+                return;
+            
+            NSHTTPURLResponse* urlResponse = response.error.userInfo[AFNetworkingOperationFailingURLResponseErrorKey];
+            NSString* absoluteString = urlResponse.URL.absoluteString;
+            if ([absoluteString isEqualToString:@"http://filtacular.com/waitlist"])
+            {
+                NSError* error = [self errorWithCode:3 description:@"Thanks for connecting your Twitter account. We'll reach out when you can see the goodness."];
+                if (failureBlock)
+                    failureBlock(nil, error);
+                return;
+            }
         }
     
-        response = [[ServerWrapper sharedInstance] performSyncGet:@"/twitter-users"];
+        RestkitRequestReponse* response = [[ServerWrapper sharedInstance] performSyncGet:@"/twitter-users"];
         if (response.successful == false) {
             if (failureBlock)
                 failureBlock(nil, response.error);
@@ -100,7 +106,7 @@
         
         NSArray* users = response.mappingResult.array;
         
-        request = [RestkitRequest new];
+        RestkitRequest* request = [RestkitRequest new];
         request.requestMethod = RKRequestMethodGET;
         request.path = @"/lenses";
         request.noMappingRequired = true;

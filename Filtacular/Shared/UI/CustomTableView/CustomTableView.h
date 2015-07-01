@@ -15,6 +15,7 @@ typedef void(^DidSelectObjectBlock)(id object);
 @interface CustomTableView : Widget
 
 @property (assign, nonatomic) CGFloat tableViewCellHeight;
+@property (strong, nonatomic) UIView* backToTopButton;
 @property (nonatomic, copy) void (^refreshCalled) ();
 
 - (void)activateRefreshable;
@@ -26,7 +27,8 @@ typedef void(^DidSelectObjectBlock)(id object);
 - (void)clearAndWaitForNewData;
 
 - (void)setNoItemText:(NSString*)noItemText;
-
 - (void)cellHeightChanged;
+
+- (IBAction)tapBackToTop;
 
 @end

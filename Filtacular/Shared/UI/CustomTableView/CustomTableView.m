@@ -26,6 +26,8 @@
 @property (strong, nonatomic) MCCSmartGroupManager* smartGroupManager;
 @property (copy, nonatomic) DidSelectObjectBlock selectObjectBlock;
 
+@property (assign, nonatomic) CGPoint dragStart;
+
 @end
 
 @implementation CustomTableView
@@ -169,6 +171,27 @@ static NSMutableDictionary* sCellCache = nil;
     if (!cell)
         cell = [tableViewCellClass createFromNib];
     return cell;
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    
+    if (scrollView.contentOffset.y < _dragStart.y && scrollView.contentOffset.y > [UIScreen mainScreen].bounds.size.height) {
+        [UIView animateWithDuration:0.5f animations:^{
+            [_backToTopButton setAlpha:1.0f];
+        }];
+    } else {
+        [UIView animateWithDuration:0.5f animations:^{
+            [_backToTopButton setAlpha:0.0f];
+        }];
+    }
+}
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    _dragStart = scrollView.contentOffset;
+}
+
+- (IBAction)tapBackToTop {
+    [_table setContentOffset:CGPointZero animated:YES];
 }
 
 @end
