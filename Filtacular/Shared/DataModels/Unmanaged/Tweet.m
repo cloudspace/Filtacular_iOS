@@ -119,15 +119,6 @@ static int cFavoriteCounts[cNumRandoms] = { 0, 6, 200 };
     return uniqueObjs;
 }
 
-+ (Tweet*)tweetWithId:(int)identifier inTweets:(NSArray*)tweets {
-    for (Tweet* eachTweet in tweets)
-    {
-        if (eachTweet.identifier == identifier)
-            return eachTweet;
-    }
-    return nil;
-}
-
 - (TWTRTweet*)tweetWithTwitterId:(NSArray*)arrayOfTweets {
     for (TWTRTweet* eachTweet in arrayOfTweets) {
         if ([eachTweet.tweetID isEqualToString:self.tweetId] == false)
