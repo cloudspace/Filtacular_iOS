@@ -30,6 +30,7 @@ static const int cTweetsPerPage = 100;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint* filterBarPositionFromBottomConstraint;
 @property (strong, nonatomic) IBOutlet UIButton* userButton;
 @property (strong, nonatomic) IBOutlet UIButton* filterButton;
+@property (strong, nonatomic) IBOutlet UIView *viewBackToTop;
 
 @property (strong, nonatomic) UITapGestureRecognizer* tableTapGesture;
 @property (strong, nonatomic) NSArray* tableData;
@@ -67,6 +68,7 @@ static const int cTweetsPerPage = 100;
     [_table addTableCellClass:[PageLoadingCell class] forDataType:[LoadingCallBack class]];
     [_table setSelectObjectBlock:nil];
     [_table activateRefreshable];
+    [_table setBackToTopButton:_viewBackToTop];
     __weak VCTwitterFeed* weakSelf = self;
     [_table setRefreshCalled:^{
         VCTwitterFeed* strongSelf = weakSelf;
