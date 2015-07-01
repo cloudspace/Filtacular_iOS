@@ -170,6 +170,13 @@ static const int cTweetsPerPage = 100;
         _tableData = [_tableData subarrayWithRange:range];
     }
     
+    bool isLinkyLoo = [_selectedFilter isEqualToString:@"linky loo"];
+    if (isLinkyLoo) {
+        tweets = [tweets objectsAtIndexes:[tweets indexesOfObjectsPassingTest:^BOOL(Tweet* obj, NSUInteger idx, BOOL *stop) {
+            return [obj isValidLinkyLooTweet];
+        }]];
+    }
+    
     if (_nextPage != 1)
         _tableData = [_tableData arrayByAddingObjectsFromArray:tweets];
     else
@@ -182,6 +189,8 @@ static const int cTweetsPerPage = 100;
         
         if ([_selectedFilter isEqualToString:@"aye aye"])
             eachTweet.pictureOnly = true;
+        else if ([_selectedFilter isEqualToString:@"linky loo"])
+            eachTweet.linkOnly = true;
         
         if ([_selectedUser.nickname isEqualToString:_twitterSession.userName] == false)
             eachTweet.showFollowButton = true;

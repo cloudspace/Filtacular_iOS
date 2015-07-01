@@ -150,14 +150,15 @@ static int cFavoriteCounts[cNumRandoms] = { 0, 6, 200 };
 }
 
 - (NSString*)imageUrl {
-    if (urlImage.length > 0)
-        return urlImage;
     
     if (media.length > 5) {
         NSString* url = [media substringFromIndex:2];
         url = [url substringToIndex:url.length - 2];
         return url;
     }
+    
+    if (urlImage.length > 0)
+        return urlImage;
     
     return nil;
 }
@@ -189,15 +190,31 @@ static int cFavoriteCounts[cNumRandoms] = { 0, 6, 200 };
     if (host == nil)
         return nil;
     
-    if ([[[host substringToIndex:7] lowercaseString] isEqualToString:@"http://"])
+    if (host.length >= 7 && [[[host substringToIndex:7] lowercaseString] isEqualToString:@"http://"])
         host = [host substringFromIndex:7];
     
-    if ([[[host substringToIndex:4] lowercaseString] isEqualToString:@"www."])
+    if (host.length >= 4 && [[[host substringToIndex:4] lowercaseString] isEqualToString:@"www."])
         host = [host substringFromIndex:4];
     
     
     host = [host uppercaseString];
     return host;
+}
+
+- (bool)isValidLinkyLooTweet {
+    if (self.urlLink.length == 0)
+        return false;
+    
+    if (self.urlTitle.length == 0)
+        return false;
+    
+    if (self.urlImage.length == 0)
+        return false;
+    
+    if (self.imageUrl.length == 0)
+        return false;
+    
+    return true;
 }
 
 @end
