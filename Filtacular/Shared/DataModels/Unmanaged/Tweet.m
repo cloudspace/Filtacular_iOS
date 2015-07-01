@@ -109,8 +109,7 @@ static int cFavoriteCounts[cNumRandoms] = { 0, 6, 200 };
     
     for (Tweet* eachTweet in tweets)
     {
-        Tweet* matchingTweet = [self tweetWithId:eachTweet.identifier inTweets:uniqueObjs];
-        if (matchingTweet != nil)
+        if ([uniqueObjs containsObject:eachTweet])
         {
             continue;
         }
@@ -169,7 +168,22 @@ static int cFavoriteCounts[cNumRandoms] = { 0, 6, 200 };
     
     Tweet* other = object;
     
-    if (other.identifier != identifier)
+    if ([urlLink isEqualToString:other.urlLink] == false)
+        return false;
+    
+    if ([urlDescription isEqualToString:other.urlDescription] == false)
+        return false;
+    
+    if ([urlTitle isEqualToString:other.urlTitle] == false)
+        return false;
+    
+    if ([urlImage isEqualToString:other.urlImage] == false)
+        return false;
+    
+    if ([media isEqualToString:other.media] == false)
+        return false;
+    
+    if ([text isEqualToString:other.text] == false)
         return false;
     
     return true;

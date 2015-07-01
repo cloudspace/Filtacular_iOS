@@ -21,7 +21,7 @@
 
 typedef void (^animationFinishBlock)(BOOL finished);
 
-static const int cTweetsPerPage = 100;
+static const int cTweetsPerPage = 10;
 
 @interface VCTwitterFeed ()
 
