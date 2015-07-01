@@ -31,6 +31,7 @@ static const int cTweetsPerPage = 100;
 @property (strong, nonatomic) IBOutlet UIButton* userButton;
 @property (strong, nonatomic) IBOutlet UIButton* filterButton;
 @property (strong, nonatomic) IBOutlet UIView *viewBackToTop;
+@property (strong, nonatomic) IBOutlet UIView *viewBackToTopShadow;
 
 @property (strong, nonatomic) UITapGestureRecognizer* tableTapGesture;
 @property (strong, nonatomic) NSArray* tableData;
@@ -69,6 +70,16 @@ static const int cTweetsPerPage = 100;
     [_table setSelectObjectBlock:nil];
     [_table activateRefreshable];
     [_table setBackToTopButton:_viewBackToTop];
+    
+    UIBezierPath *shadowPath = [UIBezierPath bezierPathWithRect:_viewBackToTopShadow.bounds];
+    _viewBackToTopShadow.layer.masksToBounds = NO;
+    _viewBackToTopShadow.layer.shadowColor = [UIColor blackColor].CGColor;
+    _viewBackToTopShadow.layer.shadowOffset = CGSizeMake(0.0f, 0.0f);
+    _viewBackToTopShadow.layer.shadowOpacity = 1.0f;
+    _viewBackToTopShadow.layer.shadowPath = shadowPath.CGPath;
+    _viewBackToTopShadow.layer.shouldRasterize = true;
+    _viewBackToTopShadow.alpha = 0.8f;
+    
     __weak VCTwitterFeed* weakSelf = self;
     [_table setRefreshCalled:^{
         VCTwitterFeed* strongSelf = weakSelf;
