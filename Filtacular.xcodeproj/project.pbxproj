@@ -44,6 +44,7 @@
 		DF48E8071B2239A600154FC1 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2DDB23D1B1CF8F7004C0A8C /* Fabric.framework */; };
 		DF48E8081B2239A900154FC1 /* TwitterCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2DDB23E1B1CF8F7004C0A8C /* TwitterCore.framework */; };
 		DF48E8091B2239AD00154FC1 /* TwitterKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2DDB23F1B1CF8F7004C0A8C /* TwitterKit.framework */; };
+		DF59EE3F1B4433A70096B2F2 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF59EE3E1B4433A70096B2F2 /* QuartzCore.framework */; };
 		DF93444F1B34779600297E38 /* PageLoadingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF93444D1B34779600297E38 /* PageLoadingCell.m */; };
 		DF9344501B34779600297E38 /* PageLoadingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF93444E1B34779600297E38 /* PageLoadingCell.xib */; };
 		DF9344531B34786000297E38 /* LoadingCallBack.m in Sources */ = {isa = PBXBuildFile; fileRef = DF9344521B34786000297E38 /* LoadingCallBack.m */; };
@@ -135,6 +136,7 @@
 		DF48E8011B220D7700154FC1 /* JSONRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONRequestOperation.m; sourceTree = "<group>"; };
 		DF48E8041B2218C900154FC1 /* NSDate+SimpleTimeAgo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+SimpleTimeAgo.h"; sourceTree = "<group>"; };
 		DF48E8051B2218C900154FC1 /* NSDate+SimpleTimeAgo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+SimpleTimeAgo.m"; sourceTree = "<group>"; };
+		DF59EE3E1B4433A70096B2F2 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		DF93444C1B34779600297E38 /* PageLoadingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageLoadingCell.h; sourceTree = "<group>"; };
 		DF93444D1B34779600297E38 /* PageLoadingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageLoadingCell.m; sourceTree = "<group>"; };
 		DF93444E1B34779600297E38 /* PageLoadingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PageLoadingCell.xib; sourceTree = "<group>"; };
@@ -175,6 +177,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DF59EE3F1B4433A70096B2F2 /* QuartzCore.framework in Frameworks */,
 				DB1BE132AE4A22BF594B8604 /* libPods.a in Frameworks */,
 				F2DDB2421B1CF8F7004C0A8C /* TwitterCore.framework in Frameworks */,
 				F2DDB2411B1CF8F7004C0A8C /* Fabric.framework in Frameworks */,
@@ -580,6 +583,7 @@
 		F9FE532600B8A1C56C214958 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DF59EE3E1B4433A70096B2F2 /* QuartzCore.framework */,
 				DF48E7E21B1DF5A600154FC1 /* MCCSmartGroups */,
 				F2DDB23D1B1CF8F7004C0A8C /* Fabric.framework */,
 				F2DDB23E1B1CF8F7004C0A8C /* TwitterCore.framework */,
