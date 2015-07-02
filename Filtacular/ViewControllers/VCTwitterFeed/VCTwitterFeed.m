@@ -148,7 +148,11 @@ static const int cTweetsPerPage = 100;
         
         RestkitRequestReponse* response = [[ServerWrapper sharedInstance] performSyncRequest:request];
         if (response.successful == false) {
-            //TODO
+            dispatch_sync(dispatch_get_main_queue(), ^{
+                if (twitterBlockOp.cancelled)
+                    return;
+                [self loadTweets:_tableData];
+            });
             return;
         }
         
