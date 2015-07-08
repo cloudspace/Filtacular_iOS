@@ -121,7 +121,7 @@ static const int cTweetsPerPage = 100;
 
 - (void)resetPagingFrameOfReferenceUsingFilter:(NSString*)filter {
     _createdBeforeRefFrame = [NSDate date];
-    NSTimeInterval endTimeFrame = [_createdAfterRefFrame timeIntervalSinceReferenceDate] - 60 * 60 * 24; //24 hours earlier
+    NSTimeInterval endTimeFrame = [_createdBeforeRefFrame timeIntervalSinceReferenceDate] - 60 * 60 * 24; //24 hours earlier
     _createdAfterRefFrame = [NSDate dateWithTimeIntervalSinceReferenceDate:endTimeFrame];
     _nextPage = 1;
 }

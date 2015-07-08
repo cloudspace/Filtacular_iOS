@@ -14,11 +14,12 @@
 @dynamic identifier;
 @dynamic userId;
 @dynamic nickname;
+@dynamic name;
 
 + (RKEntityMapping*)entityMappingWithStore:(RKManagedObjectStore*)store {
     RKEntityMapping *mapping = [super entityMappingWithStore:store];
     mapping.identificationAttributes = @[@"identifier"];
-    [mapping addAttributeMappingsFromArray:@[@"nickname"]];
+    [mapping addAttributeMappingsFromArray:@[@"nickname", @"name"]];
     [mapping addAttributeMappingsFromDictionary:@{@"user-id": @"userId", @"id": @"identifier"}];
 
     
@@ -46,6 +47,8 @@
 }
 
 - (NSString*)stringForPicker {
+    if (self.name.length > 0)
+        return [NSString stringWithFormat:@"%@ (%@)", self.nickname, self.name];
     return self.nickname;
 }
 
