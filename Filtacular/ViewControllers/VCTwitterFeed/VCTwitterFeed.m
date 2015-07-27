@@ -19,6 +19,8 @@
 #import <TwitterKit/TwitterKit.h>
 #import <SVWebViewController.h>
 
+#import "RestkitRequest+API.h"
+
 typedef void (^animationFinishBlock)(BOOL finished);
 
 static const int cTweetsPerPage = 100;
@@ -120,9 +122,9 @@ static const int cTweetsPerPage = 100;
 }
 
 - (void)resetPagingFrameOfReferenceUsingFilter:(NSString*)filter {
-    _createdBeforeRefFrame = [NSDate date];
+    _createdAfterRefFrame = [NSDate date];
     NSTimeInterval endTimeFrame = [_createdAfterRefFrame timeIntervalSinceReferenceDate] - 60 * 60 * 24; //24 hours earlier
-    _createdAfterRefFrame = [NSDate dateWithTimeIntervalSinceReferenceDate:endTimeFrame];
+    _createdBeforeRefFrame = [NSDate dateWithTimeIntervalSinceReferenceDate:endTimeFrame];
     _nextPage = 1;
 }
 
@@ -136,19 +138,19 @@ static const int cTweetsPerPage = 100;
         if (twitterBlockOp.cancelled)
             return;
         
-        NSDictionary* filterDictionary = @{@"created_before":_createdBeforeRefFrame, @"created_after":_createdAfterRefFrame};
+        NSDictionary* filterDictionary = @{};//temporary work around server sided bug. @{@"created_before":_createdBeforeRefFrame, @"created_after":_createdAfterRefFrame};
         NSString* filter = [_selectedFilter stringByReplacingOccurrencesOfString:@" " withString:@"_"];
         NSMutableDictionary* filterMod = [filterDictionary mutableCopy];
         [filterMod setObject:@(1) forKey:filter];
         
-        RestkitRequest* request = [RestkitRequest new];
-        request.requestMethod = RKRequestMethodGET;
-        request.path = [NSString stringWithFormat:@"/twitter-users/%@/tweets", _selectedUser.userId];
-        request.parameters = @{@"filter":filterMod, @"page":@{@"number":@(page), @"size":@(cTweetsPerPage)}};
-        
+        RestkitRequest* request = [RestkitRequest tweetListRequest:_selectedUser.userId filters:filterMod page:page pageSize:cTweetsPerPage];
         RestkitRequestReponse* response = [[ServerWrapper sharedInstance] performSyncRequest:request];
         if (response.successful == false) {
-            //TODO
+            dispatch_sync(dispatch_get_main_queue(), ^{
+                if (twitterBlockOp.cancelled)
+                    return;
+                [self loadTweets:_tableData];
+            });
             return;
         }
         
@@ -321,7 +323,7 @@ static const int cTweetsPerPage = 100;
 }
 
 - (void)updateSelectedUserLabel:(User*)user {
-    NSString* userNameText = [user nickname];
+    NSString* userNameText = [user displayName];
     userNameText = [userNameText stringByAppendingString:@"'s"];
     [self.userButton setTitle:userNameText forState:UIControlStateNormal];
 }

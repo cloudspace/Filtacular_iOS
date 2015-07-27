@@ -44,6 +44,7 @@
 		DF48E8071B2239A600154FC1 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2DDB23D1B1CF8F7004C0A8C /* Fabric.framework */; };
 		DF48E8081B2239A900154FC1 /* TwitterCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2DDB23E1B1CF8F7004C0A8C /* TwitterCore.framework */; };
 		DF48E8091B2239AD00154FC1 /* TwitterKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2DDB23F1B1CF8F7004C0A8C /* TwitterKit.framework */; };
+		DF5308551B6691F50082F3EA /* RestkitRequest+API.m in Sources */ = {isa = PBXBuildFile; fileRef = DF5308541B6691F50082F3EA /* RestkitRequest+API.m */; };
 		DF59EE3F1B4433A70096B2F2 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF59EE3E1B4433A70096B2F2 /* QuartzCore.framework */; };
 		DF93444F1B34779600297E38 /* PageLoadingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF93444D1B34779600297E38 /* PageLoadingCell.m */; };
 		DF9344501B34779600297E38 /* PageLoadingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF93444E1B34779600297E38 /* PageLoadingCell.xib */; };
@@ -136,6 +137,8 @@
 		DF48E8011B220D7700154FC1 /* JSONRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONRequestOperation.m; sourceTree = "<group>"; };
 		DF48E8041B2218C900154FC1 /* NSDate+SimpleTimeAgo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+SimpleTimeAgo.h"; sourceTree = "<group>"; };
 		DF48E8051B2218C900154FC1 /* NSDate+SimpleTimeAgo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+SimpleTimeAgo.m"; sourceTree = "<group>"; };
+		DF5308531B6691F50082F3EA /* RestkitRequest+API.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RestkitRequest+API.h"; sourceTree = "<group>"; };
+		DF5308541B6691F50082F3EA /* RestkitRequest+API.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RestkitRequest+API.m"; sourceTree = "<group>"; };
 		DF59EE3E1B4433A70096B2F2 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		DF93444C1B34779600297E38 /* PageLoadingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageLoadingCell.h; sourceTree = "<group>"; };
 		DF93444D1B34779600297E38 /* PageLoadingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageLoadingCell.m; sourceTree = "<group>"; };
@@ -152,6 +155,7 @@
 		DF9344671B38901D00297E38 /* CATransformLayer+HideOpaqueWarning.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CATransformLayer+HideOpaqueWarning.m"; sourceTree = "<group>"; };
 		DF93446A1B3B121200297E38 /* VCFakeLoadingScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VCFakeLoadingScreen.h; sourceTree = "<group>"; };
 		DF93446B1B3B121200297E38 /* VCFakeLoadingScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VCFakeLoadingScreen.m; sourceTree = "<group>"; };
+		DFA9508B1B5D934500379B67 /* Filtacular.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Filtacular.entitlements; sourceTree = "<group>"; };
 		DFF176C81B1CD21A005095E9 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		DFF176C91B1CD21A005095E9 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		DFF176CB1B1CD21A005095E9 /* APIInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIInfo.h; sourceTree = "<group>"; };
@@ -249,6 +253,7 @@
 			isa = PBXGroup;
 			children = (
 				DFF176D21B1CD242005095E9 /* APIConfigurations */,
+				DFA9508B1B5D934500379B67 /* Filtacular.entitlements */,
 				DF17730B1B1CC29A00AD4CA4 /* AppledocSettings.plist */,
 				DF183B971B1CAA2B0001DDA4 /* Info.plist */,
 				DF183B981B1CAA2B0001DDA4 /* main.m */,
@@ -350,6 +355,7 @@
 		DF48E7D21B1DECD200154FC1 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				DF5308521B6691C50082F3EA /* RestkitRequest */,
 				DF9344651B388FED00297E38 /* CATransformLayer */,
 				DF9344571B3493AB00297E38 /* NSError */,
 				DF93445A1B3493AB00297E38 /* NSObject */,
@@ -436,6 +442,15 @@
 				DF48E8051B2218C900154FC1 /* NSDate+SimpleTimeAgo.m */,
 			);
 			path = NSDate;
+			sourceTree = "<group>";
+		};
+		DF5308521B6691C50082F3EA /* RestkitRequest */ = {
+			isa = PBXGroup;
+			children = (
+				DF5308531B6691F50082F3EA /* RestkitRequest+API.h */,
+				DF5308541B6691F50082F3EA /* RestkitRequest+API.m */,
+			);
+			path = RestkitRequest;
 			sourceTree = "<group>";
 		};
 		DF93444B1B34777000297E38 /* PageLoadingCell */ = {
@@ -648,6 +663,12 @@
 				TargetAttributes = {
 					DF183B921B1CAA2B0001DDA4 = {
 						CreatedOnToolsVersion = 6.3.2;
+						DevelopmentTeam = 34V4E5MT6Z;
+						SystemCapabilities = {
+							com.apple.Passbook = {
+								enabled = 0;
+							};
+						};
 					};
 					DF183BAE1B1CAA2B0001DDA4 = {
 						CreatedOnToolsVersion = 6.3.2;
@@ -784,6 +805,7 @@
 				DF48E8061B2218C900154FC1 /* NSDate+SimpleTimeAgo.m in Sources */,
 				DF48E7AB1B1CD70400154FC1 /* RestkitRequest.m in Sources */,
 				DF48E7AC1B1CD70400154FC1 /* ServerWrapper.m in Sources */,
+				DF5308551B6691F50082F3EA /* RestkitRequest+API.m in Sources */,
 				DFF176D01B1CD21A005095E9 /* APIInfo.m in Sources */,
 				DF48E7F31B1F499C00154FC1 /* RestkitRequestReponse.m in Sources */,
 				DF93444F1B34779600297E38 /* PageLoadingCell.m in Sources */,
@@ -933,6 +955,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -941,6 +964,7 @@
 				INFOPLIST_FILE = Filtacular/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -949,7 +973,8 @@
 			baseConfigurationReference = 68604422666334DB8E77C8CC /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -958,6 +983,7 @@
 				INFOPLIST_FILE = Filtacular/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

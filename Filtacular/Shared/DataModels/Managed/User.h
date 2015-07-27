@@ -14,8 +14,12 @@
 @property (nonatomic, assign) int identifier;
 @property (nonatomic, assign) NSString* userId;//twitterId
 @property (nonatomic, strong) NSString* nickname;
+@property (nonatomic, strong) NSString* name;
 
 + (RKEntityMapping*)entityMappingWithStore:(RKManagedObjectStore*)store;
 + (NSArray*)pseudoUsers;
+- (NSString*)displayName;
+- (NSString*)stringForPicker;
+- (NSString*)sortingName;
 
 @end

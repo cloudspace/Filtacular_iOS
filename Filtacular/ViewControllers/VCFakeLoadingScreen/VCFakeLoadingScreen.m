@@ -33,6 +33,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    
     [IntroViewController loginToFiltacular:_session failure:^(RKObjectRequestOperation *operation, NSError *error) {
         
         IntroViewController* vc = [IntroViewController build];
