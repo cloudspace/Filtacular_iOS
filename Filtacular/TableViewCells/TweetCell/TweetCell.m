@@ -9,6 +9,7 @@
 #import "TweetCell.h"
 #import "Tweet.h"
 
+#import "RestkitRequest+API.h"
 #import "UIView+Positioning.h"
 #import "UIImageView+SDWebCache.h"
 
@@ -289,11 +290,7 @@ const float cPadding = 16.0f;
     _btnRetweet.enabled = false;
     [_btnRetweet setTitle:[@(_cachedTweet.retweetCount) stringValue] forState:UIControlStateNormal];
     
-    RestkitRequest* request = [RestkitRequest new];
-    request.requestMethod = RKRequestMethodGET;
-    request.path = @"/retweet";
-    request.parameters = @{@"tweet_id":_cachedTweet.tweetId};
-    request.noMappingRequired = true;
+    RestkitRequest* request = [RestkitRequest retweetRequest:_cachedTweet.tweetId];
     [[ServerWrapper sharedInstance] performRequest:request];
 }
 
@@ -304,11 +301,7 @@ const float cPadding = 16.0f;
     _btnFavorite.enabled = false;
     [_btnFavorite setTitle:[@(_cachedTweet.favoriteCount) stringValue] forState:UIControlStateNormal];
     
-    RestkitRequest* request = [RestkitRequest new];
-    request.requestMethod = RKRequestMethodGET;
-    request.path = @"/favorite";
-    request.parameters = @{@"tweet_id":_cachedTweet.tweetId};
-    request.noMappingRequired = true;
+    RestkitRequest* request = [RestkitRequest favoriteRequest:_cachedTweet.tweetId];
     [[ServerWrapper sharedInstance] performRequest:request];
 }
 
@@ -316,11 +309,7 @@ const float cPadding = 16.0f;
     _cachedTweet.followed = true;
     _btnFollow.enabled = false;
     
-    RestkitRequest* request = [RestkitRequest new];
-    request.requestMethod = RKRequestMethodGET;
-    request.path = @"/follow";
-    request.parameters = @{@"screen_name":_cachedTweet.userName};
-    request.noMappingRequired = true;
+    RestkitRequest* request = [RestkitRequest followRequest:_cachedTweet.userName];
     [[ServerWrapper sharedInstance] performRequest:request];
 }
 

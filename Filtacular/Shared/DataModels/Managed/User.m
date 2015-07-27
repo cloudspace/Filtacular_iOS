@@ -46,10 +46,20 @@
     return @[user1, user2, user3];
 }
 
+- (NSString*)displayName {
+    if (self.name.length > 0)
+        return self.name;
+    return self.nickname;
+}
+
 - (NSString*)stringForPicker {
     if (self.name.length > 0)
-        return [NSString stringWithFormat:@"%@ (%@)", self.nickname, self.name];
+        return [NSString stringWithFormat:@"%@ (%@)", self.name, self.nickname];
     return self.nickname;
+}
+
+- (NSString*)sortingName {
+    return [[self stringForPicker] lowercaseString];
 }
 
 @end

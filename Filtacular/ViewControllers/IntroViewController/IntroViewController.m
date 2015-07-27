@@ -14,6 +14,7 @@
 #import "NSObject+Shortcuts.h"
 #import "NSError+URLError.h"
 #import "UIAlertView+Shortcuts.h"
+#import "RestkitRequest+API.h"
 
 #import <TwitterKit/TwitterKit.h>
 
@@ -33,32 +34,31 @@
 }
 
 - (IBAction)tapTwitterLogin {
+    _btnTwitterLogin.enabled = false;
+    
     [[Twitter sharedInstance] logInWithCompletion:^(TWTRSession *session, NSError *error) {
         if (session == nil) {
             NSLog(@"error: %@", [error localizedDescription]);
             [UIAlertView showError:error];
+            _btnTwitterLogin.enabled = true;
             return;
         }
         
         NSLog(@"signed in as %@", [session userName]);
-        _btnTwitterLogin.enabled = false;
-        
         [IntroViewController loginToFiltacular:session failure:^(RKObjectRequestOperation *operation, NSError *error) {
-            dispatch_main_sync_safe(^{ //TODO we really should just call the back from the main thread to avoid this
-                if (error) {
-                    if ([error isConnectionError]) {
-                        [UIAlertView showMessage:[error connectionErrorString]];
-                    }
-                    else if (error.code == 3) {
-                        [UIAlertView showAlertWithTitle:@"Wait List" andMessage:[error localizedDescription]];
-                    }
-                    else {
-                        [UIAlertView showError:error];
-                    }
+            if (error) {
+                if ([error isConnectionError]) {
+                    [UIAlertView showMessage:[error connectionErrorString]];
                 }
-                
-                _btnTwitterLogin.enabled = true;
-            });
+                else if (error.code == 3) {
+                    [UIAlertView showAlertWithTitle:@"Wait List" andMessage:[error localizedDescription]];
+                }
+                else {
+                    [UIAlertView showError:error];
+                }
+            }
+            
+            _btnTwitterLogin.enabled = true;
         } success:^(VCTwitterFeed *vcTwitterFeed) {
             _btnTwitterLogin.enabled = true;
             [self.navigationController pushViewController:vcTwitterFeed animated:true];
@@ -66,56 +66,54 @@
      }];
 }
 
-+ (void)loginToFiltacular:(TWTRSession*)twitterSession failure:(void (^)(RKObjectRequestOperation *operation, NSError *error))failureBlock success:(void (^)(VCTwitterFeed *vcTwitterFeed))successBlock {
+//TODO: This function is way too long
++ (void)loginToFiltacular:(TWTRSession*)twitterSession failure:(void (^)(RKObjectRequestOperation *operation, NSError *error))failureBlockParam success:(void (^)(VCTwitterFeed *vcTwitterFeed))successBlock {
     dispatch_async([ServerWrapper requestQueue], ^{
         
-        AFHTTPClient* client = [RKObjectManager sharedManager].HTTPClient;
-        NSURL *cookieUrl = [NSURL URLWithString:@"/auth/twitter_access_token/callback" relativeToURL:client.baseURL];
-        NSArray* cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookiesForURL:cookieUrl];
-        bool shouldGetAccessCookies = (cookies.count == 0);
-        if (shouldGetAccessCookies) {
-            RestkitRequest* request = [RestkitRequest new];
-            request.requestMethod = RKRequestMethodGET;
-            request.path = @"/auth/twitter_access_token/callback";
-            request.noMappingRequired = true;
-            request.parameters = @{@"token":twitterSession.authToken, @"token_secret":twitterSession.authTokenSecret};
-            request.customHeaders = @{};
-            request.failure = failureBlock;
-            
-            RestkitRequestReponse* response = [[ServerWrapper sharedInstance] performSyncRequest:request];
-            if (response.successful == false)
+        //We hook the failure block to avoid repeating code
+        __block void (^failureBlock)(RKObjectRequestOperation *operation, NSError *error) = ^(RKObjectRequestOperation *operation, NSError *error) {
+            if (failureBlockParam == nil)
                 return;
             
-            NSHTTPURLResponse* urlResponse = response.error.userInfo[AFNetworkingOperationFailingURLResponseErrorKey];
-            NSString* absoluteString = urlResponse.URL.absoluteString;
-            if ([absoluteString isEqualToString:@"http://filtacular.com/waitlist"])
-            {
-                NSError* error = [self errorWithCode:3 description:@"Thanks for connecting your Twitter account. We'll reach out when you can see the goodness."];
-                if (failureBlock)
-                    failureBlock(nil, error);
-                return;
-            }
+            dispatch_main_sync_safe(^{
+                failureBlockParam(operation, error);
+            });
+        };
+        
+        NSError* error = [self updateCookies:twitterSession];
+        if (error) {
+            failureBlock(nil, error);
+            return;
         }
     
         RestkitRequestReponse* response = [[ServerWrapper sharedInstance] performSyncGet:@"/twitter-users"];
         if (response.successful == false) {
-            if (failureBlock)
-                failureBlock(nil, response.error);
+            failureBlock(nil, response.error);
             return;
         }
         
         NSArray* users = response.mappingResult.array;
         
-        RestkitRequest* request = [RestkitRequest new];
-        request.requestMethod = RKRequestMethodGET;
-        request.path = @"/lenses";
-        request.noMappingRequired = true;
+        //Grab Filters
+        RestkitRequest* request = [RestkitRequest grabFiltersRequest];
         request.failure = failureBlock;
         
         response = [[ServerWrapper sharedInstance] performSyncRequest:request];
         if (response.successful == false)
             return;
         
+        NSMutableArray* filters = [response.mappingResult.array mutableCopy];
+        if (filters.count == 0) {
+            failureBlock(nil, [self errorWithCode:1 andLocalizedDescription:@"No filters returned from the server"]);
+            return;
+        }
+        
+        for (int i = 0; i < filters.count; i+=1)
+        {
+            filters[i] = [filters[i] stringByReplacingOccurrencesOfString:@"_" withString:@" "];
+        }
+        
+        //Find current user in user list
         User* selectedUser;
         for (User* eachUser in users)
         {
@@ -127,26 +125,15 @@
         
         if (selectedUser == nil) {
             NSString* errorMsg = [NSString stringWithFormat:@"Could not find user %@ (%@) in /twitter-users", [twitterSession userID], [twitterSession userName]];
-            if (failureBlock)
-                failureBlock(nil, [self errorWithCode:0 andLocalizedDescription:errorMsg]);
+            failureBlock(nil, [self errorWithCode:0 andLocalizedDescription:errorMsg]);
             return;
         }
         
+        //Sort users
         users = [users sortedArrayUsingComparator:^NSComparisonResult(User* obj1, User* obj2) {
-            return [[obj1.nickname lowercaseString] compare:[obj2.nickname lowercaseString]];
+            return [[obj1 sortingName] compare:[obj2 sortingName]];
         }];
         
-        NSMutableArray* filters = [response.mappingResult.array mutableCopy];
-        if (filters.count == 0) {
-            if (failureBlock)
-                failureBlock(nil, [self errorWithCode:1 andLocalizedDescription:@"No filters returned from the server"]);
-            return;
-        }
-        
-        for (int i = 0; i < filters.count; i+=1)
-        {
-            filters[i] = [filters[i] stringByReplacingOccurrencesOfString:@"_" withString:@" "];
-        }
         
         dispatch_sync(dispatch_get_main_queue(), ^{
             
@@ -159,6 +146,30 @@
             successBlock(vcTwitterFeed);
         });
     });
+}
+
++ (NSError*)updateCookies:(TWTRSession*)twitterSession {
+    AFHTTPClient* client = [RKObjectManager sharedManager].HTTPClient;
+    NSURL *cookieUrl = [NSURL URLWithString:@"/auth/twitter_access_token/callback" relativeToURL:client.baseURL];
+    NSArray* cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookiesForURL:cookieUrl];
+    bool alreadyHaveCookies = (cookies.count != 0);
+    if (alreadyHaveCookies)
+        return nil;
+    
+    RestkitRequest* request = [RestkitRequest cookiesRequestToken:twitterSession.authToken secret:twitterSession.authTokenSecret];
+    RestkitRequestReponse* response = [[ServerWrapper sharedInstance] performSyncRequest:request];
+    if (response.successful == false)
+        return response.error;
+    
+    NSHTTPURLResponse* urlResponse = response.error.userInfo[AFNetworkingOperationFailingURLResponseErrorKey];
+    NSString* absoluteString = urlResponse.URL.absoluteString;
+    if ([absoluteString isEqualToString:@"http://filtacular.com/waitlist"])
+    {
+        NSError* error = [self errorWithCode:3 description:@"Thanks for connecting your Twitter account. We'll reach out when you can see the goodness."];
+        return error;
+    }
+    
+    return nil;
 }
 
 @end

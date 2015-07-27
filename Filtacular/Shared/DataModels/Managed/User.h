@@ -18,5 +18,8 @@
 
 + (RKEntityMapping*)entityMappingWithStore:(RKManagedObjectStore*)store;
 + (NSArray*)pseudoUsers;
+- (NSString*)displayName;
+- (NSString*)stringForPicker;
+- (NSString*)sortingName;
 
 @end

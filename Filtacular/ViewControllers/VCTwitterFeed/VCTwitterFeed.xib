@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
@@ -25,7 +25,7 @@
                     <rect key="frame" x="0.0" y="20" width="320" height="504"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </view>
-                <view alpha="0.0" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UsA-v8-nFC" userLabel="View - Back to Top">
+                <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UsA-v8-nFC" userLabel="View - Back to Top">
                     <rect key="frame" x="230" y="410" width="96" height="98"/>
                     <subviews>
                         <view clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FHZ-Zi-Kgh" userLabel="View - Shadow">
@@ -56,6 +56,10 @@
                         </button>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="96" id="8wi-k7-ZgY"/>
+                        <constraint firstAttribute="height" constant="98" id="hTh-dn-EYQ"/>
+                    </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aZd-gO-2Rg" userLabel="View Bottom Bar">
                     <rect key="frame" x="0.0" y="524" width="320" height="44"/>
@@ -114,9 +118,11 @@
                 <constraint firstItem="eIb-3Y-3vV" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="C3f-jl-v1h"/>
                 <constraint firstItem="1Fr-Yi-MW7" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="F3l-Ge-ltC"/>
                 <constraint firstAttribute="trailing" secondItem="1Fr-Yi-MW7" secondAttribute="trailing" id="Fow-yc-6Yl"/>
+                <constraint firstAttribute="trailing" secondItem="UsA-v8-nFC" secondAttribute="trailing" constant="-6" id="L8a-MJ-gHu"/>
                 <constraint firstItem="1Fr-Yi-MW7" firstAttribute="top" secondItem="aZd-gO-2Rg" secondAttribute="bottom" id="fDT-UY-fes"/>
                 <constraint firstItem="aZd-gO-2Rg" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="i0V-jI-6GB"/>
                 <constraint firstAttribute="bottom" secondItem="aZd-gO-2Rg" secondAttribute="bottom" id="mFY-qT-IV0"/>
+                <constraint firstItem="aZd-gO-2Rg" firstAttribute="top" secondItem="UsA-v8-nFC" secondAttribute="bottom" constant="16" id="tFF-Np-AOL"/>
             </constraints>
             <point key="canvasLocation" x="267" y="298"/>
         </view>
