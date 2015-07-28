@@ -122,9 +122,15 @@ static const int cTweetsPerPage = 100;
 }
 
 - (void)resetPagingFrameOfReferenceUsingFilter:(NSString*)filter {
-    _createdAfterRefFrame = [NSDate date];
-    NSTimeInterval endTimeFrame = [_createdAfterRefFrame timeIntervalSinceReferenceDate] - 60 * 60 * 24; //24 hours earlier
-    _createdBeforeRefFrame = [NSDate dateWithTimeIntervalSinceReferenceDate:endTimeFrame];
+    _createdBeforeRefFrame = [NSDate date];
+    
+    if ([filter isEqualToString:@"swish"] == false) {
+        //We hard code this one hour offset because for all other filters because the tweets are still coming in until an hour after
+        NSTimeInterval beginTime = [_createdBeforeRefFrame timeIntervalSinceReferenceDate] - 60 * 60 * 1; //1 hour earlier
+        _createdBeforeRefFrame = [NSDate dateWithTimeIntervalSinceReferenceDate:beginTime];
+    }
+    NSTimeInterval endTimeFrame = [_createdBeforeRefFrame timeIntervalSinceReferenceDate] - 60 * 60 * 24; //24 hours earlier
+    _createdAfterRefFrame = [NSDate dateWithTimeIntervalSinceReferenceDate:endTimeFrame];
     _nextPage = 1;
 }
 
@@ -138,7 +144,7 @@ static const int cTweetsPerPage = 100;
         if (twitterBlockOp.cancelled)
             return;
         
-        NSDictionary* filterDictionary = @{};//temporary work around server sided bug. @{@"created_before":_createdBeforeRefFrame, @"created_after":_createdAfterRefFrame};
+        NSDictionary* filterDictionary = @{@"created_before":_createdBeforeRefFrame, @"created_after":_createdAfterRefFrame};
         NSString* filter = [_selectedFilter stringByReplacingOccurrencesOfString:@" " withString:@"_"];
         NSMutableDictionary* filterMod = [filterDictionary mutableCopy];
         [filterMod setObject:@(1) forKey:filter];
