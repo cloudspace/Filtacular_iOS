@@ -159,8 +159,10 @@ static int cFavoriteCounts[cNumRandoms] = { 0, 6, 200 };
     
     Tweet* other = object;
     
-    if ([urlLink isEqualToString:other.urlLink] == false)
-        return false;
+    if (urlLink.length > 0) {
+        if ([urlLink isEqualToString:other.urlLink])
+            return true; //The website version removes content that reuse the same link
+    }
     
     if ([urlDescription isEqualToString:other.urlDescription] == false)
         return false;
