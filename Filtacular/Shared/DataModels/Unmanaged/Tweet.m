@@ -8,6 +8,7 @@
 
 #import "Tweet.h"
 
+#import "NSString+HtmlDecoding.h"
 #import "NSDate+SimpleTimeAgo.h"
 #import <TwitterKit/TwitterKit.h>
 
@@ -34,21 +35,51 @@
     [mapping addAttributeMappingsFromArray:@[@"media"]];
     [mapping addAttributeMappingsFromDictionary:@{
         @"attributes.tweet-id"          :@"tweetId",
-        @"attributes.url-description"   :@"urlDescription",
-        @"attributes.url-title"         :@"urlTitle",
         @"attributes.url-image"         :@"urlImage",
         @"attributes.url-link"          :@"urlLink",
         @"attributes.tweet-created-at"  :@"tweetCreatedAt",
         @"attributes.retweet-count"     :@"retweetCount",
         @"attributes.favorites-count"   :@"favoriteCount",
-        @"attributes.expanded-text"     :@"text",
         @"attributes.profile-image-url" :@"profilePicUrl",
         @"attributes.name"              :@"displayName",
         @"id"                           :@"identifier",
         @"attributes.screen-name"       :@"userName"
     }];
     
+    //We want to map text, description, and title ourselves since its html encoded
+    //We also trim whitespace
+    //TODO: make category on RKObjectMapping
+    RKAttributeMapping *textMapping = [self htmlEncodedMappingFromKeyPath:@"attributes.expanded-text" toKeyPath:@"text"];
+    RKAttributeMapping *titleMapping = [self htmlEncodedMappingFromKeyPath:@"attributes.url-title" toKeyPath:@"urlTitle"];
+    RKAttributeMapping *descMapping = [self htmlEncodedMappingFromKeyPath:@"attributes.url-description" toKeyPath:@"urlDescription"];
+    
+    [mapping addPropertyMapping:textMapping];
+    [mapping addPropertyMapping:titleMapping];
+    [mapping addPropertyMapping:descMapping];
+    
     return mapping;
+}
+
++ (RKAttributeMapping*)htmlEncodedMappingFromKeyPath:(NSString*)fromKey toKeyPath:(NSString*)toKey {
+    RKValueTransformer *htmlEncodedTransformer = [RKBlockValueTransformer valueTransformerWithValidationBlock:^BOOL(__unsafe_unretained Class inputValueClass, __unsafe_unretained Class outputValueClass) {
+        return [inputValueClass isSubclassOfClass:[NSString class]];
+    } transformationBlock:^BOOL(id inputValue, __autoreleasing id *outputValue, __unsafe_unretained Class outputClass, NSError *__autoreleasing *error) {
+        if ([inputValue isKindOfClass:[NSNull class]])
+            return FALSE;
+        
+        *outputValue = [inputValue gtm_stringByUnescapingFromHTML];
+        
+        NSMutableString *trimWhiteSpace = [*outputValue mutableCopy];
+        CFStringTrimWhitespace((__bridge CFMutableStringRef)trimWhiteSpace);
+        
+        *outputValue = [trimWhiteSpace copy];
+        
+        return YES;
+    }];
+    RKAttributeMapping *textMapping = [RKAttributeMapping attributeMappingFromKeyPath:fromKey toKeyPath:toKey];
+    textMapping.valueTransformer = htmlEncodedTransformer;
+    textMapping.propertyValueClass = [NSString class];
+    return textMapping;
 }
 
 static const int cNumRandoms = 3;
