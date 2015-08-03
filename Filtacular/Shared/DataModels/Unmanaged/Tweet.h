@@ -44,7 +44,6 @@
 - (NSString*)simpleTimeAgo;
 - (NSString*)imageUrl;
 - (NSString*)displayLinkHost;
-- (NSString*)decodedText;
 
 - (void)configureWithTwitterTweet:(TWTRTweet*)twitterTweet;
 - (bool)isValidLinkyLooTweet;

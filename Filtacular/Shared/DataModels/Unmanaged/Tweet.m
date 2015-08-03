@@ -69,10 +69,14 @@
         
         *outputValue = [inputValue gtm_stringByUnescapingFromHTML];
         
+        //Remove Whitespace
         NSMutableString *trimWhiteSpace = [*outputValue mutableCopy];
         CFStringTrimWhitespace((__bridge CFMutableStringRef)trimWhiteSpace);
         
         *outputValue = [trimWhiteSpace copy];
+        
+        //Remove crashing text
+        *outputValue = [*outputValue stringByReplacingOccurrencesOfString:@"رً ॣ ॣ ॣ" withString:@"j ॣ ॣ ॣ"];
         
         return YES;
     }];
