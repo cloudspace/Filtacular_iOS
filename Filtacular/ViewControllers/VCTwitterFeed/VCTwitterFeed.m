@@ -102,6 +102,7 @@ static const int cTweetsPerPage = 100;
 
     [_table clearAndWaitForNewData];
     _tableData = @[];
+    _canRefresh = false; //TODO: Pair tabledata and can refresh together
     [self resetPagingFrameOfReferenceUsingFilter:_selectedFilter];
     [self fetchTweets:_nextPage];
 }
@@ -179,10 +180,10 @@ static const int cTweetsPerPage = 100;
     }];
     
     [_twitterUpdateQueue addOperation:twitterUpdater];
-}
-
+}	
 - (void)loadTweets:(NSArray*)tweets {
     
+    //Remove the Loading cell if it exists
     id lastObj = [_tableData lastObject];
     if ([lastObj isKindOfClass:[LoadingCallBack class]]) {
         NSRange range;
@@ -191,6 +192,7 @@ static const int cTweetsPerPage = 100;
         _tableData = [_tableData subarrayWithRange:range];
     }
     
+    //Filter out invalid tweets
     bool isLinkyLoo = [_selectedFilter isEqualToString:@"linky loo"];
     if (isLinkyLoo) {
         tweets = [tweets objectsAtIndexes:[tweets indexesOfObjectsPassingTest:^BOOL(Tweet* obj, NSUInteger idx, BOOL *stop) {
@@ -208,10 +210,12 @@ static const int cTweetsPerPage = 100;
     __weak VCTwitterFeed* weakSelf = self;
     for (__weak Tweet* eachTweet in tweets) {
         
-        if ([_selectedFilter isEqualToString:@"aye aye"])
+        if ([_selectedFilter isEqualToString:@"aye aye"]) {
             eachTweet.pictureOnly = true;
-        else if ([_selectedFilter isEqualToString:@"linky loo"])
+        }
+        else if ([_selectedFilter isEqualToString:@"linky loo"]) {
             eachTweet.linkOnly = true;
+        }
         
         if ([_selectedUser.nickname isEqualToString:_twitterSession.userName] == false)
             eachTweet.showFollowButton = true;

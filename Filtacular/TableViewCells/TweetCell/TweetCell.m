@@ -16,12 +16,13 @@
 #import "ServerWrapper.h"
 
 #import <OAStackView.h>
+#import <TTTAttributedLabel.h>
 
-@interface TweetCell ()
+@interface TweetCell () <TTTAttributedLabelDelegate>
 @property (strong, nonatomic) IBOutlet UILabel *lblDisplayName;
 @property (strong, nonatomic) IBOutlet UILabel *lblUserName;
 @property (strong, nonatomic) IBOutlet UILabel *lblDatePosted;
-@property (strong, nonatomic) IBOutlet UILabel *lblPostText;
+@property (strong, nonatomic) IBOutlet TTTAttributedLabel *lblPostText;
 @property (strong, nonatomic) IBOutlet UIImageView *imgUserPic;
 @property (strong, nonatomic) IBOutlet UIImageView *imgUrlPic;
 @property (strong, nonatomic) IBOutlet UILabel *lblUrlText;
@@ -49,13 +50,14 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     
+    //Configure the bottom bar layout
     _viewBottomBar.distribution = OAStackViewDistributionFillEqually;
     _viewBottomBar.alignment = OAStackViewAlignmentFill;
     _viewBottomBar.axis = UILayoutConstraintAxisHorizontal;
     _viewBottomBar.spacing = 0.0f;
     
+    //We remove each view and readd it so it gets layed out with the new config
     NSArray* subviews = [_viewBottomBar.subviews copy];
-    
     for (UIView* eachView in subviews) {
         [eachView removeFromSuperview];
     }
@@ -63,6 +65,15 @@
     for (UIView* eachView in subviews) {
         [_viewBottomBar addArrangedSubview:eachView];
     }
+    
+    //Default config for links
+    _lblPostText.linkAttributes = @{
+        (NSString *)kCTUnderlineStyleAttributeName :@(1),
+        (NSString *)kCTForegroundColorAttributeName:(id)([UIColor colorWithRed:84.0f/256.0f green:168.0f/256.0f blue:228.0f/256.0f alpha:1.0f].CGColor)
+    };
+    
+    _lblPostText.delegate = self;
+    _lblPostText.userInteractionEnabled = true;
 }
 
 - (void)configureWithObject:(Tweet*)tweet {
@@ -81,6 +92,30 @@
     _lblUserName.text = [NSString stringWithFormat:@"@%@", tweet.userName];
     _lblDatePosted.text = [tweet simpleTimeAgo];
     _lblPostText.text = tweet.text;
+    [_lblPostText setText:tweet.text afterInheritingLabelAttributesAndConfiguringWithBlock:nil];
+    
+    //Create Hashtag and Mention Links
+    NSRegularExpression *regexp = HashTagRegex();
+    NSArray* matches = [regexp matchesInString:tweet.text options:0 range:NSMakeRange(0, [tweet.text length])];
+    for (NSTextCheckingResult* match in matches)
+    {
+        NSRange hashRange = [match range];
+        hashRange.location += 1;
+        hashRange.length -= 1;
+        NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://twitter.com/hashtag/%@", [tweet.text substringWithRange:hashRange]]];
+        [_lblPostText addLinkToURL:url withRange:[match range]];
+    }
+    
+    regexp = MentionRegex();
+    matches = [regexp matchesInString:tweet.text options:0 range:NSMakeRange(0, [tweet.text length])];
+    for (NSTextCheckingResult* match in matches)
+    {
+        NSRange mentionRange = [match range];
+        mentionRange.location += 1;
+        mentionRange.length -= 1;
+        NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://twitter.com/%@", [tweet.text substringWithRange:mentionRange]]];
+        [_lblPostText addLinkToURL:url withRange:mentionRange];
+    }
     
     [_imgUserPic setImageWithURL:tweet.profilePicUrl placeholderImage:nil options:SDWebImageRetryFailed];
     
@@ -133,20 +168,19 @@
 }
 
 - (void)configureLinkDetails:(Tweet*)tweet {
-    bool hasUrl = (tweet.urlLink.length != 0);
-    bool hasImage = (tweet.imageUrl.length != 0);
-    bool hasUrlTitle = (tweet.urlTitle.length != 0);
-    
-    _btnToLink.enabled = hasUrl;
+    bool hasUrl         = (tweet.urlLink .length != 0);
+    bool hasImage       = (tweet.imageUrl.length != 0);
+    bool hasUrlTitle    = (tweet.urlTitle.length != 0);
+    _btnToLink.enabled  = hasUrl;
     
     if (hasImage) {
         [_imgUrlPic setImageWithURL:tweet.imageUrl placeholderImage:nil options:SDWebImageRetryFailed];
     }
     
     if (hasUrlTitle) {
-        _lblUrlText.text = tweet.urlTitle;
+        _lblUrlText.text        = tweet.urlTitle;
         _lblUrlDescription.text = tweet.urlDescription;
-        _lblUrlDomain.text = [tweet displayLinkHost];
+        _lblUrlDomain.text      = [tweet displayLinkHost];
     }
 }
 
@@ -154,9 +188,9 @@ const float cPadding = 16.0f;
 
 - (void)repositionSubviewsWithTweet:(Tweet*)tweet {
     
-    bool hasUrl = (tweet.urlLink.length != 0 && tweet.pictureOnly == false);
-    bool hasImage = (tweet.imageUrl.length != 0 && tweet.pictureOnly == false);
-    bool linkOnly = tweet.linkOnly;
+    bool hasUrl     = (tweet.urlLink .length != 0 && tweet.pictureOnly == false);
+    bool hasImage   = (tweet.imageUrl.length != 0 && tweet.pictureOnly == false);
+    bool linkOnly   = tweet.linkOnly;
     
     [self repositionUserName];
     
@@ -171,7 +205,6 @@ const float cPadding = 16.0f;
     
     //reposition everything else
     [self fitToHeight:_lblPostText];
-    _lblPostText.height -= 16.0f;
     if (_lblPostText.height < 39.0f)
         _lblPostText.height = 39.0f;
     
@@ -239,7 +272,7 @@ const float cPadding = 16.0f;
     
     CGSize newLabelSize = [self boundingSizeInSpace:spaceToSizeIn WithLabel:label];
     
-    label.height = newLabelSize.height + label.font.lineHeight;
+    label.height = newLabelSize.height;
 }
 
 - (void)fitToWidth:(UILabel*)label maxWidth:(float)maxWidth {
@@ -260,7 +293,6 @@ const float cPadding = 16.0f;
     paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
     
     NSDictionary* attributes = @{NSFontAttributeName: label.font, NSParagraphStyleAttributeName:paragraphStyle};
-    label.text = [label.text stringByReplacingOccurrencesOfString:@"رً ॣ ॣ ॣ" withString:@"j ॣ ॣ ॣ"];
     
     CGRect newLabelRect = [label.text boundingRectWithSize:space options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil];
     
@@ -341,6 +373,31 @@ const float cPadding = 16.0f;
     //This is called when the cell height changes. So we need to reconfigure so we can reposition our elements.
     if (_cachedTweet)
         [self configureWithObject:_cachedTweet];
+}
+
+#pragma mark - Url Link Delegate
+- (void)attributedLabel:(TTTAttributedLabel *)label didSelectLinkWithURL:(NSURL *)url {
+    if (_cachedTweet.tappedLink == nil)
+        return;
+    _cachedTweet.tappedLink([url absoluteString]);
+}
+
+static NSRegularExpression *sHashTagRegex;
+static inline NSRegularExpression * HashTagRegex() {
+    if (!sHashTagRegex) {
+        sHashTagRegex = [[NSRegularExpression alloc] initWithPattern:@"[#]+[A-Za-z0-9_]+" options:NSRegularExpressionCaseInsensitive error:nil];
+    }
+    
+    return sHashTagRegex;
+}
+
+static NSRegularExpression *sMentionRegex;
+static inline NSRegularExpression * MentionRegex() {
+    if (!sMentionRegex) {
+        sMentionRegex = [[NSRegularExpression alloc] initWithPattern:@"[@]+[A-Za-z0-9_]+" options:NSRegularExpressionCaseInsensitive error:nil];
+    }
+    
+    return sMentionRegex;
 }
 
 @end

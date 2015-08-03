@@ -3,6 +3,8 @@ link_with ['Filtacular']
 pod 'SVWebViewController', :head
 pod 'OAStackView', :head
 
+pod 'TTTAttributedLabel', :head
+
 # Networking / Caching
 pod 'SDWebImage', '~> 3.7'
 pod 'RestKit', '~> 0.24.1'

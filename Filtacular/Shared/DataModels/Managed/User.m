@@ -19,9 +19,12 @@
 + (RKEntityMapping*)entityMappingWithStore:(RKManagedObjectStore*)store {
     RKEntityMapping *mapping = [super entityMappingWithStore:store];
     mapping.identificationAttributes = @[@"identifier"];
-    [mapping addAttributeMappingsFromArray:@[@"nickname", @"name"]];
-    [mapping addAttributeMappingsFromDictionary:@{@"user-id": @"userId", @"id": @"identifier"}];
-
+    [mapping addAttributeMappingsFromDictionary:@{
+        @"attributes.nickname": @"nickname",
+        @"attributes.name": @"name",
+        @"attributes.user-id": @"userId",
+        @"id": @"identifier"
+    }];
     
     return mapping;
 }
@@ -60,6 +63,10 @@
 
 - (NSString*)sortingName {
     return [[self stringForPicker] lowercaseString];
+}
+
+- (NSString*)description {
+    return [NSString stringWithFormat:@"User\n\tName:%@\n\tNickName:%@\n\tId:%i", self.name, self.nickname, self.identifier];
 }
 
 @end
