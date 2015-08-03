@@ -171,7 +171,6 @@ const float cPadding = 16.0f;
     
     //reposition everything else
     [self fitToHeight:_lblPostText];
-    _lblPostText.height -= 16.0f;
     if (_lblPostText.height < 39.0f)
         _lblPostText.height = 39.0f;
     
