@@ -239,7 +239,7 @@ const float cPadding = 16.0f;
     
     CGSize newLabelSize = [self boundingSizeInSpace:spaceToSizeIn WithLabel:label];
     
-    label.height = newLabelSize.height + label.font.lineHeight;
+    label.height = newLabelSize.height;
 }
 
 - (void)fitToWidth:(UILabel*)label maxWidth:(float)maxWidth {
