@@ -32,8 +32,8 @@
 
 + (RKObjectMapping*)objectMapping {
     RKObjectMapping *mapping = [super objectMapping];
-    [mapping addAttributeMappingsFromArray:@[@"media"]];
     [mapping addAttributeMappingsFromDictionary:@{
+        @"attributes.media"             :@"media",
         @"attributes.tweet-id"          :@"tweetId",
         @"attributes.url-image"         :@"urlImage",
         @"attributes.url-link"          :@"urlLink",
