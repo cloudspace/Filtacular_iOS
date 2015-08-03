@@ -385,7 +385,7 @@ const float cPadding = 16.0f;
 static NSRegularExpression *sHashTagRegex;
 static inline NSRegularExpression * HashTagRegex() {
     if (!sHashTagRegex) {
-        sHashTagRegex = [[NSRegularExpression alloc] initWithPattern:@"(?<=\\s|^)#(\\w*[A-Za-z_]+\\w*)" options:NSRegularExpressionCaseInsensitive error:nil];
+        sHashTagRegex = [[NSRegularExpression alloc] initWithPattern:@"[#]+[A-Za-z0-9_]+" options:NSRegularExpressionCaseInsensitive error:nil];
     }
     
     return sHashTagRegex;
@@ -394,7 +394,7 @@ static inline NSRegularExpression * HashTagRegex() {
 static NSRegularExpression *sMentionRegex;
 static inline NSRegularExpression * MentionRegex() {
     if (!sMentionRegex) {
-        sMentionRegex = [[NSRegularExpression alloc] initWithPattern:@"(?<=\\s|^)@(\\w*[A-Za-z_]+\\w*)" options:NSRegularExpressionCaseInsensitive error:nil];
+        sMentionRegex = [[NSRegularExpression alloc] initWithPattern:@"[@]+[A-Za-z0-9_]+" options:NSRegularExpressionCaseInsensitive error:nil];
     }
     
     return sMentionRegex;
