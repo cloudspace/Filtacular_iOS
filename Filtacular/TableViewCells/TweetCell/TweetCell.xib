@@ -10,7 +10,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="439"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="438.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="439"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" id="QgT-z7-Nft" userLabel="View - Top bar">
@@ -64,7 +64,7 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </view>
                     <view contentMode="scaleToFill" id="vgc-GO-0X0" userLabel="View - Bottom Bar" customClass="OAStackView">
-                        <rect key="frame" x="0.0" y="387" width="320" height="52"/>
+                        <rect key="frame" x="0.0" y="389" width="320" height="52"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" id="Bz3-xA-AOM" userLabel="View - Reply">
