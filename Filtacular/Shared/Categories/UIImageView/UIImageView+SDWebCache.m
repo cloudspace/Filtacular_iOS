@@ -11,7 +11,7 @@
 
 @implementation UIImageView (SDWebCache)
 
-- (void)setImageWithURL:(NSString *)url placeholderImage:(UIImage *)placeholder options:(SDWebImageOptions)options {
+- (void)setImageWithString:(NSString *)url placeholderImage:(UIImage *)placeholder {
     
     NSURL* urlPhoto = [NSURL URLWithString:url];
     
@@ -21,10 +21,14 @@
     if (cachedImage) {
         [self sd_cancelCurrentImageLoad];
         [self setImage:cachedImage];
+        
+        return;
     }
-    else {
-        [self sd_setImageWithURL:urlPhoto placeholderImage:nil options:SDWebImageRetryFailed];
-    }
+    
+    if ([urlPhoto isEqual:self.sd_imageURL])
+        return;
+    
+    [self sd_setImageWithURL:urlPhoto placeholderImage:nil options:SDWebImageRetryFailed];
 }
 
 @end

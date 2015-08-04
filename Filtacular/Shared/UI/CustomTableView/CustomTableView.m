@@ -138,7 +138,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     id object = _tableData[indexPath.row];
-    id cell = [self cachedCellForObject:object];
+    id cell = [self cachedCellForObject:object];//We cache the cell because its expensive to recreate it
     
     CGFloat height = [cell calculateHeightWith:object];
     return height;

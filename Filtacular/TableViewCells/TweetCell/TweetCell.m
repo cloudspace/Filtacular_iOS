@@ -78,8 +78,31 @@
 
 - (void)configureWithObject:(Tweet*)tweet {
     
-    _cachedTweet = tweet;
-    _bigPicOpen = tweet.bigPicOpenedCache;
+    [self resetUI];
+    [self populateUIWithTweet:tweet];
+    [self createLinks];
+    
+    //Set Images
+    [_imgUserPic setImageWithString:tweet.profilePicUrl placeholderImage:nil];
+    if (tweet.pictureOnly) {
+        [_imgBigPic setImageWithString:tweet.imageUrl placeholderImage:nil];
+    }
+    else {
+        bool hasImage = (tweet.imageUrl.length != 0);
+        if (hasImage) {
+            [_imgUrlPic setImageWithString:tweet.imageUrl placeholderImage:nil];
+        }
+    }
+    
+    [self repositionSubviewsWithTweet:tweet];
+}
+
+- (void)reconfigureForHeightChange:(Tweet*)tweet {
+    [self populateUIWithTweet:tweet];
+    [self repositionSubviewsWithTweet:tweet];
+}
+
+- (void)resetUI {
     _imgUrlPic.image = nil;
     _lblUrlDomain.text = @"";
     _lblUrlText.text = @"";
@@ -87,38 +110,16 @@
     _btnToTweeter.enabled = true;
     _btnToTweet.enabled = true;
     _viewLinkyLooCover.height = 0.0f;
-    
+}
+
+- (void)populateUIWithTweet:(Tweet*)tweet {
+    _cachedTweet = tweet;
+    _bigPicOpen = tweet.bigPicOpenedCache;
     _lblDisplayName.text = tweet.displayName;
     _lblUserName.text = [NSString stringWithFormat:@"@%@", tweet.userName];
     _lblDatePosted.text = [tweet simpleTimeAgo];
     _lblPostText.text = tweet.text;
     [_lblPostText setText:tweet.text afterInheritingLabelAttributesAndConfiguringWithBlock:nil];
-    
-    //Create Hashtag and Mention Links
-    NSRegularExpression *regexp = HashTagRegex();
-    NSArray* matches = [regexp matchesInString:tweet.text options:0 range:NSMakeRange(0, [tweet.text length])];
-    for (NSTextCheckingResult* match in matches)
-    {
-        NSRange hashRange = [match range];
-        hashRange.location += 1;
-        hashRange.length -= 1;
-        NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://twitter.com/hashtag/%@", [tweet.text substringWithRange:hashRange]]];
-        [_lblPostText addLinkToURL:url withRange:[match range]];
-    }
-    
-    regexp = MentionRegex();
-    matches = [regexp matchesInString:tweet.text options:0 range:NSMakeRange(0, [tweet.text length])];
-    for (NSTextCheckingResult* match in matches)
-    {
-        NSRange mentionRange = [match range];
-        mentionRange.location += 1;
-        mentionRange.length -= 1;
-        NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://twitter.com/%@", [tweet.text substringWithRange:mentionRange]]];
-        [_lblPostText addLinkToURL:url withRange:mentionRange];
-    }
-    
-    [_imgUserPic setImageWithURL:tweet.profilePicUrl placeholderImage:nil options:SDWebImageRetryFailed];
-    
     [_btnRetweet setTitle:[@(tweet.retweetCount) stringValue] forState:UIControlStateNormal];
     [_btnFavorite setTitle:[@(tweet.favoriteCount) stringValue] forState:UIControlStateNormal];
     
@@ -127,7 +128,6 @@
     [_btnRetweet setEnabled:!disableRetweet];
     [_btnFavorite setEnabled:!disableFavorite];
     [_btnFollow setEnabled:!tweet.followed];
-    
     [_viewFollow setHidden:!tweet.showFollowButton];
     
     if (tweet.linkOnly) {
@@ -143,21 +143,43 @@
         _imgBigPic.hidden = true;
         [self configureLinkDetails:tweet];
     }
+}
+
+- (void)createLinks {
+    NSRegularExpression *regexp = HashTagRegex();
+    NSArray* matches = [regexp matchesInString:_lblPostText.text options:0 range:NSMakeRange(0, [_lblPostText.text length])];
+    for (NSTextCheckingResult* match in matches)
+    {
+        NSRange hashRange = [match range];
+        hashRange.location += 1;
+        hashRange.length -= 1;
+        NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://twitter.com/hashtag/%@", [_lblPostText.text substringWithRange:hashRange]]];
+        [_lblPostText addLinkToURL:url withRange:[match range]];
+    }
     
-    [self repositionSubviewsWithTweet:tweet];
+    regexp = MentionRegex();
+    matches = [regexp matchesInString:_lblPostText.text options:0 range:NSMakeRange(0, [_lblPostText.text length])];
+    for (NSTextCheckingResult* match in matches)
+    {
+        NSRange mentionRange = [match range];
+        mentionRange.location += 1;
+        mentionRange.length -= 1;
+        NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://twitter.com/%@", [_lblPostText.text substringWithRange:mentionRange]]];
+        [_lblPostText addLinkToURL:url withRange:mentionRange];
+    }
 }
 
 - (CGFloat)calculateHeightWith:(Tweet*)tweet {
+
     self.width = [[UIScreen mainScreen] bounds].size.width;
-    [self layoutIfNeeded];
-    [self configureWithObject:tweet];
+    [self layoutIfNeeded];//TODO: This also calls configureWithObj
+    [self configureWithObject:tweet]; //This is called on a throwaway object so its ok to reload it from scratch
     return self.height;
 }
 
 - (void)configureBigPic:(Tweet*)tweet {
     _btnBigPic.hidden = false;
     _imgBigPic.hidden = false;
-    [_imgBigPic setImageWithURL:tweet.imageUrl placeholderImage:nil options:SDWebImageRetryFailed];
     
     _btnToLink.enabled = false;
     
@@ -169,13 +191,8 @@
 
 - (void)configureLinkDetails:(Tweet*)tweet {
     bool hasUrl         = (tweet.urlLink .length != 0);
-    bool hasImage       = (tweet.imageUrl.length != 0);
     bool hasUrlTitle    = (tweet.urlTitle.length != 0);
     _btnToLink.enabled  = hasUrl;
-    
-    if (hasImage) {
-        [_imgUrlPic setImageWithURL:tweet.imageUrl placeholderImage:nil options:SDWebImageRetryFailed];
-    }
     
     if (hasUrlTitle) {
         _lblUrlText.text        = tweet.urlTitle;
@@ -370,9 +387,9 @@ const float cPadding = 16.0f;
 - (void)layoutSubviews {
     [super layoutSubviews];
     
-    //This is called when the cell height changes. So we need to reconfigure so we can reposition our elements.
+    //This *may* be called when the cell height changes. So we need to reconfigure so we can reposition our elements.
     if (_cachedTweet)
-        [self configureWithObject:_cachedTweet];
+        [self reconfigureForHeightChange:_cachedTweet];
 }
 
 #pragma mark - Url Link Delegate
