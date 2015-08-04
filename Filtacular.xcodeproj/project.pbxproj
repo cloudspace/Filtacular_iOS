@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		85026EE1519951E127FB997B /* libPods-FiltacularTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F87BD5DD489DB985D5711B7B /* libPods-FiltacularTests.a */; };
 		DB1BE132AE4A22BF594B8604 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 334450DE7229DC724EF42003 /* libPods.a */; };
+		DF07EB7D1B71081900EA3C41 /* TableViewStickyButtonsFix.m in Sources */ = {isa = PBXBuildFile; fileRef = DF07EB7C1B71081900EA3C41 /* TableViewStickyButtonsFix.m */; };
 		DF17730C1B1CC29B00AD4CA4 /* AppledocSettings.plist in Resources */ = {isa = PBXBuildFile; fileRef = DF17730B1B1CC29A00AD4CA4 /* AppledocSettings.plist */; };
 		DF183B991B1CAA2B0001DDA4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DF183B981B1CAA2B0001DDA4 /* main.m */; };
 		DF183B9F1B1CAA2B0001DDA4 /* Filtacular.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DF183B9D1B1CAA2B0001DDA4 /* Filtacular.xcdatamodeld */; };
@@ -35,7 +36,6 @@
 		DF48E7E11B1DF06200154FC1 /* TweetCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF48E7DF1B1DF06200154FC1 /* TweetCell.xib */; };
 		DF48E7E81B1DF5A600154FC1 /* MCCSmartGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = DF48E7E41B1DF5A600154FC1 /* MCCSmartGroup.m */; };
 		DF48E7E91B1DF5A600154FC1 /* MCCSmartGroupManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DF48E7E61B1DF5A600154FC1 /* MCCSmartGroupManager.m */; };
-		DF48E7EA1B1DF5A600154FC1 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = DF48E7E71B1DF5A600154FC1 /* README.md */; };
 		DF48E7EE1B1E0E6D00154FC1 /* RootNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF48E7ED1B1E0E6D00154FC1 /* RootNavigationController.m */; };
 		DF48E7F31B1F499C00154FC1 /* RestkitRequestReponse.m in Sources */ = {isa = PBXBuildFile; fileRef = DF48E7F21B1F499C00154FC1 /* RestkitRequestReponse.m */; };
 		DF48E7FA1B1F75B200154FC1 /* UIImageView+SDWebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = DF48E7F91B1F75B200154FC1 /* UIImageView+SDWebCache.m */; };
@@ -84,6 +84,8 @@
 		68604422666334DB8E77C8CC /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		B96F0681D71772C68BB0A0E2 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		C20F244065095227C4DD1B2B /* Pods-FiltacularTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FiltacularTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FiltacularTests/Pods-FiltacularTests.release.xcconfig"; sourceTree = "<group>"; };
+		DF07EB7B1B71081900EA3C41 /* TableViewStickyButtonsFix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewStickyButtonsFix.h; sourceTree = "<group>"; };
+		DF07EB7C1B71081900EA3C41 /* TableViewStickyButtonsFix.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewStickyButtonsFix.m; sourceTree = "<group>"; };
 		DF17730B1B1CC29A00AD4CA4 /* AppledocSettings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AppledocSettings.plist; sourceTree = "<group>"; };
 		DF183B931B1CAA2B0001DDA4 /* Filtacular.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Filtacular.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF183B971B1CAA2B0001DDA4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -342,6 +344,8 @@
 				DF48E7C91B1DEC0B00154FC1 /* CustomTableView.h */,
 				DF48E7CA1B1DEC0B00154FC1 /* CustomTableView.m */,
 				DF48E7CB1B1DEC0B00154FC1 /* CustomTableView.xib */,
+				DF07EB7B1B71081900EA3C41 /* TableViewStickyButtonsFix.h */,
+				DF07EB7C1B71081900EA3C41 /* TableViewStickyButtonsFix.m */,
 			);
 			path = CustomTableView;
 			sourceTree = "<group>";
@@ -819,12 +823,12 @@
 				DF9344601B3493AB00297E38 /* NSError+URLError.m in Sources */,
 				DF9344531B34786000297E38 /* LoadingCallBack.m in Sources */,
 				DF48E7B61B1CE1D400154FC1 /* Tweet.m in Sources */,
+				DF07EB7D1B71081900EA3C41 /* TableViewStickyButtonsFix.m in Sources */,
 				DFF176D11B1CD21A005095E9 /* RestkitService.m in Sources */,
 				DF48E7DA1B1DEE1500154FC1 /* IntroViewController.m in Sources */,
 				DF9591B71B6FC90C00F26401 /* NSString+HtmlDecoding.m in Sources */,
 				F24807BF1B1DF1CD009A6310 /* User.m in Sources */,
 				DF183B9F1B1CAA2B0001DDA4 /* Filtacular.xcdatamodeld in Sources */,
-				DF48E7EA1B1DF5A600154FC1 /* README.md in Sources */,
 				DF48E7E91B1DF5A600154FC1 /* MCCSmartGroupManager.m in Sources */,
 				DF48E7EE1B1E0E6D00154FC1 /* RootNavigationController.m in Sources */,
 				DF48E7B31B1CE01F00154FC1 /* BaseManagedModel.m in Sources */,
