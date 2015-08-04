@@ -65,7 +65,7 @@
         return [inputValueClass isSubclassOfClass:[NSString class]];
     } transformationBlock:^BOOL(id inputValue, __autoreleasing id *outputValue, __unsafe_unretained Class outputClass, NSError *__autoreleasing *error) {
         if ([inputValue isKindOfClass:[NSNull class]]) {
-            *outputValue = inputValue;
+            *outputValue = nil;
             return YES;
         }
         
