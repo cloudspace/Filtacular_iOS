@@ -117,7 +117,7 @@
 
 - (void)clearAndWaitForNewData {
     self.tableData = nil;
-    [_smartGroup processUpdates];
+    [_smartGroup reload];
     
     [_lblNoItems setHidden:true];
     [_table setHidden:true];
