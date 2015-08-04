@@ -150,7 +150,7 @@
 #else
   if (debug) {
     NSLog(@"%@: old data: %@, new data: %@", self, oldData, newData);
-    NSLog(@"Cached: %@: (old count: %d; new count: %d; inserts: %@; removes: %@; reloads: %@)", self, oldCount, (unsigned int)_count, inserts, removes, reloads);
+    NSLog(@"Cached: %@: (old count: %@; new count: %d; inserts: %@; removes: %@; reloads: %@)", self, @(oldCount), (unsigned int)_count, inserts, removes, reloads);
   }
 #endif
   
