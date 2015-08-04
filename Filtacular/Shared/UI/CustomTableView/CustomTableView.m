@@ -117,7 +117,7 @@
 
 - (void)clearAndWaitForNewData {
     self.tableData = nil;
-    [_smartGroup reload];
+    [_smartGroup processUpdates];
     
     [_lblNoItems setHidden:true];
     [_table setHidden:true];
@@ -152,6 +152,9 @@ static NSMutableDictionary* sCellCache = nil;
         sCellCache = [NSMutableDictionary new];
     
     NSString* key = NSStringFromClass([object class]);
+    if (key == nil)
+        return nil;
+    
     UITableViewCell* cachedCell = [sCellCache objectForKey:key];
     if (cachedCell == nil) {
         Class tableViewCellClass = self.tableCellClassForDataType[key];

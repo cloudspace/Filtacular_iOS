@@ -50,6 +50,21 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     
+    [self reloadBottomBar];
+    
+    //Default config for links
+    _lblPostText.linkAttributes = @{
+        (NSString *)kCTUnderlineStyleAttributeName :@(1),
+        (NSString *)kCTForegroundColorAttributeName:(id)([UIColor colorWithRed:84.0f/256.0f green:168.0f/256.0f blue:228.0f/256.0f alpha:1.0f].CGColor)
+    };
+    
+    _lblPostText.delegate = self;
+    _lblPostText.userInteractionEnabled = true;
+}
+
+- (void)reloadBottomBar {
+    self.width = [[UIScreen mainScreen] bounds].size.width;
+    [self layoutIfNeeded];
     //Configure the bottom bar layout
     _viewBottomBar.distribution = OAStackViewDistributionFillEqually;
     _viewBottomBar.alignment = OAStackViewAlignmentFill;
@@ -65,15 +80,6 @@
     for (UIView* eachView in subviews) {
         [_viewBottomBar addArrangedSubview:eachView];
     }
-    
-    //Default config for links
-    _lblPostText.linkAttributes = @{
-        (NSString *)kCTUnderlineStyleAttributeName :@(1),
-        (NSString *)kCTForegroundColorAttributeName:(id)([UIColor colorWithRed:84.0f/256.0f green:168.0f/256.0f blue:228.0f/256.0f alpha:1.0f].CGColor)
-    };
-    
-    _lblPostText.delegate = self;
-    _lblPostText.userInteractionEnabled = true;
 }
 
 - (void)configureWithObject:(Tweet*)tweet {
