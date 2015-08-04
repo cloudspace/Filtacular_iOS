@@ -225,7 +225,7 @@ const float cPadding = 16.0f;
         }
     }
     else {
-        self.height = yOffset + _viewBottomBar.height;
+        self.height = yOffset + _viewBottomBar.height - cPadding;
     }
 }
 

@@ -64,8 +64,10 @@
     RKValueTransformer *htmlEncodedTransformer = [RKBlockValueTransformer valueTransformerWithValidationBlock:^BOOL(__unsafe_unretained Class inputValueClass, __unsafe_unretained Class outputValueClass) {
         return [inputValueClass isSubclassOfClass:[NSString class]];
     } transformationBlock:^BOOL(id inputValue, __autoreleasing id *outputValue, __unsafe_unretained Class outputClass, NSError *__autoreleasing *error) {
-        if ([inputValue isKindOfClass:[NSNull class]])
-            return FALSE;
+        if ([inputValue isKindOfClass:[NSNull class]]) {
+            *outputValue = nil;
+            return YES;
+        }
         
         *outputValue = [inputValue gtm_stringByUnescapingFromHTML];
         

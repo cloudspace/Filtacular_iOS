@@ -1,7 +1,7 @@
 link_with ['Filtacular']
 
 pod 'SVWebViewController', :head
-pod 'OAStackView', :head
+pod 'OAStackView', :git => 'git@github.com:oarrabi/OAStackView.git', :commit => 'dc77eaeff1bb0c63ca6b96f0718c0c187ee8d456'
 
 pod 'TTTAttributedLabel', :head
 
