@@ -111,17 +111,26 @@
     [_lblNoItems setHidden:hideNoItemsLabel];
     [_table setHidden:!hideNoItemsLabel];
     
+    if (hideNoItemsLabel && _table.alpha == 0.0f) {
+        [UIView animateWithDuration:0.3 animations:^{
+            _table.alpha = 1.0f;
+        }];
+    }
+    
     [_refreshControl endRefreshing];
     [_activityIndicator stopAnimating];
 }
 
 - (void)clearAndWaitForNewData {
     self.tableData = nil;
-    [_smartGroup reload];
-    
+
+    _table.alpha = 0.0f;
+    [UIView setAnimationsEnabled:NO];
+    [_smartGroup processUpdates];
+    [UIView setAnimationsEnabled:YES];
     [_lblNoItems setHidden:true];
-    [_table setHidden:true];
     [_activityIndicator startAnimating];
+    
 }
 
 - (void)userPulledToRefresh {
@@ -138,7 +147,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     id object = _tableData[indexPath.row];
-    id cell = [self cachedCellForObject:object];
+    id cell = [self cachedCellForObject:object];//We cache the cell because its expensive to recreate it
     
     CGFloat height = [cell calculateHeightWith:object];
     return height;
@@ -152,6 +161,9 @@ static NSMutableDictionary* sCellCache = nil;
         sCellCache = [NSMutableDictionary new];
     
     NSString* key = NSStringFromClass([object class]);
+    if (key == nil)
+        return nil;
+    
     UITableViewCell* cachedCell = [sCellCache objectForKey:key];
     if (cachedCell == nil) {
         Class tableViewCellClass = self.tableCellClassForDataType[key];

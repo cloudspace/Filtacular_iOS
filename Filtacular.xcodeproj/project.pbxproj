@@ -59,6 +59,7 @@
 		DFF176D01B1CD21A005095E9 /* APIInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF176CC1B1CD21A005095E9 /* APIInfo.m */; };
 		DFF176D11B1CD21A005095E9 /* RestkitService.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF176CE1B1CD21A005095E9 /* RestkitService.m */; };
 		DFF176D41B1CD242005095E9 /* Filtacular-API.plist in Resources */ = {isa = PBXBuildFile; fileRef = DFF176D31B1CD242005095E9 /* Filtacular-API.plist */; };
+		DFF6E4F51B728FEF00861655 /* Mixpanel+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF6E4F41B728FEF00861655 /* Mixpanel+Additions.m */; };
 		DFFF48481B262084000691B5 /* BasePickerViewAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = DFFF48451B262084000691B5 /* BasePickerViewAdapter.m */; };
 		DFFF48491B262084000691B5 /* PickerObject.m in Sources */ = {isa = PBXBuildFile; fileRef = DFFF48471B262084000691B5 /* PickerObject.m */; };
 		F24807BF1B1DF1CD009A6310 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = F24807BE1B1DF1CD009A6310 /* User.m */; };
@@ -168,6 +169,8 @@
 		DFF176CD1B1CD21A005095E9 /* RestkitService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestkitService.h; sourceTree = "<group>"; };
 		DFF176CE1B1CD21A005095E9 /* RestkitService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestkitService.m; sourceTree = "<group>"; };
 		DFF176D31B1CD242005095E9 /* Filtacular-API.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Filtacular-API.plist"; sourceTree = "<group>"; };
+		DFF6E4F31B728FEF00861655 /* Mixpanel+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Mixpanel+Additions.h"; sourceTree = "<group>"; };
+		DFF6E4F41B728FEF00861655 /* Mixpanel+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Mixpanel+Additions.m"; sourceTree = "<group>"; };
 		DFFF48441B262084000691B5 /* BasePickerViewAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasePickerViewAdapter.h; sourceTree = "<group>"; };
 		DFFF48451B262084000691B5 /* BasePickerViewAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BasePickerViewAdapter.m; sourceTree = "<group>"; };
 		DFFF48461B262084000691B5 /* PickerObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickerObject.h; sourceTree = "<group>"; };
@@ -362,6 +365,7 @@
 		DF48E7D21B1DECD200154FC1 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				DFF6E4F21B728FD000861655 /* Mixpanel */,
 				DF9591B41B6FC8EE00F26401 /* NSString */,
 				DF5308521B6691C50082F3EA /* RestkitRequest */,
 				DF9344651B388FED00297E38 /* CATransformLayer */,
@@ -601,6 +605,15 @@
 			path = Unmanaged;
 			sourceTree = "<group>";
 		};
+		DFF6E4F21B728FD000861655 /* Mixpanel */ = {
+			isa = PBXGroup;
+			children = (
+				DFF6E4F31B728FEF00861655 /* Mixpanel+Additions.h */,
+				DFF6E4F41B728FEF00861655 /* Mixpanel+Additions.m */,
+			);
+			path = Mixpanel;
+			sourceTree = "<group>";
+		};
 		DFFF48431B262084000691B5 /* PickerView */ = {
 			isa = PBXGroup;
 			children = (
@@ -823,6 +836,7 @@
 				DF9344601B3493AB00297E38 /* NSError+URLError.m in Sources */,
 				DF9344531B34786000297E38 /* LoadingCallBack.m in Sources */,
 				DF48E7B61B1CE1D400154FC1 /* Tweet.m in Sources */,
+				DFF6E4F51B728FEF00861655 /* Mixpanel+Additions.m in Sources */,
 				DF07EB7D1B71081900EA3C41 /* TableViewStickyButtonsFix.m in Sources */,
 				DFF176D11B1CD21A005095E9 /* RestkitService.m in Sources */,
 				DF48E7DA1B1DEE1500154FC1 /* IntroViewController.m in Sources */,

@@ -18,6 +18,7 @@
 
 #import <TwitterKit/TwitterKit.h>
 #import <SVWebViewController.h>
+#import <Mixpanel.h>
 
 #import "RestkitRequest+API.h"
 
@@ -46,6 +47,10 @@ static const int cTweetsPerPage = 100;
 
 @property (assign, nonatomic) bool canRefresh;
 
+//Analytics
+@property (strong, nonatomic) User* lastUser;
+@property (strong, nonatomic) NSString* lastFilter;
+
 //Paging Stuff
 
 @property (strong, nonatomic) NSDate* createdAfterRefFrame;
@@ -57,6 +62,9 @@ static const int cTweetsPerPage = 100;
 @implementation VCTwitterFeed
 
 - (void)viewDidLoad {
+    
+    _lastFilter = _selectedFilter;
+    _lastUser = _selectedUser;
     
     _tableTapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onTableTapped)];
     _currentPickerAdapter = [BasePickerViewAdapter new];
@@ -100,8 +108,9 @@ static const int cTweetsPerPage = 100;
 
 - (void)updateAllTweets {
 
-    [_table clearAndWaitForNewData];
     _tableData = @[];
+    [_table clearAndWaitForNewData];
+    
     _canRefresh = false; //TODO: Pair tabledata and can refresh together
     [self resetPagingFrameOfReferenceUsingFilter:_selectedFilter];
     [self fetchTweets:_nextPage];
@@ -180,7 +189,8 @@ static const int cTweetsPerPage = 100;
     }];
     
     [_twitterUpdateQueue addOperation:twitterUpdater];
-}	
+}
+
 - (void)loadTweets:(NSArray*)tweets {
     
     //Remove the Loading cell if it exists
@@ -300,6 +310,7 @@ static const int cTweetsPerPage = 100;
     bool pickerIsShowingCurrentData = (_currentPickerAdapter.data == data);
     if (pickerIsShowingCurrentData) {
         [self animateHideViewPickerCompletion:nil];
+        
         return;
     }
     
@@ -343,6 +354,20 @@ static const int cTweetsPerPage = 100;
     return UIRectEdgeNone;
 }
 
+- (void)updateAnalytics {
+
+    if (_lastUser != _selectedUser) {
+        [[Mixpanel sharedInstance] track:[NSString stringWithFormat:@"Viewed User: %@", _selectedUser.nickname]];
+    }
+    
+    if ([_lastFilter isEqualToString:_selectedFilter] == false) {
+        [[Mixpanel sharedInstance] track:[NSString stringWithFormat:@"Viewed Filter: %@", _selectedFilter]];
+    }
+    
+    _lastFilter = _selectedFilter;
+    _lastUser = _selectedUser;
+}
+
 #pragma mark - View Picker
 - (void)animateShowViewPickerCompletion:(void (^)(BOOL finished))completion
 {
@@ -358,6 +383,7 @@ static const int cTweetsPerPage = 100;
 }
 
 - (void)animateHideViewPickerCompletion:(void (^)(BOOL finished))completion {
+    [self updateAnalytics];
     self.filterBarPositionFromBottomConstraint.constant = 0;
     [UIView animateWithDuration:0.33f animations:^{
         [self.view layoutIfNeeded];
