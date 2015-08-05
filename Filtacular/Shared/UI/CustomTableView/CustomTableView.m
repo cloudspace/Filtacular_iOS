@@ -117,7 +117,7 @@
 
 - (void)clearAndWaitForNewData {
     self.tableData = nil;
-    [_smartGroup reload];
+    [_smartGroup processUpdates];
     
     [_lblNoItems setHidden:true];
     [_table setHidden:true];
@@ -138,7 +138,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     id object = _tableData[indexPath.row];
-    id cell = [self cachedCellForObject:object];
+    id cell = [self cachedCellForObject:object];//We cache the cell because its expensive to recreate it
     
     CGFloat height = [cell calculateHeightWith:object];
     return height;
@@ -152,6 +152,9 @@ static NSMutableDictionary* sCellCache = nil;
         sCellCache = [NSMutableDictionary new];
     
     NSString* key = NSStringFromClass([object class]);
+    if (key == nil)
+        return nil;
+    
     UITableViewCell* cachedCell = [sCellCache objectForKey:key];
     if (cachedCell == nil) {
         Class tableViewCellClass = self.tableCellClassForDataType[key];

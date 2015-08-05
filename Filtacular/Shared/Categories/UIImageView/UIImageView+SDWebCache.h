@@ -7,10 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <SDWebImage/UIImageView+WebCache.h>
 
 @interface UIImageView (SDWebCache)
 
-- (void)setImageWithURL:(NSString *)url placeholderImage:(UIImage *)placeholder options:(SDWebImageOptions)options;
+- (void)setImageWithString:(NSString *)url placeholderImage:(UIImage *)placeholder;
 
 @end

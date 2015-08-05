@@ -100,8 +100,9 @@ static const int cTweetsPerPage = 100;
 
 - (void)updateAllTweets {
 
-    [_table clearAndWaitForNewData];
     _tableData = @[];
+    [_table clearAndWaitForNewData];
+    
     _canRefresh = false; //TODO: Pair tabledata and can refresh together
     [self resetPagingFrameOfReferenceUsingFilter:_selectedFilter];
     [self fetchTweets:_nextPage];
