@@ -111,17 +111,26 @@
     [_lblNoItems setHidden:hideNoItemsLabel];
     [_table setHidden:!hideNoItemsLabel];
     
+    if (hideNoItemsLabel && _table.alpha == 0.0f) {
+        [UIView animateWithDuration:0.3 animations:^{
+            _table.alpha = 1.0f;
+        }];
+    }
+    
     [_refreshControl endRefreshing];
     [_activityIndicator stopAnimating];
 }
 
 - (void)clearAndWaitForNewData {
     self.tableData = nil;
+
+    _table.alpha = 0.0f;
+    [UIView setAnimationsEnabled:NO];
     [_smartGroup processUpdates];
-    
+    [UIView setAnimationsEnabled:YES];
     [_lblNoItems setHidden:true];
-    [_table setHidden:true];
     [_activityIndicator startAnimating];
+    
 }
 
 - (void)userPulledToRefresh {
