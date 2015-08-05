@@ -5,6 +5,8 @@ pod 'OAStackView', :head
 
 pod 'TTTAttributedLabel', '~> 1.13.4'
 
+pod 'Mixpanel'
+
 # Networking / Caching
 pod 'SDWebImage', :git => 'https://github.com/izackp/SDWebImage.git'
 pod 'RestKit', '~> 0.24.1'

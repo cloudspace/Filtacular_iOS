@@ -19,6 +19,7 @@
 #import <TwitterKit/TwitterKit.h>
 
 #import <SDWebImageCompat.h>
+#import "Mixpanel+Additions.h"
 
 @interface IntroViewController ()
 
@@ -43,6 +44,8 @@
             _btnTwitterLogin.enabled = true;
             return;
         }
+        
+        [[Mixpanel sharedInstance] initializeUser:session];
         
         NSLog(@"signed in as %@", [session userName]);
         [IntroViewController loginToFiltacular:session failure:^(RKObjectRequestOperation *operation, NSError *error) {
