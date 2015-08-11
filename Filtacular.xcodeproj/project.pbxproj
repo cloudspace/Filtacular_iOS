@@ -60,6 +60,8 @@
 		DFF176D11B1CD21A005095E9 /* RestkitService.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF176CE1B1CD21A005095E9 /* RestkitService.m */; };
 		DFF176D41B1CD242005095E9 /* Filtacular-API.plist in Resources */ = {isa = PBXBuildFile; fileRef = DFF176D31B1CD242005095E9 /* Filtacular-API.plist */; };
 		DFF6E4F51B728FEF00861655 /* Mixpanel+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF6E4F41B728FEF00861655 /* Mixpanel+Additions.m */; };
+		DFF6E4F71B78F1FF00861655 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFF6E4F61B78F1FF00861655 /* Foundation.framework */; };
+		DFF6E4F91B78F21D00861655 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFF6E4F81B78F21D00861655 /* UIKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		DFFF48481B262084000691B5 /* BasePickerViewAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = DFFF48451B262084000691B5 /* BasePickerViewAdapter.m */; };
 		DFFF48491B262084000691B5 /* PickerObject.m in Sources */ = {isa = PBXBuildFile; fileRef = DFFF48471B262084000691B5 /* PickerObject.m */; };
 		F24807BF1B1DF1CD009A6310 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = F24807BE1B1DF1CD009A6310 /* User.m */; };
@@ -171,6 +173,8 @@
 		DFF176D31B1CD242005095E9 /* Filtacular-API.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Filtacular-API.plist"; sourceTree = "<group>"; };
 		DFF6E4F31B728FEF00861655 /* Mixpanel+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Mixpanel+Additions.h"; sourceTree = "<group>"; };
 		DFF6E4F41B728FEF00861655 /* Mixpanel+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Mixpanel+Additions.m"; sourceTree = "<group>"; };
+		DFF6E4F61B78F1FF00861655 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		DFF6E4F81B78F21D00861655 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		DFFF48441B262084000691B5 /* BasePickerViewAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasePickerViewAdapter.h; sourceTree = "<group>"; };
 		DFFF48451B262084000691B5 /* BasePickerViewAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BasePickerViewAdapter.m; sourceTree = "<group>"; };
 		DFFF48461B262084000691B5 /* PickerObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickerObject.h; sourceTree = "<group>"; };
@@ -189,6 +193,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DFF6E4F71B78F1FF00861655 /* Foundation.framework in Frameworks */,
+				DFF6E4F91B78F21D00861655 /* UIKit.framework in Frameworks */,
 				DF59EE3F1B4433A70096B2F2 /* QuartzCore.framework in Frameworks */,
 				DB1BE132AE4A22BF594B8604 /* libPods.a in Frameworks */,
 				F2DDB2421B1CF8F7004C0A8C /* TwitterCore.framework in Frameworks */,
@@ -628,6 +634,8 @@
 		F9FE532600B8A1C56C214958 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DFF6E4F81B78F21D00861655 /* UIKit.framework */,
+				DFF6E4F61B78F1FF00861655 /* Foundation.framework */,
 				DF59EE3E1B4433A70096B2F2 /* QuartzCore.framework */,
 				DF48E7E21B1DF5A600154FC1 /* MCCSmartGroups */,
 				F2DDB23D1B1CF8F7004C0A8C /* Fabric.framework */,
@@ -931,7 +939,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -968,7 +976,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;

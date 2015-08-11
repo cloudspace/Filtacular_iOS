@@ -30,11 +30,13 @@ static const int cTweetsPerPage = 100;
 
 @property (strong, nonatomic) IBOutlet CustomTableView* table;
 @property (strong, nonatomic) IBOutlet UIPickerView* pickerView;
-@property (strong, nonatomic) IBOutlet NSLayoutConstraint* filterBarPositionFromBottomConstraint;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *superViewBottomToPickerBottomConstraint;
 @property (strong, nonatomic) IBOutlet UIButton* userButton;
 @property (strong, nonatomic) IBOutlet UIButton* filterButton;
 @property (strong, nonatomic) IBOutlet UIView *viewBackToTop;
 @property (strong, nonatomic) IBOutlet UIView *viewBackToTopShadow;
+@property (strong, nonatomic) IBOutlet UIView *viewPickerContainer;
+@property (strong, nonatomic) IBOutlet UILabel *lblPickerTitle;
 
 @property (strong, nonatomic) UITapGestureRecognizer* tableTapGesture;
 @property (strong, nonatomic) NSArray* tableData;
@@ -43,7 +45,6 @@ static const int cTweetsPerPage = 100;
 
 @property (copy, nonatomic) animationFinishBlock onPickerVisible;
 @property (copy, nonatomic) animationFinishBlock onPickerHidden;
-@property (copy, nonatomic) void(^onStartPickerShowAnimation)();
 
 @property (assign, nonatomic) bool canRefresh;
 
@@ -89,6 +90,11 @@ static const int cTweetsPerPage = 100;
     _viewBackToTopShadow.layer.shadowPath = shadowPath.CGPath;
     _viewBackToTopShadow.layer.shouldRasterize = true;
     _viewBackToTopShadow.alpha = 0.8f;
+    
+    _viewPickerContainer.clipsToBounds = NO;
+    _viewPickerContainer.layer.shadowColor = [[UIColor blackColor] CGColor];
+    _viewPickerContainer.layer.shadowOpacity = 0.5f;
+    _viewPickerContainer.layer.shadowOffset = CGSizeMake(0.0f, -1.0f);
     
     __weak VCTwitterFeed* weakSelf = self;
     [_table setRefreshCalled:^{
@@ -274,10 +280,14 @@ static const int cTweetsPerPage = 100;
 
 #pragma mark - Actions
 
+- (IBAction)tapDone {
+    [self animateHideViewPickerCompletion:nil];
+}
+
 - (IBAction)tapFilter {
 
     NSInteger indexOfCurrentObj = [_filters indexOfObject:_selectedFilter];
-    [self showPickerForData:_filters selectedIndex:indexOfCurrentObj];
+    [self showPickerForData:_filters selectedIndex:indexOfCurrentObj title:@"Filters"];
     __weak VCTwitterFeed* weakSelf = self;
     [_currentPickerAdapter setOnItemSelected:^(id item) {
         VCTwitterFeed* strongSelf = weakSelf;
@@ -288,7 +298,7 @@ static const int cTweetsPerPage = 100;
 - (IBAction)tapUser {
     
     NSInteger indexOfCurrentObj = [_users indexOfObject:_selectedUser];
-    [self showPickerForData:_users selectedIndex:indexOfCurrentObj];
+    [self showPickerForData:_users selectedIndex:indexOfCurrentObj title:@"Users"];
     
     __weak VCTwitterFeed* weakSelf = self;
     [_currentPickerAdapter setOnItemSelected:^(id item) {
@@ -297,13 +307,14 @@ static const int cTweetsPerPage = 100;
     }];
 }
 
-- (void)showPickerForData:(NSArray*)data selectedIndex:(NSInteger)index {
-    bool pickerIsHidden = (self.filterBarPositionFromBottomConstraint.constant == 0);
+- (void)showPickerForData:(NSArray*)data selectedIndex:(NSInteger)index title:(NSString*)pickerTitle {
+    bool pickerIsHidden = (_superViewBottomToPickerBottomConstraint.constant == -210.0f);
     if (pickerIsHidden) {
         _currentPickerAdapter.data = data;
         [_pickerView reloadAllComponents];
         [_pickerView selectRow:index inComponent:0 animated:false];
-        [self animateShowViewPickerCompletion:nil];
+        _lblPickerTitle.text = pickerTitle;
+        [self animateShowViewPicker];
         return;
     }
     
@@ -317,9 +328,12 @@ static const int cTweetsPerPage = 100;
     _currentPickerAdapter.data = nil;
     [self animateHideViewPickerCompletion:^(BOOL finished) {
         _currentPickerAdapter.data = data;
+        _lblPickerTitle.text = pickerTitle;
+        
+        //TODO: I think the next few lines might be causing some animation hiccups
         [_pickerView reloadAllComponents];
         [_pickerView selectRow:index inComponent:0 animated:false];
-        [self animateShowViewPickerCompletion:nil];
+        [self animateShowViewPicker];
     }];
 }
 
@@ -368,26 +382,54 @@ static const int cTweetsPerPage = 100;
     _lastUser = _selectedUser;
 }
 
+const static CGFloat cShadowPadding = 4.0f;
+const static CGFloat cPickerOffset = 210.0f; //pickerContainerHeight + cShadowPadding
+const static CGFloat cBarHeight = 44.0f;
+const static CGFloat cAnimationDuration = 0.33;
+
 #pragma mark - View Picker
-- (void)animateShowViewPickerCompletion:(void (^)(BOOL finished))completion
+- (void)animateShowViewPicker
 {
-    if (self.onStartPickerShowAnimation)
-        self.onStartPickerShowAnimation();
+    CGFloat totalTime = cAnimationDuration;
+    CGFloat firstHalf = (cBarHeight + cShadowPadding) / cPickerOffset;
+    CGFloat firstHalfTime = totalTime * firstHalf;
+    CGFloat secondHalfTime = totalTime - firstHalfTime;
     
-    self.filterBarPositionFromBottomConstraint.constant = self.pickerView.frame.size.height;
-    [UIView animateWithDuration:0.33f animations:^{
+    [UIView animateWithDuration:firstHalfTime delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+        _superViewBottomToPickerBottomConstraint.constant = (-1 * _viewPickerContainer.frame.size.height) + cBarHeight;
         [self.view layoutIfNeeded];
-    } completion:completion];
+
+    } completion:^(BOOL finished) {
+        [UIView animateWithDuration:secondHalfTime delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+            _superViewBottomToPickerBottomConstraint.constant = 0.0f;
+            [self.view layoutIfNeeded];
+        } completion:nil];
+    }];
+    
     
     [self.table addGestureRecognizer:self.tableTapGesture];
 }
 
 - (void)animateHideViewPickerCompletion:(void (^)(BOOL finished))completion {
     [self updateAnalytics];
-    self.filterBarPositionFromBottomConstraint.constant = 0;
-    [UIView animateWithDuration:0.33f animations:^{
+    
+    CGFloat totalTime = cAnimationDuration;
+    CGFloat firstDistanceTraveled = (cBarHeight + cShadowPadding);
+    CGFloat firstHalf = (cPickerOffset - firstDistanceTraveled) / cPickerOffset;
+    CGFloat firstHalfTime = totalTime * firstHalf;
+    CGFloat secondHalfTime = totalTime - firstHalfTime;
+    
+    [UIView animateWithDuration:firstHalfTime delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+        _superViewBottomToPickerBottomConstraint.constant = (-1 * _viewPickerContainer.frame.size.height) + cBarHeight;
         [self.view layoutIfNeeded];
-    } completion:completion];
+        
+    } completion:^(BOOL finished) {
+        [UIView animateWithDuration:secondHalfTime delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+            _superViewBottomToPickerBottomConstraint.constant = -1 * cPickerOffset;
+            [self.view layoutIfNeeded];
+        } completion:completion];
+    }];
+    
 
     [self.table removeGestureRecognizer:self.tableTapGesture];
 }

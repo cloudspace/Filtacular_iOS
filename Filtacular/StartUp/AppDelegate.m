@@ -34,7 +34,7 @@
     [self invokeServiceMethodWithSelector:@selector(application:didFinishLaunchingWithOptions:) withArgument:&launchOptions];
     
     NSString* mixpanelToken = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"Mixpanel Token"];
-    if (mixpanelToken) {
+    if (mixpanelToken && !TARGET_IPHONE_SIMULATOR) {
         [Mixpanel sharedInstanceWithToken:mixpanelToken];
     }
     
