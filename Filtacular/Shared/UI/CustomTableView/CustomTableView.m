@@ -39,10 +39,15 @@
 }
 
 - (void)addTableCellClass:(Class)theClass forDataType:(Class)dataType {
+    NSString* key = NSStringFromClass(dataType);
+    [self addTableCellClass:theClass forKey:key];
+}
+
+- (void)addTableCellClass:(Class)theClass forKey:(NSString*)key {
     if (_tableCellClassForDataType == nil)
         _tableCellClassForDataType = [NSMutableDictionary new];
     
-    _tableCellClassForDataType[NSStringFromClass(dataType)] = theClass;
+    _tableCellClassForDataType[key] = theClass;
 }
 
 - (void)setNoItemText:(NSString*)noItemText {
@@ -88,6 +93,9 @@
     
     _table.dataSource = _smartGroupManager;
     _table.delegate = self;
+    
+    //Hides extra seperator cells
+    _table.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
 - (void)activateRefreshable {
@@ -167,6 +175,9 @@ static NSMutableDictionary* sCellCache = nil;
     UITableViewCell* cachedCell = [sCellCache objectForKey:key];
     if (cachedCell == nil) {
         Class tableViewCellClass = self.tableCellClassForDataType[key];
+        if (tableViewCellClass == nil)
+            return nil;
+        
         cachedCell = [tableViewCellClass createFromNib];
         sCellCache[key] = cachedCell;
     }

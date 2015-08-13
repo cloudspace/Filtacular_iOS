@@ -8,7 +8,7 @@
 
 #import "Widget.h"
 
-/*! A tableview wrapper to make my code more DRY and so there is less boiler platecode */
+/*! A tableview wrapper to reduce boiler platecode */
 
 typedef void(^DidSelectObjectBlock)(id object);
 
@@ -21,6 +21,7 @@ typedef void(^DidSelectObjectBlock)(id object);
 - (void)activateRefreshable;
 - (void)deactivateRefreshable;
 - (void)addTableCellClass:(Class)theClass forDataType:(Class)dataType;
+- (void)addTableCellClass:(Class)theClass forKey:(NSString*)key;
 - (void)loadData:(NSArray*)data;
 - (void)loadData:(NSArray*)data withNoItemText:(NSString*)noItemText;
 - (void)setSelectObjectBlock:(DidSelectObjectBlock)block;

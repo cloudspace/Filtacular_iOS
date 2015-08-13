@@ -12,6 +12,7 @@
 #import "RestkitRequest+API.h"
 #import "UIView+Positioning.h"
 #import "UIImageView+SDWebCache.h"
+#import "UIColor+Filtacular.h"
 
 #import "ServerWrapper.h"
 
@@ -55,7 +56,7 @@
     //Default config for links
     _lblPostText.linkAttributes = @{
         (NSString *)kCTUnderlineStyleAttributeName :@(1),
-        (NSString *)kCTForegroundColorAttributeName:(id)([UIColor colorWithRed:84.0f/256.0f green:168.0f/256.0f blue:228.0f/256.0f alpha:1.0f].CGColor)
+        (NSString *)kCTForegroundColorAttributeName:(id)([UIColor fBarBlue].CGColor)
     };
     
     _lblPostText.delegate = self;
