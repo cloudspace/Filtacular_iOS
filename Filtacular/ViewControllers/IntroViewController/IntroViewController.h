@@ -10,12 +10,11 @@
 
 @class TWTRSession;
 @class RKObjectRequestOperation;
-@class VCTwitterFeed;
 
 @interface IntroViewController : UIViewController
 
 + (IntroViewController*)build;
 
-+ (void)loginToFiltacular:(TWTRSession*)twitterSession failure:(void (^)(RKObjectRequestOperation *operation, NSError *error))failureBlock success:(void (^)(VCTwitterFeed *vcTwitterFeed))successBlock;
++ (void)loginToFiltacular:(TWTRSession*)twitterSession failure:(void (^)(RKObjectRequestOperation *operation, NSError *error))failureBlock success:(void (^)(UIViewController *mainScreen))successBlock;
 
 @end

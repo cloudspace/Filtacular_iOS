@@ -18,6 +18,7 @@
 #import <SDWebImage/SDImageCache.h>
 
 #import "Mixpanel+Additions.h"
+#import "UIColor+Filtacular.h"
 
 @interface AppDelegate ()
 
@@ -39,6 +40,7 @@
     }
     
     [self setupWindow];
+    [self applyStyles];
 
     return YES;
 }
@@ -61,6 +63,11 @@
     
     self.window.rootViewController = rootVC;
     [self.window makeKeyAndVisible];
+}
+
+- (void)applyStyles {
+    [[UINavigationBar appearance] setBarStyle:UIBarStyleBlack];
+    [[UINavigationBar appearance] setBarTintColor:[UIColor fBarBlue]];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
