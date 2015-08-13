@@ -8,18 +8,22 @@
 
 #import "IntroViewController.h"
 #import "VCTwitterFeed.h"
-#import "ServerWrapper.h"
+#import "VCOptions.h"
 
+#import "ServerWrapper.h"
 #import "User.h"
+
 #import "NSObject+Shortcuts.h"
 #import "NSError+URLError.h"
 #import "UIAlertView+Shortcuts.h"
 #import "RestkitRequest+API.h"
-
-#import <TwitterKit/TwitterKit.h>
-
-#import <SDWebImageCompat.h>
 #import "Mixpanel+Additions.h"
+#import "UIView+Positioning.h"
+
+#import <IIViewDeckController.h>
+#import <IISideController.h>
+#import <TwitterKit/TwitterKit.h>
+#import <SDWebImageCompat.h>
 
 @interface IntroViewController ()
 
@@ -62,15 +66,16 @@
             }
             
             _btnTwitterLogin.enabled = true;
-        } success:^(VCTwitterFeed *vcTwitterFeed) {
+        } success:^(UIViewController *mainScreen) {
             _btnTwitterLogin.enabled = true;
-            [self.navigationController pushViewController:vcTwitterFeed animated:true];
+            
+            [self.navigationController pushViewController:mainScreen animated:true];
         }];
      }];
 }
 
 //TODO: This function is way too long
-+ (void)loginToFiltacular:(TWTRSession*)twitterSession failure:(void (^)(RKObjectRequestOperation *operation, NSError *error))failureBlockParam success:(void (^)(VCTwitterFeed *vcTwitterFeed))successBlock {
++ (void)loginToFiltacular:(TWTRSession*)twitterSession failure:(void (^)(RKObjectRequestOperation *operation, NSError *error))failureBlockParam success:(void (^)(UIViewController *mainScreen))successBlock {
     dispatch_async([ServerWrapper requestQueue], ^{
         
         //We hook the failure block to avoid repeating code
@@ -140,13 +145,21 @@
         
         dispatch_sync(dispatch_get_main_queue(), ^{
             
-            VCTwitterFeed* vcTwitterFeed = [VCTwitterFeed new];
-            vcTwitterFeed.users = users;
-            vcTwitterFeed.filters = [NSArray arrayWithArray:filters];
-            vcTwitterFeed.twitterSession = twitterSession;
-            vcTwitterFeed.selectedUser = selectedUser;
-            vcTwitterFeed.selectedFilter = filters[0];
-            successBlock(vcTwitterFeed);
+            VCTwitterFeed* vcTwitterFeed    = [VCTwitterFeed new];
+            vcTwitterFeed.currentUsersName  = twitterSession.userName;
+            vcTwitterFeed.selectedUser      = selectedUser;
+            vcTwitterFeed.selectedFilter    = filters[0];
+            
+            VCOptions* options              = [VCOptions new];
+            options.users                   = users;
+            options.filters                 = [NSArray arrayWithArray:filters];
+            options.selectedUser            = selectedUser;
+            options.selectedFilter          = filters[0];
+            options.twitterFeed             = vcTwitterFeed;
+            
+            UIViewController* mainScreen = [IntroViewController buildMainScreen:vcTwitterFeed options:options];
+            
+            successBlock(mainScreen);
         });
     });
 }
@@ -173,6 +186,20 @@
     }
     
     return nil;
+}
+
++ (UIViewController*)buildMainScreen:(VCTwitterFeed*)twitterFeed options:(VCOptions*)options {
+    CGFloat bleedSize       = 62.0f;
+    CGFloat rightViewWidth  = [UIApplication sharedApplication].keyWindow.bounds.size.width - bleedSize;
+    
+
+    IISideController *constrainedRightController    = [[IISideController alloc]         initWithViewController:options constrained:rightViewWidth];
+    UINavigationController* centerContentNVC        = [[UINavigationController alloc]   initWithRootViewController:twitterFeed];
+    IIViewDeckController* deckController            = [[IIViewDeckController alloc]     initWithCenterViewController:centerContentNVC leftViewController:nil rightViewController:constrainedRightController];
+    deckController.rightSize                        = bleedSize;
+    deckController.centerhiddenInteractivity        = IIViewDeckCenterHiddenNotUserInteractiveWithTapToClose;
+    
+    return deckController;
 }
 
 @end

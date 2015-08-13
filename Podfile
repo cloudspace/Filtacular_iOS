@@ -2,6 +2,7 @@ link_with ['Filtacular']
 
 pod 'SVWebViewController', '~> 1.0'
 pod 'OAStackView', :head
+pod 'ViewDeck', '~> 2.2.11'
 
 pod 'TTTAttributedLabel', '~> 1.13.4'
 

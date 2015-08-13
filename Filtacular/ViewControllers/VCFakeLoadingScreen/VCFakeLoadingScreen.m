@@ -9,8 +9,10 @@
 #import "VCFakeLoadingScreen.h"
 #import "IntroViewController.h"
 #import "VCTwitterFeed.h"
+#import "VCOptions.h"
 
 #import <TwitterKit/TwitterKit.h>
+#import <IIViewDeckController.h>
 
 @interface VCFakeLoadingScreen ()
 
@@ -38,9 +40,11 @@
         
         IntroViewController* vc = [IntroViewController build];
         [self.navigationController setViewControllers:@[vc] animated:true];
-    } success:^(VCTwitterFeed *vcTwitterFeed) {
+    } success:^(UIViewController *mainScreen) {
+        
         IntroViewController* vc = [IntroViewController build];
-        [self.navigationController setViewControllers:@[vc, vcTwitterFeed] animated:true];
+
+        [self.navigationController setViewControllers:@[vc, mainScreen] animated:true];
     }];
 }
 

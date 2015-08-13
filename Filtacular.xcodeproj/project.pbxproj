@@ -17,6 +17,12 @@
 		DF183BA71B1CAA2B0001DDA4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DF183BA61B1CAA2B0001DDA4 /* Images.xcassets */; };
 		DF183BAA1B1CAA2B0001DDA4 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF183BA81B1CAA2B0001DDA4 /* LaunchScreen.xib */; };
 		DF183BB61B1CAA2B0001DDA4 /* FiltacularTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DF183BB51B1CAA2B0001DDA4 /* FiltacularTests.m */; };
+		DF2BB1E31B7B8548008B423C /* UIColor+Filtacular.m in Sources */ = {isa = PBXBuildFile; fileRef = DF2BB1E21B7B8548008B423C /* UIColor+Filtacular.m */; };
+		DF2BB1E71B7B9A38008B423C /* VCOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = DF2BB1E61B7B9A38008B423C /* VCOptions.m */; };
+		DF2BB1E91B7B9ABF008B423C /* VCOptions.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF2BB1E81B7B9ABF008B423C /* VCOptions.xib */; };
+		DF2BB1EF1B7CD45C008B423C /* SimpleTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF2BB1ED1B7CD45C008B423C /* SimpleTitleCell.m */; };
+		DF2BB1F01B7CD45C008B423C /* SimpleTitleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF2BB1EE1B7CD45C008B423C /* SimpleTitleCell.xib */; };
+		DF2BB1F61B7CFCCB008B423C /* SearchBarAutoKeyboard.m in Sources */ = {isa = PBXBuildFile; fileRef = DF2BB1F51B7CFCCB008B423C /* SearchBarAutoKeyboard.m */; };
 		DF48E7AB1B1CD70400154FC1 /* RestkitRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = DF48E7A81B1CD70400154FC1 /* RestkitRequest.m */; };
 		DF48E7AC1B1CD70400154FC1 /* ServerWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = DF48E7AA1B1CD70400154FC1 /* ServerWrapper.m */; };
 		DF48E7B01B1CE01900154FC1 /* BaseUnmanagedModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DF48E7AF1B1CE01900154FC1 /* BaseUnmanagedModel.m */; };
@@ -100,6 +106,16 @@
 		DF183BAF1B1CAA2B0001DDA4 /* FiltacularTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FiltacularTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF183BB41B1CAA2B0001DDA4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DF183BB51B1CAA2B0001DDA4 /* FiltacularTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FiltacularTests.m; sourceTree = "<group>"; };
+		DF2BB1E11B7B8548008B423C /* UIColor+Filtacular.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Filtacular.h"; sourceTree = "<group>"; };
+		DF2BB1E21B7B8548008B423C /* UIColor+Filtacular.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Filtacular.m"; sourceTree = "<group>"; };
+		DF2BB1E51B7B9A38008B423C /* VCOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VCOptions.h; sourceTree = "<group>"; };
+		DF2BB1E61B7B9A38008B423C /* VCOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VCOptions.m; sourceTree = "<group>"; };
+		DF2BB1E81B7B9ABF008B423C /* VCOptions.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VCOptions.xib; sourceTree = "<group>"; };
+		DF2BB1EC1B7CD45C008B423C /* SimpleTitleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleTitleCell.h; sourceTree = "<group>"; };
+		DF2BB1ED1B7CD45C008B423C /* SimpleTitleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleTitleCell.m; sourceTree = "<group>"; };
+		DF2BB1EE1B7CD45C008B423C /* SimpleTitleCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SimpleTitleCell.xib; sourceTree = "<group>"; };
+		DF2BB1F41B7CFCCB008B423C /* SearchBarAutoKeyboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchBarAutoKeyboard.h; sourceTree = "<group>"; };
+		DF2BB1F51B7CFCCB008B423C /* SearchBarAutoKeyboard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchBarAutoKeyboard.m; sourceTree = "<group>"; };
 		DF48E7A71B1CD70400154FC1 /* RestkitRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestkitRequest.h; sourceTree = "<group>"; };
 		DF48E7A81B1CD70400154FC1 /* RestkitRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestkitRequest.m; sourceTree = "<group>"; };
 		DF48E7A91B1CD70400154FC1 /* ServerWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerWrapper.h; sourceTree = "<group>"; };
@@ -294,6 +310,44 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		DF2BB1E01B7B851C008B423C /* UIColor */ = {
+			isa = PBXGroup;
+			children = (
+				DF2BB1E11B7B8548008B423C /* UIColor+Filtacular.h */,
+				DF2BB1E21B7B8548008B423C /* UIColor+Filtacular.m */,
+			);
+			path = UIColor;
+			sourceTree = "<group>";
+		};
+		DF2BB1E41B7B99AE008B423C /* VCOptions */ = {
+			isa = PBXGroup;
+			children = (
+				DF2BB1E51B7B9A38008B423C /* VCOptions.h */,
+				DF2BB1E61B7B9A38008B423C /* VCOptions.m */,
+				DF2BB1E81B7B9ABF008B423C /* VCOptions.xib */,
+			);
+			path = VCOptions;
+			sourceTree = "<group>";
+		};
+		DF2BB1EB1B7CD449008B423C /* SimpleTitleCell */ = {
+			isa = PBXGroup;
+			children = (
+				DF2BB1EC1B7CD45C008B423C /* SimpleTitleCell.h */,
+				DF2BB1ED1B7CD45C008B423C /* SimpleTitleCell.m */,
+				DF2BB1EE1B7CD45C008B423C /* SimpleTitleCell.xib */,
+			);
+			path = SimpleTitleCell;
+			sourceTree = "<group>";
+		};
+		DF2BB1F31B7CFC0C008B423C /* SearchBarAutoKeyboard */ = {
+			isa = PBXGroup;
+			children = (
+				DF2BB1F41B7CFCCB008B423C /* SearchBarAutoKeyboard.h */,
+				DF2BB1F51B7CFCCB008B423C /* SearchBarAutoKeyboard.m */,
+			);
+			path = SearchBarAutoKeyboard;
+			sourceTree = "<group>";
+		};
 		DF48E7A61B1CD70400154FC1 /* ServerWrapper */ = {
 			isa = PBXGroup;
 			children = (
@@ -310,6 +364,7 @@
 		DF48E7BE1B1CF29200154FC1 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				DF2BB1E41B7B99AE008B423C /* VCOptions */,
 				DF9344691B3B11D900297E38 /* VCFakeLoadingScreen */,
 				DF48E7EB1B1E0E4100154FC1 /* RootNavigationController */,
 				DF48E7D71B1DEDE700154FC1 /* IntroViewController */,
@@ -331,6 +386,7 @@
 		DF48E7C51B1DEC0B00154FC1 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				DF2BB1F31B7CFC0C008B423C /* SearchBarAutoKeyboard */,
 				DFFF48431B262084000691B5 /* PickerView */,
 				DF48E7C61B1DEC0B00154FC1 /* ConfigurableViewProtocol */,
 				DF48E7C81B1DEC0B00154FC1 /* CustomTableView */,
@@ -371,6 +427,7 @@
 		DF48E7D21B1DECD200154FC1 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				DF2BB1E01B7B851C008B423C /* UIColor */,
 				DFF6E4F21B728FD000861655 /* Mixpanel */,
 				DF9591B41B6FC8EE00F26401 /* NSString */,
 				DF5308521B6691C50082F3EA /* RestkitRequest */,
@@ -406,6 +463,7 @@
 		DF48E7DB1B1DF01F00154FC1 /* TableViewCells */ = {
 			isa = PBXGroup;
 			children = (
+				DF2BB1EB1B7CD449008B423C /* SimpleTitleCell */,
 				DF93444B1B34777000297E38 /* PageLoadingCell */,
 				DF48E7DC1B1DF04600154FC1 /* TweetCell */,
 			);
@@ -732,6 +790,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DF2BB1F01B7CD45C008B423C /* SimpleTitleCell.xib in Resources */,
+				DF2BB1E91B7B9ABF008B423C /* VCOptions.xib in Resources */,
 				DFF176D41B1CD242005095E9 /* Filtacular-API.plist in Resources */,
 				DF183BA51B1CAA2B0001DDA4 /* Main.storyboard in Resources */,
 				DF48E7E11B1DF06200154FC1 /* TweetCell.xib in Resources */,
@@ -830,6 +890,7 @@
 				DFFF48481B262084000691B5 /* BasePickerViewAdapter.m in Sources */,
 				DF48E7E81B1DF5A600154FC1 /* MCCSmartGroup.m in Sources */,
 				DF48E8021B220D7700154FC1 /* JSONRequestOperation.m in Sources */,
+				DF2BB1EF1B7CD45C008B423C /* SimpleTitleCell.m in Sources */,
 				DF48E7CC1B1DEC0B00154FC1 /* CustomTableView.m in Sources */,
 				DF9344611B3493AB00297E38 /* NSObject+Shortcuts.m in Sources */,
 				DF48E7C21B1CF31800154FC1 /* VCTwitterFeed.m in Sources */,
@@ -838,6 +899,8 @@
 				DF48E7AB1B1CD70400154FC1 /* RestkitRequest.m in Sources */,
 				DF48E7AC1B1CD70400154FC1 /* ServerWrapper.m in Sources */,
 				DF5308551B6691F50082F3EA /* RestkitRequest+API.m in Sources */,
+				DF2BB1F61B7CFCCB008B423C /* SearchBarAutoKeyboard.m in Sources */,
+				DF2BB1E71B7B9A38008B423C /* VCOptions.m in Sources */,
 				DFF176D01B1CD21A005095E9 /* APIInfo.m in Sources */,
 				DF48E7F31B1F499C00154FC1 /* RestkitRequestReponse.m in Sources */,
 				DF93444F1B34779600297E38 /* PageLoadingCell.m in Sources */,
@@ -850,6 +913,7 @@
 				DF48E7DA1B1DEE1500154FC1 /* IntroViewController.m in Sources */,
 				DF9591B71B6FC90C00F26401 /* NSString+HtmlDecoding.m in Sources */,
 				F24807BF1B1DF1CD009A6310 /* User.m in Sources */,
+				DF2BB1E31B7B8548008B423C /* UIColor+Filtacular.m in Sources */,
 				DF183B9F1B1CAA2B0001DDA4 /* Filtacular.xcdatamodeld in Sources */,
 				DF48E7E91B1DF5A600154FC1 /* MCCSmartGroupManager.m in Sources */,
 				DF48E7EE1B1E0E6D00154FC1 /* RootNavigationController.m in Sources */,

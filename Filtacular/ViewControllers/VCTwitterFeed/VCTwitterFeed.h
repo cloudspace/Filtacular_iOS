@@ -13,10 +13,12 @@
 
 @interface VCTwitterFeed : UIViewController
 
-@property (strong, nonatomic) NSArray* users;
-@property (strong, nonatomic) NSArray* filters;
-@property (strong, nonatomic) TWTRSession* twitterSession;
+@property (strong, nonatomic) NSString* currentUsersName;
+
 @property (strong, nonatomic) User* selectedUser;
 @property (strong, nonatomic) NSString* selectedFilter;
+
+- (void)showUser:(User*)user;
+- (void)showFilter:(NSString*)filter;
 
 @end

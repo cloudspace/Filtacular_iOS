@@ -19,38 +19,28 @@
 #import <TwitterKit/TwitterKit.h>
 #import <SVWebViewController.h>
 #import <Mixpanel.h>
+#import <IIViewDeckController.h>
 
 #import "RestkitRequest+API.h"
 
 typedef void (^animationFinishBlock)(BOOL finished);
-
 static const int cTweetsPerPage = 100;
 
 @interface VCTwitterFeed ()
 
 @property (strong, nonatomic) IBOutlet CustomTableView* table;
-@property (strong, nonatomic) IBOutlet UIPickerView* pickerView;
-@property (strong, nonatomic) IBOutlet NSLayoutConstraint *superViewBottomToPickerBottomConstraint;
-@property (strong, nonatomic) IBOutlet UIButton* userButton;
-@property (strong, nonatomic) IBOutlet UIButton* filterButton;
+
 @property (strong, nonatomic) IBOutlet UIView *viewBackToTop;
 @property (strong, nonatomic) IBOutlet UIView *viewBackToTopShadow;
-@property (strong, nonatomic) IBOutlet UIView *viewPickerContainer;
-@property (strong, nonatomic) IBOutlet UILabel *lblPickerTitle;
 
-@property (strong, nonatomic) UITapGestureRecognizer* tableTapGesture;
 @property (strong, nonatomic) NSArray* tableData;
-@property (strong, nonatomic) BasePickerViewAdapter* currentPickerAdapter;
 @property (strong, nonatomic) NSOperationQueue* twitterUpdateQueue;
-
-@property (copy, nonatomic) animationFinishBlock onPickerVisible;
-@property (copy, nonatomic) animationFinishBlock onPickerHidden;
 
 @property (assign, nonatomic) bool canRefresh;
 
-//Analytics
-@property (strong, nonatomic) User* lastUser;
-@property (strong, nonatomic) NSString* lastFilter;
+////Analytics
+//@property (strong, nonatomic) User* lastUser;
+//@property (strong, nonatomic) NSString* lastFilter;
 
 //Paging Stuff
 
@@ -63,13 +53,9 @@ static const int cTweetsPerPage = 100;
 @implementation VCTwitterFeed
 
 - (void)viewDidLoad {
-    
-    _lastFilter = _selectedFilter;
-    _lastUser = _selectedUser;
-    
-    _tableTapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onTableTapped)];
-    _currentPickerAdapter = [BasePickerViewAdapter new];
-    [_currentPickerAdapter bind:_pickerView];
+//    
+//    _lastFilter = _selectedFilter;
+//    _lastUser = _selectedUser;
     
     _twitterUpdateQueue = [[NSOperationQueue alloc] init];
     _twitterUpdateQueue.name = @"Twitter Update Queue";
@@ -91,10 +77,6 @@ static const int cTweetsPerPage = 100;
     _viewBackToTopShadow.layer.shouldRasterize = true;
     _viewBackToTopShadow.alpha = 0.8f;
     
-    _viewPickerContainer.clipsToBounds = NO;
-    _viewPickerContainer.layer.shadowColor = [[UIColor blackColor] CGColor];
-    _viewPickerContainer.layer.shadowOpacity = 0.5f;
-    _viewPickerContainer.layer.shadowOffset = CGSizeMake(0.0f, -1.0f);
     
     __weak VCTwitterFeed* weakSelf = self;
     [_table setRefreshCalled:^{
@@ -102,14 +84,33 @@ static const int cTweetsPerPage = 100;
         [strongSelf addNewerTweets];
     }];
     
-    [self updateSelectedUserLabel:_selectedUser];
-    [self.filterButton setTitle:_selectedFilter forState:UIControlStateNormal];
     [self updateAllTweets];
+    [self configureNavigationBar];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:true animated:animated];
+    [self.navigationController setNavigationBarHidden:false animated:animated];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    //Fixes an animation bug with the options view
+    [self.viewDeckController toggleRightViewAnimated:false];
+    [self.viewDeckController toggleRightViewAnimated:false];
+}
+
+- (void)configureNavigationBar {
+    
+    self.navigationItem.title = @"Filtacular";
+    self.navigationItem.hidesBackButton = YES;
+    UIButton* optionsIcon = [UIButton buttonWithType:UIButtonTypeCustom];
+    [optionsIcon setImage:[UIImage imageNamed:@"gear_white"] forState:UIControlStateNormal];
+    [optionsIcon addTarget:self action:@selector(tapOptions) forControlEvents:UIControlEventTouchUpInside];
+    optionsIcon.frame = CGRectMake(0, 0, 32, 32);
+    
+    UIBarButtonItem *btnOptions = [[UIBarButtonItem alloc] initWithCustomView:optionsIcon];
+    self.navigationItem.rightBarButtonItem = btnOptions;
 }
 
 - (void)updateAllTweets {
@@ -233,7 +234,7 @@ static const int cTweetsPerPage = 100;
             eachTweet.linkOnly = true;
         }
         
-        if ([_selectedUser.nickname isEqualToString:_twitterSession.userName] == false)
+        if ([_selectedUser.nickname isEqualToString:_currentUsersName] == false)
             eachTweet.showFollowButton = true;
         
         [eachTweet setTappedBigPic:^{
@@ -248,7 +249,6 @@ static const int cTweetsPerPage = 100;
             VCTwitterFeed* strongSelf = weakSelf;
             SVWebViewController *webViewController = [[SVWebViewController alloc] initWithAddress:link];
             [strongSelf.navigationController pushViewController:webViewController animated:YES];
-            [strongSelf.navigationController setNavigationBarHidden:false animated:false];
         }];
         
     }
@@ -277,166 +277,33 @@ static const int cTweetsPerPage = 100;
     [self loadTweets:tweets];
 }
 
+//TODO: Figure out how to get rid of this via UI Builder
+- (UIRectEdge)edgesForExtendedLayout {
+    return UIRectEdgeNone;
+}
 
 #pragma mark - Actions
 
-- (IBAction)tapDone {
-    [self animateHideViewPickerCompletion:nil];
+- (void)tapOptions {
+    [self.viewDeckController toggleRightViewAnimated:true];
 }
 
-- (IBAction)tapFilter {
-
-    NSInteger indexOfCurrentObj = [_filters indexOfObject:_selectedFilter];
-    [self showPickerForData:_filters selectedIndex:indexOfCurrentObj title:@"Filters"];
-    __weak VCTwitterFeed* weakSelf = self;
-    [_currentPickerAdapter setOnItemSelected:^(id item) {
-        VCTwitterFeed* strongSelf = weakSelf;
-        [strongSelf onFilterSelected:item];
-    }];
-}
-
-- (IBAction)tapUser {
-    
-    NSInteger indexOfCurrentObj = [_users indexOfObject:_selectedUser];
-    [self showPickerForData:_users selectedIndex:indexOfCurrentObj title:@"Users"];
-    
-    __weak VCTwitterFeed* weakSelf = self;
-    [_currentPickerAdapter setOnItemSelected:^(id item) {
-        VCTwitterFeed* strongSelf = weakSelf;
-        [strongSelf onUserSelected:item];
-    }];
-}
-
-- (void)showPickerForData:(NSArray*)data selectedIndex:(NSInteger)index title:(NSString*)pickerTitle {
-    bool pickerIsHidden = (_superViewBottomToPickerBottomConstraint.constant == -210.0f);
-    if (pickerIsHidden) {
-        _currentPickerAdapter.data = data;
-        [_pickerView reloadAllComponents];
-        [_pickerView selectRow:index inComponent:0 animated:false];
-        _lblPickerTitle.text = pickerTitle;
-        [self animateShowViewPicker];
-        return;
-    }
-    
-    bool pickerIsShowingCurrentData = (_currentPickerAdapter.data == data);
-    if (pickerIsShowingCurrentData) {
-        [self animateHideViewPickerCompletion:nil];
-        
-        return;
-    }
-    
-    _currentPickerAdapter.data = nil;
-    [self animateHideViewPickerCompletion:^(BOOL finished) {
-        _currentPickerAdapter.data = data;
-        _lblPickerTitle.text = pickerTitle;
-        
-        //TODO: I think the next few lines might be causing some animation hiccups
-        [_pickerView reloadAllComponents];
-        [_pickerView selectRow:index inComponent:0 animated:false];
-        [self animateShowViewPicker];
-    }];
-}
-
-- (void)onFilterSelected:(id) filter
+- (void)showFilter:(NSString*)filter
 {
     if (self.selectedFilter == filter)
         return;
     
     self.selectedFilter = filter;
-    [self.filterButton setTitle:filter forState:UIControlStateNormal];
     [self updateAllTweets];
 }
 
-- (void)onUserSelected:(User*) user
+- (void)showUser:(User*)user
 {
     if (self.selectedUser == user)
         return;
     
     self.selectedUser = user;
-    [self updateSelectedUserLabel:user];
     [self updateAllTweets];
-}
-
-- (void)updateSelectedUserLabel:(User*)user {
-    NSString* userNameText = [user displayName];
-    userNameText = [userNameText stringByAppendingString:@"'s"];
-    [self.userButton setTitle:userNameText forState:UIControlStateNormal];
-}
-
-//TODO: Needed?
-- (UIRectEdge)edgesForExtendedLayout {
-    return UIRectEdgeNone;
-}
-
-- (void)updateAnalytics {
-
-    if (_lastUser != _selectedUser) {
-        [[Mixpanel sharedInstance] track:[NSString stringWithFormat:@"Viewed User: %@", _selectedUser.nickname]];
-    }
-    
-    if ([_lastFilter isEqualToString:_selectedFilter] == false) {
-        [[Mixpanel sharedInstance] track:[NSString stringWithFormat:@"Viewed Filter: %@", _selectedFilter]];
-    }
-    
-    _lastFilter = _selectedFilter;
-    _lastUser = _selectedUser;
-}
-
-const static CGFloat cShadowPadding = 4.0f;
-const static CGFloat cPickerOffset = 210.0f; //pickerContainerHeight + cShadowPadding
-const static CGFloat cBarHeight = 44.0f;
-const static CGFloat cAnimationDuration = 0.33;
-
-#pragma mark - View Picker
-- (void)animateShowViewPicker
-{
-    CGFloat totalTime = cAnimationDuration;
-    CGFloat firstHalf = (cBarHeight + cShadowPadding) / cPickerOffset;
-    CGFloat firstHalfTime = totalTime * firstHalf;
-    CGFloat secondHalfTime = totalTime - firstHalfTime;
-    
-    [UIView animateWithDuration:firstHalfTime delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
-        _superViewBottomToPickerBottomConstraint.constant = (-1 * _viewPickerContainer.frame.size.height) + cBarHeight;
-        [self.view layoutIfNeeded];
-
-    } completion:^(BOOL finished) {
-        [UIView animateWithDuration:secondHalfTime delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
-            _superViewBottomToPickerBottomConstraint.constant = 0.0f;
-            [self.view layoutIfNeeded];
-        } completion:nil];
-    }];
-    
-    
-    [self.table addGestureRecognizer:self.tableTapGesture];
-}
-
-- (void)animateHideViewPickerCompletion:(void (^)(BOOL finished))completion {
-    [self updateAnalytics];
-    
-    CGFloat totalTime = cAnimationDuration;
-    CGFloat firstDistanceTraveled = (cBarHeight + cShadowPadding);
-    CGFloat firstHalf = (cPickerOffset - firstDistanceTraveled) / cPickerOffset;
-    CGFloat firstHalfTime = totalTime * firstHalf;
-    CGFloat secondHalfTime = totalTime - firstHalfTime;
-    
-    [UIView animateWithDuration:firstHalfTime delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
-        _superViewBottomToPickerBottomConstraint.constant = (-1 * _viewPickerContainer.frame.size.height) + cBarHeight;
-        [self.view layoutIfNeeded];
-        
-    } completion:^(BOOL finished) {
-        [UIView animateWithDuration:secondHalfTime delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
-            _superViewBottomToPickerBottomConstraint.constant = -1 * cPickerOffset;
-            [self.view layoutIfNeeded];
-        } completion:completion];
-    }];
-    
-
-    [self.table removeGestureRecognizer:self.tableTapGesture];
-}
-
-- (void)onTableTapped
-{
-    [self animateHideViewPickerCompletion:nil];
 }
 
 @end
