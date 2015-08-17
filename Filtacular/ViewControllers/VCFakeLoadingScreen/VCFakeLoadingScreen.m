@@ -9,7 +9,6 @@
 #import "VCFakeLoadingScreen.h"
 #import "IntroViewController.h"
 #import "VCTwitterFeed.h"
-#import "VCOptions.h"
 
 #import <TwitterKit/TwitterKit.h>
 #import <IIViewDeckController.h>

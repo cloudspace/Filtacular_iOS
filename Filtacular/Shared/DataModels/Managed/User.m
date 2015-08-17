@@ -69,4 +69,14 @@
     return [NSString stringWithFormat:@"User\n\tName:%@\n\tNickName:%@\n\tId:%i", self.name, self.nickname, self.identifier];
 }
 
++ (User*)findUserWithId:(NSString*)userId inList:(NSArray*)userList {
+    for (User* eachUser in userList)
+    {
+        if ([eachUser.userId isEqualToString:userId]) {
+            return eachUser;
+        }
+    }
+    return nil;
+}
+
 @end
