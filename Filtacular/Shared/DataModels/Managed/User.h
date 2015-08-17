@@ -22,4 +22,6 @@
 - (NSString*)stringForPicker;
 - (NSString*)sortingName;
 
++ (User*)findUserWithId:(NSString*)userId inList:(NSArray*)userList;
+
 @end

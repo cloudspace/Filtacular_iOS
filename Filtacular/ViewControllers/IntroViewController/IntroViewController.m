@@ -8,7 +8,8 @@
 
 #import "IntroViewController.h"
 #import "VCTwitterFeed.h"
-#import "VCOptions.h"
+#import "VCUsers.h"
+#import "VCFilters.h"
 
 #import "ServerWrapper.h"
 #import "User.h"
@@ -123,12 +124,16 @@
         
         //Find current user in user list
         User* selectedUser;
-        for (User* eachUser in users)
-        {
-            if ([eachUser.userId isEqualToString:[twitterSession userID]]) {
-                selectedUser = eachUser;
-                break;
-            }
+        NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+        NSString* lastSelectedUserId = [defaults objectForKey:@"lastSelectedUser"];
+        if (lastSelectedUserId == nil)
+            lastSelectedUserId = [twitterSession userID];
+        
+        selectedUser = [User findUserWithId:lastSelectedUserId inList:users];
+        
+        if (selectedUser == nil && lastSelectedUserId != [twitterSession userID]) {
+            lastSelectedUserId = [twitterSession userID];
+            selectedUser = [User findUserWithId:lastSelectedUserId inList:users];
         }
         
         if (selectedUser == nil) {
@@ -142,22 +147,30 @@
             return [[obj1 sortingName] compare:[obj2 sortingName]];
         }];
         
+        NSString* selectedFilter = [defaults objectForKey:@"lastSelectedFilter"];
+        if (selectedFilter == nil || [filters containsObject:selectedFilter] == false) {
+            selectedFilter = filters[0];
+        }
+        
         
         dispatch_sync(dispatch_get_main_queue(), ^{
             
             VCTwitterFeed* vcTwitterFeed    = [VCTwitterFeed new];
             vcTwitterFeed.currentUsersName  = twitterSession.userName;
             vcTwitterFeed.selectedUser      = selectedUser;
-            vcTwitterFeed.selectedFilter    = filters[0];
+            vcTwitterFeed.selectedFilter    = selectedFilter;
             
-            VCOptions* options              = [VCOptions new];
-            options.users                   = users;
-            options.filters                 = [NSArray arrayWithArray:filters];
-            options.selectedUser            = selectedUser;
-            options.selectedFilter          = filters[0];
-            options.twitterFeed             = vcTwitterFeed;
+            VCUsers* vcUsers                = [VCUsers new];
+            vcUsers.users                   = users;
+            vcUsers.selectedUser            = selectedUser;
+            vcUsers.twitterFeed             = vcTwitterFeed;
             
-            UIViewController* mainScreen = [IntroViewController buildMainScreen:vcTwitterFeed options:options];
+            VCFilters* vcFilters            = [VCFilters new];
+            vcFilters.filters               = [NSArray arrayWithArray:filters];
+            vcFilters.selectedFilter        = selectedFilter;
+            vcFilters.twitterFeed           = vcTwitterFeed;
+            
+            UIViewController* mainScreen = [IntroViewController buildMainScreen:vcTwitterFeed vcUsers:vcUsers vcFilters:vcFilters];
             
             successBlock(mainScreen);
         });
@@ -188,15 +201,16 @@
     return nil;
 }
 
-+ (UIViewController*)buildMainScreen:(VCTwitterFeed*)twitterFeed options:(VCOptions*)options {
++ (UIViewController*)buildMainScreen:(VCTwitterFeed*)twitterFeed vcUsers:(VCUsers*)vcUsers vcFilters:(VCFilters*)vcFilters {
     CGFloat bleedSize       = 62.0f;
-    CGFloat rightViewWidth  = [UIApplication sharedApplication].keyWindow.bounds.size.width - bleedSize;
+    CGFloat sideViewWidth   = [UIApplication sharedApplication].keyWindow.bounds.size.width - bleedSize;
     
-
-    IISideController *constrainedRightController    = [[IISideController alloc]         initWithViewController:options constrained:rightViewWidth];
+    IISideController *constrainedLeftController     = [[IISideController alloc]         initWithViewController:vcUsers   constrained:sideViewWidth];
+    IISideController *constrainedRightController    = [[IISideController alloc]         initWithViewController:vcFilters constrained:sideViewWidth];
     UINavigationController* centerContentNVC        = [[UINavigationController alloc]   initWithRootViewController:twitterFeed];
-    IIViewDeckController* deckController            = [[IIViewDeckController alloc]     initWithCenterViewController:centerContentNVC leftViewController:nil rightViewController:constrainedRightController];
+    IIViewDeckController* deckController            = [[IIViewDeckController alloc]     initWithCenterViewController:centerContentNVC leftViewController:constrainedLeftController rightViewController:constrainedRightController];
     deckController.rightSize                        = bleedSize;
+    deckController.leftSize                         = bleedSize;
     deckController.centerhiddenInteractivity        = IIViewDeckCenterHiddenNotUserInteractiveWithTapToClose;
     
     return deckController;

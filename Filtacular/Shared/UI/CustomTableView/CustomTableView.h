@@ -28,6 +28,7 @@ typedef void(^DidSelectObjectBlock)(id object);
 - (void)clearAndWaitForNewData;
 
 - (void)setNoItemText:(NSString*)noItemText;
+- (void)reload;
 - (void)cellHeightChanged;
 
 - (IBAction)tapBackToTop;

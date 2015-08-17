@@ -9,6 +9,15 @@
 #import <UIKit/UIKit.h>
 #import "ConfigurableViewProtocol.h"
 
+@interface TitleObject : NSObject
+
+@property (strong, nonatomic) NSString* title;
+@property (assign, nonatomic) BOOL isBold;
+
+@property (strong, nonatomic) NSObject* associatedObj;
+
+@end
+
 @interface SimpleTitleCell : UITableViewCell <ConfigurableView>
 
 @end

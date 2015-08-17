@@ -104,13 +104,22 @@ static const int cTweetsPerPage = 100;
     
     self.navigationItem.title = @"Filtacular";
     self.navigationItem.hidesBackButton = YES;
-    UIButton* optionsIcon = [UIButton buttonWithType:UIButtonTypeCustom];
-    [optionsIcon setImage:[UIImage imageNamed:@"gear_white"] forState:UIControlStateNormal];
-    [optionsIcon addTarget:self action:@selector(tapOptions) forControlEvents:UIControlEventTouchUpInside];
-    optionsIcon.frame = CGRectMake(0, 0, 32, 32);
     
-    UIBarButtonItem *btnOptions = [[UIBarButtonItem alloc] initWithCustomView:optionsIcon];
-    self.navigationItem.rightBarButtonItem = btnOptions;
+    UIButton* filtersIcon = [UIButton buttonWithType:UIButtonTypeCustom];
+    [filtersIcon setImage:[UIImage imageNamed:@"gear_white"] forState:UIControlStateNormal];
+    [filtersIcon addTarget:self action:@selector(tapFilters) forControlEvents:UIControlEventTouchUpInside];
+    filtersIcon.frame = CGRectMake(0, 0, 32, 32);
+    
+    UIBarButtonItem *btnFilters = [[UIBarButtonItem alloc] initWithCustomView:filtersIcon];
+    self.navigationItem.rightBarButtonItem = btnFilters;
+    
+    UIButton* usersIcon = [UIButton buttonWithType:UIButtonTypeCustom];
+    [usersIcon setImage:[UIImage imageNamed:@"gear_white"] forState:UIControlStateNormal];
+    [usersIcon addTarget:self action:@selector(tapUsers) forControlEvents:UIControlEventTouchUpInside];
+    usersIcon.frame = CGRectMake(0, 0, 32, 32);
+    
+    UIBarButtonItem *btnUsers = [[UIBarButtonItem alloc] initWithCustomView:usersIcon];
+    self.navigationItem.leftBarButtonItem = btnUsers;
 }
 
 - (void)updateAllTweets {
@@ -284,8 +293,12 @@ static const int cTweetsPerPage = 100;
 
 #pragma mark - Actions
 
-- (void)tapOptions {
+- (void)tapFilters {
     [self.viewDeckController toggleRightViewAnimated:true];
+}
+
+- (void)tapUsers {
+    [self.viewDeckController toggleLeftViewAnimated:true];
 }
 
 - (void)showFilter:(NSString*)filter
