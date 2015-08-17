@@ -106,7 +106,7 @@ static const int cTweetsPerPage = 100;
     self.navigationItem.hidesBackButton = YES;
     
     UIButton* filtersIcon = [UIButton buttonWithType:UIButtonTypeCustom];
-    [filtersIcon setImage:[UIImage imageNamed:@"gear_white"] forState:UIControlStateNormal];
+    [filtersIcon setImage:[UIImage imageNamed:@"filter_icon"] forState:UIControlStateNormal];
     [filtersIcon addTarget:self action:@selector(tapFilters) forControlEvents:UIControlEventTouchUpInside];
     filtersIcon.frame = CGRectMake(0, 0, 32, 32);
     
@@ -114,7 +114,7 @@ static const int cTweetsPerPage = 100;
     self.navigationItem.rightBarButtonItem = btnFilters;
     
     UIButton* usersIcon = [UIButton buttonWithType:UIButtonTypeCustom];
-    [usersIcon setImage:[UIImage imageNamed:@"gear_white"] forState:UIControlStateNormal];
+    [usersIcon setImage:[UIImage imageNamed:@"user_icon"] forState:UIControlStateNormal];
     [usersIcon addTarget:self action:@selector(tapUsers) forControlEvents:UIControlEventTouchUpInside];
     usersIcon.frame = CGRectMake(0, 0, 32, 32);
     
