@@ -59,6 +59,10 @@
     [_table endUpdates];
 }
 
+- (void)reload {
+    [_table reloadData];
+}
+
 - (void)setUpTable {
     [_table setRowHeight:_tableViewCellHeight];
     self.refreshControl = [UIRefreshControl new];

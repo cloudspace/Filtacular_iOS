@@ -1,8 +1,8 @@
 //
-//  VCOptions.h
+//  VCUsers.h
 //  Filtacular
 //
-//  Created by Isaac Paul on 8/12/15.
+//  Created by Isaac Paul on 8/17/15.
 //  Copyright (c) 2015 Cloudspace. All rights reserved.
 //
 
@@ -11,12 +11,10 @@
 @class User;
 @class VCTwitterFeed;
 
-@interface VCOptions : UIViewController
+@interface VCUsers : UIViewController
 
 @property (strong, nonatomic) NSArray* users;
-@property (strong, nonatomic) NSArray* filters;
 @property (strong, nonatomic) User* selectedUser;
-@property (strong, nonatomic) NSString* selectedFilter;
 
 @property (weak, nonatomic) VCTwitterFeed* twitterFeed;
 

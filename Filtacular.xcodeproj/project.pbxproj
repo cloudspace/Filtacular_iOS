@@ -18,11 +18,13 @@
 		DF183BAA1B1CAA2B0001DDA4 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF183BA81B1CAA2B0001DDA4 /* LaunchScreen.xib */; };
 		DF183BB61B1CAA2B0001DDA4 /* FiltacularTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DF183BB51B1CAA2B0001DDA4 /* FiltacularTests.m */; };
 		DF2BB1E31B7B8548008B423C /* UIColor+Filtacular.m in Sources */ = {isa = PBXBuildFile; fileRef = DF2BB1E21B7B8548008B423C /* UIColor+Filtacular.m */; };
-		DF2BB1E71B7B9A38008B423C /* VCOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = DF2BB1E61B7B9A38008B423C /* VCOptions.m */; };
-		DF2BB1E91B7B9ABF008B423C /* VCOptions.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF2BB1E81B7B9ABF008B423C /* VCOptions.xib */; };
 		DF2BB1EF1B7CD45C008B423C /* SimpleTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF2BB1ED1B7CD45C008B423C /* SimpleTitleCell.m */; };
 		DF2BB1F01B7CD45C008B423C /* SimpleTitleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF2BB1EE1B7CD45C008B423C /* SimpleTitleCell.xib */; };
 		DF2BB1F61B7CFCCB008B423C /* SearchBarAutoKeyboard.m in Sources */ = {isa = PBXBuildFile; fileRef = DF2BB1F51B7CFCCB008B423C /* SearchBarAutoKeyboard.m */; };
+		DF2BB1FD1B82567B008B423C /* VCUsers.m in Sources */ = {isa = PBXBuildFile; fileRef = DF2BB1FB1B82567B008B423C /* VCUsers.m */; };
+		DF2BB1FE1B82567B008B423C /* VCUsers.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF2BB1FC1B82567B008B423C /* VCUsers.xib */; };
+		DF2BB2031B82571F008B423C /* VCFilters.m in Sources */ = {isa = PBXBuildFile; fileRef = DF2BB2011B82571F008B423C /* VCFilters.m */; };
+		DF2BB2041B82571F008B423C /* VCFilters.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF2BB2021B82571F008B423C /* VCFilters.xib */; };
 		DF48E7AB1B1CD70400154FC1 /* RestkitRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = DF48E7A81B1CD70400154FC1 /* RestkitRequest.m */; };
 		DF48E7AC1B1CD70400154FC1 /* ServerWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = DF48E7AA1B1CD70400154FC1 /* ServerWrapper.m */; };
 		DF48E7B01B1CE01900154FC1 /* BaseUnmanagedModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DF48E7AF1B1CE01900154FC1 /* BaseUnmanagedModel.m */; };
@@ -108,14 +110,17 @@
 		DF183BB51B1CAA2B0001DDA4 /* FiltacularTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FiltacularTests.m; sourceTree = "<group>"; };
 		DF2BB1E11B7B8548008B423C /* UIColor+Filtacular.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Filtacular.h"; sourceTree = "<group>"; };
 		DF2BB1E21B7B8548008B423C /* UIColor+Filtacular.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Filtacular.m"; sourceTree = "<group>"; };
-		DF2BB1E51B7B9A38008B423C /* VCOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VCOptions.h; sourceTree = "<group>"; };
-		DF2BB1E61B7B9A38008B423C /* VCOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VCOptions.m; sourceTree = "<group>"; };
-		DF2BB1E81B7B9ABF008B423C /* VCOptions.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VCOptions.xib; sourceTree = "<group>"; };
 		DF2BB1EC1B7CD45C008B423C /* SimpleTitleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleTitleCell.h; sourceTree = "<group>"; };
 		DF2BB1ED1B7CD45C008B423C /* SimpleTitleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleTitleCell.m; sourceTree = "<group>"; };
 		DF2BB1EE1B7CD45C008B423C /* SimpleTitleCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SimpleTitleCell.xib; sourceTree = "<group>"; };
 		DF2BB1F41B7CFCCB008B423C /* SearchBarAutoKeyboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchBarAutoKeyboard.h; sourceTree = "<group>"; };
 		DF2BB1F51B7CFCCB008B423C /* SearchBarAutoKeyboard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchBarAutoKeyboard.m; sourceTree = "<group>"; };
+		DF2BB1FA1B82567B008B423C /* VCUsers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VCUsers.h; sourceTree = "<group>"; };
+		DF2BB1FB1B82567B008B423C /* VCUsers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VCUsers.m; sourceTree = "<group>"; };
+		DF2BB1FC1B82567B008B423C /* VCUsers.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VCUsers.xib; sourceTree = "<group>"; };
+		DF2BB2001B82571F008B423C /* VCFilters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VCFilters.h; sourceTree = "<group>"; };
+		DF2BB2011B82571F008B423C /* VCFilters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VCFilters.m; sourceTree = "<group>"; };
+		DF2BB2021B82571F008B423C /* VCFilters.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VCFilters.xib; sourceTree = "<group>"; };
 		DF48E7A71B1CD70400154FC1 /* RestkitRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestkitRequest.h; sourceTree = "<group>"; };
 		DF48E7A81B1CD70400154FC1 /* RestkitRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestkitRequest.m; sourceTree = "<group>"; };
 		DF48E7A91B1CD70400154FC1 /* ServerWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerWrapper.h; sourceTree = "<group>"; };
@@ -319,16 +324,6 @@
 			path = UIColor;
 			sourceTree = "<group>";
 		};
-		DF2BB1E41B7B99AE008B423C /* VCOptions */ = {
-			isa = PBXGroup;
-			children = (
-				DF2BB1E51B7B9A38008B423C /* VCOptions.h */,
-				DF2BB1E61B7B9A38008B423C /* VCOptions.m */,
-				DF2BB1E81B7B9ABF008B423C /* VCOptions.xib */,
-			);
-			path = VCOptions;
-			sourceTree = "<group>";
-		};
 		DF2BB1EB1B7CD449008B423C /* SimpleTitleCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -348,6 +343,26 @@
 			path = SearchBarAutoKeyboard;
 			sourceTree = "<group>";
 		};
+		DF2BB1F91B825659008B423C /* VCUsers */ = {
+			isa = PBXGroup;
+			children = (
+				DF2BB1FA1B82567B008B423C /* VCUsers.h */,
+				DF2BB1FB1B82567B008B423C /* VCUsers.m */,
+				DF2BB1FC1B82567B008B423C /* VCUsers.xib */,
+			);
+			path = VCUsers;
+			sourceTree = "<group>";
+		};
+		DF2BB1FF1B825681008B423C /* VCFilters */ = {
+			isa = PBXGroup;
+			children = (
+				DF2BB2001B82571F008B423C /* VCFilters.h */,
+				DF2BB2011B82571F008B423C /* VCFilters.m */,
+				DF2BB2021B82571F008B423C /* VCFilters.xib */,
+			);
+			path = VCFilters;
+			sourceTree = "<group>";
+		};
 		DF48E7A61B1CD70400154FC1 /* ServerWrapper */ = {
 			isa = PBXGroup;
 			children = (
@@ -364,7 +379,8 @@
 		DF48E7BE1B1CF29200154FC1 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				DF2BB1E41B7B99AE008B423C /* VCOptions */,
+				DF2BB1F91B825659008B423C /* VCUsers */,
+				DF2BB1FF1B825681008B423C /* VCFilters */,
 				DF9344691B3B11D900297E38 /* VCFakeLoadingScreen */,
 				DF48E7EB1B1E0E4100154FC1 /* RootNavigationController */,
 				DF48E7D71B1DEDE700154FC1 /* IntroViewController */,
@@ -791,12 +807,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				DF2BB1F01B7CD45C008B423C /* SimpleTitleCell.xib in Resources */,
-				DF2BB1E91B7B9ABF008B423C /* VCOptions.xib in Resources */,
 				DFF176D41B1CD242005095E9 /* Filtacular-API.plist in Resources */,
 				DF183BA51B1CAA2B0001DDA4 /* Main.storyboard in Resources */,
+				DF2BB1FE1B82567B008B423C /* VCUsers.xib in Resources */,
 				DF48E7E11B1DF06200154FC1 /* TweetCell.xib in Resources */,
 				DF48E7C41B1CF38900154FC1 /* VCTwitterFeed.xib in Resources */,
 				DF17730C1B1CC29B00AD4CA4 /* AppledocSettings.plist in Resources */,
+				DF2BB2041B82571F008B423C /* VCFilters.xib in Resources */,
 				DF9344501B34779600297E38 /* PageLoadingCell.xib in Resources */,
 				DF183BAA1B1CAA2B0001DDA4 /* LaunchScreen.xib in Resources */,
 				DF48E7CD1B1DEC0B00154FC1 /* CustomTableView.xib in Resources */,
@@ -895,12 +912,12 @@
 				DF9344611B3493AB00297E38 /* NSObject+Shortcuts.m in Sources */,
 				DF48E7C21B1CF31800154FC1 /* VCTwitterFeed.m in Sources */,
 				DF48E7D61B1DED0900154FC1 /* UIView+Positioning.m in Sources */,
+				DF2BB2031B82571F008B423C /* VCFilters.m in Sources */,
 				DF48E8061B2218C900154FC1 /* NSDate+SimpleTimeAgo.m in Sources */,
 				DF48E7AB1B1CD70400154FC1 /* RestkitRequest.m in Sources */,
 				DF48E7AC1B1CD70400154FC1 /* ServerWrapper.m in Sources */,
 				DF5308551B6691F50082F3EA /* RestkitRequest+API.m in Sources */,
 				DF2BB1F61B7CFCCB008B423C /* SearchBarAutoKeyboard.m in Sources */,
-				DF2BB1E71B7B9A38008B423C /* VCOptions.m in Sources */,
 				DFF176D01B1CD21A005095E9 /* APIInfo.m in Sources */,
 				DF48E7F31B1F499C00154FC1 /* RestkitRequestReponse.m in Sources */,
 				DF93444F1B34779600297E38 /* PageLoadingCell.m in Sources */,
@@ -921,6 +938,7 @@
 				DF183B991B1CAA2B0001DDA4 /* main.m in Sources */,
 				DF9344621B3493AB00297E38 /* UIAlertView+Shortcuts.m in Sources */,
 				DF48E7D11B1DEC8700154FC1 /* Widget.m in Sources */,
+				DF2BB1FD1B82567B008B423C /* VCUsers.m in Sources */,
 				DF93446C1B3B121200297E38 /* VCFakeLoadingScreen.m in Sources */,
 				DF48E7E01B1DF06200154FC1 /* TweetCell.m in Sources */,
 			);
