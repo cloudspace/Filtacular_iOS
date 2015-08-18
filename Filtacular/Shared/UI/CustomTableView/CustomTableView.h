@@ -28,7 +28,8 @@ typedef void(^DidSelectObjectBlock)(id object);
 - (void)clearAndWaitForNewData;
 
 - (void)setNoItemText:(NSString*)noItemText;
-- (void)reload;
+- (void)commitChanges;
+- (void)scrollToObject:(NSObject*)object atScrollPosition:(UITableViewScrollPosition)scrollPosition animated:(bool)animated;
 - (void)cellHeightChanged;
 
 - (IBAction)tapBackToTop;

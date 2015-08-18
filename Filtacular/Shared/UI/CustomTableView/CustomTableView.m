@@ -59,8 +59,23 @@
     [_table endUpdates];
 }
 
-- (void)reload {
-    [_table reloadData];
+- (void)commitChanges {
+    [_smartGroup reload];
+}
+
+- (void)scrollToObject:(NSObject*)object atScrollPosition:(UITableViewScrollPosition)scrollPosition animated:(bool)animated {
+    NSUInteger indexOfObj = [_tableData indexOfObject:object];
+    if (indexOfObj == NSNotFound)
+        return;
+    
+    if (indexOfObj == 0)
+        return; //TODO:Fix hack
+    
+    NSIndexPath* objIndex = [NSIndexPath indexPathForRow:indexOfObj inSection:0];
+    
+    CGRect rect = [_table rectForRowAtIndexPath:objIndex];
+    
+    [_table setContentOffset:CGPointMake(0.0f, rect.origin.y - 60.0f)];
 }
 
 - (void)setUpTable {

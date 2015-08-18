@@ -35,7 +35,6 @@
         [strongSelf.viewDeckController toggleRightViewAnimated:true];
         [strongSelf.twitterFeed showFilter:filter];
         strongSelf.selectedFilter = filter;
-        [strongSelf.tableFilters reload];
         [strongSelf showFilters:strongSelf.filters];
         NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
         [defaults setValue:filter forKey:@"lastSelectedFilter"];

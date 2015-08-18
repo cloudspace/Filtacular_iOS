@@ -210,27 +210,33 @@ static int cFavoriteCounts[cNumRandoms] = { 0, 6, 200 };
     
     Tweet* other = object;
     
+    if ([self areStringsEqual:self.text other:other.text] == false)
+        return false;
+    
     if (urlLink.length > 0) {
         if ([urlLink isEqualToString:other.urlLink])
             return true; //The website version removes content that reuse the same link
     }
     
-    if ([urlDescription isEqualToString:other.urlDescription] == false)
+    if ([self areStringsEqual:self.urlDescription other:other.urlDescription] == false)
         return false;
     
-    if ([urlTitle isEqualToString:other.urlTitle] == false)
+    if ([self areStringsEqual:self.urlTitle other:other.urlTitle] == false)
         return false;
     
-    if ([urlImage isEqualToString:other.urlImage] == false)
+    if ([self areStringsEqual:self.urlImage other:other.urlImage] == false)
         return false;
     
-    if ([media isEqualToString:other.media] == false)
+    if ([self areStringsEqual:self.media other:other.media] == false)
         return false;
-    
-    if ([text isEqualToString:other.text] == false)
-        return false;
-    
+
     return true;
+}
+
+- (bool)areStringsEqual:(NSString*)one other:(NSString*)other {
+    if (one == nil && other == nil)
+        return true;
+    return [one isEqualToString:other];
 }
 
 - (NSUInteger)hash {
