@@ -226,6 +226,10 @@ static const int cTweetsPerPage = 100;
         }]];
     }
     
+    NSObject* firstTweet = nil;
+    if (_tableData.count > 0)
+        firstTweet = _tableData[0];
+    
     if (_nextPage != 1)
         _tableData = [_tableData arrayByAddingObjectsFromArray:tweets];
     else
@@ -273,7 +277,16 @@ static const int cTweetsPerPage = 100;
         _tableData = [_tableData arrayByAddingObject:callbackModel];
     }
     
-    [_table loadData:_tableData];
+    
+    if (_nextPage == 1 && firstTweet != nil) {
+        [UIView setAnimationsEnabled:NO];
+        [_table loadData:_tableData];
+        [UIView setAnimationsEnabled:YES];
+        [_table scrollToObject:firstTweet atScrollPosition:UITableViewScrollPositionTop animated:false];
+    }
+    else {
+        [_table loadData:_tableData];
+    }
 }
 
 - (void)fakeLoadTweets {
