@@ -21,6 +21,7 @@
 - (NSString*)displayName;
 - (NSString*)stringForPicker;
 - (NSString*)sortingName;
+- (NSString*)profileImageUrl;
 
 + (User*)findUserWithId:(NSString*)userId inList:(NSArray*)userList;
 

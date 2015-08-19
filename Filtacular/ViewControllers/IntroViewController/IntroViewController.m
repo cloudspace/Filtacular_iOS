@@ -207,8 +207,7 @@
     
     IISideController *constrainedLeftController     = [[IISideController alloc]         initWithViewController:vcUsers   constrained:sideViewWidth];
     IISideController *constrainedRightController    = [[IISideController alloc]         initWithViewController:vcFilters constrained:sideViewWidth];
-    UINavigationController* centerContentNVC        = [[UINavigationController alloc]   initWithRootViewController:twitterFeed];
-    IIViewDeckController* deckController            = [[IIViewDeckController alloc]     initWithCenterViewController:centerContentNVC leftViewController:constrainedLeftController rightViewController:constrainedRightController];
+    IIViewDeckController* deckController            = [[IIViewDeckController alloc]     initWithCenterViewController:twitterFeed leftViewController:constrainedLeftController rightViewController:constrainedRightController];
     deckController.rightSize                        = bleedSize;
     deckController.leftSize                         = bleedSize;
     deckController.centerhiddenInteractivity        = IIViewDeckCenterHiddenNotUserInteractiveWithTapToClose;
