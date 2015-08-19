@@ -66,8 +66,7 @@
 }
 
 - (void)applyStyles {
-    [[UINavigationBar appearance] setBarStyle:UIBarStyleBlack];
-    [[UINavigationBar appearance] setBarTintColor:[UIColor fBarBlue]];
+
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application

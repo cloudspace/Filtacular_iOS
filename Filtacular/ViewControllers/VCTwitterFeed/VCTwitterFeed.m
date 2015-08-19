@@ -22,6 +22,7 @@
 #import <IIViewDeckController.h>
 
 #import "RestkitRequest+API.h"
+#import "UIImageView+SDWebCache.h"
 
 typedef void (^animationFinishBlock)(BOOL finished);
 static const int cTweetsPerPage = 100;
@@ -32,13 +33,17 @@ static const int cTweetsPerPage = 100;
 
 @property (strong, nonatomic) IBOutlet UIView *viewBackToTop;
 @property (strong, nonatomic) IBOutlet UIView *viewBackToTopShadow;
+@property (strong, nonatomic) IBOutlet UIButton *btnUser;
+@property (strong, nonatomic) IBOutlet UILabel *lblFilter;
+@property (strong, nonatomic) IBOutlet UILabel *lblUser;
+@property (strong, nonatomic) IBOutlet UIImageView *imgUser;
 
 @property (strong, nonatomic) NSArray* tableData;
 @property (strong, nonatomic) NSOperationQueue* twitterUpdateQueue;
 
 @property (assign, nonatomic) bool canRefresh;
 
-////Analytics
+//Analytics
 //@property (strong, nonatomic) User* lastUser;
 //@property (strong, nonatomic) NSString* lastFilter;
 
@@ -84,13 +89,15 @@ static const int cTweetsPerPage = 100;
         [strongSelf addNewerTweets];
     }];
     
+    [_imgUser setImageWithString:_selectedUser.profileImageUrl placeholderImage:nil];
+    [_lblUser setText:_selectedUser.displayName];
+    [_lblFilter setText:_selectedFilter];
     [self updateAllTweets];
-    [self configureNavigationBar];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:false animated:animated];
+    [self.navigationController setNavigationBarHidden:true animated:animated];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -98,28 +105,6 @@ static const int cTweetsPerPage = 100;
     //Fixes an animation bug with the options view
     [self.viewDeckController toggleRightViewAnimated:false];
     [self.viewDeckController toggleRightViewAnimated:false];
-}
-
-- (void)configureNavigationBar {
-    
-    self.navigationItem.title = @"Filtacular";
-    self.navigationItem.hidesBackButton = YES;
-    
-    UIButton* filtersIcon = [UIButton buttonWithType:UIButtonTypeCustom];
-    [filtersIcon setImage:[UIImage imageNamed:@"filter_icon"] forState:UIControlStateNormal];
-    [filtersIcon addTarget:self action:@selector(tapFilters) forControlEvents:UIControlEventTouchUpInside];
-    filtersIcon.frame = CGRectMake(0, 0, 32, 32);
-    
-    UIBarButtonItem *btnFilters = [[UIBarButtonItem alloc] initWithCustomView:filtersIcon];
-    self.navigationItem.rightBarButtonItem = btnFilters;
-    
-    UIButton* usersIcon = [UIButton buttonWithType:UIButtonTypeCustom];
-    [usersIcon setImage:[UIImage imageNamed:@"user_icon"] forState:UIControlStateNormal];
-    [usersIcon addTarget:self action:@selector(tapUsers) forControlEvents:UIControlEventTouchUpInside];
-    usersIcon.frame = CGRectMake(0, 0, 32, 32);
-    
-    UIBarButtonItem *btnUsers = [[UIBarButtonItem alloc] initWithCustomView:usersIcon];
-    self.navigationItem.leftBarButtonItem = btnUsers;
 }
 
 - (void)updateAllTweets {
@@ -262,6 +247,7 @@ static const int cTweetsPerPage = 100;
             VCTwitterFeed* strongSelf = weakSelf;
             SVWebViewController *webViewController = [[SVWebViewController alloc] initWithAddress:link];
             [strongSelf.navigationController pushViewController:webViewController animated:YES];
+            [strongSelf.navigationController setNavigationBarHidden:false animated:false];
         }];
         
     }
@@ -306,11 +292,11 @@ static const int cTweetsPerPage = 100;
 
 #pragma mark - Actions
 
-- (void)tapFilters {
+- (IBAction)tapFilters {
     [self.viewDeckController toggleRightViewAnimated:true];
 }
 
-- (void)tapUsers {
+- (IBAction)tapUsers {
     [self.viewDeckController toggleLeftViewAnimated:true];
 }
 
@@ -320,6 +306,7 @@ static const int cTweetsPerPage = 100;
         return;
     
     self.selectedFilter = filter;
+    [_lblFilter setText:_selectedFilter];
     [self updateAllTweets];
 }
 
@@ -329,6 +316,8 @@ static const int cTweetsPerPage = 100;
         return;
     
     self.selectedUser = user;
+    [_imgUser setImageWithString:_selectedUser.profileImageUrl placeholderImage:nil];
+    [_lblUser setText:_selectedUser.displayName];
     [self updateAllTweets];
 }
 
