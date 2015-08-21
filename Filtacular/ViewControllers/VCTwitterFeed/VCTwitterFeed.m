@@ -39,6 +39,7 @@ static const int cTweetsPerPage = 100;
 @property (strong, nonatomic) IBOutlet UILabel *lblUser;
 @property (strong, nonatomic) IBOutlet UIImageView *imgUser;
 @property (strong, nonatomic) IBOutlet UIImageView *imgFilterIcon;
+@property (strong, nonatomic) IBOutlet UIView *viewHelp;
 
 @property (strong, nonatomic) NSArray* tableData;
 @property (strong, nonatomic) NSOperationQueue* twitterUpdateQueue;
@@ -80,7 +81,6 @@ static const int cTweetsPerPage = 100;
     _viewBackToTopShadow.layer.shadowPath = shadowPath.CGPath;
     _viewBackToTopShadow.layer.shouldRasterize = true;
     _viewBackToTopShadow.alpha = 0.8f;
-    
     
     __weak VCTwitterFeed* weakSelf = self;
     [_table setRefreshCalled:^{
