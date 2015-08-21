@@ -7,6 +7,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="VCTwitterFeed">
             <connections>
                 <outlet property="btnUser" destination="jIi-Ml-gVR" id="2cO-6r-nTg"/>
+                <outlet property="imgFilterIcon" destination="R4A-v9-aBu" id="fyE-X1-oCd"/>
                 <outlet property="imgUser" destination="Df9-gz-jOu" id="Uxy-s4-sEM"/>
                 <outlet property="lblFilter" destination="tJo-VN-kLD" id="zDy-me-THJ"/>
                 <outlet property="lblUser" destination="KL0-4p-JZk" id="hVb-Fq-g0E"/>
@@ -148,7 +149,7 @@
                                                     </constraints>
                                                 </imageView>
                                             </subviews>
-                                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="backgroundColor" cyan="0.56578928230000003" magenta="0.2011443973" yellow="0.00091552734380000004" black="0.24661865238181813" alpha="1" colorSpace="custom" customColorSpace="genericCMYKColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="R4A-v9-aBu" secondAttribute="bottom" constant="3" id="5Tx-ec-G1O"/>
                                                 <constraint firstAttribute="trailing" secondItem="R4A-v9-aBu" secondAttribute="trailing" constant="3" id="7zD-sw-VRr"/>
