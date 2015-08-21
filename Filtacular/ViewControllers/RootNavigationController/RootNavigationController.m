@@ -26,4 +26,8 @@
     return false;
 }
 
+- (BOOL)shouldAutorotate {
+    return false;
+}
+
 @end

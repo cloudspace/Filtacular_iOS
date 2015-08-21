@@ -55,7 +55,7 @@
                             </connections>
                         </button>
                     </subviews>
-                    <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="96" id="8wi-k7-ZgY"/>
                         <constraint firstAttribute="height" constant="98" id="hTh-dn-EYQ"/>
@@ -70,7 +70,7 @@
                     <rect key="frame" x="0.0" y="524" width="320" height="44"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BMn-2h-Cra" userLabel="View - User Button">
-                            <rect key="frame" x="0.0" y="0.0" width="159.5" height="44"/>
+                            <rect key="frame" x="0.0" y="0.0" width="160" height="44"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7IK-jo-oWR" userLabel="View - Image Label Wrapper">
                                     <rect key="frame" x="8" y="0.0" width="144" height="44"/>
@@ -125,7 +125,7 @@
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AzT-6l-KJB" userLabel="View - User Button">
-                            <rect key="frame" x="160" y="0.0" width="159.5" height="44"/>
+                            <rect key="frame" x="160" y="0.0" width="160" height="44"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tl1-jU-Ucg" userLabel="View - Image Label Wrapper">
                                     <rect key="frame" x="8" y="0.0" width="144" height="44"/>
