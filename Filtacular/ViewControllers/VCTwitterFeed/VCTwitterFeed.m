@@ -21,6 +21,7 @@
 #import <Mixpanel.h>
 #import <IIViewDeckController.h>
 
+#import "UIColor+Filtacular.h"
 #import "RestkitRequest+API.h"
 #import "UIImageView+SDWebCache.h"
 
@@ -37,15 +38,12 @@ static const int cTweetsPerPage = 100;
 @property (strong, nonatomic) IBOutlet UILabel *lblFilter;
 @property (strong, nonatomic) IBOutlet UILabel *lblUser;
 @property (strong, nonatomic) IBOutlet UIImageView *imgUser;
+@property (strong, nonatomic) IBOutlet UIImageView *imgFilterIcon;
 
 @property (strong, nonatomic) NSArray* tableData;
 @property (strong, nonatomic) NSOperationQueue* twitterUpdateQueue;
 
 @property (assign, nonatomic) bool canRefresh;
-
-//Analytics
-//@property (strong, nonatomic) User* lastUser;
-//@property (strong, nonatomic) NSString* lastFilter;
 
 //Paging Stuff
 
@@ -58,13 +56,14 @@ static const int cTweetsPerPage = 100;
 @implementation VCTwitterFeed
 
 - (void)viewDidLoad {
-//    
-//    _lastFilter = _selectedFilter;
-//    _lastUser = _selectedUser;
     
     _twitterUpdateQueue = [[NSOperationQueue alloc] init];
     _twitterUpdateQueue.name = @"Twitter Update Queue";
     _twitterUpdateQueue.maxConcurrentOperationCount = 1;
+    
+//    UIImage* imageForRendering = [_imgFilterIcon.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+//    [_imgFilterIcon setImage:imageForRendering];
+//    [_imgFilterIcon setTintColor:[UIColor fBarBlue]];
     
     [_table setNoItemText:@"There are no tweets."];
     [_table addTableCellClass:[TweetCell class] forDataType:[Tweet class]];
@@ -308,6 +307,8 @@ static const int cTweetsPerPage = 100;
     self.selectedFilter = filter;
     [_lblFilter setText:_selectedFilter];
     [self updateAllTweets];
+    [[Mixpanel sharedInstance] track:[NSString stringWithFormat:@"Viewed Filter: %@", _selectedFilter]];
+    
 }
 
 - (void)showUser:(User*)user
@@ -319,6 +320,7 @@ static const int cTweetsPerPage = 100;
     [_imgUser setImageWithString:_selectedUser.profileImageUrl placeholderImage:nil];
     [_lblUser setText:_selectedUser.displayName];
     [self updateAllTweets];
+    [[Mixpanel sharedInstance] track:[NSString stringWithFormat:@"Viewed User: %@", _selectedUser.nickname]];
 }
 
 @end

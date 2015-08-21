@@ -9,7 +9,7 @@ pod 'TTTAttributedLabel', '~> 1.13.4'
 pod 'Mixpanel'
 
 # Networking / Caching
-pod 'SDWebImage', :git => 'https://github.com/izackp/SDWebImage.git'
+pod 'SDWebImage', :git => 'https://github.com/izackp/SDWebImage.git', :branch => 'master'
 pod 'RestKit', '~> 0.24.1'
 
 pod 'SRVApplicationDelegate', :git => 'https://github.com/jlorich/SRVApplicationDelegate', :tag => '0.0.1'

@@ -7,6 +7,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="VCTwitterFeed">
             <connections>
                 <outlet property="btnUser" destination="jIi-Ml-gVR" id="2cO-6r-nTg"/>
+                <outlet property="imgFilterIcon" destination="R4A-v9-aBu" id="fyE-X1-oCd"/>
                 <outlet property="imgUser" destination="Df9-gz-jOu" id="Uxy-s4-sEM"/>
                 <outlet property="lblFilter" destination="tJo-VN-kLD" id="zDy-me-THJ"/>
                 <outlet property="lblUser" destination="KL0-4p-JZk" id="hVb-Fq-g0E"/>
@@ -55,7 +56,7 @@
                             </connections>
                         </button>
                     </subviews>
-                    <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="96" id="8wi-k7-ZgY"/>
                         <constraint firstAttribute="height" constant="98" id="hTh-dn-EYQ"/>
@@ -70,7 +71,7 @@
                     <rect key="frame" x="0.0" y="524" width="320" height="44"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BMn-2h-Cra" userLabel="View - User Button">
-                            <rect key="frame" x="0.0" y="0.0" width="159.5" height="44"/>
+                            <rect key="frame" x="0.0" y="0.0" width="160" height="44"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7IK-jo-oWR" userLabel="View - Image Label Wrapper">
                                     <rect key="frame" x="8" y="0.0" width="144" height="44"/>
@@ -125,7 +126,7 @@
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AzT-6l-KJB" userLabel="View - User Button">
-                            <rect key="frame" x="160" y="0.0" width="159.5" height="44"/>
+                            <rect key="frame" x="160" y="0.0" width="160" height="44"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tl1-jU-Ucg" userLabel="View - Image Label Wrapper">
                                     <rect key="frame" x="8" y="0.0" width="144" height="44"/>
@@ -148,7 +149,7 @@
                                                     </constraints>
                                                 </imageView>
                                             </subviews>
-                                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="backgroundColor" cyan="0.56578928230000003" magenta="0.2011443973" yellow="0.00091552734380000004" black="0.24661865238181813" alpha="1" colorSpace="custom" customColorSpace="genericCMYKColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="R4A-v9-aBu" secondAttribute="bottom" constant="3" id="5Tx-ec-G1O"/>
                                                 <constraint firstAttribute="trailing" secondItem="R4A-v9-aBu" secondAttribute="trailing" constant="3" id="7zD-sw-VRr"/>
