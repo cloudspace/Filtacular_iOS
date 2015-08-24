@@ -101,6 +101,7 @@ static const int cTweetsPerPage = 100;
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+    
     //Fixes an animation bug with the options view
     [self.viewDeckController toggleRightViewAnimated:false];
     [self.viewDeckController toggleRightViewAnimated:false];

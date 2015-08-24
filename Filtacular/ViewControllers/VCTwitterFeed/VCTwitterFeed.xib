@@ -13,8 +13,6 @@
                 <outlet property="lblUser" destination="KL0-4p-JZk" id="hVb-Fq-g0E"/>
                 <outlet property="table" destination="eIb-3Y-3vV" id="c3J-aU-eCt"/>
                 <outlet property="view" destination="iN0-l3-epB" id="krZ-Mu-79u"/>
-                <outlet property="viewBackToTop" destination="UsA-v8-nFC" id="EGu-O5-whW"/>
-                <outlet property="viewBackToTopShadow" destination="FHZ-Zi-Kgh" id="Zeg-Ej-PVH"/>
                 <outlet property="viewHelp" destination="UlR-l5-MJ5" id="km2-8P-AZh"/>
             </connections>
         </placeholder>
@@ -120,47 +118,6 @@
                         <constraint firstItem="OrA-Vf-VQw" firstAttribute="leading" secondItem="UlR-l5-MJ5" secondAttribute="leading" id="f5b-Kz-Mk1"/>
                         <constraint firstItem="OrA-Vf-VQw" firstAttribute="top" secondItem="UlR-l5-MJ5" secondAttribute="top" id="uUW-Kf-GGS"/>
                     </constraints>
-                </view>
-                <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UsA-v8-nFC" userLabel="View - Back to Top">
-                    <rect key="frame" x="230" y="410" width="96" height="98"/>
-                    <subviews>
-                        <view clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FHZ-Zi-Kgh" userLabel="View - Shadow">
-                            <rect key="frame" x="0.0" y="0.0" width="96" height="98"/>
-                            <color key="backgroundColor" cyan="0.0" magenta="0.0" yellow="0.0" black="0.0" alpha="1" colorSpace="custom" customColorSpace="genericCMYKColorSpace"/>
-                            <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                    <integer key="value" value="6"/>
-                                </userDefinedRuntimeAttribute>
-                            </userDefinedRuntimeAttributes>
-                        </view>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="backToTop" translatesAutoresizingMaskIntoConstraints="NO" id="obA-uq-tVB">
-                            <rect key="frame" x="30" y="6" width="30" height="57"/>
-                        </imageView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Back to Top" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JfK-kA-zzk">
-                            <rect key="frame" x="11" y="71" width="68" height="21"/>
-                            <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qzb-t2-Pz0">
-                            <rect key="frame" x="0.0" y="0.0" width="96" height="98"/>
-                            <state key="normal">
-                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                            <connections>
-                                <action selector="tapBackToTop" destination="eIb-3Y-3vV" eventType="touchUpInside" id="4is-eb-mOm"/>
-                            </connections>
-                        </button>
-                    </subviews>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="96" id="8wi-k7-ZgY"/>
-                        <constraint firstAttribute="height" constant="98" id="hTh-dn-EYQ"/>
-                    </constraints>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                            <integer key="value" value="4"/>
-                        </userDefinedRuntimeAttribute>
-                    </userDefinedRuntimeAttributes>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aZd-gO-2Rg" userLabel="View Bottom Bar">
                     <rect key="frame" x="0.0" y="524" width="320" height="44"/>
@@ -321,7 +278,6 @@
                 <constraint firstAttribute="trailing" secondItem="aZd-gO-2Rg" secondAttribute="trailing" id="8yE-Zb-aiO"/>
                 <constraint firstItem="eIb-3Y-3vV" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="C3f-jl-v1h"/>
                 <constraint firstItem="aZd-gO-2Rg" firstAttribute="top" secondItem="UlR-l5-MJ5" secondAttribute="bottom" id="Do0-Hw-cw1"/>
-                <constraint firstAttribute="trailing" secondItem="UsA-v8-nFC" secondAttribute="trailing" constant="-6" id="L8a-MJ-gHu"/>
                 <constraint firstAttribute="bottom" secondItem="aZd-gO-2Rg" secondAttribute="bottom" priority="500" id="MVk-dl-2pW"/>
                 <constraint firstAttribute="trailing" secondItem="UlR-l5-MJ5" secondAttribute="trailing" id="WuD-xP-obd"/>
                 <constraint firstItem="UlR-l5-MJ5" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="X0L-Hg-sPu"/>
@@ -329,14 +285,12 @@
                 <constraint firstItem="AzT-6l-KJB" firstAttribute="centerX" secondItem="dYO-eA-jZj" secondAttribute="centerX" id="dmq-14-7Iv"/>
                 <constraint firstItem="hPA-Z8-Y9I" firstAttribute="centerX" secondItem="BMn-2h-Cra" secondAttribute="centerX" constant="0.25" id="hUT-A6-8v0"/>
                 <constraint firstItem="aZd-gO-2Rg" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="i0V-jI-6GB"/>
-                <constraint firstItem="aZd-gO-2Rg" firstAttribute="top" secondItem="UsA-v8-nFC" secondAttribute="bottom" constant="16" id="tFF-Np-AOL"/>
             </constraints>
             <point key="canvasLocation" x="267" y="298"/>
         </view>
     </objects>
     <resources>
         <image name="arrow" width="57" height="64"/>
-        <image name="backToTop" width="30" height="57"/>
         <image name="filter_icon" width="57" height="66"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
