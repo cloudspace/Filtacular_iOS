@@ -775,6 +775,7 @@
 				TargetAttributes = {
 					DF183B921B1CAA2B0001DDA4 = {
 						CreatedOnToolsVersion = 6.3.2;
+						DevelopmentTeam = 34V4E5MT6Z;
 					};
 					DF183BAE1B1CAA2B0001DDA4 = {
 						CreatedOnToolsVersion = 6.3.2;
@@ -1078,9 +1079,11 @@
 					"$(PROJECT_DIR)/Filtacular/ThirdParty",
 				);
 				INFOPLIST_FILE = Filtacular/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -1089,17 +1092,19 @@
 			baseConfigurationReference = 68604422666334DB8E77C8CC /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Unity Marketing, Inc. (34V4E5MT6Z)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Unity Marketing, Inc. (34V4E5MT6Z)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/Filtacular/ThirdParty",
 				);
 				INFOPLIST_FILE = Filtacular/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "8e224793-91f6-4aec-bf0f-b38f5ac84436";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
